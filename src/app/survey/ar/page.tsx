@@ -41,7 +41,6 @@ function buildGoogleFormUrl(answers: Record<string, AnswerVal>, otherText: strin
   return `${FORM_BASE}?${params.toString()}`
 }
 
-// ─── Pill ─────────────────────────────────────────────────────────────────────
 const Pill = memo(function Pill({ label, selected, accent, onClick }: {
   label: string; selected: boolean; accent: string; onClick: () => void
 }) {
@@ -58,7 +57,6 @@ const Pill = memo(function Pill({ label, selected, accent, onClick }: {
   )
 })
 
-// ─── Rating scale (1–5 cubes) ─────────────────────────────────────────────────
 const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLabel, accent, accent2 }: {
   value: number | null; onChange: (v: number) => void
   minLabel: string; maxLabel: string; accent: string; accent2: string
@@ -86,7 +84,6 @@ const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLa
   )
 })
 
-// ─── Star rating scale (1-5 stars) ────────────────────────────────────────────
 const StarScale = memo(function StarScale({ value, onChange, accent, accent2 }: {
   value: number | null; onChange: (v: number) => void
   accent: string; accent2: string
@@ -132,7 +129,6 @@ const StarScale = memo(function StarScale({ value, onChange, accent, accent2 }: 
   )
 })
 
-// ─── Progress bar ─────────────────────────────────────────────────────────────
 const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step: number; accent: string; accent2: string }) {
   return (
     <div className="fixed top-0 left-0 right-0 h-0.5 bg-white/5 z-50">
@@ -144,12 +140,10 @@ const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step:
   )
 })
 
-// ─── Animation presets ────────────────────────────────────────────────────────
 const SLIDE   = { initial: { opacity: 0, x: -70 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: 70 } }
 const FADE_UP = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -30 } }
 const DUR     = { duration: 0.36, ease: [0.16, 1, 0.3, 1] } as const
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
 export default function SurveyArPage() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
@@ -177,10 +171,9 @@ export default function SurveyArPage() {
   }, [q])
 
   const handleNext = useCallback(async () => {
-    // Conditional logic: skip demo-field if High School is selected
     if (q?.id === "demo-education" && answers["demo-education"] === "ثانوية عامة") {
       setAnswers((prev) => ({ ...prev, "demo-field": "Not specialized" }))
-      setStep((s) => s + 2) // Skip demo-field
+      setStep((s) => s + 2)
       return
     }
 
@@ -196,7 +189,6 @@ export default function SurveyArPage() {
         } else if (typeof val === "number") {
           params.append(entryId, String(val))
         } else {
-          // Send empty string to Google Forms if it's "Not specialized" and was skipped
           let finalVal = String(val)
           if (qId === "demo-field" && val === "أخرى" && otherText.trim()) {
             finalVal = otherText.trim()
@@ -209,7 +201,6 @@ export default function SurveyArPage() {
           params.append(entryId, finalVal)
         }
       }
-      // Submit via the new API proxy
       const res = await fetch("/api/survey/submit", {
         method: "POST",
         body: params.toString(),
@@ -227,9 +218,7 @@ export default function SurveyArPage() {
   }, [step, answers, otherText])
 
   const handleBack = useCallback(() => {
-    // If we are on the step right AFTER the skipped demo-field (which is q1),
-    // and High School was selected, jump back 2 steps instead of 1.
-    const q1Index = ALL_STEPS.findIndex(s => s.id === "q1") + 1 // +1 because step 0 is intro
+    const q1Index = ALL_STEPS.findIndex(s => s.id === "q1") + 1
     if (step === q1Index && answers["demo-education"] === "ثانوية عامة") {
       setStep((s) => Math.max(s - 2, 0))
     } else {
@@ -254,13 +243,11 @@ export default function SurveyArPage() {
       className="relative min-h-screen w-full overflow-hidden"
       style={{ background: "#070710" }}
     >
-      {/* Blobs */}
       <div aria-hidden className="pointer-events-none fixed rounded-full blur-[120px] opacity-25 survey-blob-1"
         style={{ width: 600, height: 600, background: `radial-gradient(circle,${accent},transparent 70%)`, top: "-15%", left: "-8%", willChange: "transform" }} />
       <div aria-hidden className="pointer-events-none fixed rounded-full blur-[100px] opacity-15 survey-blob-2"
         style={{ width: 500, height: 500, background: `radial-gradient(circle,${accent2},transparent 70%)`, bottom: "-10%", right: "-5%", willChange: "transform" }} />
 
-      {/* ── Language toggle (fixed top-left in RTL) ── */}
       <a href="../survey/en"
         className="fixed top-5 left-5 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white/40 hover:text-white/80 hover:border-white/25 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
         title="English"
@@ -268,14 +255,11 @@ export default function SurveyArPage() {
         <Globe className="w-4.5 h-4.5" />
       </a>
 
-      {/* Progress */}
       {step >= 1 && step <= TOTAL && <ProgressBar step={step} accent={accent} accent2={accent2} />}
 
-      {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-28 py-20">
         <AnimatePresence mode="wait" initial={false}>
 
-          {/* ── مقدمة ── */}
           {step === 0 && (
             <motion.div key="intro" {...FADE_UP} transition={DUR}>
               <div className="flex items-center gap-2 mb-6">
@@ -307,7 +291,6 @@ export default function SurveyArPage() {
                 </p>
               </div>
 
-              {/* Section tags */}
               <div className="flex flex-wrap gap-2 mb-12">
                 {["احكيلنا عنك", "١ · الانطباع العام", "٢ · التقييم", "٣ · أسئلة مفتوحة"].map((s) => (
                   <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">{s}</span>
@@ -323,7 +306,6 @@ export default function SurveyArPage() {
             </motion.div>
           )}
 
-          {/* ── سؤال ── */}
           {step >= 1 && step <= TOTAL && q && (
             <motion.div key={`q${step}`} {...SLIDE} transition={DUR}>
               <div className="flex items-center gap-3 mb-5">
@@ -332,7 +314,6 @@ export default function SurveyArPage() {
                 <span className="text-xs text-white/25 font-medium">{stepDisplay?.counter}</span>
               </div>
 
-              {/* Quote if provided */}
               {q.quote && (
                 <div className="mb-6 p-6 rounded-2xl bg-white/5 border border-white/10"
                   style={{ borderRight: `4px solid ${q.accent}` }}>
@@ -352,7 +333,6 @@ export default function SurveyArPage() {
               {q.sub && <p className="text-sm md:text-base text-white/40 mb-10 font-light leading-loose">{q.sub}</p>}
               {!q.sub && <div className="mb-10" />}
 
-              {/* ── Text Input (name / phone) ── */}
               {q.type === "text-input" && (
                 <div className="max-w-md">
                   <input
@@ -373,7 +353,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* ── Rating (5 cubes) ── */}
               {q.type === "rating" && (
                 <div className="max-w-lg">
                   <RatingScale
@@ -385,7 +364,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* ── Star Rating (Animated Stars) ── */}
               {q.type === "star" && (
                 <div className="max-w-lg">
                   <StarScale
@@ -395,7 +373,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* Radio */}
               {q.type === "radio" && q.options && (
                 <div className="flex flex-wrap gap-3 max-w-3xl">
                   {q.options.map((opt) => (
@@ -405,7 +382,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* Radio with "Other" */}
               {q.type === "radio-other" && q.options && (
                 <div className="max-w-3xl">
                   <div className="flex flex-wrap gap-3">
@@ -430,7 +406,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* Checkbox */}
               {q.type === "checkbox" && q.options && (
                 <div className="flex flex-wrap gap-3 max-w-3xl">
                   {q.options.map((opt) => {
@@ -446,7 +421,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* Textarea */}
               {q.type === "textarea" && (
                 <div className="max-w-2xl">
                   <textarea rows={5}
@@ -468,7 +442,6 @@ export default function SurveyArPage() {
                 </div>
               )}
 
-              {/* Navigation */}
               <div className="flex items-center gap-6 mt-12">
                 <button
                   onClick={canProceed && !submitting ? handleNext : undefined}
@@ -495,7 +468,6 @@ export default function SurveyArPage() {
             </motion.div>
           )}
 
-          {/* ── شكراً ── */}
           {step === TOTAL + 1 && (
             <motion.div key="done" {...FADE_UP} transition={DUR}>
               <div className="flex gap-1.5 mb-10">
@@ -527,7 +499,6 @@ export default function SurveyArPage() {
         </AnimatePresence>
       </div>
 
-      {/* CSS blob drift */}
       <style>{`
         @keyframes blobDrift1{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(25px,18px) scale(1.04)}70%{transform:translate(-15px,-12px) scale(0.97)}}
         @keyframes blobDrift2{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(-22px,-18px) scale(1.03)}65%{transform:translate(12px,22px) scale(0.97)}}
