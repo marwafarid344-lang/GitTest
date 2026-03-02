@@ -1,537 +1,515 @@
 "use client"
 
-import { useState, useCallback, memo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronLeft, Send, Star, Loader2, Globe } from "lucide-react"
-import Image from "next/image"
-import { useToast } from "@/components/ToastProvider"
+import { useRef, useState, useCallback, useEffect } from "react"
+import Link from "next/link"
+import gsap from "gsap"
+import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
+import { useMouseParallax } from "@/hooks/use-gsap-survey-intro"
 
-import {
-  type QType,
-  type Question,
-  ALL_STEPS_EN as ALL_STEPS,
-  TOTAL,
-  FORM_MAP,
-  FORM_BASE,
-  DEMO_COUNT
-} from "./questions"
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Survey Intro — /survey
+   Premium auto-advancing cinematic slides (RTL, Cairo, Egyptian Arabic)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-type AnswerVal = string | string[] | number
-
-function buildGoogleFormUrl(answers: Record<string, AnswerVal>, otherText: string): string {
-  const params = new URLSearchParams()
-  for (const [qId, entryId] of Object.entries(FORM_MAP)) {
-    const val = answers[qId]
-    if (val === undefined || val === null || val === "") continue
-    if (Array.isArray(val)) {
-      // checkbox — repeat the entry for each value
-      for (const v of val) params.append(entryId, v)
-    } else if (typeof val === "number") {
-      params.append(entryId, String(val))
-    } else {
-      // radio-other: if "Other" selected, send the custom text
-      if (qId === "demo-field" && val === "Other" && otherText.trim()) {
-        params.append(entryId, otherText.trim())
-      } else {
-        params.append(entryId, val)
-      }
-    }
-  }
-  return `${FORM_BASE}?${params.toString()}`
+interface Slide {
+  id: string
+  render: () => React.ReactNode
 }
 
-// ─── Pill button (radio / checkbox option) ────────────────────────────────────
-const Pill = memo(function Pill({ label, selected, accent, onClick }: {
-  label: string; selected: boolean; accent: string; onClick: () => void
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className="px-5 py-3 rounded-full text-sm md:text-base font-medium transition-[border-color,background,color,box-shadow] duration-200 outline-none text-left"
-      style={{
-        border: `2px solid ${selected ? accent : "rgba(255,255,255,0.12)"}`,
-        background: selected ? `${accent}22` : "rgba(255,255,255,0.04)",
-        color: selected ? "#fff" : "rgba(255,255,255,0.55)",
-        boxShadow: selected ? `0 0 20px ${accent}44` : "none",
-      }}
-    >
-      {label}
-    </button>
-  )
-})
+/* ── Animated typing text component ─────────────────────────────────────── */
+function TypingText({ text, className = "" }: { text: string; className?: string }) {
+  const elRef = useRef<HTMLSpanElement>(null)
 
-// ─── Rating scale (1–5 cubes) ─────────────────────────────────────────────────
-const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLabel, accent, accent2 }: {
-  value: number | null; onChange: (v: number) => void
-  minLabel: string; maxLabel: string; accent: string; accent2: string
-}) {
-  return (
-    <div>
-      <div className="flex gap-3 mt-2">
-        {[1, 2, 3, 4, 5].map((n) => (
-          <button
-            key={n}
-            onClick={() => onChange(n)}
-            className="flex-1 h-14 md:h-16 rounded-2xl font-bold text-lg md:text-xl transition-[transform,background,box-shadow,color] duration-150"
-            style={
-              value === n
-                ? { background: `linear-gradient(135deg,${accent},${accent2})`, color: "#fff", boxShadow: `0 6px 24px ${accent}55`, transform: "scale(1.08)" }
-                : { background: "rgba(255,255,255,0.06)", border: "2px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }
-            }
+  useEffect(() => {
+    const el = elRef.current
+    if (!el) return
+    el.textContent = ""
+
+    let i = 0
+    const chars = [...text]
+    const id = setInterval(() => {
+      if (i < chars.length) {
+        el.textContent += chars[i]
+        i++
+      } else {
+        clearInterval(id)
+      }
+    }, 35)
+    return () => clearInterval(id)
+  }, [text])
+
+  return <span ref={elRef} className={className} />
+}
+
+/* ── Animated counter ──────────────────────────────────────────────────── */
+function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const elRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const el = elRef.current
+    if (!el) return
+    const obj = { val: 0 }
+    gsap.to(obj, {
+      val: target,
+      duration: 1.5,
+      ease: "power2.out",
+      delay: 0.3,
+      onUpdate() {
+        el.textContent = Math.round(obj.val) + suffix
+      },
+    })
+  }, [target, suffix])
+
+  return <span ref={elRef}>0{suffix}</span>
+}
+
+/* ── Slide definitions ─────────────────────────────────────────────────── */
+
+const SLIDES: Slide[] = [
+  /* ──────── 0 — Greeting ──────── */
+  {
+    id: "greeting",
+    render: () => (
+      <>
+        {/* Decorative top icon */}
+        <div className="survey-float mb-6">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-br from-violet-500/20 via-blue-500/15 to-purple-500/20 border border-white/[0.08] flex items-center justify-center text-4xl sm:text-5xl shadow-[0_0_40px_rgba(139,92,246,0.12)]">
+            👋
+          </div>
+        </div>
+
+        <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.1] mb-2">
+          <span className="bg-gradient-to-l from-violet-300 via-white to-blue-200 bg-clip-text text-transparent">
+            أهلًا بيك
+          </span>
+        </h1>
+
+        <div className="w-16 h-1 rounded-full bg-gradient-to-r from-violet-500 to-blue-500 mx-auto my-6 opacity-60" />
+
+        <p className="text-white/50 text-base sm:text-lg md:text-xl leading-[1.9] max-w-lg">
+          الذكاء الاصطناعي بقى داخل في حياتنا اليومية بشكل كبير، خصوصًا في
+          الكتابة — سواء في الدراسة، الشغل، أو حتى على السوشيال ميديا.
+        </p>
+      </>
+    ),
+  },
+
+  /* ──────── 1 — The Question ──────── */
+  {
+    id: "question",
+    render: () => (
+      <>
+        <div className="survey-float mb-6">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-violet-500/20 border border-white/[0.08] flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+            🤔
+          </div>
+        </div>
+
+        <p className="text-white/90 font-bold text-2xl sm:text-3xl md:text-4xl mb-9 leading-snug">
+          <TypingText text="بس السؤال المهم:" className="bg-gradient-to-l from-violet-300 to-blue-300 bg-clip-text text-transparent" />
+          <span className="inline-block w-0.5 h-7 bg-violet-400 mr-1 animate-pulse align-middle" />
+        </p>
+
+        <div className="space-y-4 w-full max-w-md">
+          {[
+            { color: "from-violet-500 to-violet-600", icon: "✦", text: "إحنا فعلًا بنفضل كتابة الـ AI؟" },
+            { color: "from-blue-500 to-blue-600", icon: "✦", text: "بنقدر نفرق بينها وبين كتابة الإنسان؟" },
+            { color: "from-purple-500 to-purple-600", icon: "✦", text: "ومين فيهم بيدينا ثقة أكتر؟" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="survey-question-card group flex items-start gap-4 p-4 sm:p-5 rounded-2xl border border-white/[0.06] bg-white/[0.03] hover:bg-white/[0.05] transition-[background-color,opacity] duration-300"
+              style={{ animationDelay: `${i * 150}ms` }}
+            >
+              <div className={`flex-shrink-0 w-9 h-9 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center text-white text-sm font-bold shadow-lg`}>
+                {item.icon}
+              </div>
+              <span className="text-white/60 text-base sm:text-lg leading-relaxed pt-1">{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </>
+    ),
+  },
+
+  /* ──────── 2 — Purpose ──────── */
+  {
+    id: "purpose",
+    render: () => (
+      <>
+        {/* Stats row */}
+        <div className="flex items-center gap-6 sm:gap-10 mb-10">
+          {[
+            { val: 21, suffix: "+", label: "سؤال" },
+            { val: 5, suffix: "", label: "محاور" },
+            { val: 5, suffix: " دقائق", label: "فقط" },
+          ].map((s, i) => (
+            <div key={i} className="text-center">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
+                <AnimatedCounter target={s.val} suffix={s.suffix} />
+              </div>
+              <div className="text-white/25 text-xs sm:text-sm mt-1.5 font-medium">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Glass card */}
+        <div className="survey-glass-card relative rounded-3xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 md:p-10 max-w-lg w-full overflow-hidden">
+          {/* Glow edge */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
+
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500/25 to-blue-500/25 flex items-center justify-center text-xl">
+              🎯
+            </div>
+            <h2 className="text-white/90 font-bold text-lg sm:text-xl">هدف الاستبيان</h2>
+          </div>
+
+          <p className="text-white/50 text-sm sm:text-base leading-[1.9]">
+            الاستبيان ده هدفه يعرف رأيك الحقيقي في الفرق بين كتابة الإنسان وكتابة
+            الذكاء الاصطناعي من ناحية المشاعر، الإبداع، الثقة، والجودة بشكل عام
+            بالإضافة لتطوير نماذج الذكاء الاصطناعي وتحسين كفائتها في الكتابة.
+          </p>
+        </div>
+      </>
+    ),
+  },
+
+  /* ──────── 3 — Privacy ──────── */
+  {
+    id: "privacy",
+    render: () => (
+      <>
+        <div className="survey-glass-card relative rounded-3xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 md:p-10 max-w-lg w-full overflow-hidden">
+          {/* Top glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+
+          {/* Shield icon */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-green-500/15 to-teal-500/20 border border-white/[0.06] flex items-center justify-center text-2xl shadow-[0_0_30px_rgba(16,185,129,0.08)]">
+              🛡️
+            </div>
+            <div>
+              <h2 className="text-white/90 font-bold text-lg sm:text-xl">مهم جدًا</h2>
+              <p className="text-white/30 text-xs">خصوصيتك محمية بالكامل</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {[
+              { icon: "🔒", text: "مش بنطلب أي بيانات شخصية أو قانونية خالص" },
+              { icon: "📊", text: "إجاباتك هتستخدم لأغراض بحثية بس" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                <span className="text-lg mt-0.5">{item.icon}</span>
+                <span className="text-white/45 text-sm sm:text-base leading-relaxed">{item.text}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent my-6" />
+
+          <p className="text-white/35 text-sm leading-relaxed text-center">
+            الموضوع مش هياخد منك غير كام دقيقة
+            <br />
+            <span className="text-white/60 font-semibold text-base">
+              رأيك مهم جدًا ❤️
+            </span>
+          </p>
+        </div>
+      </>
+    ),
+  },
+
+  /* ──────── 4 — Language Choice ──────── */
+  {
+    id: "lang",
+    render: () => (
+      <>
+        <div className="survey-float mb-6">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-blue-500/20 border border-white/[0.08] flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(139,92,246,0.1)]">
+            🌍
+          </div>
+        </div>
+
+        <p className="text-white/80 font-bold text-xl sm:text-2xl md:text-3xl mb-3 leading-snug">
+          من فضلك اختار اللغة
+        </p>
+        <p className="text-white/30 text-sm mb-10">اللي تحب تكمل بيها الاستبيان</p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-lg">
+          {/* Arabic */}
+          <Link
+            href="/survey/ar"
+            className="survey-lang-card group relative block rounded-2xl overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060a14]"
+            aria-label="متابعة باللغة العربية"
           >
-            {n}
-          </button>
-        ))}
-      </div>
-      <div className="flex justify-between mt-2 text-xs text-white/35 font-medium">
-        <span>{minLabel}</span>
-        <span>{maxLabel}</span>
-      </div>
-    </div>
-  )
-})
+            <div className="relative p-7 sm:p-8 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color,box-shadow] duration-400 hover:border-violet-500/25 hover:bg-white/[0.06] hover:shadow-[0_0_40px_rgba(139,92,246,0.12)] hover:-translate-y-1">
+              {/* Top glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-// ─── Star rating scale (1-5 stars) ────────────────────────────────────────────
-const StarScale = memo(function StarScale({ value, onChange, accent, accent2 }: {
-  value: number | null; onChange: (v: number) => void
-  accent: string; accent2: string
-}) {
-  const [hovered, setHovered] = useState<number | null>(null)
+              <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300 text-violet-500">🇪🇬</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">عربي</h3>
+              <p className="text-white/25 text-xs sm:text-sm">النسخة العربية المصرية</p>
+            </div>
+          </Link>
 
-  return (
-    <div className="flex gap-3 md:gap-4 mt-4 max-w-sm" dir="ltr">
-      {[1, 2, 3, 4, 5].map((n) => {
-        const isActive = (hovered !== null && n <= hovered) || (hovered === null && value !== null && n <= value)
-        const isSelected = value !== null && n === value
-
-        return (
-          <motion.button
-            key={n}
-            onMouseEnter={() => setHovered(n)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => onChange(n)}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: isActive ? (isSelected ? 1.2 : 1.1) : 1 }}
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="p-3 md:p-4 rounded-full transition-all duration-300 outline-none flex items-center justify-center"
-            style={{
-              background: isActive ? `${accent}22` : "rgba(255,255,255,0.03)",
-              border: `2px solid ${isActive ? accent : "rgba(255,255,255,0.08)"}`,
-              boxShadow: isSelected ? `0 0 30px ${accent}66` : "none"
-            }}
+          {/* English */}
+          <Link
+            href="/survey/en"
+            className="survey-lang-card group relative block rounded-2xl overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060a14]"
+            aria-label="Continue in English"
           >
-            <Star
-              className="w-8 h-8 md:w-10 md:h-10 transition-colors duration-300"
-              style={{
-                color: isActive ? accent : "rgba(255,255,255,0.15)",
-                fill: isActive ? accent : "transparent",
-                filter: isActive ? `drop-shadow(0 0 10px ${accent}aa)` : "none"
-              }}
-            />
-          </motion.button>
-        )
-      })}
-    </div>
-  )
-})
+            <div className="relative p-7 sm:p-8 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color,box-shadow] duration-400 hover:border-blue-500/25 hover:bg-white/[0.06] hover:shadow-[0_0_40px_rgba(59,130,246,0.12)] hover:-translate-y-1">
+              {/* Top glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-// ─── Progress bar ─────────────────────────────────────────────────────────────
-const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step: number; accent: string; accent2: string }) {
-  return (
-    <div className="fixed top-0 left-0 right-0 h-0.5 bg-white/5 z-50">
-      <motion.div
-        className="h-full"
-        initial={false}
-        animate={{ width: `${(step / TOTAL) * 100}%` }}
-        transition={{ type: "spring", stiffness: 280, damping: 28 }}
-        style={{ background: `linear-gradient(90deg,${accent},${accent2})`, willChange: "width" }}
-      />
-    </div>
-  )
-})
+              <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300 text-purple-500">🇬🇧</div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>English</h3>
+              <p className="text-white/25 text-xs sm:text-sm">English Version</p>
+            </div>
+          </Link>
+        </div>
+      </>
+    ),
+  },
+]
 
-// ─── Transition presets (GPU-only: opacity + transform) ───────────────────────
-const SLIDE   = { initial: { opacity: 0, x: 70 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -70 } }
-const FADE_UP = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -30 } }
-const DUR     = { duration: 0.36, ease: [0.16, 1, 0.3, 1] } as const
+/* ── Auto-advance timings (ms) ────────────────────────────────────────── */
+const SLIDE_DURATIONS = [5000, 6000, 6000, 5500, Infinity]
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-export default function SurveyPage() {
-  const [step, setStep] = useState(0) // 0=intro, 1..TOTAL=questions, TOTAL+1=done
-  const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
-  const [otherText, setOtherText] = useState("") // for "Other" option in radio-other
-  const [submitting, setSubmitting] = useState(false)
-  const { addToast } = useToast()
+/* ═══════════════════════════════════════════════════════════════════════════ */
 
-  const q: Question | null = step >= 1 && step <= TOTAL ? ALL_STEPS[step - 1] : null
-  const answer = q ? answers[q.id] : undefined
+export default function SurveyIntro() {
+  const pageRef = useRef<HTMLDivElement>(null)
+  const slideRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [current, setCurrent] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const isAnimating = useRef(false)
+  const progressBarRef = useRef<(HTMLDivElement | null)[]>([])
 
-  const canProceed = !q
-    || (q.type === "radio"       && typeof answer === "string" && answer.length > 0)
-    || (q.type === "radio-other" && typeof answer === "string" && answer.length > 0 && (answer !== "Other" || otherText.trim().length > 0))
-    || (q.type === "checkbox"    && Array.isArray(answer) && (answer as string[]).length > 0)
-    || (q.type === "textarea"    && !q.required)
-    || (q.type === "textarea"    && q.required && typeof answer === "string" && (answer as string).trim().length >= 5)
-    || (q.type === "text-input"  && !q.required) // name/phone are optional — always can proceed
-    || (q.type === "text-input"  && q.required && typeof answer === "string" && (answer as string).trim().length > 0)
-    || (q.type === "rating"      && typeof answer === "number")
-    || (q.type === "star"        && typeof answer === "number")
+  useMouseParallax(contentRef, 4)
 
-  const setAnswer = useCallback((val: AnswerVal) => {
-    if (!q) return
-    setAnswers((prev) => ({ ...prev, [q.id]: val }))
-  }, [q])
+  /* ── Page entrance ── */
+  useEffect(() => {
+    if (!pageRef.current) return
+    const tl = gsap.timeline()
+    tl.to(pageRef.current, { opacity: 1, duration: 0.8, ease: "power2.out" })
+    return () => { tl.kill() }
+  }, [])
 
-  const handleNext = useCallback(async () => {
-    // Conditional logic: skip demo-field if High School is selected
-    if (q?.id === "demo-education" && answers["demo-education"] === "High School") {
-      setAnswers((prev) => ({ ...prev, "demo-field": "Not specialized" })) // Pre-fill to bypass optional/required limits
-      setStep((s) => s + 2) // Skip demo-field
+  /* ── Animate current slide IN ── */
+  const animateSlideIn = useCallback(() => {
+    const el = slideRef.current
+    if (!el) return
+
+    const children = el.querySelectorAll("[data-s]")
+    gsap.set(el, { opacity: 1 })
+    gsap.set(children, { y: 32, opacity: 0, willChange: "transform, opacity" })
+
+    const tl = gsap.timeline({
+      onComplete() {
+        gsap.set(children, { willChange: "auto" })
+        isAnimating.current = false
+      },
+    })
+
+    tl.to(children, {
+      y: 0,
+      opacity: 1,
+      duration: 0.75,
+      ease: "power3.out",
+      stagger: 0.08,
+      force3D: true,
+    })
+
+    return tl
+  }, [])
+
+  /* ── Animate current slide OUT → advance ── */
+  const animateSlideOut = useCallback((nextIdx: number) => {
+    const el = slideRef.current
+    if (!el) return
+    isAnimating.current = true
+
+    const children = el.querySelectorAll("[data-s]")
+
+    gsap.to(children, {
+      y: -20,
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.in",
+      stagger: 0.03,
+      force3D: true,
+      onComplete() {
+        setCurrent(nextIdx)
+      },
+    })
+  }, [])
+
+  /* ── On slide change, animate in ── */
+  useEffect(() => {
+    const tl = animateSlideIn()
+    return () => { tl?.kill() }
+  }, [current, animateSlideIn])
+
+  /* ── Progress bar animation ── */
+  useEffect(() => {
+    const bar = progressBarRef.current[current]
+    if (!bar) return
+
+    const dur = SLIDE_DURATIONS[current]
+    if (dur === Infinity) {
+      // Final slide — full immediately
+      gsap.set(bar, { scaleX: 1 })
       return
     }
 
-    if (step < TOTAL) { setStep((s) => s + 1); return }
-    setSubmitting(true)
-    try {
-      const params = new URLSearchParams()
-      for (const [qId, entryId] of Object.entries(FORM_MAP)) {
-        const val = answers[qId]
-        if (val === undefined || val === null || val === "") continue
-        if (Array.isArray(val)) {
-          for (const v of val) params.append(entryId, v)
-        } else if (typeof val === "number") {
-          params.append(entryId, String(val))
-        } else {
-          // Send empty string to Google Forms if it's "Not specialized" and was skipped
-          let finalVal = val as string
-          if (qId === "demo-field" && val === "Other" && otherText.trim()) finalVal = otherText.trim()
-          else if (qId === "demo-field" && val === "Not specialized") finalVal = "" // Send empty if High School
+    gsap.set(bar, { scaleX: 0 })
+    const tween = gsap.to(bar, {
+      scaleX: 1,
+      duration: dur / 1000,
+      ease: "none",
+    })
 
-          params.append(entryId, finalVal)
-        }
+    return () => { tween.kill() }
+  }, [current])
+
+  /* ── Auto-advance timer ── */
+  useEffect(() => {
+    if (timerRef.current) clearTimeout(timerRef.current)
+
+    const dur = SLIDE_DURATIONS[current]
+    if (dur === Infinity) return
+
+    timerRef.current = setTimeout(() => {
+      if (!isAnimating.current && current < SLIDES.length - 1) {
+        animateSlideOut(current + 1)
       }
-      // Submit via the new API proxy
-      const res = await fetch("/api/survey/submit", {
-        method: "POST",
-        body: params.toString(),
-      })
+    }, dur)
 
-      if (!res.ok) throw new Error("Submission failed")
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [current, animateSlideOut])
 
-      addToast("✅ Response sent! Your answers have been recorded successfully.", "success")
-    } catch {
-      addToast("⚠️ Submission issue. Your answers may not have been recorded. Please try again.", "error")
-    }
-    await new Promise((r) => setTimeout(r, 800))
-    setSubmitting(false)
-    setStep(TOTAL + 1)
-  }, [step, answers, otherText])
-
-  const handleBack = useCallback(() => {
-    // If we are on the step right AFTER the skipped demo-field (which is q1),
-    // and High School was selected, jump back 2 steps instead of 1.
-    const q1Index = ALL_STEPS.findIndex(s => s.id === "q1") + 1 // +1 because step 0 is intro
-    if (step === q1Index && answers["demo-education"] === "High School") {
-      setStep((s) => Math.max(s - 2, 0))
-    } else {
-      setStep((s) => Math.max(s - 1, 0))
-    }
-  }, [step, answers])
-
-  const accent  = q?.accent  ?? "#7c3aed"
-  const accent2 = q?.accent2 ?? "#db2777"
-
-  // Step counter display — show demographic step or survey question number
-  const stepDisplay = q
-    ? q.section === "Tell Us About You"
-      ? { label: q.section, counter: `${step} / ${DEMO_COUNT}` }
-      : { label: q.section, counter: `${step - DEMO_COUNT} / ${TOTAL - DEMO_COUNT}` }
-    : null
+  /* ── Tap to advance ── */
+  const handleTap = useCallback(() => {
+    if (isAnimating.current) return
+    if (current >= SLIDES.length - 1) return
+    if (timerRef.current) clearTimeout(timerRef.current)
+    animateSlideOut(current + 1)
+  }, [current, animateSlideOut])
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden font-outfit" style={{ background: "#070710" }}>
+    <div
+      ref={pageRef}
+      dir="rtl"
+      lang="ar"
+      className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden opacity-0 cursor-default"
+      style={{ fontFamily: "'Cairo', sans-serif" }}
+      onClick={handleTap}
+      role="presentation"
+    >
+      <SurveyIntroBackground />
 
-      {/* CSS blob animations — zero JS, compositor-only */}
-      <div aria-hidden className="pointer-events-none fixed rounded-full blur-[120px] opacity-25 survey-blob-1"
-        style={{ width: 600, height: 600, background: `radial-gradient(circle,${accent},transparent 70%)`, top: "-15%", right: "-8%", willChange: "transform" }} />
-      <div aria-hidden className="pointer-events-none fixed rounded-full blur-[100px] opacity-15 survey-blob-2"
-        style={{ width: 500, height: 500, background: `radial-gradient(circle,${accent2},transparent 70%)`, bottom: "-10%", left: "-5%", willChange: "transform" }} />
-
-      {/* ── Language toggle (fixed top-right) ── */}
-      <a href="/survey/ar"
-        className="fixed top-5 right-5 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white/40 hover:text-white/80 hover:border-white/25 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
-        title="عربي"
-        dir="rtl">
-        <Globe className="w-4.5 h-4.5" />
-      </a>
-
-      {/* Progress strip */}
-      {step >= 1 && step <= TOTAL && <ProgressBar step={step} accent={accent} accent2={accent2} />}
-
-      {/* ── Content ── */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-28 py-20">
-        <AnimatePresence mode="wait" initial={false}>
-
-          {/* ── INTRO ── */}
-          {step === 0 && (
-            <motion.div key="intro" {...FADE_UP} transition={DUR}>
-              <div className="flex items-center gap-2 mb-6">
-                <Image src="/images/1212-removebg-preview.png" alt="Chameleon" width={22} height={22} className="object-contain" />
-                <p className="text-sm font-semibold tracking-[0.2em] uppercase" style={{ color: "#a855f7" }}>
-                  Chameleon Survey 2025
-                </p>
-              </div>
-              <h1 className="font-extrabold leading-[0.93] tracking-tight text-white mb-4" style={{ fontSize: "clamp(2.4rem,7vw,6.5rem)" }}>
-                AI Writing vs<br />
-                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>
-                  Human Writing.
-                </span>
-              </h1>
-              <p className="text-base md:text-lg text-white/50 max-w-xl mb-3 leading-relaxed font-light">
-                <span className="font-semibold text-white/70">Perception Survey</span> — This survey aims to explore people&apos;s perceptions of Artificial Intelligence (AI) writing compared to human writing.
-              </p>
-              <p className="text-sm text-white/30 max-w-xl mb-8 leading-relaxed font-light">
-                Your responses are anonymous and will be used for academic purposes only.
-              </p>
-
-              {/* Section overview */}
-              <div className="flex flex-wrap gap-2 mb-12">
-                {["Tell Us About You", "1 · General Perception", "2 · Evaluation", "3 · Open-Ended"].map((s) => (
-                  <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">
-                    {s}
-                  </span>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setStep(1)}
-                className="inline-flex items-center gap-4 text-white font-bold text-xl md:text-2xl px-10 py-5 rounded-2xl transition-transform duration-200 hover:scale-[1.04] active:scale-95"
-                style={{ background: "linear-gradient(135deg,#7c3aed,#db2777)" }}
-              >
-                Begin Survey <ChevronRight className="w-6 h-6" />
-              </button>
-            </motion.div>
-          )}
-
-          {/* ── QUESTION (demographics + survey — all same design) ── */}
-          {step >= 1 && step <= TOTAL && q && (
-            <motion.div key={`q${step}`} {...SLIDE} transition={DUR}>
-
-              {/* Section + step label */}
-              <div className="flex items-center gap-3 mb-5">
-                <span className="text-xs font-semibold tracking-[0.18em] uppercase" style={{ color: q.accent }}>
-                  {stepDisplay?.label}
-                </span>
-                <div className="h-px flex-1 bg-white/8" />
-                <span className="text-xs text-white/25 font-medium">{stepDisplay?.counter}</span>
-              </div>
-
-              {/* Quote if provided */}
-              {q.quote && (
-                <div className="mb-6 p-6 rounded-2xl bg-white/5 border border-white/10"
-                  style={{ borderLeft: `4px solid ${q.accent}` }}>
-                  <p className="text-xl md:text-2xl text-white/90 leading-relaxed italic font-light">
-                    {q.quote}
-                  </p>
-                </div>
-              )}
-
-              {/* Question */}
-              <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-4"
-                style={{ fontSize: "clamp(2.4rem,5.5vw,5.5rem)", whiteSpace: "pre-line" }}>
-                {q.label}
-              </h2>
-              {q.sub && <p className="text-sm md:text-base text-white/40 mb-10 font-light">{q.sub}</p>}
-              {!q.sub && <div className="mb-10" />}
-
-              {/* ── Text Input (name / phone) ── */}
-              {q.type === "text-input" && (
-                <div className="max-w-md">
-                  <input
-                    type={q.inputType || "text"}
-                    placeholder={q.placeholder}
-                    value={(answer as string) || ""}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    className="w-full bg-transparent text-white text-2xl md:text-3xl font-light placeholder-white/20 outline-none border-b-2 pb-4 transition-[border-color] duration-300"
-                    style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                  />
-                  {!q.required && (
-                    <p className="text-xs text-white/25 mt-3 flex items-center gap-1.5">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/15" />
-                      Optional — skip if you prefer
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {/* ── Rating (5 cubes) ── */}
-              {q.type === "rating" && (
-                <div className="max-w-lg">
-                  <RatingScale
-                    value={(answer as number) ?? null}
-                    onChange={setAnswer}
-                    minLabel={q.minLabel ?? ""}
-                    maxLabel={q.maxLabel ?? ""}
-                    accent={q.accent} accent2={q.accent2} />
-                </div>
-              )}
-
-              {/* ── Star Rating (Animated Stars) ── */}
-              {q.type === "star" && (
-                <div className="max-w-lg">
-                  <StarScale
-                    value={(answer as number) ?? null}
-                    onChange={setAnswer}
-                    accent={q.accent} accent2={q.accent2} />
-                </div>
-              )}
-
-              {/* ── Radio ── */}
-              {q.type === "radio" && q.options && (
-                <div className="flex flex-wrap gap-3 max-w-3xl">
-                  {q.options.map((opt) => (
-                    <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                      onClick={() => setAnswer(opt)} />
-                  ))}
-                </div>
-              )}
-
-              {/* ── Radio with "Other" text input ── */}
-              {q.type === "radio-other" && q.options && (
-                <div className="max-w-3xl">
-                  <div className="flex flex-wrap gap-3">
-                    {q.options.map((opt) => (
-                      <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                        onClick={() => { setAnswer(opt); if (opt !== "Other") setOtherText("") }} />
-                    ))}
-                  </div>
-                  {answer === "Other" && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-                      <input
-                        type="text"
-                        placeholder="Please specify your field…"
-                        value={otherText}
-                        onChange={(e) => setOtherText(e.target.value)}
-                        autoFocus
-                        className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
-                        style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                      />
-                    </motion.div>
-                  )}
-                </div>
-              )}
-
-              {/* ── Checkbox ── */}
-              {q.type === "checkbox" && q.options && (
-                <div className="flex flex-wrap gap-3 max-w-3xl">
-                  {q.options.map((opt) => {
-                    const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
-                    return (
-                      <Pill key={opt} label={opt} selected={checked} accent={q.accent}
-                        onClick={() => {
-                          const prev = (answer as string[]) || []
-                          setAnswer(checked ? prev.filter((v) => v !== opt) : [...prev, opt])
-                        }} />
-                    )
-                  })}
-                </div>
-              )}
-
-              {/* ── Textarea ── */}
-              {q.type === "textarea" && (
-                <div className="max-w-2xl">
-                  <textarea
-                    rows={5}
-                    value={(answer as string) || ""}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    placeholder={q.placeholder}
-                    className="w-full bg-transparent text-white text-lg md:text-xl font-light placeholder-white/20 resize-none outline-none border-b-2 pb-4 transition-[border-color] duration-300"
-                    style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                  />
-                  {q.required && (
-                    <p className="text-xs text-white/20 mt-2">
-                      {((answer as string) || "").trim().length} chars
-                      {((answer as string) || "").trim().length < 5 && " · minimum 5 characters"}
-                    </p>
-                  )}
-                  {!q.required && (
-                    <p className="text-xs text-white/20 mt-2">Optional</p>
-                  )}
-                </div>
-              )}
-
-              {/* ── Nav ── */}
-              <div className="flex items-center gap-6 mt-12">
-                <button
-                  onClick={handleBack}
-                  className="flex items-center gap-2 text-white/30 hover:text-white/60 transition-colors text-sm font-medium"
-                >
-                  <ChevronLeft className="w-4 h-4" /> Back
-                </button>
-
-                <button
-                  onClick={canProceed && !submitting ? handleNext : undefined}
-                  disabled={!canProceed || submitting}
-                  className="flex items-center gap-3 font-bold text-base md:text-lg px-7 py-4 rounded-2xl transition-[transform,opacity] duration-200 hover:scale-[1.04] active:scale-95 disabled:cursor-not-allowed"
-                  style={
-                    canProceed && !submitting
-                      ? { background: `linear-gradient(135deg,${q.accent},${q.accent2})`, color: "#fff", boxShadow: `0 10px 32px ${q.accent}44` }
-                      : { background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.08)" }
-                  }
-                >
-                  {submitting
-                    ? <><Loader2 className="w-5 h-5 animate-spin" /> Submitting…</>
-                    : step === TOTAL
-                    ? <><Send className="w-4 h-4" /> Submit</>
-                    : <>Continue <ChevronRight className="w-4 h-4" /></>}
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {/* ── DONE ── */}
-          {step === TOTAL + 1 && (
-            <motion.div key="done" {...FADE_UP} transition={DUR}>
-              <div className="flex gap-1.5 mb-10">
-                {[1,2,3,4,5].map((i) => (
-                  <motion.div key={i} initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: i * 0.08, type: "spring", stiffness: 220 }}>
-                    <Star className="w-8 h-8 fill-yellow-400 text-yellow-400" />
-                  </motion.div>
-                ))}
-              </div>
-              <p className="text-sm font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: "#a855f7" }}>✦ All done</p>
-              <h2 className="font-extrabold leading-[0.93] tracking-tight text-white mb-6"
-                style={{ fontSize: "clamp(3rem,9vw,8rem)" }}>
-                Thank you,{" "}
-                <span className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>
-                  genuinely.
-                </span>
-              </h2>
-              <p className="text-lg md:text-2xl text-white/45 max-w-lg mb-14 leading-relaxed font-light">
-                Every response will be analyzed to understand how people perceive AI writing.<br />
-                <span className="text-white/25 text-base">Your answers are anonymous and will never be shared individually.</span>
-              </p>
-              <a href="/"
-                className="inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-2xl text-white/55 hover:text-white border border-white/10 hover:border-white/25 transition-[border-color,color,transform] duration-200 hover:scale-[1.03]">
-                Back to Home <ChevronRight className="w-5 h-5" />
-              </a>
-            </motion.div>
-          )}
-
-        </AnimatePresence>
+      {/* ── Progress bar ── */}
+      <div className="fixed top-0 inset-x-0 z-50 flex gap-1.5 px-4 sm:px-6 pt-4 sm:pt-6 pb-2">
+        {SLIDES.map((_, i) => (
+          <div
+            key={i}
+            className="flex-1 h-[3px] rounded-full overflow-hidden"
+            style={{ background: "rgba(255,255,255,0.06)" }}
+          >
+            <div
+              ref={(el) => { progressBarRef.current[i] = el }}
+              className="h-full rounded-full origin-right"
+              style={{
+                background: "linear-gradient(90deg, #8b5cf6, #3b82f6)",
+                transform: i < current ? "scaleX(1)" : "scaleX(0)",
+                opacity: i < current ? 0.4 : 1,
+              }}
+            />
+          </div>
+        ))}
       </div>
 
-      {/* CSS blob drift — zero JS */}
-      <style>{`
-        @keyframes blobDrift1{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-25px,18px) scale(1.04)}70%{transform:translate(15px,-12px) scale(0.97)}}
-        @keyframes blobDrift2{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(22px,-18px) scale(1.03)}65%{transform:translate(-12px,22px) scale(0.97)}}
-        .survey-blob-1{animation:blobDrift1 14s ease-in-out infinite}
-        .survey-blob-2{animation:blobDrift2 17s ease-in-out infinite}
-      `}</style>
+      {/* ── Slide number indicator ── */}
+      <div className="fixed top-12 sm:top-14 left-1/2 -translate-x-1/2 z-40">
+        <span className="text-white/15 text-[11px] font-mono tracking-widest">
+          {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* ── Center content ── */}
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-5 sm:px-10 flex flex-col items-center">
+        <div ref={contentRef}>
+          <div
+            ref={slideRef}
+            className="flex flex-col items-center text-center min-h-[380px] sm:min-h-[420px] justify-center"
+          >
+            <SlideContent slide={SLIDES[current]} />
+          </div>
+        </div>
+      </div>
+
+      {/* ── Tap hint ── */}
+      {current === 0 && (
+        <div className="fixed bottom-12 inset-x-0 flex justify-center z-30 pointer-events-none">
+          <span className="flex items-center gap-2 text-white/15 text-xs animate-pulse tracking-wide">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+            </svg>
+            اضغط في أي مكان للتخطي
+          </span>
+        </div>
+      )}
+
+      {/* ── Skip button ── */}
+      {current < SLIDES.length - 1 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            if (isAnimating.current) return
+            if (timerRef.current) clearTimeout(timerRef.current)
+            animateSlideOut(SLIDES.length - 1)
+          }}
+          className="fixed bottom-6 left-6 z-40 flex items-center gap-1.5 text-white/15 hover:text-white/45 text-xs transition-all duration-300 group focus-visible:outline-none focus-visible:text-white/60"
+          aria-label="تخطي إلى اختيار اللغة"
+        >
+          <span className="underline underline-offset-4 decoration-white/10 group-hover:decoration-white/25">تخطي</span>
+          <svg className="w-3 h-3 rotate-180 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </button>
+      )}
+
+      {/* ── Footer ── */}
+      <p className="fixed bottom-2.5 inset-x-0 text-center text-white/[0.06] text-[10px] tracking-[0.2em] z-20 pointer-events-none uppercase">
+        Academic Research
+      </p>
     </div>
   )
+}
+
+/* ── Helper: wraps each JSX child of a slide with data-s for GSAP stagger ── */
+function SlideContent({ slide }: { slide: Slide }) {
+  const node = slide.render()
+
+  if (node && typeof node === "object" && "props" in node && node.props.children) {
+    const kids = Array.isArray(node.props.children)
+      ? node.props.children
+      : [node.props.children]
+
+    return (
+      <>
+        {kids.map((child: React.ReactNode, i: number) => (
+          <div key={i} data-s="">
+            {child}
+          </div>
+        ))}
+      </>
+    )
+  }
+
+  return <div data-s="">{node}</div>
 }
