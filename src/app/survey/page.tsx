@@ -6,17 +6,11 @@ import gsap from "gsap"
 import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
 import { useMouseParallax } from "@/hooks/use-gsap-survey-intro"
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   Survey Intro — /survey
-   Premium auto-advancing cinematic slides (RTL, Cairo, Egyptian Arabic)
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface Slide {
   id: string
   render: () => React.ReactNode
 }
 
-/* ── Animated typing text component ─────────────────────────────────────── */
 function TypingText({ text, className = "" }: { text: string; className?: string }) {
   const elRef = useRef<HTMLSpanElement>(null)
 
@@ -41,7 +35,6 @@ function TypingText({ text, className = "" }: { text: string; className?: string
   return <span ref={elRef} className={className} />
 }
 
-/* ── Animated counter ──────────────────────────────────────────────────── */
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
   const elRef = useRef<HTMLSpanElement>(null)
 
@@ -63,10 +56,8 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
   return <span ref={elRef}>0{suffix}</span>
 }
 
-/* ── Slide definitions ─────────────────────────────────────────────────── */
 
 const SLIDES: Slide[] = [
-  /* ──────── 0 — Greeting ──────── */
   {
     id: "greeting",
     render: () => (
@@ -94,7 +85,6 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 1 — The Question ──────── */
   {
     id: "question",
     render: () => (
@@ -132,16 +122,14 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 2 — Purpose ──────── */
   {
     id: "purpose",
     render: () => (
       <>
-        {/* Stats row */}
         <div className="flex items-center gap-6 sm:gap-10 mb-10">
           {[
             { val: 21, suffix: "+", label: "سؤال" },
-            { val: 5, suffix: "", label: "محاور" },
+            { val: 4, suffix: "", label: "محاور" },
             { val: 5, suffix: " دقائق", label: "فقط" },
           ].map((s, i) => (
             <div key={i} className="text-center">
@@ -153,9 +141,7 @@ const SLIDES: Slide[] = [
           ))}
         </div>
 
-        {/* Glass card */}
         <div className="survey-glass-card relative rounded-3xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 md:p-10 max-w-lg w-full overflow-hidden">
-          {/* Glow edge */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent" />
 
           <div className="flex items-center gap-3 mb-5">
@@ -175,16 +161,13 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 3 — Privacy ──────── */
   {
     id: "privacy",
     render: () => (
       <>
         <div className="survey-glass-card relative rounded-3xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 md:p-10 max-w-lg w-full overflow-hidden">
-          {/* Top glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
 
-          {/* Shield icon */}
           <div className="flex items-center gap-4 mb-6">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-green-500/15 to-teal-500/20 border border-white/[0.06] flex items-center justify-center text-2xl shadow-[0_0_30px_rgba(16,185,129,0.08)]">
               🛡️
@@ -221,7 +204,6 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 4 — Language Choice ──────── */
   {
     id: "lang",
     render: () => (
@@ -238,14 +220,12 @@ const SLIDES: Slide[] = [
         <p className="text-white/30 text-sm mb-10">اللي تحب تكمل بيها الاستبيان</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-lg">
-          {/* Arabic */}
           <Link
             href="/survey/ar"
             className="survey-lang-card group relative block rounded-2xl overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060a14]"
             aria-label="متابعة باللغة العربية"
           >
             <div className="relative p-7 sm:p-8 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color,box-shadow] duration-400 hover:border-violet-500/25 hover:bg-white/[0.06] hover:shadow-[0_0_40px_rgba(139,92,246,0.12)] hover:-translate-y-1">
-              {/* Top glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300 text-violet-500">🇪🇬</div>
@@ -254,14 +234,12 @@ const SLIDES: Slide[] = [
             </div>
           </Link>
 
-          {/* English */}
           <Link
             href="/survey/en"
             className="survey-lang-card group relative block rounded-2xl overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060a14]"
             aria-label="Continue in English"
           >
             <div className="relative p-7 sm:p-8 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color,box-shadow] duration-400 hover:border-blue-500/25 hover:bg-white/[0.06] hover:shadow-[0_0_40px_rgba(59,130,246,0.12)] hover:-translate-y-1">
-              {/* Top glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300 text-purple-500">🇬🇧</div>
@@ -275,10 +253,7 @@ const SLIDES: Slide[] = [
   },
 ]
 
-/* ── Auto-advance timings (ms) ────────────────────────────────────────── */
 const SLIDE_DURATIONS = [5000, 6000, 6000, 5500, Infinity]
-
-/* ═══════════════════════════════════════════════════════════════════════════ */
 
 export default function SurveyIntro() {
   const pageRef = useRef<HTMLDivElement>(null)
@@ -291,7 +266,6 @@ export default function SurveyIntro() {
 
   useMouseParallax(contentRef, 4)
 
-  /* ── Page entrance ── */
   useEffect(() => {
     if (!pageRef.current) return
     const tl = gsap.timeline()
@@ -299,8 +273,7 @@ export default function SurveyIntro() {
     return () => { tl.kill() }
   }, [])
 
-  /* ── Animate current slide IN ── */
-  const animateSlideIn = useCallback(() => {
+   const animateSlideIn = useCallback(() => {
     const el = slideRef.current
     if (!el) return
 
@@ -327,7 +300,6 @@ export default function SurveyIntro() {
     return tl
   }, [])
 
-  /* ── Animate current slide OUT → advance ── */
   const animateSlideOut = useCallback((nextIdx: number) => {
     const el = slideRef.current
     if (!el) return
@@ -348,20 +320,17 @@ export default function SurveyIntro() {
     })
   }, [])
 
-  /* ── On slide change, animate in ── */
   useEffect(() => {
     const tl = animateSlideIn()
     return () => { tl?.kill() }
   }, [current, animateSlideIn])
 
-  /* ── Progress bar animation ── */
   useEffect(() => {
     const bar = progressBarRef.current[current]
     if (!bar) return
 
     const dur = SLIDE_DURATIONS[current]
     if (dur === Infinity) {
-      // Final slide — full immediately
       gsap.set(bar, { scaleX: 1 })
       return
     }
@@ -376,7 +345,6 @@ export default function SurveyIntro() {
     return () => { tween.kill() }
   }, [current])
 
-  /* ── Auto-advance timer ── */
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current)
 
@@ -392,7 +360,6 @@ export default function SurveyIntro() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [current, animateSlideOut])
 
-  /* ── Tap to advance ── */
   const handleTap = useCallback(() => {
     if (isAnimating.current) return
     if (current >= SLIDES.length - 1) return
@@ -412,7 +379,6 @@ export default function SurveyIntro() {
     >
       <SurveyIntroBackground />
 
-      {/* ── Progress bar ── */}
       <div className="fixed top-0 inset-x-0 z-50 flex gap-1.5 px-4 sm:px-6 pt-4 sm:pt-6 pb-2">
         {SLIDES.map((_, i) => (
           <div
@@ -433,14 +399,12 @@ export default function SurveyIntro() {
         ))}
       </div>
 
-      {/* ── Slide number indicator ── */}
       <div className="fixed top-12 sm:top-14 left-1/2 -translate-x-1/2 z-40">
         <span className="text-white/15 text-[11px] font-mono tracking-widest">
           {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
         </span>
       </div>
 
-      {/* ── Center content ── */}
       <div className="relative z-10 w-full max-w-2xl mx-auto px-5 sm:px-10 flex flex-col items-center">
         <div ref={contentRef}>
           <div
@@ -452,7 +416,6 @@ export default function SurveyIntro() {
         </div>
       </div>
 
-      {/* ── Tap hint ── */}
       {current === 0 && (
         <div className="fixed bottom-12 inset-x-0 flex justify-center z-30 pointer-events-none">
           <span className="flex items-center gap-2 text-white/15 text-xs animate-pulse tracking-wide">
@@ -464,7 +427,6 @@ export default function SurveyIntro() {
         </div>
       )}
 
-      {/* ── Skip button ── */}
       {current < SLIDES.length - 1 && (
         <button
           onClick={(e) => {
@@ -483,7 +445,6 @@ export default function SurveyIntro() {
         </button>
       )}
 
-      {/* ── Footer ── */}
       <p className="fixed bottom-2.5 inset-x-0 text-center text-white/[0.06] text-[10px] tracking-[0.2em] z-20 pointer-events-none uppercase">
         Academic Research
       </p>
@@ -491,7 +452,6 @@ export default function SurveyIntro() {
   )
 }
 
-/* ── Helper: wraps each JSX child of a slide with data-s for GSAP stagger ── */
 function SlideContent({ slide }: { slide: Slide }) {
   const node = slide.render()
 
@@ -513,3 +473,4 @@ function SlideContent({ slide }: { slide: Slide }) {
 
   return <div data-s="">{node}</div>
 }
+
