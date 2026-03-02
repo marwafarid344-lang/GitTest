@@ -1,4 +1,3 @@
-// ─── Shared Question types & Data ────────────────────────────────────────────
 export type QType = "radio" | "checkbox" | "textarea" | "radio-other" | "text-input" | "rating" | "star"
 export interface Question {
   id: string
@@ -51,85 +50,68 @@ export const FORM_MAP: Record<string, string> = {
 }
 
 export const AR_TO_EN_MAP: Record<string, string> = {
-  // demo-gender
   "ذكر": "Male",
   "أنثى": "Female",
-  // demo-education
   "ثانوية عامة": "High School",
   "جامعة": "University",
   "خريج": "Graduated",
-  // demo-field
   "علم البيانات": "Data Science",
   "هندسة": "Engineering",
   "طب": "Medicine",
   "تجارة": "Business",
   "فنون": "Arts",
   "أخرى": "Other",
-  // q1
   "بحبه جداً": "I like it very much",
   "بحبه لحد ما": "I somewhat like it",
   "محايد": "Neutral",
   "مش بحبه": "I don’t like it",
   "بفضل ماستخدمهوش": "I prefer not to use it",
-  // q2
   "دايماً": "Always",
   "غالباً": "Often",
   "أحياناً": "Sometimes",
   "نادراً": "Rarely",
   "مش بعرف أفرق": "Never",
-  // q3
   "كتابة الإنسان": "Human writing",
   "كتابة الذكاء الاصطناعي": "AI writing",
   "الاتنين بالتساوي": "Both equally",
   "حسب الموضوع": "It depends on the topic",
-  // q4
   "أيوه، بشكل كبير": "Yes, to a great extent",
   "أيوه، بشكل متوسط": "Yes, to a moderate extent",
   "بشكل محدود": "To a limited extent",
   "لأ، مش بيقدر ينقل مشاعر": "No, it cannot convey emotions",
   "مش متأكد": "Not sure",
-  // q5
   "في الكتابة الرسمية بس": "Only in formal writing",
   "في الكتابة غير الرسمية بس": "Only in informal writing",
   "في الاتنين": "In both",
   "مينفعش يُعتمد عليه": "It cannot be relied upon",
-  // q8
   "السرعة في إتمام المهام": "Speed in completing tasks",
   "توفير الجهد": "Saving effort",
   "صياغة اللغة/الأسلوب": "Language formulation/style",
   "تحسين دقة القواعد": "Improves grammar accuracy",
   "المساعدة في توليد الأفكار": "Helps generate ideas",
-  // q9
   "التعبير العاطفي الحقيقي": "Genuine emotional expression",
   "الإبداع الشخصي": "Personal creativity",
   "التجربة الإنسانية": "Human experience",
   "الفهم العميق للسياق": "Deep contextual understanding",
   "الأسلوب الشخصي المميز": "Unique personal style",
-  // q10
   "مش بستخدم أدوات ذكاء اصطناعي": "I do not use AI tools",
-  // q12
   "أيوه، بالكامل": "Yes, completely",
   "جزئياً": "Partially",
   "في مجالات معينة بس": "Only in certain fields",
   "لأ": "No",
-  // q13
   "مش حاسس بكده": "I don’t feel that",
-  // q14
   "عمري ما استخدمتها": "I have never used it",
-  // q15
   "التعبير العاطفي": "Emotional expression",
   "الأسلوب الشخصي": "Personal style",
   "الإبداع والخيال": "Creativity and imagination",
   "خبرة الكاتب وفهمه للسياق": "Writer’s experience and contextual understanding",
   "أسلوب الكتابة غير الرسمي": "Informal writing style",
-  // q16
   "الإنسان": "Humans",
   "الذكاء الاصطناعي": "AI",
   "مش عارف": "I don’t know"
 }
 
 export const ALL_STEPS_EN: Question[] = [
-  // ──────────── DEMOGRAPHICS: Tell Us About You ─────────────────────────
   {
     id: "demo-name", section: "Tell Us About You", type: "text-input",
     label: "What is\nyour name?",
@@ -173,7 +155,6 @@ export const ALL_STEPS_EN: Question[] = [
     accent: "#f97316", accent2: "#ec4899",
   },
 
-  // ──────────── SECTION 1: General Perception ────────────────────────────
   {
     id: "q1", section: "1 · General Perception", type: "radio",
     label: "Do you like the writing style\nof Artificial Intelligence (AI)?",
@@ -215,7 +196,6 @@ export const ALL_STEPS_EN: Question[] = [
     accent: "#a855f7", accent2: "#ec4899",
   },
 
-  // ──────────── SECTION 2: Evaluation of AI Writing ──────────────────────
   {
     id: "q6", section: "2 · Evaluation", type: "rating",
     label: "Rate AI writing in\nemotionally related topics.",
@@ -313,7 +293,6 @@ export const ALL_STEPS_EN: Question[] = [
     accent: "#6366f1", accent2: "#a855f7",
   },
 
-  // ──────────── SECTION 3: Open-Ended Questions ─────────────────────────
   {
     id: "q17", section: "3 · Open-Ended", type: "textarea",
     label: "Do you think human writing\nhas flaws?",
@@ -349,7 +328,6 @@ export const ALL_STEPS_EN: Question[] = [
 ];
 
 export const ALL_STEPS_AR: Question[] = [
-  // ──────────── البيانات الديموغرافية: احكيلنا عنك ──────────────────────
   {
     id: "demo-name", section: "احكيلنا عنك", type: "text-input",
     label: "اسمك ايه؟",
@@ -393,7 +371,6 @@ export const ALL_STEPS_AR: Question[] = [
     accent: "#f97316", accent2: "#ec4899",
   },
 
-  // ──────────── القسم 1: الانطباع العام ──────────────────────────────────
   {
     id: "q1", section: "١ · الانطباع العام", type: "radio",
     label: "هل بتحب أسلوب كتابة\nالذكاء الاصطناعي؟",
@@ -435,7 +412,6 @@ export const ALL_STEPS_AR: Question[] = [
     accent: "#a855f7", accent2: "#ec4899",
   },
 
-  // ──────────── القسم 2: تقييم كتابة الذكاء الاصطناعي ────────────────────
   {
     id: "q6", section: "٢ · التقييم", type: "rating",
     label: "قيّم كتابة الذكاء الاصطناعي\nفي المواضيع العاطفية.",
@@ -533,7 +509,6 @@ export const ALL_STEPS_AR: Question[] = [
     accent: "#6366f1", accent2: "#a855f7",
   },
 
-  // ──────────── القسم 3: أسئلة مفتوحة ───────────────────────────────────
   {
     id: "q17", section: "٣ · أسئلة مفتوحة", type: "textarea",
     label: "هل تفتكر إن كتابة\nالإنسان فيها عيوب؟",
