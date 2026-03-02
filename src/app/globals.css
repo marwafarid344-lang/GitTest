@@ -15,6 +15,91 @@
   transition: opacity 1s ease-out;
 }
 
+/* ── Survey Intro ─────────────────────────────────────────────────────────── */
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-8deg); }
+  45% { transform: rotate(14deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(10deg); }
+}
+
+/* Aurora background sweep — lighter for perf */
+@keyframes survey-aurora-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.survey-aurora {
+  background: linear-gradient(
+    125deg,
+    rgba(139, 92, 246, 0.12) 0%,
+    rgba(59, 130, 246, 0.1) 25%,
+    rgba(168, 85, 247, 0.08) 50%,
+    rgba(99, 102, 241, 0.1) 75%,
+    rgba(139, 92, 246, 0.12) 100%
+  );
+  background-size: 200% 200%;
+  animation: survey-aurora-shift 18s ease-in-out infinite;
+  will-change: background-position;
+}
+
+/* Floating micro-animation for icons */
+@keyframes survey-float {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  50% { transform: translateY(-5px) translateZ(0); }
+}
+.survey-float {
+  animation: survey-float 3.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Question card slide-in */
+@keyframes survey-card-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.survey-question-card {
+  animation: survey-card-in 0.6s ease-out both;
+}
+
+/* Glass card shimmer on top edge */
+.survey-glass-card {
+  position: relative;
+}
+.survey-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.25), rgba(59,130,246,0.2), transparent);
+  opacity: 0.6;
+}
+
+/* Language cards */
+.survey-lang-card {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.survey-lang-card:hover {
+  transform: translateY(-4px);
+}
+.survey-lang-card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.survey-intro-cta {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+.survey-intro-cta:hover {
+  transform: scale(1.03);
+}
+.survey-intro-cta:active {
+  transform: scale(0.98);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
