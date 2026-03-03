@@ -5,20 +5,13 @@ import Link from "next/link"
 import gsap from "gsap"
 import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   Survey Intro — /survey
-   Simple slide-based intro with manual next/prev arrows (RTL, Rubik)
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface Slide {
   id: string
   render: () => React.ReactNode
 }
 
-/* ── Slide definitions ─────────────────────────────────────────────────── */
 
 const SLIDES: Slide[] = [
-  /* ──────── 0 — Greeting ──────── */
   {
     id: "greeting",
     render: () => (
@@ -351,3 +344,4 @@ function SlideContent({ slide }: { slide: Slide }) {
 
   return <div data-s="">{node}</div>
 }
+
