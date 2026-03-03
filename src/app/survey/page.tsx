@@ -5,14 +5,20 @@ import Link from "next/link"
 import gsap from "gsap"
 import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
 
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Survey Intro — /survey
+   Simple slide-based intro with manual next/prev arrows (RTL, Rubik)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 interface Slide {
   id: string
   render: () => React.ReactNode
 }
 
+/* ── Slide definitions ─────────────────────────────────────────────────── */
 
 const SLIDES: Slide[] = [
+  /* ──────── 0 — Greeting ──────── */
   {
     id: "greeting",
     render: () => (
@@ -35,6 +41,7 @@ const SLIDES: Slide[] = [
     ),
   },
 
+  /* ──────── 1 — The Question ──────── */
   {
     id: "question",
     render: () => (
@@ -61,6 +68,7 @@ const SLIDES: Slide[] = [
     ),
   },
 
+  /* ──────── 2 — Purpose ──────── */
   {
     id: "purpose",
     render: () => (
@@ -97,6 +105,7 @@ const SLIDES: Slide[] = [
     ),
   },
 
+  /* ──────── 3 — Privacy ──────── */
   {
     id: "privacy",
     render: () => (
@@ -134,6 +143,7 @@ const SLIDES: Slide[] = [
     ),
   },
 
+  /* ──────── 4 — Language Choice ──────── */
   {
     id: "lang",
     render: () => (
@@ -146,6 +156,7 @@ const SLIDES: Slide[] = [
         <p className="text-white/25 text-sm mb-8">اللي تحب تكمل بيها الاستبيان</p>
 
         <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
+          {/* Arabic */}
           <Link
             href="/survey/ar"
             className="group text-center focus-visible:outline-none"
@@ -159,6 +170,7 @@ const SLIDES: Slide[] = [
           <div className="hidden sm:block w-px h-16 bg-white/[0.06]" />
           <div className="sm:hidden w-16 h-px bg-white/[0.06]" />
 
+          {/* English */}
           <Link
             href="/survey/en"
             className="group text-center focus-visible:outline-none"
@@ -174,6 +186,8 @@ const SLIDES: Slide[] = [
   },
 ]
 
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
 export default function SurveyIntro() {
   const pageRef = useRef<HTMLDivElement>(null)
   const slideRef = useRef<HTMLDivElement>(null)
@@ -183,11 +197,13 @@ export default function SurveyIntro() {
   const isFirst = current === 0
   const isLast = current === SLIDES.length - 1
 
+  /* ── Page entrance ── */
   useEffect(() => {
     if (!pageRef.current) return
     gsap.to(pageRef.current, { opacity: 1, duration: 0.6, ease: "power2.out" })
   }, [])
 
+  /* ── Animate slide IN ── */
   const animateIn = useCallback(() => {
     const el = slideRef.current
     if (!el) return
@@ -205,6 +221,7 @@ export default function SurveyIntro() {
     })
   }, [])
 
+  /* ── Go to specific slide with transition ── */
   const goTo = useCallback((idx: number) => {
     if (isAnimating.current || idx === current) return
     if (idx < 0 || idx >= SLIDES.length) return
@@ -213,7 +230,7 @@ export default function SurveyIntro() {
     const el = slideRef.current
     if (!el) return
     const children = el.querySelectorAll("[data-s]")
-    const dir = idx > current ? -1 : 1
+    const dir = idx > current ? -1 : 1 // slide out up if next, down if prev
 
     gsap.to(children, {
       y: dir * 16,
@@ -226,6 +243,7 @@ export default function SurveyIntro() {
     })
   }, [current])
 
+  /* ── On slide change, animate in ── */
   useEffect(() => {
     animateIn()
   }, [current, animateIn])
@@ -239,6 +257,7 @@ export default function SurveyIntro() {
     >
       <SurveyIntroBackground />
 
+      {/* ── Step dots ── */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
         {SLIDES.map((_, i) => (
           <button
@@ -256,6 +275,7 @@ export default function SurveyIntro() {
         ))}
       </div>
 
+      {/* ── Center content ── */}
       <div className="relative z-10 w-full max-w-2xl mx-auto px-5 sm:px-10 flex flex-col items-center">
         <div
           ref={slideRef}
@@ -265,8 +285,10 @@ export default function SurveyIntro() {
         </div>
       </div>
 
+      {/* ── Navigation arrows ── */}
       {!isLast && (
         <div className="fixed bottom-8 inset-x-0 z-40 flex items-center justify-center gap-4">
+          {/* Prev */}
           {!isFirst && (
             <button
               onClick={() => goTo(current - 1)}
@@ -279,6 +301,7 @@ export default function SurveyIntro() {
             </button>
           )}
 
+          {/* Next */}
           <button
             onClick={() => goTo(current + 1)}
             className="h-11 px-6 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium flex items-center gap-2 transition-colors duration-200"
@@ -292,6 +315,7 @@ export default function SurveyIntro() {
         </div>
       )}
 
+      {/* ── Skip link ── */}
       {!isLast && (
         <button
           onClick={() => goTo(SLIDES.length - 1)}
@@ -305,6 +329,7 @@ export default function SurveyIntro() {
   )
 }
 
+/* ── Helper: wraps each JSX child of a slide with data-s for GSAP stagger ── */
 function SlideContent({ slide }: { slide: Slide }) {
   const node = slide.render()
 
