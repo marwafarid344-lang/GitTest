@@ -103,7 +103,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-outfit), var(--font-geist-sans);
+  --font-sans: var(--font-rubik), var(--font-geist-sans);
   --font-rubik: 'Rubik', sans-serif;
   --font-outfit: var(--font-outfit), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
