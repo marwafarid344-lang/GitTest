@@ -5,20 +5,14 @@ import Link from "next/link"
 import gsap from "gsap"
 import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   Survey Intro — /survey
-   Simple slide-based intro with manual next/prev arrows (RTL, Rubik)
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 interface Slide {
   id: string
   render: () => React.ReactNode
 }
 
-/* ── Slide definitions ─────────────────────────────────────────────────── */
 
 const SLIDES: Slide[] = [
-  /* ──────── 0 — Greeting ──────── */
   {
     id: "greeting",
     render: () => (
@@ -41,7 +35,6 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 1 — The Question ──────── */
   {
     id: "question",
     render: () => (
@@ -52,18 +45,15 @@ const SLIDES: Slide[] = [
           بس السؤال المهم:
         </p>
 
-        <div className="space-y-3 w-full max-w-md">
+        <div className="space-y-4 w-full max-w-md">
           {[
             { color: "from-violet-500 to-violet-600", text: "إحنا فعلًا بنفضل كتابة الـ AI؟" },
             { color: "from-blue-500 to-blue-600", text: "بنقدر نفرق بينها وبين كتابة الإنسان؟" },
             { color: "from-purple-500 to-purple-600", text: "ومين فيهم بيدينا ثقة أكتر؟" },
           ].map((item, i) => (
-            <div
-              key={i}
-              className="flex items-center gap-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.03]"
-            >
-              <div className={`flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-br ${item.color}`} />
-              <span className="text-white/55 text-sm sm:text-base leading-relaxed">{item.text}</span>
+            <div key={i} className="flex items-center gap-3">
+              <div className={`flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gradient-to-br ${item.color}`} />
+              <span className="text-white/50 text-sm sm:text-base leading-relaxed">{item.text}</span>
             </div>
           ))}
         </div>
@@ -71,7 +61,6 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 2 — Purpose ──────── */
   {
     id: "purpose",
     render: () => (
@@ -92,7 +81,7 @@ const SLIDES: Slide[] = [
           ))}
         </div>
 
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 max-w-lg w-full">
+        <div className="max-w-lg w-full">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xl">🎯</span>
             <h2 className="text-white/90 font-bold text-lg">هدف الاستبيان</h2>
@@ -108,12 +97,11 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 3 — Privacy ──────── */
   {
     id: "privacy",
     render: () => (
       <>
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.04] p-6 sm:p-8 max-w-lg w-full">
+        <div className="max-w-lg w-full">
           <div className="flex items-center gap-3 mb-5">
             <span className="text-xl">🛡️</span>
             <div>
@@ -122,19 +110,19 @@ const SLIDES: Slide[] = [
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               { icon: "🔒", text: "مش بنطلب أي بيانات شخصية أو قانونية خالص" },
               { icon: "📊", text: "إجاباتك هتستخدم لأغراض بحثية بس" },
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-white/[0.02] border border-white/[0.04]">
+              <div key={i} className="flex items-start gap-3">
                 <span className="text-base mt-0.5">{item.icon}</span>
                 <span className="text-white/40 text-sm leading-relaxed">{item.text}</span>
               </div>
             ))}
           </div>
 
-          <div className="h-px bg-white/[0.05] my-5" />
+          <div className="w-12 h-px bg-white/[0.06] mx-auto my-6" />
 
           <p className="text-white/30 text-sm leading-relaxed text-center">
             الموضوع مش هياخد منك غير كام دقيقة
@@ -146,7 +134,6 @@ const SLIDES: Slide[] = [
     ),
   },
 
-  /* ──────── 4 — Language Choice ──────── */
   {
     id: "lang",
     render: () => (
@@ -158,39 +145,34 @@ const SLIDES: Slide[] = [
         </p>
         <p className="text-white/25 text-sm mb-8">اللي تحب تكمل بيها الاستبيان</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
-          {/* Arabic */}
+        <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
           <Link
             href="/survey/ar"
-            className="group relative block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
+            className="group text-center focus-visible:outline-none"
             aria-label="متابعة باللغة العربية"
           >
-            <div className="p-6 sm:p-7 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color] duration-300 hover:border-violet-500/25 hover:bg-white/[0.06] hover:-translate-y-0.5">
-              <div className="text-4xl mb-4">🇪🇬</div>
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">عربي</h3>
-              <p className="text-white/25 text-xs sm:text-sm">النسخة العربية المصرية</p>
-            </div>
+            <div className="text-5xl mb-3 group-hover:-translate-y-1 transition-transform duration-200">🇪🇬</div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-violet-300 transition-colors duration-200">عربي</h3>
+            <p className="text-white/25 text-xs sm:text-sm">النسخة العربية المصرية</p>
           </Link>
 
-          {/* English */}
+          <div className="hidden sm:block w-px h-16 bg-white/[0.06]" />
+          <div className="sm:hidden w-16 h-px bg-white/[0.06]" />
+
           <Link
             href="/survey/en"
-            className="group relative block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="group text-center focus-visible:outline-none"
             aria-label="Continue in English"
           >
-            <div className="p-6 sm:p-7 border border-white/[0.07] bg-white/[0.04] rounded-2xl transition-[transform,border-color,background-color] duration-300 hover:border-blue-500/25 hover:bg-white/[0.06] hover:-translate-y-0.5">
-              <div className="text-4xl mb-4">🇬🇧</div>
-              <h3 className="text-lg sm:text-xl font-bold text-white mb-1">English</h3>
-              <p className="text-white/25 text-xs sm:text-sm">English Version</p>
-            </div>
+            <div className="text-5xl mb-3 group-hover:-translate-y-1 transition-transform duration-200">🇬🇧</div>
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors duration-200">English</h3>
+            <p className="text-white/25 text-xs sm:text-sm">English Version</p>
           </Link>
         </div>
       </>
     ),
   },
 ]
-
-/* ═══════════════════════════════════════════════════════════════════════════ */
 
 export default function SurveyIntro() {
   const pageRef = useRef<HTMLDivElement>(null)
@@ -201,13 +183,11 @@ export default function SurveyIntro() {
   const isFirst = current === 0
   const isLast = current === SLIDES.length - 1
 
-  /* ── Page entrance ── */
   useEffect(() => {
     if (!pageRef.current) return
     gsap.to(pageRef.current, { opacity: 1, duration: 0.6, ease: "power2.out" })
   }, [])
 
-  /* ── Animate slide IN ── */
   const animateIn = useCallback(() => {
     const el = slideRef.current
     if (!el) return
@@ -225,7 +205,6 @@ export default function SurveyIntro() {
     })
   }, [])
 
-  /* ── Go to specific slide with transition ── */
   const goTo = useCallback((idx: number) => {
     if (isAnimating.current || idx === current) return
     if (idx < 0 || idx >= SLIDES.length) return
@@ -234,7 +213,7 @@ export default function SurveyIntro() {
     const el = slideRef.current
     if (!el) return
     const children = el.querySelectorAll("[data-s]")
-    const dir = idx > current ? -1 : 1 // slide out up if next, down if prev
+    const dir = idx > current ? -1 : 1
 
     gsap.to(children, {
       y: dir * 16,
@@ -247,7 +226,6 @@ export default function SurveyIntro() {
     })
   }, [current])
 
-  /* ── On slide change, animate in ── */
   useEffect(() => {
     animateIn()
   }, [current, animateIn])
@@ -261,7 +239,6 @@ export default function SurveyIntro() {
     >
       <SurveyIntroBackground />
 
-      {/* ── Step dots ── */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
         {SLIDES.map((_, i) => (
           <button
@@ -279,7 +256,6 @@ export default function SurveyIntro() {
         ))}
       </div>
 
-      {/* ── Center content ── */}
       <div className="relative z-10 w-full max-w-2xl mx-auto px-5 sm:px-10 flex flex-col items-center">
         <div
           ref={slideRef}
@@ -289,10 +265,8 @@ export default function SurveyIntro() {
         </div>
       </div>
 
-      {/* ── Navigation arrows ── */}
       {!isLast && (
         <div className="fixed bottom-8 inset-x-0 z-40 flex items-center justify-center gap-4">
-          {/* Prev */}
           {!isFirst && (
             <button
               onClick={() => goTo(current - 1)}
@@ -305,7 +279,6 @@ export default function SurveyIntro() {
             </button>
           )}
 
-          {/* Next */}
           <button
             onClick={() => goTo(current + 1)}
             className="h-11 px-6 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium flex items-center gap-2 transition-colors duration-200"
@@ -319,7 +292,6 @@ export default function SurveyIntro() {
         </div>
       )}
 
-      {/* ── Skip link ── */}
       {!isLast && (
         <button
           onClick={() => goTo(SLIDES.length - 1)}
@@ -333,7 +305,6 @@ export default function SurveyIntro() {
   )
 }
 
-/* ── Helper: wraps each JSX child of a slide with data-s for GSAP stagger ── */
 function SlideContent({ slide }: { slide: Slide }) {
   const node = slide.render()
 
