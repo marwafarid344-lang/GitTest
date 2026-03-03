@@ -17,9 +17,9 @@ const geistMono = Roboto_Mono({
   variable: "--font-geist-mono",
 });
 
-// Rubik font
+// Rubik font (global)
 const rubik = Rubik({
-  subsets: ["latin"],
+  subsets: ["latin", "arabic"],
   variable: "--font-rubik",
 });
 
