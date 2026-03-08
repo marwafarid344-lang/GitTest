@@ -2,651 +2,261 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "What is the primary focus of the Cloud Computing course described?",
+    "question": "Which computing paradigm is characterized by centralized processing, high reliability, and extensive resource sharing among users?",
     "options": [
-      "Hardware design",
-      "Local network setup",
-      "Cloud fundamentals and services",
-      "Database programming"
+      "A) Cluster computing",
+      "B) Grid computing",
+      "C) Mainframe computing",
+      "D) Cloud computing"
     ],
-    "answer": "Cloud fundamentals and services",
+    "answer": "C) Mainframe computing",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "Which topic is included in the Cloud Computing course?",
+    "question": "What type of computing connects multiple computers to work together, enhancing performance, scalability, and fault tolerance for large-scale data processing tasks?",
     "options": [
-      "Mobile app development",
-      "Web design",
-      "Graphic editing",
-      "Virtualization"
+      "A) Mainframe computing",
+      "B) Cluster computing",
+      "C) Grid computing",
+      "D) Service-Oriented Architecture"
     ],
-    "answer": "Virtualization",
+    "answer": "B) Cluster computing",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "What is a key learning outcome of the course?",
+    "question": "In which computing paradigm are distributed resources leveraged across networks for collaborative processing and efficient resource utilization, particularly in scientific research?",
     "options": [
-      "Understanding cloud computing concepts",
-      "Designing physical servers",
-      "Building IoT devices",
-      "Writing firmware"
+      "A) Mainframe computing",
+      "B) Cluster computing",
+      "C) Grid computing",
+      "D) Cloud Computing"
     ],
-    "answer": "Understanding cloud computing concepts",
+    "answer": "C) Grid computing",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "What practical experience will students gain in the course?",
+    "question": "Which architecture focuses on using services as the fundamental building blocks for software applications and integrations?",
     "options": [
-      "Hardware assembly",
-      "Hands-on labs and projects",
-      "Network cabling",
-      "Software licensing"
+      "A) Cloud Computing",
+      "B) Grid Computing",
+      "C) Service-Oriented Architecture",
+      "D) Mainframe Computing"
     ],
-    "answer": "Hands-on labs and projects",
+    "answer": "C) Service-Oriented Architecture",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "Who proposed the idea of computing as a utility in the 1960s?",
+    "question": "Who envisioned computing as a utility in the 1960s, emphasizing shared access and efficient resource utilization for all users?",
     "options": [
-      "Bill Gates",
-      "Steve Jobs",
-      "John McCarthy",
-      "Tim Berners-Lee"
+      "A) Jack McCarthy",
+      "B) Bill Gates",
+      "C) Steve Jobs",
+      "D) Jeff Bezos"
     ],
-    "answer": "John McCarthy",
+    "answer": "A) Jack McCarthy",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "What enabled cloud computing to become a reality in the 21st century?",
+    "question": "Which technology allows multiple virtual instances to run on a single physical server, optimizing resource use and enhancing flexibility in cloud environments?",
     "options": [
-      "Smaller computers",
-      "Advances in internet and virtualization",
-      "New programming languages",
-      "Reduced hardware costs"
+      "A) Internet Connectivity",
+      "B) Mainframe Computing",
+      "C) Virtualization Technology",
+      "D) Service-Oriented Architecture"
     ],
-    "answer": "Advances in internet and virtualization",
+    "answer": "C) Virtualization Technology",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "Which company pioneered the SaaS model in the 1990s?",
+    "question": "What significant event related to cloud computing occurred in the 1970s?",
     "options": [
-      "Salesforce",
-      "Microsoft",
-      "Google",
-      "Amazon"
+      "A) Concept of utility computing is introduced",
+      "B) Amazon Web Services (AWS) launched",
+      "C) Emergence of virtualization technology",
+      "D) The cloud era officially begins"
     ],
-    "answer": "Salesforce",
+    "answer": "C) Emergence of virtualization technology",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "When did AWS launch its first cloud services?",
+    "question": "When was Amazon Web Services (AWS) launched, revolutionizing cloud services and infrastructure?",
     "options": [
-      "2002",
-      "2006",
-      "2010",
-      "2014"
+      "A) 1990s",
+      "B) 2000s",
+      "C) 2006",
+      "D) 2008"
     ],
-    "answer": "2006",
+    "answer": "C) 2006",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "Which service was launched by AWS in 2006?",
+    "question": "Which major cloud platforms debuted in 2008, expanding cloud computing options widely?",
     "options": [
-      "Lambda",
-      "EC2",
-      "SageMaker",
-      "RDS"
+      "A) AWS and Google Cloud",
+      "B) Google App Engine and Microsoft Azure",
+      "C) IBM Cloud and Oracle Cloud",
+      "D) Alibaba Cloud and Tencent Cloud"
     ],
-    "answer": "EC2",
+    "answer": "B) Google App Engine and Microsoft Azure",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "What trend emerged in the 2010s in cloud computing?",
+    "question": "What characteristic of cloud computing allows multiple customers to share resources while keeping their data isolated, enhancing resource utilization?",
     "options": [
-      "Local storage solutions",
-      "Reduced scalability",
-      "Manual resource allocation",
-      "Hybrid cloud adoption"
+      "A) On-demand Self-service",
+      "B) Broad Network Access",
+      "C) Multi-tenancy",
+      "D) Rapid Elasticity"
     ],
-    "answer": "Hybrid cloud adoption",
+    "answer": "C) Multi-tenancy",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "What is a key characteristic of cloud computing?",
+    "question": "Which cloud characteristic allows users to provision computing resources as needed without human intervention?",
     "options": [
-      "Limited accessibility",
-      "Fixed resource allocation",
-      "High maintenance costs",
-      "On-demand self-service"
+      "A) Resource Pooling",
+      "B) Rapid Elasticity",
+      "C) Cost Efficiency",
+      "D) On-demand Self-service"
     ],
-    "answer": "On-demand self-service",
+    "answer": "D) On-demand Self-service",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "How are cloud services accessed according to their characteristics?",
+    "question": "The ability of cloud services to scale resources up or down based on demand, ensuring optimal performance and flexibility, is known as what?",
     "options": [
-      "Only via desktop computers",
-      "Over the internet using various devices",
-      "Through local networks only",
-      "With physical media"
+      "A) Resource Pooling",
+      "B) Rapid Elasticity",
+      "C) Cost Efficiency",
+      "D) Broad Network Access"
     ],
-    "answer": "Over the internet using various devices",
+    "answer": "B) Rapid Elasticity",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What does resource pooling in cloud computing enable?",
+    "question": "Which cloud service model provides virtualized computing resources over the internet, allowing users to rent servers and storage as needed?",
     "options": [
-      "Multi-tenancy for multiple customers",
-      "Single-user access",
-      "Fixed resource limits",
-      "Manual resource allocation"
+      "A) PaaS",
+      "B) SaaS",
+      "C) IaaS",
+      "D) CaaS"
     ],
-    "answer": "Multi-tenancy for multiple customers",
+    "answer": "C) IaaS",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "What is rapid elasticity in cloud computing?",
+    "question": "What cloud service model offers a cloud environment for developing, testing, and deploying applications without worrying about underlying infrastructure management?",
     "options": [
-      "Fixed resource scaling",
-      "Dynamic resource scaling based on demand",
-      "Limited resource availability",
-      "Manual resource adjustment"
+      "A) IaaS",
+      "B) PaaS",
+      "C) SaaS",
+      "D) DaaS"
     ],
-    "answer": "Dynamic resource scaling based on demand",
+    "answer": "B) PaaS",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "How is cloud usage billed?",
+    "question": "Delivering software applications over the internet on a subscription basis, enabling easy access and usage from any device, is characteristic of which cloud service model?",
     "options": [
-      "Flat rate",
-      "Annual subscription only",
-      "Pay-as-you-go model",
-      "Free access"
+      "A) IaaS",
+      "B) PaaS",
+      "C) SaaS",
+      "D) XaaS"
     ],
-    "answer": "Pay-as-you-go model",
+    "answer": "C) SaaS",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "What is an advantage of cloud computing?",
+    "question": "Which cloud deployment model is a dedicated environment tailored for specific organizations, providing enhanced security, customization, and control?",
     "options": [
-      "High on-premise costs",
-      "Limited scalability",
-      "Cost efficiency",
-      "Manual updates"
+      "A) Public Cloud",
+      "B) Private Cloud",
+      "C) Hybrid Cloud",
+      "D) Community Cloud"
     ],
-    "answer": "Cost efficiency",
+    "answer": "B) Private Cloud",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "How does cloud computing enhance collaboration?",
+    "question": "What cloud deployment model combines public and private elements, allowing organizations to leverage the benefits of both while maintaining flexibility?",
     "options": [
-      "By limiting remote access",
-      "By facilitating remote work",
-      "By reducing data sharing",
-      "By requiring local servers"
+      "A) Public Cloud",
+      "B) Private Cloud",
+      "C) Hybrid Cloud",
+      "D) Community Cloud"
     ],
-    "answer": "By facilitating remote work",
+    "answer": "C) Hybrid Cloud",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What does IaaS provide?",
+    "question": "Which economic model in cloud computing involves monthly payments for pay-as-you-go services and allows easy scaling without upfront hardware purchases?",
     "options": [
-      "Virtualized computing resources",
-      "Software applications",
-      "Development platforms",
-      "Collaboration tools"
+      "A) CapEx (Capital Expenditure)",
+      "B) OpEx (Operational Expenditure)",
+      "C) Fixed Expenditure",
+      "D) Capital Investment"
     ],
-    "answer": "Virtualized computing resources",
+    "answer": "B) OpEx (Operational Expenditure)",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "Which is an example of an IaaS service?",
+    "question": "Which company migrated its streaming infrastructure to Amazon Web Services (AWS) using EC2 for computing and S3 for storage to achieve scalable global delivery?",
     "options": [
-      "Google Workspace",
-      "Amazon EC2",
-      "Microsoft 365",
-      "Dropbox"
+      "A) Spotify",
+      "B) Netflix",
+      "C) NASA",
+      "D) Healthcare organizations"
     ],
-    "answer": "Amazon EC2",
+    "answer": "B) Netflix",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "What is a use case for IaaS?",
+    "question": "Healthcare organizations adopted hybrid cloud solutions for managing patient medical records to comply with which act, ensuring data security and patient care?",
     "options": [
-      "Email services",
-      "CRM software",
-      "App development",
-      "Big data analytics"
+      "A) GDPR (General Data Protection Regulation)",
+      "B) HIPAA (Health Insurance Portability and Accountability Act)",
+      "C) PCI DSS (Payment Card Industry Data Security Standard)",
+      "D) SOX (Sarbanes-Oxley Act)"
     ],
-    "answer": "Big data analytics",
-    "image": null
-  },
-  {
-    "numb": 21,
-    "type": "Multiple Choices",
-    "question": "What does PaaS provide?",
-    "options": [
-      "Development platform and tools",
-      "Virtual machines",
-      "Web-based software",
-      "Storage solutions"
-    ],
-    "answer": "Development platform and tools",
-    "image": null
-  },
-  {
-    "numb": 22,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a PaaS service?",
-    "options": [
-      "Google App Engine",
-      "Amazon S3",
-      "Microsoft 365",
-      "Azure Blob Storage"
-    ],
-    "answer": "Google App Engine",
-    "image": null
-  },
-  {
-    "numb": 23,
-    "type": "Multiple Choices",
-    "question": "What is a use case for PaaS?",
-    "options": [
-      "Disaster recovery",
-      "Application development",
-      "Collaboration tools",
-      "Data storage"
-    ],
-    "answer": "Application development",
-    "image": null
-  },
-  {
-    "numb": 24,
-    "type": "Multiple Choices",
-    "question": "What defines SaaS?",
-    "options": [
-      "Virtualized resources",
-      "Software delivered over the internet",
-      "Development frameworks",
-      "Hardware management"
-    ],
-    "answer": "Software delivered over the internet",
-    "image": null
-  },
-  {
-    "numb": 25,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a SaaS service?",
-    "options": [
-      "Microsoft 365",
-      "Google Compute Engine",
-      "Azure Virtual Machines",
-      "Amazon RDS"
-    ],
-    "answer": "Microsoft 365",
-    "image": null
-  },
-  {
-    "numb": 26,
-    "type": "Multiple Choices",
-    "question": "What is a use case for SaaS?",
-    "options": [
-      "Email services",
-      "Hosting applications",
-      "Big data processing",
-      "Server management"
-    ],
-    "answer": "Email services",
-    "image": null
-  },
-  {
-    "numb": 27,
-    "type": "Multiple Choices",
-    "question": "What defines a public cloud?",
-    "options": [
-      "Shared among multiple users",
-      "Dedicated to one organization",
-      "Limited to community use",
-      "On-premises only"
-    ],
-    "answer": "Shared among multiple users",
-    "image": null
-  },
-  {
-    "numb": 28,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a public cloud provider?",
-    "options": [
-      "OpenStack",
-      "Google Cloud",
-      "VMware Private Cloud",
-      "IBM Cloud Private"
-    ],
-    "answer": "Google Cloud",
-    "image": null
-  },
-  {
-    "numb": 29,
-    "type": "Multiple Choices",
-    "question": "What is an advantage of a public cloud?",
-    "options": [
-      "High maintenance",
-      "Cost-effectiveness",
-      "Limited scalability",
-      "Reduced accessibility"
-    ],
-    "answer": "Cost-effectiveness",
-    "image": null
-  },
-  {
-    "numb": 30,
-    "type": "Multiple Choices",
-    "question": "What is a use case for a public cloud?",
-    "options": [
-      "Sensitive data storage",
-      "Government compliance",
-      "Financial security",
-      "Web applications"
-    ],
-    "answer": "Web applications",
-    "image": null
-  },
-  {
-    "numb": 31,
-    "type": "Multiple Choices",
-    "question": "What defines a private cloud?",
-    "options": [
-      "Dedicated to one organization",
-      "Shared infrastructure",
-      "Community-based",
-      "Publicly accessible"
-    ],
-    "answer": "Dedicated to one organization",
-    "image": null
-  },
-  {
-    "numb": 32,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a private cloud?",
-    "options": [
-      "AWS",
-      "Google Cloud",
-      "OpenStack",
-      "Microsoft Azure"
-    ],
-    "answer": "OpenStack",
-    "image": null
-  },
-  {
-    "numb": 33,
-    "type": "Multiple Choices",
-    "question": "What is an advantage of a private cloud?",
-    "options": [
-      "Limited control",
-      "Greater security",
-      "High maintenance costs",
-      "Reduced compliance"
-    ],
-    "answer": "Greater security",
-    "image": null
-  },
-  {
-    "numb": 34,
-    "type": "Multiple Choices",
-    "question": "What is a use case for a private cloud?",
-    "options": [
-      "Startups",
-      "Web hosting",
-      "Small businesses",
-      "Financial institutions"
-    ],
-    "answer": "Financial institutions",
-    "image": null
-  },
-  {
-    "numb": 35,
-    "type": "Multiple Choices",
-    "question": "What defines a hybrid cloud?",
-    "options": [
-      "Public-only infrastructure",
-      "Combination of public and private clouds",
-      "Community-exclusive",
-      "On-premises only"
-    ],
-    "answer": "Combination of public and private clouds",
-    "image": null
-  },
-  {
-    "numb": 36,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a hybrid cloud solution?",
-    "options": [
-      "AWS Outposts",
-      "Google Workspace",
-      "Microsoft 365",
-      "Amazon S3"
-    ],
-    "answer": "AWS Outposts",
-    "image": null
-  },
-  {
-    "numb": 37,
-    "type": "Multiple Choices",
-    "question": "What is an advantage of a hybrid cloud?",
-    "options": [
-      "Optimized costs",
-      "Limited flexibility",
-      "Reduced security",
-      "High maintenance"
-    ],
-    "answer": "Optimized costs",
-    "image": null
-  },
-  {
-    "numb": 38,
-    "type": "Multiple Choices",
-    "question": "What is a use case for a hybrid cloud?",
-    "options": [
-      "Public-only applications",
-      "Community collaboration",
-      "On-premises security with cloud scalability",
-      "Small-scale startups"
-    ],
-    "answer": "On-premises security with cloud scalability",
-    "image": null
-  },
-  {
-    "numb": 39,
-    "type": "Multiple Choices",
-    "question": "What defines a community cloud?",
-    "options": [
-      "Shared by organizations with similar needs",
-      "Single organization use",
-      "Publicly accessible",
-      "Hybrid infrastructure"
-    ],
-    "answer": "Shared by organizations with similar needs",
-    "image": null
-  },
-  {
-    "numb": 40,
-    "type": "Multiple Choices",
-    "question": "Which is an example of a community cloud use case?",
-    "options": [
-      "Web hosting",
-      "Big data analytics",
-      "Hospitals sharing medical records",
-      "Application development"
-    ],
-    "answer": "Hospitals sharing medical records",
-    "image": null
-  },
-  {
-    "numb": 41,
-    "type": "Multiple Choices",
-    "question": "What is an advantage of a community cloud?",
-    "options": [
-      "High costs",
-      "Cost-sharing",
-      "Limited customization",
-      "Reduced compliance"
-    ],
-    "answer": "Cost-sharing",
-    "image": null
-  },
-  {
-    "numb": 42,
-    "type": "Multiple Choices",
-    "question": "What problem did Netflix face before adopting AWS?",
-    "options": [
-      "Limited user access",
-      "Local storage issues",
-      "Software licensing",
-      "Scalable video streaming infrastructure"
-    ],
-    "answer": "Scalable video streaming infrastructure",
-    "image": null
-  },
-  {
-    "numb": 43,
-    "type": "Multiple Choices",
-    "question": "Which AWS service did Netflix use for content storage?",
-    "options": [
-      "EC2",
-      "S3",
-      "Lambda",
-      "RDS"
-    ],
-    "answer": "S3",
-    "image": null
-  },
-  {
-    "numb": 44,
-    "type": "Multiple Choices",
-    "question": "What was an outcome of Netflix's AWS adoption?",
-    "options": [
-      "Increased latency",
-      "High availability",
-      "Reduced scalability",
-      "Higher costs"
-    ],
-    "answer": "High availability",
-    "image": null
-  },
-  {
-    "numb": 45,
-    "type": "Multiple Choices",
-    "question": "What challenge did NASA face before using AWS?",
-    "options": [
-      "Large-scale data analysis",
-      "Network security",
-      "Hardware maintenance",
-      "Software updates"
-    ],
-    "answer": "Large-scale data analysis",
-    "image": null
-  },
-  {
-    "numb": 46,
-    "type": "Multiple Choices",
-    "question": "What was an outcome of NASA's AWS adoption?",
-    "options": [
-      "Reduced research capabilities",
-      "Increased latency",
-      "Improved research capabilities",
-      "Higher costs"
-    ],
-    "answer": "Improved research capabilities",
-    "image": null
-  },
-  {
-    "numb": 47,
-    "type": "Multiple Choices",
-    "question": "What problem did healthcare organizations face in cloud adoption?",
-    "options": [
-      "Secure storage of medical records",
-      "Web application hosting",
-      "Scalable computing",
-      "Big data processing"
-    ],
-    "answer": "Secure storage of medical records",
-    "image": null
-  },
-  {
-    "numb": 48,
-    "type": "Multiple Choices",
-    "question": "Which cloud model was used for healthcare patient data management?",
-    "options": [
-      "Hybrid cloud",
-      "Public cloud",
-      "Community cloud",
-      "Private cloud"
-    ],
-    "answer": "Hybrid cloud",
-    "image": null
-  },
-  {
-    "numb": 49,
-    "type": "Multiple Choices",
-    "question": "What is the recommended textbook for the course?",
-    "options": [
-      "Operating Systems Concepts",
-      "Database Systems",
-      "Computer Networks",
-      "Cloud Computing: Concepts, Technology & Architecture"
-    ],
-    "answer": "Cloud Computing: Concepts, Technology & Architecture",
-    "image": null
-  },
-  {
-    "numb": 50,
-    "type": "Multiple Choices",
-    "question": "Which organization used cloud computing for big data processing and AI-powered analytics?",
-    "options": [
-      "Netflix",
-      "Spotify",
-      "NASA",
-      "Salesforce"
-    ],
-    "answer": "NASA",
+    "answer": "B) HIPAA (Health Insurance Portability and Accountability Act)",
     "image": null
   }
 ]
