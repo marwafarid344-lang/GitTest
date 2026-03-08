@@ -1054,10 +1054,10 @@ export const departmentData: { [key: string]: Department } = {
                 quizzes: [
                   {
                     id: "CLC_10661",
-                    name: "Introduction to Cloud Computing",
+                    name: "Introduction to Cloud Computing (Team Materials)",
                     code: "CLC_10661",
                     duration: "OP", // <-- CHANGED THIS LINE
-                    questions: 50,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10661.json"
                   },
                   {
@@ -1148,10 +1148,10 @@ export const departmentData: { [key: string]: Department } = {
                 quizzes:[
                   {
                     id: "MIG_14331",
-                    name: "Data Mining Lecture 1",
+                    name: "Data Mining Lecture 1,2 (Team Materials)",
                     code: "MIG_14331",
                     duration: "OP",
-                    questions: 20,
+                    questions: 25,
                     jsonFile: "/quizzes/Data Mining/MIG_14331.json"
                   },
                   {
@@ -9181,4 +9181,5 @@ export const departmentData: { [key: string]: Department } = {
     },
   },
 }
+
 
