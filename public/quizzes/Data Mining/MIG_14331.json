@@ -2,261 +2,326 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "What is the primary reason stated for the necessity of Data Mining?",
+    "question": "In the Knowledge Discovery from Data (KDD) process, which step specifically involves the removal of noise and the resolution of inconsistent data?",
     "options": [
-      "Lack of data storage",
-      "Too much knowledge, not enough data",
-      "Explosive growth of data",
-      "Slow data collection tools"
+      "A) Data cleaning",
+      "B) Data integration",
+      "C) Data selection",
+      "D) Pattern evaluation"
     ],
-    "answer": "Explosive growth of data",
+    "answer": "A) Data cleaning",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "According to the lecture, what is Data Mining essentially a search for?",
+    "question": "A company stores large volumes of data but cannot extract useful insights. What is the most appropriate solution?",
     "options": [
-      "Random data entries",
-      "Relationships and global patterns hidden in large databases",
-      "Small, easily visible datasets",
-      "Outdated information in big embedded systems"
+      "A) Increase storage capacity",
+      "B) Use data mining techniques",
+      "C) Delete old data",
+      "D) Convert data into text files"
     ],
-    "answer": "Relationships and global patterns hidden in large databases",
+    "answer": "B) Use data mining techniques",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "What is an alternative name for Data Mining mentioned in the lecture?",
+    "question": "After completing data preprocessing (data cleaning, integration, selection, and transformation), what is the next step in the Knowledge Discovery process?",
     "options": [
-      "Data Warehousing",
-      "Knowledge Discovery in Databases",
-      "Data Collection",
-      "Information Processing"
+      "A) Pattern Evaluation",
+      "B) Data Mining",
+      "C) Knowledge Presentation",
+      "D) Data Storage"
     ],
-    "answer": "Knowledge Discovery in Databases",
+    "answer": "B) Data Mining",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT considered a data preprocessing step in the knowledge discovery process?",
+    "question": "Which statement best describes the role of a data warehouse?",
     "options": [
-      "Data cleaning",
-      "Data integration",
-      "Pattern Generation",
-      "Data selection"
+      "A) Discover patterns in data",
+      "B) Store and integrate data from multiple sources",
+      "C) Predict future trends",
+      "D) Classify data automatically"
     ],
-    "answer": "Pattern Generation",
+    "answer": "B) Store and integrate data from multiple sources",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "What is the core of the knowledge discovery process?",
+    "question": "Why is data preprocessing important before performing data mining?",
     "options": [
-      "Data cleaning",
-      "Data mining",
-      "Knowledge presentation",
-      "Data selection"
+      "A) To increase storage size",
+      "B) To remove noise and inconsistencies from data",
+      "C) To reduce the number of databases",
+      "D) To convert data into images"
     ],
-    "answer": "Data mining",
+    "answer": "B) To remove noise and inconsistencies from data",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "What is a Data Warehouse defined as?",
+    "question": "Which of the following best explains the phrase \"We are drowning in data but starving for knowledge\"?",
     "options": [
-      "A temporary storage for raw data",
-      "A single, complete, and consistent store of data for end-user understanding and business context",
-      "A system for real-time transaction processing",
-      "A collection of unstructured data"
+      "A) Organizations do not collect enough data",
+      "B) Data is expensive to store",
+      "C) Large amounts of data exist but meaningful insights are limited",
+      "D) Data mining is unnecessary"
     ],
-    "answer": "A single, complete, and consistent store of data for end-user understanding and business context",
+    "answer": "C) Large amounts of data exist but meaningful insights are limited",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "Which of these is a potential application of Data Mining mentioned?",
+    "question": "Which step in the knowledge discovery process actually extracts patterns from data?",
     "options": [
-      "Manual data entry",
-      "Market basket analysis",
-      "Basic arithmetic calculations",
-      "Writing software code"
+      "A) Data Cleaning",
+      "B) Data Integration",
+      "C) Data Mining",
+      "D) Data Selection"
     ],
-    "answer": "Market basket analysis",
+    "answer": "C) Data Mining",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "What is the key difference highlighted between Data Mining and Data Warehousing?",
+    "question": "A company collects customer data from websites, mobile apps, and stores, then stores it in one centralized system. This process is best described as:",
     "options": [
-      "Data mining stores data, data warehousing finds patterns",
-      "Data mining finds patterns and forecasts, data warehousing extracts, cleans, and stores data",
-      "They are synonyms",
-      "Data mining is a subset of data warehousing"
+      "A) Data mining",
+      "B) Data warehousing",
+      "C) Data classification",
+      "D) Data prediction"
     ],
-    "answer": "Data mining finds patterns and forecasts, data warehousing extracts, cleans, and stores data",
+    "answer": "B) Data warehousing",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "Data Science is described as using which of the following areas?",
+    "question": "Which of the following scenarios represents unsupervised learning?",
     "options": [
-      "Only computer science",
-      "Computer science, statistics, machine learning, visualization, and human-computer interactions",
-      "Only statistics and visualization",
-      "Only machine learning"
+      "A) Predicting whether an email is spam",
+      "B) Diagnosing a disease using labeled medical data",
+      "C) Grouping customers based on purchasing behavior without predefined labels",
+      "D) Predicting house prices using historical data"
     ],
-    "answer": "Computer science, statistics, machine learning, visualization, and human-computer interactions",
+    "answer": "C) Grouping customers based on purchasing behavior without predefined labels",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "What is the relationship between Data Science and Data Mining according to the lecture?",
+    "question": "Which field acts as an umbrella that includes data mining, machine learning, and statistics?",
     "options": [
-      "Data Mining is an umbrella term for Data Science",
-      "Data Science is only a small component of Data Mining",
-      "Data Mining is only a part of Data Science",
-      "They are completely unrelated fields"
+      "A) Artificial Intelligence",
+      "B) Data Science",
+      "C) Software Engineering",
+      "D) Database Management"
     ],
-    "answer": "Data Mining is only a part of Data Science",
+    "answer": "B) Data Science",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "Which of the following is a type of data that Data Mining can be applied to?",
+    "question": "Which of the following best describes supervised learning?",
     "options": [
-      "Only simple text files",
-      "Relational databases, data warehouses, transactional databases, stream data, and WWW",
-      "Only numerical data",
-      "Handwritten notes"
+      "A) Discovering patterns without predefined labels",
+      "B) Learning from labeled training data to predict outcomes",
+      "C) Storing historical data for analysis",
+      "D) Cleaning noisy data"
     ],
-    "answer": "Relational databases, data warehouses, transactional databases, stream data, and WWW",
+    "answer": "B) Learning from labeled training data to predict outcomes",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "What are 'Facts' defined as in the context of learning levels?",
+    "question": "Which type of data is commonly analyzed in time-series data mining?",
     "options": [
-      "Complex theories",
-      "Simple statements of truth",
-      "Hypothetical scenarios",
-      "Opinions"
+      "A) Images only",
+      "B) Data collected over time such as stock prices",
+      "C) Text documents",
+      "D) Random data samples"
     ],
-    "answer": "Simple statements of truth",
+    "answer": "B) Data collected over time such as stock prices",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What do 'Concepts' refer to in the four levels of learning?",
+    "question": "Which of the following is NOT part of the data preprocessing stage?",
     "options": [
-      "Individual data points",
-      "Set of objects, symbols, or events grouped because they share common characteristics",
-      "Random occurrences",
-      "Abstract ideas without any shared traits"
+      "A) Data cleaning",
+      "B) Data transformation",
+      "C) Data mining",
+      "D) Data integration"
     ],
-    "answer": "Set of objects, symbols, or events grouped because they share common characteristics",
+    "answer": "C) Data mining",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "What is 'Supervised Learning' in data mining?",
+    "question": "Which of the following represents a concept in learning levels?",
     "options": [
-      "Building models from data without predefined classes",
-      "Using models to identify objects of similar structure and determine the outcome",
-      "Learning without any human intervention",
-      "Randomly exploring data"
+      "A) A step-by-step method to solve a problem",
+      "B) A general law explaining relationships",
+      "C) A group of objects sharing common characteristics",
+      "D) A simple factual statement"
     ],
-    "answer": "Using models to identify objects of similar structure and determine the outcome",
+    "answer": "C) A group of objects sharing common characteristics",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "Which of the following is an example of a Predictive Data Mining Task?",
+    "question": "Which of the following best describes a principle?",
     "options": [
-      "Summarization",
-      "Clustering",
-      "Classification",
-      "Association Rules"
+      "A) A simple fact",
+      "B) A set of related objects",
+      "C) A step-by-step action",
+      "D) A general rule or law explaining relationships"
     ],
-    "answer": "Classification",
+    "answer": "D) A general rule or law explaining relationships",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "Which of the following is an example of a Descriptive Data Mining Task?",
+    "question": "Data mining is best described as:",
     "options": [
-      "Regression",
-      "Time Series Analysis",
-      "Clustering",
-      "Prediction"
+      "A) The full process of building a data warehouse",
+      "B) The automated search for hidden relationships and global patterns in large databases",
+      "C) Only the cleaning and integration of data sources",
+      "D) Manual reporting from transactional databases"
     ],
-    "answer": "Clustering",
+    "answer": "B) The automated search for hidden relationships and global patterns in large databases",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "The process of combining multiple data sources is known as:",
+    "question": "Which of the following is an alternative name for data mining as presented in the lecture?",
     "options": [
-      "Data cleaning",
-      "Data integration",
-      "Data selection",
-      "Data transformation"
+      "A) Data Warehousing",
+      "B) Knowledge Discovery in Databases (KDD)",
+      "C) Online Analytical Processing (OLAP)",
+      "D) Business Intelligence"
     ],
-    "answer": "Data integration",
+    "answer": "B) Knowledge Discovery in Databases (KDD)",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What is the purpose of 'Pattern evaluation' in the knowledge discovery process?",
+    "question": "The relationship between data science and data mining is that:",
     "options": [
-      "To remove noise from data",
-      "To retrieve relevant data for analysis",
-      "To identify truly interesting patterns representing knowledge",
-      "To transform data into an appropriate form"
+      "A) Data mining is broader and includes data science",
+      "B) Data mining is a subset of the broader data science umbrella",
+      "C) They are completely unrelated",
+      "D) Data science only uses supervised learning"
     ],
-    "answer": "To identify truly interesting patterns representing knowledge",
+    "answer": "B) Data mining is a subset of the broader data science umbrella",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "Fraud detection is listed as a potential application of Data Mining under which category?",
+    "question": "How does the source distinguish a data warehouse from an organisation's operational database?",
     "options": [
-      "Market analysis and management",
-      "Risk analysis and management",
-      "Other Applications",
-      "Data analysis and decision support"
+      "A) A data warehouse only contains data collected from external web sources",
+      "B) A data warehouse is a temporary storage area used only during the data cleaning process",
+      "C) A data warehouse is a historical decision support database maintained separately from operational data",
+      "D) A data warehouse is used for real-time transaction processing to speed up customer service"
     ],
-    "answer": "Risk analysis and management",
+    "answer": "C) A data warehouse is a historical decision support database maintained separately from operational data",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "What does 'Unsupervised Learning' in data mining involve?",
+    "question": "If a data mining task aims to discover interesting relations between variables in large databases, such as identifying which products are often purchased together, it is known as:",
     "options": [
-      "Using predefined classes to build models",
-      "Building models from data without predefined classes",
-      "Focusing on predicting future outcomes",
-      "Requiring constant human supervision"
+      "A) Association Rules",
+      "B) Regression",
+      "C) Classification",
+      "D) Summarisation"
     ],
-    "answer": "Building models from data without predefined classes",
+    "answer": "A) Association Rules",
+    "image": null
+  },
+  {
+    "numb": 21,
+    "type": "Multiple Choices",
+    "question": "What is the second step after Data Preprocessing in the Knowledge Discovery process?",
+    "options": [
+      "A) Data Cleaning",
+      "B) Pattern Evaluation",
+      "C) Data Mining",
+      "D) Knowledge Presentation"
+    ],
+    "answer": "B) Pattern Evaluation",
+    "image": null
+  },
+  {
+    "numb": 22,
+    "type": "Multiple Choices",
+    "question": "Which of the following is also used as a preprocessing step in the knowledge discovery process?",
+    "options": [
+      "A) Pattern evaluation",
+      "B) Knowledge presentation",
+      "C) Data mining",
+      "D) None of the mentioned"
+    ],
+    "answer": "D) None of the mentioned",
+    "image": null
+  },
+  {
+    "numb": 23,
+    "type": "Multiple Choices",
+    "question": "A ...... learning model might be used to predict flight times based on specific parameters, such as weather conditions, airport traffic, peak flight hours, and more.",
+    "options": [
+      "A) unsupervised",
+      "B) supervised",
+      "C) Hybrid",
+      "D) All the mentioned"
+    ],
+    "answer": "B) supervised",
+    "image": null
+  },
+  {
+    "numb": 24,
+    "type": "Multiple Choices",
+    "question": "Data mining can be described as the process of......",
+    "options": [
+      "A) identifying patterns in data",
+      "B) representing data",
+      "C) deducing relationships in data",
+      "D) simulating trends in data"
+    ],
+    "answer": "A) identifying patterns in data",
+    "image": null
+  },
+  {
+    "numb": 25,
+    "type": "Multiple Choices",
+    "question": "Supervised learning in data mining differs from unsupervised learning because it:",
+    "options": [
+      "A) Builds models without any predefined classes or labels",
+      "B) Uses models with predefined classes/outcomes to predict or classify new data",
+      "C) Only discovers clusters",
+      "D) Never requires training data"
+    ],
+    "answer": "B) Uses models with predefined classes/outcomes to predict or classify new data",
     "image": null
   }
 ]
