@@ -1,9 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
-export const fetchCache = 'force-no-store'
+// Cache for 5 minutes – user count changes slowly
+export const revalidate = 300
 
 export async function GET() {
   try {
@@ -67,13 +66,6 @@ export async function GET() {
       }))
       .sort((a, b) => a.level - b.level)
 
-    // Verify totals match
-    const sumOfLevels = levels.reduce((sum, l) => sum + l.count, 0)
-    
-    console.log('Total users:', totalUsers)
-    console.log('Sum of levels:', sumOfLevels)
-    console.log('Level breakdown:', levels)
-
     return NextResponse.json(
       {
         totalUsers,
@@ -82,9 +74,7 @@ export async function GET() {
       },
       {
         headers: {
-          'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
-          'Pragma': 'no-cache',
-          'Expires': '0',
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
         },
       }
     )
