@@ -3,8 +3,8 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { createClient } from '@supabase/supabase-js'
 
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// Cache for 1 hour – quiz count changes very rarely
+export const revalidate = 3600
 
 async function countJsonFiles(dir: string): Promise<number> {
   let count = 0
@@ -65,7 +65,7 @@ export async function GET() {
       },
       {
         headers: {
-          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
         },
       }
     )
