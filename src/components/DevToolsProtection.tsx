@@ -472,10 +472,10 @@ export default function DevToolsProtection() {
     document.addEventListener('drop', disableDragDrop);
     window.addEventListener('resize', handleResize);
 
-    // Start detection intervals
-    const devToolsInterval = setInterval(detectDevTools, 1000);
-    const debuggerInterval = setInterval(debuggerLoop, 1000);
-    const storageInterval = setInterval(clearStorage, 2000);
+    // Start detection intervals (reduced frequency to save CPU)
+    const devToolsInterval = setInterval(detectDevTools, 5000);
+    const debuggerInterval = setInterval(debuggerLoop, 10000);
+    const storageInterval = setInterval(clearStorage, 10000);
     
     // Run initial checks
     preventIframe();
