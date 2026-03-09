@@ -4,11 +4,21 @@ import type { NextRequest } from 'next/server'
 // ⚠️ Toggle this to enable/disable maintenance mode
 const MAINTENANCE_MODE = false
 
+// Block scrapers/crawlers but allow legit search engines
+const BLOCKED_BOT_PATTERNS = /scraper|crawler|spider|curl|wget|python-requests|Go-http-client|httpclient|java\/|libwww|lwp-trivial|sitesucker|grab|fetch|node-fetch/i
+const ALLOWED_BOTS = /googlebot|bingbot|yandexbot|duckduckbot|slurp|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
+
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl
+  const userAgent = request.headers.get('user-agent') || ''
+
+  // Block malicious bots (but allow search engines)
+  if (BLOCKED_BOT_PATTERNS.test(userAgent) && !ALLOWED_BOTS.test(userAgent)) {
+    return new NextResponse('Forbidden', { status: 403 })
+  }
+
   // If maintenance mode is enabled
   if (MAINTENANCE_MODE) {
-    const { pathname } = request.nextUrl
-
     // Allow access to maintenance page itself and essential assets
     const allowedPaths = [
       '/maintenance',
@@ -31,21 +41,9 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Optionally, you can specify which paths this middleware should run on
+// Only run middleware on page routes – skip static assets, API routes, and public files
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|api/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|json|mp3|mp4|css|js|woff|woff2|ttf|eot)$).*)',
   ],
 }
-
-
-
-
-
-
