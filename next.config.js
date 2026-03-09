@@ -86,6 +86,26 @@ const nextConfig = {
   // Security headers
   async headers() {
     return [
+      // Cache quiz JSON files aggressively (they rarely change)
+      {
+        source: '/quizzes/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      // Cache images aggressively
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, s-maxage=604800, immutable',
+          },
+        ],
+      },
       {
         source: '/:path*',
         headers: [
