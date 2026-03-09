@@ -4836,11 +4836,11 @@ export const departmentData: { [key: string]: Department } = {
               description: "Pattern recognition algorithms and applications",
               creditHours: 3,
               materials: {
-                lectures: "https://drive.google.com/drive/folders/pattern-recognition-lectures",
-                sections: "https://drive.google.com/drive/folders/pattern-recognition-sections",
-                videos: "https://youtube.com/playlist?list=pattern-recognition-videos",
-                summaries: "https://drive.google.com/drive/folders/pattern-recognition-summaries",
-                exams: "https://drive.google.com/drive/folders/pattern-recognition-lastexam"
+                lectures: "https://drive.google.com/drive/folders/1vN7tgKg2d-G_CdfvVxA7HU6j2I9Ydfy9?usp=drive_link",
+                sections: "https://drive.google.com/drive/folders/1J0M6pREMxxh1Q1VfPTjq9YcZCA2QAQ0m?usp=drive_link",
+                videos: "",
+                summaries: "https://drive.google.com/drive/folders/1I1FfAwEdenpHTKkQCkhBmyK87x0Jrtuo?usp=drive_link",
+                exams: "https://drive.google.com/drive/folders/1EOh3fcjzdS4xbuedyW6nABttN7iCstLg?usp=drive_link"
               },
             },
             {
@@ -4850,27 +4850,27 @@ export const departmentData: { [key: string]: Department } = {
               description: "Neural network architectures and training methods",
               creditHours: 3,
               materials: {
-                lectures: "https://drive.google.com/drive/folders/neural-networks-lectures",
-                sections: "https://drive.google.com/drive/folders/neural-networks-sections",
-                videos: "https://youtube.com/playlist?list=neural-networks-videos",
-                summaries: "https://drive.google.com/drive/folders/neural-networks-summaries",
-                exams: "https://drive.google.com/drive/folders/neural-networks-lastexam"
+                lectures: "https://drive.google.com/drive/folders/1TuR1Q_kC67HR5Tv-PTRAP26pMvDGfTuN?usp=drive_link",
+                sections: "https://drive.google.com/drive/folders/1YzLUT2eb03jO0RWT1s1MzUgO43IM_yHp?usp=drive_link",
+                videos: "",
+                summaries: "https://drive.google.com/drive/folders/1oadfcwGdlId5wEIgOvhlsjTheLes1bGK?usp=drive_link",
+                exams: "https://drive.google.com/drive/folders/1_qwwnimCKUu5ZiwjeUJMsxk_KElXD3Ce?usp=drive_link"
               },
             },
-            {
-              id: "university-elective-is-2",
-              name: "University Elective",
-              code: "02-0X-000XX",
-              description: "University-wide elective course",
-              creditHours: 1,
-              materials: {
-                lectures: "https://drive.google.com/drive/folders/university-elective-is-2-lectures",
-                sections: "https://drive.google.com/drive/folders/university-elective-is-2-sections",
-                videos: "https://youtube.com/playlist?list=university-elective-is-2-videos",
-                summaries: "https://drive.google.com/drive/folders/university-elective-is-2-summaries",
-                exams: "https://drive.google.com/drive/folders/university-elective-is-2-lastexam"
-              },
-            },
+            // {
+            //   id: "university-elective-is-2",
+            //   name: "University Elective",
+            //   code: "02-0X-000XX",
+            //   description: "University-wide elective course",
+            //   creditHours: 1,
+            //   materials: {
+            //     lectures: "https://drive.google.com/drive/folders/university-elective-is-2-lectures",
+            //     sections: "https://drive.google.com/drive/folders/university-elective-is-2-sections",
+            //     videos: "https://youtube.com/playlist?list=university-elective-is-2-videos",
+            //     summaries: "https://drive.google.com/drive/folders/university-elective-is-2-summaries",
+            //     exams: "https://drive.google.com/drive/folders/university-elective-is-2-lastexam"
+            //   },
+            // },
           ],
         },
       },
@@ -9181,5 +9181,3 @@ export const departmentData: { [key: string]: Department } = {
     },
   },
 }
-
-
