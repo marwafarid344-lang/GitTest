@@ -2,391 +2,351 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT mentioned as a NoSQL database ?",
+    "question": "A company wants to analyze a large amount of raw data to extract useful insights for decision making. Which field mainly focuses on this task?",
     "options": [
-      "MongoDB",
-      "Neo4j",
-      "MySQL",
-      "All are mentioned"
+      "A) Software Engineering",
+      "B) Data Science",
+      "C) Computer Networks",
+      "D) Cyber Security"
     ],
-    "answer": "MySQL",
+    "answer": "B) Data Science",
+    "explanation": "Data science deals with analyzing large amounts of data to extract useful insights and support decision making.",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "Which module in python supports regular expressions?",
+    "question": "Which type of data analysis describes what happened in the past using historical data?",
     "options": [
-      "re",
-      "regex",
-      "pyregex",
-      "All are mentioned"
+      "A) Descriptive Analysis",
+      "B) Diagnostic Analysis",
+      "C) Predictive Analysis",
+      "D) Prescriptive Analysis"
     ],
-    "answer": "re",
+    "answer": "A) Descriptive Analysis",
+    "explanation": "Descriptive analysis summarizes historical data to understand what happened in the past.",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "Which Python library is specifically mentioned for web scraping?",
+    "question": "Which type of analysis focuses on identifying the reasons behind a particular event?",
     "options": [
-      "Pandas",
-      "Scrapy",
-      "BeautifulSoup",
-      "NumPy"
+      "A) Descriptive Analysis",
+      "B) Diagnostic Analysis",
+      "C) Predictive Analysis",
+      "D) Prescriptive Analysis"
     ],
-    "answer": "Scrapy",
+    "answer": "B) Diagnostic Analysis",
+    "explanation": "Diagnostic analysis is used to determine why something happened by analyzing patterns and relationships in data.",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "Which module in python supports XML ?",
+    "question": "Which type of analysis is mainly used to forecast future trends or outcomes?",
     "options": [
-      "request",
-      "numpy",
-      "pyxmlex",
-      "BeautifulSoup"
+      "A) Prescriptive Analysis",
+      "B) Descriptive Analysis",
+      "C) Predictive Analysis",
+      "D) Diagnostic Analysis"
     ],
-    "answer": "BeautifulSoup",
+    "answer": "C) Predictive Analysis",
+    "explanation": "Predictive analysis uses historical data and statistical techniques to forecast future outcomes.",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "Which of these is considered an example of unordered data?",
+    "question": "Which type of analysis suggests the best action to take based on previous analyses?",
     "options": [
-      "Time series",
-      "Genetic sequence",
-      "Employee records",
-      "Stock prices"
+      "A) Prescriptive Analysis",
+      "B) Predictive Analysis",
+      "C) Diagnostic Analysis",
+      "D) Descriptive Analysis"
     ],
-    "answer": "Employee records",
+    "answer": "A) Prescriptive Analysis",
+    "explanation": "Prescriptive analysis combines insights from other analysis types to recommend the best course of action.",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "What is the dtype argument used for in NumPy array creation?",
+    "question": "Which phase of the Data Analytic Lifecycle involves understanding the business problem and collecting initial data?",
     "options": [
-      "To specify array dimensions",
-      "To set the data type of array elements",
-      "To name the array",
-      "To index the array"
+      "A) Data Discovery",
+      "B) Data Preparation",
+      "C) Model Planning",
+      "D) Model Building"
     ],
-    "answer": "To set the data type of array elements",
+    "answer": "A) Data Discovery",
+    "explanation": "Data discovery focuses on understanding the problem and gathering relevant data for analysis.",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "In Pandas, what is each column in a DataFrame?",
+    "question": "Which phase focuses on cleaning and transforming raw data into a usable format?",
     "options": [
-      "A NumPy array",
-      "A Series object",
-      "A Python dictionary",
-      "A list"
+      "A) Model Planning",
+      "B) Data Preparation",
+      "C) Data Discovery",
+      "D) Operationalization"
     ],
-    "answer": "A Series object",
+    "answer": "B) Data Preparation",
+    "explanation": "Data preparation involves cleaning, transforming, and organizing raw data before analysis.",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "Which of these tools is mentioned for distributed data processing?",
+    "question": "During which phase are analytical techniques selected and planned?",
     "options": [
-      "Tableau",
-      "Apache Spark",
-      "Weka",
-      "RapidMiner"
+      "A) Model Planning",
+      "B) Data Discovery",
+      "C) Model Building",
+      "D) Communication of Results"
     ],
-    "answer": "Apache Spark",
+    "answer": "A) Model Planning",
+    "explanation": "Model planning involves selecting suitable analytical techniques and planning how models will be built.",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "What is the correct way to create a Pandas DataFrame from a dictionary?",
+    "question": "Which phase of the Data Analytic Lifecycle involves building and testing the analytical model?",
     "options": [
-      "pd.DataFrame.from_dict()",
-      "pd.createDataFrame()",
-      "pd.DataFrame()",
-      "pd.dict_to_df()"
+      "A) Data Preparation",
+      "B) Model Planning",
+      "C) Model Building",
+      "D) Operationalization"
     ],
-    "answer": "pd.DataFrame()",
+    "answer": "C) Model Building",
+    "explanation": "Model building focuses on developing and testing analytical models using prepared datasets.",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "Which of these is NOT listed as a key topic in the course textbook?",
+    "question": "Which phase focuses on presenting results and evaluating project success?",
     "options": [
-      "pandas",
-      "SciPy",
-      "Django",
-      "scikit-learn"
+      "A) Communication of Results",
+      "B) Data Discovery",
+      "C) Model Planning",
+      "D) Data Preparation"
     ],
-    "answer": "Django",
+    "answer": "A) Communication of Results",
+    "explanation": "This phase summarizes findings and evaluates whether the project objectives were achieved.",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "What does the .shape attribute of a NumPy array return?",
+    "question": "Which phase involves deploying the final model in a real environment?",
     "options": [
-      "The data type of the array",
-      "The dimensions of the array",
-      "The memory size of the array",
-      "The number of elements in the array"
+      "A) Data Preparation",
+      "B) Operationalization",
+      "C) Model Planning",
+      "D) Data Discovery"
     ],
-    "answer": "The dimensions of the array",
+    "answer": "B) Operationalization",
+    "explanation": "Operationalization involves implementing the model and running it in a real-time environment.",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "Which method is used to filter rows in a Pandas DataFrame?",
+    "question": "Which job role mainly extracts data and interprets it to analyze business problems?",
     "options": [
-      "filter()",
-      "query()",
-      "Boolean indexing",
-      "select()"
+      "A) Data Engineer",
+      "B) Data Analyst",
+      "C) Database Administrator",
+      "D) Data Architect"
     ],
-    "answer": "Boolean indexing",
+    "answer": "B) Data Analyst",
+    "explanation": "A Data Analyst extracts data and interprets it to understand business problems and outcomes.",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What is the main difference between a NumPy array and a Python list?",
+    "question": "Which professional works with large and complex datasets using machine learning techniques?",
     "options": [
-      "NumPy arrays can only contain numbers",
-      "All elements in a NumPy array must be of the same type",
-      "NumPy arrays cannot be indexed",
-      "Python lists are faster than NumPy arrays"
+      "A) Data Scientist",
+      "B) Data Analyst",
+      "C) Database Administrator",
+      "D) Data Engineer"
     ],
-    "answer": "All elements in a NumPy array must be of the same type",
+    "answer": "A) Data Scientist",
+    "explanation": "Data Scientists analyze large and complex datasets using advanced techniques such as machine learning.",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "Which of these is an example of geometric/structured data?",
+    "question": "Which role prepares and manages data so it can be used by analysts and scientists?",
     "options": [
-      "Bank transaction records",
-      "Social network graphs",
-      "Time series data",
-      "Document collections"
+      "A) Data Architect",
+      "B) Data Engineer",
+      "C) Data Analyst",
+      "D) Database Administrator"
     ],
-    "answer": "Social network graphs",
+    "answer": "B) Data Engineer",
+    "explanation": "A Data Engineer prepares and manages data infrastructure for analysis.",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "How do you read data from a CSV file into a Pandas DataFrame?",
+    "question": "Which role manages database access rights and ensures backup and recovery?",
     "options": [
-      "pd.read_csv()",
-      "pd.open_csv()",
-      "pd.load_csv()",
-      "pd.csv_to_df()"
+      "A) Database Administrator",
+      "B) Data Engineer",
+      "C) Data Scientist",
+      "D) Data Architect"
     ],
-    "answer": "pd.read_csv()",
+    "answer": "A) Database Administrator",
+    "explanation": "Database Administrators manage databases, access permissions, and backup systems.",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "What is the purpose of the astype() method in NumPy?",
+    "question": "Which role designs the overall data structure and architecture of a data system?",
     "options": [
-      "To change array dimensions",
-      "To convert array elements to a different data type",
-      "To sort array elements",
-      "To save the array to disk"
+      "A) Data Architect",
+      "B) Data Analyst",
+      "C) Data Engineer",
+      "D) Database Administrator"
     ],
-    "answer": "To convert array elements to a different data type",
+    "answer": "A) Data Architect",
+    "explanation": "Data Architects design the structure and organization of data systems.",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "Which of the following is a data visualization tool?",
+    "question": "Which role manages analytics projects and ensures report quality?",
     "options": [
-      "Matplotlib",
-      "Tableau",
-      "Seaborn",
-      "All of the above"
+      "A) Data Architect",
+      "B) Data Engineer",
+      "C) Analytics Manager",
+      "D) Database Administrator"
     ],
-    "answer": "All of the above",
+    "answer": "C) Analytics Manager",
+    "explanation": "Analytics Managers supervise analytics operations and ensure the quality of reports.",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What happens when you perform arithmetic operations between a NumPy array and a scalar?",
+    "question": "Which analysis type answers the question 'What will happen in the future?'",
     "options": [
-      "The operation is applied to each element",
-      "It raises an error",
-      "Only the first element is modified",
-      "The scalar is converted to an array first"
+      "A) Diagnostic Analysis",
+      "B) Predictive Analysis",
+      "C) Descriptive Analysis",
+      "D) Prescriptive Analysis"
     ],
-    "answer": "The operation is applied to each element",
+    "answer": "B) Predictive Analysis",
+    "explanation": "Predictive analysis forecasts future outcomes using historical data.",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "Which of these is NOT a component of the data science pipeline?",
+    "question": "Which analysis type answers the question 'Why did it happen?'",
     "options": [
-      "Data collection",
-      "Data processing",
-      "Data visualization",
-      "Data encryption"
+      "A) Diagnostic Analysis",
+      "B) Predictive Analysis",
+      "C) Descriptive Analysis",
+      "D) Prescriptive Analysis"
     ],
-    "answer": "Data encryption",
+    "answer": "A) Diagnostic Analysis",
+    "explanation": "Diagnostic analysis investigates the reasons behind past events.",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "What is the correct way to access a single row in a Pandas DataFrame by its index label?",
+    "question": "Which analysis type summarizes data using charts, dashboards, and reports?",
     "options": [
-      "df.get()",
-      "df.loc[]",
-      "df.select()",
-      "df.row()"
+      "A) Prescriptive Analysis",
+      "B) Diagnostic Analysis",
+      "C) Descriptive Analysis",
+      "D) Predictive Analysis"
     ],
-    "answer": "df.loc[]",
+    "answer": "C) Descriptive Analysis",
+    "explanation": "Descriptive analysis summarizes data using visualization tools and reports.",
     "image": null
   },
   {
     "numb": 21,
     "type": "Multiple Choices",
-    "question": "Which of these data formats is NOT a Data Formate type",
+    "question": "Which analysis type recommends actions based on insights from data?",
     "options": [
-      "XML",
-      "BMW",
-      "YAML",
-      "CSV"
+      "A) Predictive Analysis",
+      "B) Prescriptive Analysis",
+      "C) Descriptive Analysis",
+      "D) Diagnostic Analysis"
     ],
-    "answer": "BMW",
+    "answer": "B) Prescriptive Analysis",
+    "explanation": "Prescriptive analysis suggests actions to achieve desired outcomes.",
     "image": null
   },
   {
     "numb": 22,
     "type": "Multiple Choices",
-    "question": "What is the main advantage of using Pandas over raw NumPy for data analysis?",
+    "question": "Which lifecycle phase focuses on exploring business trends and understanding the domain?",
     "options": [
-      "Higher computational speed",
-      "More mathematical functions",
-      "Better handling of heterogeneous data and labels",
-      "Smaller memory footprint"
+      "A) Data Discovery",
+      "B) Model Building",
+      "C) Data Preparation",
+      "D) Operationalization"
     ],
-    "answer": "Better handling of heterogeneous data and labels",
+    "answer": "A) Data Discovery",
+    "explanation": "During data discovery, stakeholders study the business domain and available data.",
     "image": null
   },
   {
     "numb": 23,
     "type": "Multiple Choices",
-    "question": "Which of these is an example of ordered data?",
+    "question": "Which lifecycle phase focuses on selecting statistical and machine learning techniques?",
     "options": [
-      "Product inventory",
-      "Genetic sequence",
-      "Employee records",
-      "Bank transactions"
+      "A) Model Planning",
+      "B) Data Preparation",
+      "C) Data Discovery",
+      "D) Communication of Results"
     ],
-    "answer": "Genetic sequence",
+    "answer": "A) Model Planning",
+    "explanation": "Model planning identifies the analytical techniques required for building the model.",
     "image": null
   },
   {
     "numb": 24,
     "type": "Multiple Choices",
-    "question": "How do you drop a column from a Pandas DataFrame?",
+    "question": "Which lifecycle phase involves training and testing datasets?",
     "options": [
-      "df.remove()",
-      "df.drop() with axis='columns'",
-      "df.delete()",
-      "df.del_column()"
+      "A) Data Discovery",
+      "B) Model Building",
+      "C) Operationalization",
+      "D) Data Preparation"
     ],
-    "answer": "df.drop() with axis='columns'",
+    "answer": "B) Model Building",
+    "explanation": "Model building involves training and testing models using prepared datasets.",
     "image": null
   },
   {
     "numb": 25,
     "type": "Multiple Choices",
-    "question": "What is the dtype='object' used for in NumPy array creation?",
+    "question": "Which lifecycle phase produces the final report and documentation?",
     "options": [
-      "For numerical computations",
-      "For arrays that will hold mixed data types",
-      "For object-oriented programming",
-      "For faster array operations"
+      "A) Data Preparation",
+      "B) Operationalization",
+      "C) Model Planning",
+      "D) Data Discovery"
     ],
-    "answer": "For arrays that will hold mixed data types",
-    "image": null
-  },
-  {
-    "numb": 26,
-    "type": "Multiple Choices",
-    "question": "Which of these is NOT a data science tool?",
-    "options": [
-      "SAS",
-      "Weka",
-      "RapidMiner",
-      "TensorBoard"
-    ],
-    "answer": "TensorBoard",
-    "image": null
-  },
-  {
-    "numb": 27,
-    "type": "Multiple Choices",
-    "question": "What is the correct way to convert a NumPy array to a Python list?",
-    "options": [
-      "array.to_list()",
-      "list(array)",
-      "array.tolist()",
-      "All of the above"
-    ],
-    "answer": "array.tolist()",
-    "image": null
-  },
-  {
-    "numb": 28,
-    "type": "Multiple Choices",
-    "question": "Which of these is a use case for the Data Science tools?",
-    "options": [
-      "Finance",
-      "Media",
-      "Health",
-      "All of the above"
-    ],
-    "answer": "All of the above",
-    "image": null
-  },
-  {
-    "numb": 29,
-    "type": "Multiple Choices",
-    "question": "What is the main difference between .loc[] and .iloc[] in Pandas?",
-    "options": [
-      ".loc[] uses labels, .iloc[] uses positions",
-      ".loc[] is faster than .iloc[]",
-      ".loc[] works only with columns, .iloc[] with rows",
-      "There is no difference"
-    ],
-    "answer": ".loc[] uses labels, .iloc[] uses positions",
-    "image": null
-  },
-  {
-    "numb": 30,
-    "type": "Multiple Choices",
-    "question": "Which of these is NOT a characteristic of NumPy arrays?",
-    "options": [
-      "Fixed size at creation",
-      "Homogeneous data types",
-      "Dynamic resizing",
-      "Vectorized operations"
-    ],
-    "answer": "Dynamic resizing",
+    "answer": "B) Operationalization",
+    "explanation": "Operationalization includes preparing the final report and documentation for the project.",
     "image": null
   }
 ]
