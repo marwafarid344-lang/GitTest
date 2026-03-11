@@ -2,391 +2,326 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a type of NoSQL database mentioned in the lecture?",
+    "question": "Which of the following is NOT a data preprocessing operation?",
     "options": [
-      "Document Store",
-      "Graph Store",
-      "Hierarchical Store",
-      "Key-Value Store"
+      "A) Data cleaning",
+      "B) Data integration",
+      "C) Data encryption",
+      "D) Data discretization"
     ],
-    "answer": "Hierarchical Store",
-    "image": null
+    "answer": "C",
+    "explanation": "Encryption is not part of preprocessing. Preprocessing focuses on cleaning, integrating, transforming, reducing, and discretizing data."
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "What does the CAP theorem state about shared data-systems?",
+    "question": "Why is data transformation necessary?",
     "options": [
-      "They can guarantee consistency, availability, and partition tolerance simultaneously",
-      "They can only guarantee two out of three properties at the same time",
-      "They can guarantee all three properties with enough resources",
-      "None of the above"
+      "A) To reduce memory usage",
+      "B) To convert data into a format easier to analyze",
+      "C) To delete irrelevant features",
+      "D) To store data on disk"
     ],
-    "answer": "They can only guarantee two out of three properties at the same time",
-    "image": null
+    "answer": "B",
+    "explanation": "Transformation adjusts scales and formats to make analysis meaningful."
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "Which of the following is a characteristic of SQL databases?",
+    "question": "If employee ages are 20-55 and salaries are 10,000–100,000, why should data transformation be applied?",
     "options": [
-      "They are schema-less",
-      "They use tables with rows and columns",
-      "They don't support complex queries",
-      "They are always file-based"
+      "A) To reduce storage",
+      "B) To make features comparable",
+      "C) To merge data",
+      "D) To remove missing values"
     ],
-    "answer": "They use tables with rows and columns",
-    "image": null
+    "answer": "B",
+    "explanation": "Different scales can bias analysis; transformation normalizes ranges."
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "What is the main difference between SQLite and other SQL databases like MySQL?",
+    "question": "What does normalizing data do?",
     "options": [
-      "SQLite is server-based while others are file-based",
-      "SQLite is file-based while others are server-based",
-      "SQLite doesn't use SQL",
-      "SQLite is a NoSQL database"
+      "A) Converts text to numbers",
+      "B) Scales data so each observation has unit length",
+      "C) Aggregates data into cubes",
+      "D) Removes missing values"
     ],
-    "answer": "SQLite is file-based while others are server-based",
-    "image": null
+    "answer": "B",
+    "explanation": "Normalization ensures fair contribution of each row, especially for sparse data."
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT an advantage of NoSQL databases mentioned in the lecture?",
+    "question": "What is standardization (scaling)?",
     "options": [
-      "Easier scalability",
-      "Table-less design",
-      "Strong ACID compliance",
-      "Flexible schema"
+      "A) Removing all outliers",
+      "B) Converting data to a mean of 0 and standard deviation of 1",
+      "C) Converting categorical to numeric",
+      "D) Merging neighboring data points"
     ],
-    "answer": "Strong ACID compliance",
-    "image": null
+    "answer": "B",
+    "explanation": "Standardization makes features comparable when they follow Gaussian distributions."
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "What does BASE stand for in NoSQL databases?",
+    "question": "Label encoding assigns:",
     "options": [
-      "Basic Atomicity, Stability, and Endurance",
-      "Basically Available, Soft-state, Eventually consistent",
-      "Binary Access, Storage, and Encoding",
-      "None of the above"
+      "A) Random numbers to features",
+      "B) Sequential numeric values to categories",
+      "C) Z-scores",
+      "D) Standard deviations"
     ],
-    "answer": "Basically Available, Soft-state, Eventually consistent",
-    "image": null
+    "answer": "B",
+    "explanation": "Converts textual labels to numbers 0 to (n-1)."
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "Which of the following is a document-oriented NoSQL database?",
+    "question": "One-hot encoding is used to:",
     "options": [
-      "Neo4j",
-      "MongoDB",
-      "Redis",
-      "HBase"
+      "A) Reduce feature count",
+      "B) Split a categorical column into multiple binary columns",
+      "C) Merge datasets",
+      "D) Normalize data"
     ],
-    "answer": "MongoDB",
-    "image": null
+    "answer": "B",
+    "explanation": "Each category becomes a separate column with 0 or 1."
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "In MongoDB, what is the equivalent of a row in a relational database?",
+    "question": "Which transformation compresses a skewed data range?",
     "options": [
-      "Collection",
-      "Document",
-      "Field",
-      "Index"
+      "A) Log transformation",
+      "B) Label encoding",
+      "C) Normalization",
+      "D) Feature extraction"
     ],
-    "answer": "Document",
-    "image": null
+    "answer": "A",
+    "explanation": "Useful for right-skewed data like income."
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "What is the primary key field automatically created in MongoDB called?",
+    "question": "Which power transformation can handle negative values?",
     "options": [
-      "_id",
-      "id",
-      "key",
-      "primary"
+      "A) Box-Cox",
+      "B) Yeo-Johnson",
+      "C) PCA",
+      "D) Standardization"
     ],
-    "answer": "_id",
-    "image": null
+    "answer": "B",
+    "explanation": "Box-Cox requires positive values; Yeo-Johnson works with negatives too."
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a feature of MongoDB mentioned in the lecture?",
+    "question": "Aggregation includes:",
     "options": [
-      "Full ACID compliance",
-      "Horizontal scalability",
-      "Rich query capabilities",
-      "Flexible schema"
+      "A) Grouping and rolling",
+      "B) Label encoding",
+      "C) Standardization",
+      "D) Binarization"
     ],
-    "answer": "Full ACID compliance",
-    "image": null
+    "answer": "A",
+    "explanation": "Combines data points for summary statistics."
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "What type of join does SQLite NOT currently support according to the lecture?",
+    "question": "Feature creation may include:",
     "options": [
-      "LEFT JOIN",
-      "RIGHT JOIN",
-      "INNER JOIN",
-      "FULL OUTER JOIN"
+      "A) Normalizing each row",
+      "B) Combining two features or adding polynomial terms",
+      "C) Removing redundant columns",
+      "D) Encoding text"
     ],
-    "answer": "FULL OUTER JOIN",
-    "image": null
+    "answer": "B",
+    "explanation": "Helps capture non-linear relationships."
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "Which SQL operator is used to match a character pattern?",
+    "question": "Dimensionality reduction reduces:",
     "options": [
-      "=",
-      "LIKE",
-      "IN",
-      "BETWEEN"
+      "A) Number of data points",
+      "B) Number of features",
+      "C) Data storage type",
+      "D) Number of categories"
     ],
-    "answer": "LIKE",
-    "image": null
+    "answer": "B",
+    "explanation": "Reduces feature space while retaining important information."
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What is the purpose of a view in SQL?",
+    "question": "Feature selection aims to:",
     "options": [
-      "To physically store data",
-      "To structure data in a way users find intuitive",
-      "To increase database size",
-      "To replace tables"
+      "A) Create new features",
+      "B) Choose a smaller subset of relevant features",
+      "C) Transform numerical to categorical",
+      "D) Merge datasets"
     ],
-    "answer": "To structure data in a way users find intuitive",
-    "image": null
+    "answer": "B",
+    "explanation": "Filters out irrelevant or redundant features."
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a MongoDB data type?",
+    "question": "Which is NOT a feature selection method?",
     "options": [
-      "ObjectId",
-      "ISODate",
-      "VARCHAR",
-      "Embedded Document"
+      "A) Filter",
+      "B) Wrapper",
+      "C) Embedded",
+      "D) Clustering"
     ],
-    "answer": "VARCHAR",
-    "image": null
+    "answer": "D",
+    "explanation": "Clustering is used in reduction, not selection."
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "How does MongoDB typically represent relationships between data?",
+    "question": "Recursive feature elimination works by:",
     "options": [
-      "Through foreign keys",
-      "Through embedded documents or references",
-      "Through join tables",
-      "Through XML links"
+      "A) Removing the least relevant features iteratively",
+      "B) Encoding labels",
+      "C) Transforming data to 0-1 scale",
+      "D) Aggregating cubes"
     ],
-    "answer": "Through embedded documents or references",
-    "image": null
+    "answer": "A",
+    "explanation": "It greedily searches for the best subset."
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "What is the main advantage of column store NoSQL databases?",
+    "question": "Stepwise forward selection:",
     "options": [
-      "They are best for data analytics",
-      "They are the simplest to implement",
-      "They support complex transactions",
-      "They are the fastest for simple key-value lookups"
+      "A) Starts with all features",
+      "B) Starts with an empty set and adds features",
+      "C) Removes features one by one",
+      "D) Applies PCA"
     ],
-    "answer": "They are best for data analytics",
-    "image": null
+    "answer": "B",
+    "explanation": "Stops when remaining features are not statistically significant."
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "Which of the following companies is using NoSQL databases?",
+    "question": "Stepwise backward elimination:",
     "options": [
-      "Google",
-      "Amazon",
-      "Microsoft",
-      "All are mentioned"
+      "A) Starts empty and adds features",
+      "B) Starts with all features and removes irrelevant ones",
+      "C) Applies one-hot encoding",
+      "D) Uses rolling aggregation"
     ],
-    "answer": "All are mentioned",
-    "image": null
+    "answer": "B",
+    "explanation": "Opposite of forward selection."
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What is the default database that the MongoDB shell connects to?",
+    "question": "Decision tree induction for feature selection:",
     "options": [
-      "admin",
-      "test",
-      "local",
-      "main"
+      "A) Encodes categorical features",
+      "B) Tests attributes and discards irrelevant ones",
+      "C) Aggregates data cubes",
+      "D) Normalizes numerical data"
     ],
-    "answer": "test",
-    "image": null
+    "answer": "B",
+    "explanation": "Branches represent tests; irrelevant attributes are ignored."
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "Which command is used to create an index in MongoDB?",
+    "question": "PCA (Principal Component Analysis) is:",
     "options": [
-      "createIndex",
-      "ensureIndex",
-      "makeIndex",
-      "addIndex"
+      "A) Supervised",
+      "B) Unsupervised",
+      "C) A form of clustering",
+      "D) Label encoding"
     ],
-    "answer": "ensureIndex",
-    "image": null
+    "answer": "B",
+    "explanation": "Creates linear combinations of features, ranked by variance."
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "What does the $set operator do in MongoDB?",
+    "question": "LDA (Linear Discriminant Analysis) is:",
     "options": [
-      "Creates a new collection",
-      "Updates specific fields in a document",
-      "Deletes a document",
-      "Performs a join operation"
+      "A) Unsupervised",
+      "B) Supervised",
+      "C) Clustering",
+      "D) Normalization"
     ],
-    "answer": "Updates specific fields in a document",
-    "image": null
+    "answer": "B",
+    "explanation": "Works only with labeled data to create linear combinations."
   },
   {
     "numb": 21,
     "type": "Multiple Choices",
-    "question": "Which of the following is a disadvantage of SQLite mentioned in the lecture?",
+    "question": "Data cube aggregation stores:",
     "options": [
-      "Difficult to set up",
-      "Not easily scalable",
-      "Requires constant administration",
-      "Uses non-standard SQL syntax"
+      "A) Raw text data",
+      "B) Multidimensional aggregated information",
+      "C) Encoded labels",
+      "D) Standardized features"
     ],
-    "answer": "Not easily scalable",
-    "image": null
+    "answer": "B",
+    "explanation": "Example: sales by brand, branch, and year."
   },
   {
     "numb": 22,
     "type": "Multiple Choices",
-    "question": "What is the main characteristic of graph databases?",
+    "question": "Numerosity reduction:",
     "options": [
-      "They store data in tables",
-      "They focus on relationships between nodes",
-      "They are optimized for simple key-value pairs",
-      "They use a document-oriented approach"
+      "A) Converts data to smaller forms",
+      "B) Increases feature dimensions",
+      "C) Converts categories to numbers",
+      "D) Applies PCA"
     ],
-    "answer": "They focus on relationships between nodes",
-    "image": null
+    "answer": "A",
+    "explanation": "Reduces volume; can be parametric or non-parametric."
   },
   {
     "numb": 23,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a SQL language component mentioned in the lecture?",
+    "question": "Example of parametric numerosity reduction:",
     "options": [
-      "Data Definition Language",
-      "Data Manipulation Language",
-      "Query Language",
-      "Transaction Control Language"
+      "A) Clustering",
+      "B) Regression",
+      "C) Histogram",
+      "D) Sampling"
     ],
-    "answer": "Transaction Control Language",
-    "image": null
+    "answer": "B",
+    "explanation": "Stores parameters instead of all raw data."
   },
   {
     "numb": 24,
     "type": "Multiple Choices",
-    "question": "How does MongoDB handle schema evolution?",
+    "question": "Example of non-parametric numerosity reduction:",
     "options": [
-      "Through strict schema enforcement",
-      "By requiring schema migrations",
-      "By allowing documents in the same collection to have different structures",
-      "By using XML schemas"
+      "A) Log-linear models",
+      "B) Regression",
+      "C) Sampling",
+      "D) Linear discriminant analysis"
     ],
-    "answer": "By allowing documents in the same collection to have different structures",
-    "image": null
+    "answer": "C",
+    "explanation": "Stores a reduced representation without parameters."
   },
   {
     "numb": 25,
     "type": "Multiple Choices",
-    "question": "What is BSON in MongoDB?",
+    "question": "Top-down vs Bottom-up discretization:",
     "options": [
-      "A query language",
-      "A binary representation of JSON-like documents",
-      "A type of index",
-      "A replication protocol"
+      "A) Top-down merges, Bottom-up splits",
+      "B) Top-down splits, Bottom-up merges",
+      "C) Both split data",
+      "D) Both merge data"
     ],
-    "answer": "A binary representation of JSON-like documents",
-    "image": null
-  },
-  {
-    "numb": 26,
-    "type": "Multiple Choices",
-    "question": "Which of the following is a key advantage of relational databases mentioned in the lecture?",
-    "options": [
-      "Easy horizontal scaling",
-      "Support for complex queries and joins",
-      "Flexible schema",
-      "Simple key-value access"
-    ],
-    "answer": "Support for complex queries and joins",
-    "image": null
-  },
-  {
-    "numb": 27,
-    "type": "Multiple Choices",
-    "question": "What is the purpose of the .pretty() method in the MongoDB shell?",
-    "options": [
-      "To format output in a more readable way",
-      "To make queries run faster",
-      "To create indexes",
-      "To validate data"
-    ],
-    "answer": "To format output in a more readable way",
-    "image": null
-  },
-  {
-    "numb": 28,
-    "type": "Multiple Choices",
-    "question": "Which of the following is NOT a MongoDB feature mentioned in the lecture?",
-    "options": [
-      "Geospatial features",
-      "Real-time aggregation",
-      "Stored procedures",
-      "Ad hoc queries"
-    ],
-    "answer": "Stored procedures",
-    "image": null
-  },
-  {
-    "numb": 29,
-    "type": "Multiple Choices",
-    "question": "What is the main difference between SQL and NoSQL approaches to schema design?",
-    "options": [
-      "NoSQL requires more upfront schema design",
-      "SQL allows schema to evolve more easily",
-      "NoSQL typically has a more flexible approach to schema",
-      "They are essentially the same"
-    ],
-    "answer": "NoSQL typically has a more flexible approach to schema",
-    "image": null
-  },
-  {
-    "numb": 30,
-    "type": "Multiple Choices",
-    "question": "Which of the following commands would you use in MongoDB to find one document where the 'name' field equals 'John'?",
-    "options": [
-      "db.collection.search({name: 'John'})",
-      "db.collection.selectOne({name: 'John'})",
-      "db.collection.findOne({name: 'John'})",
-      "db.collection.get({name: 'John'})"
-    ],
-    "answer": "db.collection.findOne({name: 'John'})",
-    "image": null
+    "answer": "B",
+    "explanation": "Top-down divides large ranges; Bottom-up combines small ranges."
   }
 ]
