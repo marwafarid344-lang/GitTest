@@ -1212,39 +1212,39 @@ export const departmentData: { [key: string]: Department } = {
                 quizzes: [
                   {
                     id: "DST_001",
-                    name: "Introduction to Data Science Tools",
+                    name: "Lecture 1 - (Team Materials)",
                     code: "DST_001",
                     duration: "OP",
-                    questions: 30,
+                    questions: 25,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_001.json"
                   },
                   {
                     id: "DST_002",
-                    name: "Visualization",
+                    name: "Lecture 2 - (Team Materials)",
                     code: "DST_002",
                     duration: "OP",
-                    questions: 30,
+                    questions: 25,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_002.json"
                   },
                   {
                     id: "DST_003",
-                    name: "Data Preprocessing",
+                    name: "Lecture 3 - (Team Materials)",
                     code: "DST_003",
                     duration: "OP",
-                    questions: 30,
+                    questions: 25,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_003.json"
                   },
                   {
                     id: "DST_004",
-                    name: "Database Management Systems",
+                    name: "Lecture 4 - (Team Materials)",
                     code: "DST_004",
                     duration: "OP",
-                    questions: 30,
+                    questions: 25,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_004.json"
                   },
                   {
                     id: "DST_005",
-                    name: "Supervised Learning",
+                    name: "Lecture 5 - (Team Materials)",
                     code: "DST_005",
                     duration: "OP",
                     questions: 30,
@@ -9181,3 +9181,4 @@ export const departmentData: { [key: string]: Department } = {
     },
   },
 }
+
