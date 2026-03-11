@@ -2,391 +2,351 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a data preprocessing task?",
+    "question": "What is the main objective of data cleaning in the data science pipeline?",
     "options": [
-      "Dealing with incomplete data",
-      "Removing duplicate records",
-      "Data collection",
-      "Noise removal"
+      "A) To increase the number of features in the dataset",
+      "B) To handle irrelevant or missing data to prevent errors during analysis",
+      "C) To change the data format from SQL to NoSQL",
+      "D) To visualize the data using complex charts"
     ],
-    "answer": "Data collection",
+    "answer": "B) To handle irrelevant or missing data to prevent errors during analysis",
+    "explanation": "Dirty data can cause errors and lead to incorrect conclusions, so cleaning is essential for accuracy.",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "What is one method to handle missing data?",
+    "question": "Which strategy for handling null values involves removing entire rows with any missing data?",
     "options": [
-      "Ignore the tuple",
-      "Fill with random values",
-      "Delete the entire dataset",
-      "None of the above"
+      "A) Pairwise Deletion",
+      "B) Mean Imputation",
+      "C) Listwise Deletion",
+      "D) Multiple Imputation"
     ],
-    "answer": "Ignore the tuple",
+    "answer": "C) Listwise Deletion",
+    "explanation": "Listwise deletion removes the entire record if any of its attributes are missing.",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "In the example 5,1,3,2,9,?, what value is suggested to fill the missing entry?",
+    "question": "When is 'Pairwise Deletion' preferred over 'Listwise Deletion'?",
     "options": [
-      "1",
-      "3",
-      "4",
-      "5"
+      "A) When we want to preserve as much data as possible for specific calculations",
+      "B) When the dataset is very small",
+      "C) When we want to avoid inconsistencies in results",
+      "D) When all variables have the same amount of missing data"
     ],
-    "answer": "4",
+    "answer": "A) When we want to preserve as much data as possible for specific calculations",
+    "explanation": "Pairwise deletion only excludes missing values from the specific calculation being performed, keeping the row for other analyses.",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "Which method is used for noise removal by partitioning data into equal-depth bins?",
+    "question": "Which imputation method predicts missing values based on the relationship with other variables?",
     "options": [
-      "Clustering",
-      "Regression",
-      "Binning",
-      "Normalization"
+      "A) Mode Imputation",
+      "B) Regression Imputation",
+      "C) Zero Imputation",
+      "D) Constant Imputation"
     ],
-    "answer": "Binning",
+    "answer": "B) Regression Imputation",
+    "explanation": "Regression uses a model to estimate the missing value based on other available features (like predicting 'Square Footage' based on 'Number of Rooms').",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "What is the purpose of normalization in data preprocessing?",
+    "question": "What is a major risk of having duplicate values in a machine learning dataset?",
     "options": [
-      "To remove all missing values",
-      "To scale features to similar ranges",
-      "To delete duplicate records",
-      "To add noise to the data"
+      "A) It makes the dataset too small",
+      "B) It causes the model to overfit to specific patterns",
+      "C) It automatically deletes the outliers",
+      "D) It changes categorical data to numerical"
     ],
-    "answer": "To scale features to similar ranges",
+    "answer": "B) It causes the model to overfit to specific patterns",
+    "explanation": "Overfitting happens when the model 'memorizes' repeated records instead of learning the general trend.",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "Which normalization technique uses the formula: v' = (v - min_A)/(max_A - min_A)?",
+    "question": "In Python's Pandas library, which method is used to identify exact duplicate rows?",
     "options": [
-      "z-score normalization",
-      "Decimal scaling",
-      "min-max normalization",
-      "None of the above"
+      "A) unique()",
+      "B) drop_duplicates()",
+      "C) duplicated()",
+      "D) distinct()"
     ],
-    "answer": "min-max normalization",
+    "answer": "C) duplicated()",
+    "explanation": "duplicated() returns a boolean series identifying which rows are duplicates, while drop_duplicates() is used to remove them.",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "In z-score normalization, what does the formula (v - mean_a)/stand_dev_a represent?",
+    "question": "'Fuzzy Matching' is a technique used to identify:",
     "options": [
-      "Scaling by decimal places",
-      "Standardizing data to have mean 0 and standard deviation 1",
-      "Normalizing to a 0-1 range",
-      "None of the above"
+      "A) Exact duplicate records",
+      "B) Missing values in numerical columns",
+      "C) Near duplicates caused by typos or variations",
+      "D) Outliers in a boxplot"
     ],
-    "answer": "Standardizing data to have mean 0 and standard deviation 1",
+    "answer": "C) Near duplicates caused by typos or variations",
+    "explanation": "Fuzzy matching finds records that are similar but not 100% identical (e.g., 'Ahmed' vs 'Ahmet').",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "What is the main goal of feature extraction?",
+    "question": "Binning is considered a method for:",
     "options": [
-      "To increase data size",
-      "To convert raw patterns into feature vectors and reduce redundancy",
-      "To remove all features",
-      "To add noise to the data"
+      "A) Global smoothing",
+      "B) Local smoothing",
+      "C) Data integration",
+      "D) Data reduction"
     ],
-    "answer": "To convert raw patterns into feature vectors and reduce redundancy",
+    "answer": "B) Local smoothing",
+    "explanation": "Binning performs local smoothing because it consults neighborhood values within the same bin.",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a property of a metric distance measure?",
+    "question": "If we have 10 values and use 'Equal Width Binning' with n=3, what is the width (W) if Min=55 and Max=100?",
     "options": [
-      "Symmetry",
-      "Constancy of self-similarity",
-      "Triangular inequality",
-      "Linear dependence"
+      "A) 10",
+      "B) 15",
+      "C) 45",
+      "D) 30"
     ],
-    "answer": "Linear dependence",
+    "answer": "B) 15",
+    "explanation": "W = (Max - Min) / n → (100 - 55) / 3 = 15.",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "What is the Hamming distance between vectors [1,0,1] and [0,1,1]?",
+    "question": "What is the main advantage of 'Equal Frequency Binning'?",
     "options": [
-      "0",
-      "1",
-      "2",
-      "3"
+      "A) All bins have the same range of values",
+      "B) Each bin contains approximately the same number of values",
+      "C) It doesn't require sorting the data",
+      "D) It is only used for categorical data"
     ],
-    "answer": "2",
+    "answer": "B) Each bin contains approximately the same number of values",
+    "explanation": "Equal frequency (or Equi-depth) ensures a balanced distribution of elements across bins.",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "Which distance metric is a special case of Minkowski distance when p=1?",
+    "question": "Which regression technique splits data into regions and predicts the average value of each region?",
     "options": [
-      "Euclidean distance",
-      "Manhattan distance",
-      "Square distance",
-      "Hamming distance"
+      "A) Linear Regression",
+      "B) Polynomial Regression",
+      "C) Decision Tree Regression",
+      "D) Lasso Regression"
     ],
-    "answer": "Manhattan distance",
+    "answer": "C) Decision Tree Regression",
+    "explanation": "Decision trees partition data into 'leaves' where each leaf represents the mean of the points in that region.",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "What is the Euclidean distance between points (1,2) and (4,6)?",
+    "question": "In Linear Regression, the equation is Y = a + bX. What does 'a' represent?",
     "options": [
-      "3",
-      "4",
-      "5",
-      "6"
+      "A) The slope of the line",
+      "B) The independent variable",
+      "C) The Y-intercept",
+      "D) The prediction error"
     ],
-    "answer": "5",
+    "answer": "C) The Y-intercept",
+    "explanation": "'a' is the value of Y when X=0.",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "Which similarity measure is calculated as x·y/(||x|| ||y||)?",
+    "question": "Based on the Polynomial Regression example in the lecture, if the model is Y = 3 + 2X + X^2, what is Y for X=4?",
     "options": [
-      "Jaccard index",
-      "Cosine similarity",
-      "Pearson correlation",
-      "Hamming distance"
+      "A) 19",
+      "B) 27",
+      "C) 20",
+      "D) 11"
     ],
-    "answer": "Cosine similarity",
+    "answer": "B) 27",
+    "explanation": "Y = 3 + 2(4) + 4^2 = 3 + 8 + 16 = 27.",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "What is the Jaccard similarity between sets {a,c,d} and {a,b,e}?",
+    "question": "How are 'Contextual Outliers' defined?",
     "options": [
-      "0.20",
-      "0.33",
-      "0.50",
-      "0.75"
+      "A) Points that are different from the overall distribution",
+      "B) Points that are unusual within a specific context (e.g., 40°C in winter)",
+      "C) A group of points that deviate together",
+      "D) Points created by data entry errors only"
     ],
-    "answer": "0.20",
+    "answer": "B) Points that are unusual within a specific context",
+    "explanation": "Contextual outliers are only 'weird' when you look at surrounding circumstances (like season or location).",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "Which distance measure counts the number of substitutions needed to transform one string into another?",
+    "question": "Using the IQR method, a value is considered a 'high outlier' if it is:",
     "options": [
-      "Euclidean distance",
-      "Hamming distance",
-      "Manhattan distance",
-      "Mahalanobis distance"
+      "A) Greater than Q3 + 1.5 × IQR",
+      "B) Less than Q1 - 1.5 × IQR",
+      "C) Equal to the Median",
+      "D) Between Q1 and Q3"
     ],
-    "answer": "Hamming distance",
+    "answer": "A) Greater than Q3 + 1.5 × IQR",
+    "explanation": "This is the standard formula for identifying upper-bound outliers.",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "What does a Pearson correlation coefficient of 0.9 indicate?",
+    "question": "If Q1 = 20 and Q3 = 40, what is the 'Lower Bound' for outliers?",
     "options": [
-      "No correlation",
-      "Weak positive correlation",
-      "Moderate positive correlation",
-      "Strong positive correlation"
+      "A) 0",
+      "B) -10",
+      "C) 10",
+      "D) 20"
     ],
-    "answer": "Strong positive correlation",
+    "answer": "B) -10",
+    "explanation": "IQR = 40-20=20. Lower Bound = 20 - (1.5 × 20) = -10.",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a limitation of Pearson's correlation coefficient?",
+    "question": "What is the difference between Population Variance (σ^2) and Sample Variance (s^2)?",
     "options": [
-      "It only measures linear relationships",
-      "It is sensitive to outliers",
-      "It cannot detect non-linear relationships",
-      "It always ranges between -2 and +2"
+      "A) Population uses N, while Sample uses n-1 in the denominator",
+      "B) Population uses N-1, while Sample uses N",
+      "C) There is no difference",
+      "D) Sample variance is always smaller"
     ],
-    "answer": "It always ranges between -2 and +2",
+    "answer": "A) Population uses N, while Sample uses n-1 in the denominator",
+    "explanation": "We use n-1 for samples to provide an unbiased estimate of the population variance (Bessel's correction).",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "In text processing, what is the purpose of removing stop words?",
+    "question": "A correlation coefficient of r = 0.775 indicates:",
     "options": [
-      "To increase document size",
-      "To focus on meaningful terms",
-      "To add noise to the data",
-      "To create duplicate records"
+      "A) A weak negative correlation",
+      "B) No correlation",
+      "C) A strong positive correlation",
+      "D) A perfect negative correlation"
     ],
-    "answer": "To focus on meaningful terms",
+    "answer": "C) A strong positive correlation",
+    "explanation": "Since it's close to 1 and positive, it shows a strong direct relationship.",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "What does TF-IDF stand for in text processing?",
+    "question": "In Linear Regression (Y = a + bX), if the slope (b) is 6.5 and the intercept (a) is 43.5, what is the predicted score for a student who studies 10 hours?",
     "options": [
-      "Term Frequency-Inverse Document Frequency",
-      "Total Frequency-Individual Document Frequency",
-      "Text Feature-Indexed Document Feature",
-      "None of the above"
+      "A) 65",
+      "B) 108.5",
+      "C) 43.5",
+      "D) 100"
     ],
-    "answer": "Term Frequency-Inverse Document Frequency",
+    "answer": "B) 108.5",
+    "explanation": "Y = 43.5 + 6.5(10) = 43.5 + 65 = 108.5.",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a variant of TF weight?",
+    "question": "In Decision Tree Regression, how is the prediction for a specific 'leaf' (region) calculated?",
     "options": [
-      "Binary",
-      "Raw frequency",
-      "Log normalization",
-      "Exponential scaling"
+      "A) By taking the maximum value in that region",
+      "B) By taking the mean (average) value of the points in that region",
+      "C) By multiplying all values together",
+      "D) By taking the difference between the first and last value"
     ],
-    "answer": "Exponential scaling",
+    "answer": "B) By taking the mean (average) value of the points in that region",
+    "explanation": null,
     "image": null
   },
   {
     "numb": 21,
     "type": "Multiple Choices",
-    "question": "What is the output of (lambda x, y: x-y)(2, 3) in Python?",
+    "question": "In the Decision Tree example from the lecture, if Age ≤ 27 predicts a salary of 2250, and Age > 27 predicts 3250, what is the prediction for someone aged 30?",
     "options": [
-      "0",
-      "-1",
-      "5",
-      "6"
+      "A) 2250",
+      "B) 3250",
+      "C) 2750",
+      "D) 5500"
     ],
-    "answer": "-1",
+    "answer": "B) 3250",
+    "explanation": "Since 30 is > 27, it falls into the second region.",
     "image": null
   },
   {
     "numb": 22,
     "type": "Multiple Choices",
-    "question": "What does the map() function do in Python?",
+    "question": "What criterion does a Decision Tree use to find the 'Best Split'?",
     "options": [
-      "Applies a function to all elements in a sequence",
-      "Filters elements based on a condition",
-      "Reduces a sequence to a single value",
-      "None of the above"
+      "A) Maximizing the number of bins",
+      "B) Minimizing the error (like Mean Squared Error - MSE)",
+      "C) Increasing the number of duplicates",
+      "D) Using the highest correlation coefficient (r)"
     ],
-    "answer": "Applies a function to all elements in a sequence",
+    "answer": "B) Minimizing the error (like Mean Squared Error - MSE)",
+    "explanation": null,
     "image": null
   },
   {
     "numb": 23,
     "type": "Multiple Choices",
-    "question": "What is the output of reduce(lambda x, y: x+y, [1,2,3,4])?",
+    "question": "If we are predicting Salary based on Experience, and we found that a split at X ≤ 3 gives MSE = 16.67, while a split at X ≤ 4 gives MSE = 67.97, which split is better?",
     "options": [
-      "24",
-      "3",
-      "[1,2,3,4]",
-      "10"
+      "A) X ≤ 4 because the error is higher",
+      "B) X ≤ 3 because the error is lower",
+      "C) Both are equal",
+      "D) None of them"
     ],
-    "answer": "10",
+    "answer": "B) X ≤ 3 because the error is lower",
+    "explanation": null,
     "image": null
   },
   {
     "numb": 24,
     "type": "Multiple Choices",
-    "question": "Which of the following is true about the binning method for noise removal?",
+    "question": "'Lasso Regression' and 'Logistic Regression' were mentioned in the lecture as:",
     "options": [
-      "It sorts data and partitions into equal-depth bins",
-      "It removes all missing values",
-      "It increases data dimensionality",
-      "None of the above"
+      "A) Types of Data Integration tools",
+      "B) Methods for Outlier Removal",
+      "C) Various regression techniques used for smoothing and prediction",
+      "D) Ways to calculate the Mean"
     ],
-    "answer": "It sorts data and partitions into equal-depth bins",
+    "answer": "C) Various regression techniques used for smoothing and prediction",
+    "explanation": null,
     "image": null
   },
   {
     "numb": 25,
     "type": "Multiple Choices",
-    "question": "What is the main purpose of discretization?",
+    "question": "Which of the following describes 'Regression Imputation'?",
     "options": [
-      "To convert continuous data into categories",
-      "To remove all features",
-      "To add noise to the data",
-      "To delete duplicate records"
+      "A) Replacing missing values with the column mode",
+      "B) Using other variables to predict the missing value",
+      "C) Replacing missing values with zero",
+      "D) Removing rows with missing values"
     ],
-    "answer": "To convert continuous data into categories",
-    "image": null
-  },
-  {
-    "numb": 26,
-    "type": "Multiple Choices",
-    "question": "Which of the following is NOT a feature type mentioned in symbolic objects?",
-    "options": [
-      "Quantitative features",
-      "Qualitative features",
-      "Random features",
-      "Continuous ratio values"
-    ],
-    "answer": "Random features",
-    "image": null
-  },
-  {
-    "numb": 27,
-    "type": "Multiple Choices",
-    "question": "What does the triangular inequality property state about distance measures?",
-    "options": [
-      "D(A,B) = D(B,A)",
-      "D(A,A) = 0",
-      "D(A,B) ≤ D(A,C) + D(B,C)",
-      "D(A,B) = 0 if A=B"
-    ],
-    "answer": "D(A,B) ≤ D(A,C) + D(B,C)",
-    "image": null
-  },
-  {
-    "numb": 28,
-    "type": "Multiple Choices",
-    "question": "Which of the following is an example of an ordinal qualitative feature?",
-    "options": [
-      "Color",
-      "Military rank",
-      "Blood type",
-      "Height"
-    ],
-    "answer": "Military rank",
-    "image": null
-  },
-  {
-    "numb": 29,
-    "type": "Multiple Choices",
-    "question": "What is the purpose of stemming in text processing?",
-    "options": [
-      "To reduce words to their root form",
-      "To increase document size",
-      "To add stop words",
-      "To create duplicate terms"
-    ],
-    "answer": "To reduce words to their root form",
-    "image": null
-  },
-  {
-    "numb": 30,
-    "type": "Multiple Choices",
-    "question": "Executing print(reduce(lambda x, y: x*y, [1,2,3,4])) in Python  produces?",
-    "options": [
-      "6",
-      "12",
-      "24",
-      "10"
-    ],
-    "answer": "24",
+    "answer": "B) Using other variables to predict the missing value",
+    "explanation": "Regression imputation uses the relationship between other variables to estimate missing data.",
     "image": null
   }
 ]
