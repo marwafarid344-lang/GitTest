@@ -2,391 +2,391 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "What is the main difference between classification and clustering?",
+    "question": "What is the main purpose of a Data Warehouse?",
     "options": [
-      "Classification uses known categories while clustering discovers unknown categories",
-      "Clustering uses known categories while classification discovers unknown categories",
-      "Both use known categories",
-      "Both discover unknown categories"
+      "A) Supporting daily transaction processing",
+      "B) Supporting decision making using historical data",
+      "C) Managing application security",
+      "D) Storing temporary operational data"
     ],
-    "answer": "Classification uses known categories while clustering discovers unknown categories",
-    "image": null
+    "answer": "B",
+    "explanation": "A data warehouse is a decision support database that stores consolidated historical data for analysis and decision making."
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT a pattern recognition task ?",
+    "question": "Which characteristic of a Data Warehouse means it is organized around major subjects such as customer or product?",
     "options": [
-      "Classification",
-      "Clustering",
-      "Association Rule Discovery",
-      "Dimensionality Reduction"
+      "A) Integrated",
+      "B) Subject-oriented",
+      "C) Time-variant",
+      "D) Nonvolatile"
     ],
-    "answer": "Dimensionality Reduction",
-    "image": null
+    "answer": "B",
+    "explanation": "Subject-oriented means the data warehouse is organized around important subjects like customers, products, and sales."
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "What is the function of a linear classifier?",
+    "question": "Which feature ensures consistency in naming conventions and formats among different data sources?",
     "options": [
-      "f(x,w,b) = tanh(w x + b)",
-      "f(x,w,b) = sign(w x + b)",
-      "f(x,w,b) = cos(w x + b)",
-      "f(x,w,b) = exp(w x + b)"
+      "A) Subject-oriented",
+      "B) Integrated",
+      "C) Time-variant",
+      "D) Nonvolatile"
     ],
-    "answer": "f(x,w,b) = sign(w x + b)",
-    "image": null
+    "answer": "B",
+    "explanation": "Integration combines multiple heterogeneous sources and ensures consistent naming conventions and data formats."
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "What defines the margin of a linear classifier?",
+    "question": "Why is a Data Warehouse considered time-variant?",
     "options": [
-      "The distance between the classifier and the farthest point",
-      "The width that the boundary could be increased before hitting a datapoint",
-      "The number of support vectors",
-      "The angle of the decision boundary"
+      "A) It stores only current data",
+      "B) It includes historical data over long periods",
+      "C) It frequently updates operational data",
+      "D) It deletes old data automatically"
     ],
-    "answer": "The width that the boundary could be increased before hitting a datapoint",
-    "image": null
+    "answer": "B",
+    "explanation": "Data warehouses store historical data for long time horizons such as 5–10 years."
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "What are support vectors in SVM?",
+    "question": "Which statement best describes the nonvolatile property of a Data Warehouse?",
     "options": [
-      "All training datapoints",
-      "Only misclassified datapoints",
-      "Datapoints that the margin pushes up against",
-      "Randomly selected datapoints"
+      "A) Data is constantly updated",
+      "B) Data is frequently deleted",
+      "C) Data is loaded once and mainly accessed for analysis",
+      "D) Data changes every second"
     ],
-    "answer": "Datapoints that the margin pushes up against",
-    "image": null
+    "answer": "C",
+    "explanation": "Nonvolatile means data is loaded initially and then mainly accessed for analysis without frequent updates."
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "Which approach is used for multi-class classification with SVM as mentioned in the lecture?",
+    "question": "OLTP systems are mainly used for:",
     "options": [
-      "One-to-Rest approach",
-      "Binary Trees approach",
-      "Random Forest approach",
-      "Neural Network approach"
+      "A) Data mining",
+      "B) Day-to-day transaction processing",
+      "C) Complex analytical queries",
+      "D) Historical analysis"
     ],
-    "answer": "One-to-Rest approach",
-    "image": null
+    "answer": "B",
+    "explanation": "OLTP systems support daily operational transactions such as banking or order processing."
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "In K-Nearest Neighbors, when is classification performed?",
+    "question": "Which type of queries is typical in OLAP systems?",
     "options": [
-      "During training",
-      "Before seeing any data",
-      "When a new instance arrives",
-      "Only during model evaluation"
+      "A) Simple transaction queries",
+      "B) Insert and delete operations",
+      "C) Complex analytical queries",
+      "D) Index creation queries"
     ],
-    "answer": "When a new instance arrives",
-    "image": null
+    "answer": "C",
+    "explanation": "OLAP systems process complex analytical queries on large volumes of historical data."
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "What is the formula for standardized variables in KNN?",
+    "question": "Which users typically use OLAP systems?",
     "options": [
-      "X_s = (X - Mean)/StdDev",
-      "X_s = X/Max",
-      "X_s = (X - Min)/(Max - Min)",
-      "X_s = X^2"
+      "A) Clerks",
+      "B) Customers",
+      "C) Data analysts and executives",
+      "D) Bank tellers"
     ],
-    "answer": "X_s = (X - Mean)/StdDev",
-    "image": null
+    "answer": "C",
+    "explanation": "OLAP systems support decision-making and are mainly used by analysts, executives, and knowledge workers."
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "What is the main advantage of distance-weighted KNN?",
+    "question": "Why are data warehouses usually kept separate from operational databases?",
     "options": [
-      "It gives more weight to farther points",
-      "It gives more weight to nearby points",
-      "It ignores distance completely",
-      "It only considers the closest point"
+      "A) To increase storage size",
+      "B) To optimize performance for both OLTP and OLAP systems",
+      "C) To reduce database complexity",
+      "D) To prevent data storage"
     ],
-    "answer": "It gives more weight to nearby points",
-    "image": null
+    "answer": "B",
+    "explanation": "Separating them allows OLTP systems to handle transactions efficiently and OLAP systems to handle analysis."
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "Which of the following is NOT an advantage of KNN ?",
+    "question": "In Data Warehouse architecture, what does ETL stand for?",
     "options": [
-      "Training is very fast",
-      "Suits complex target functions",
-      "Fast at query time",
-      "Doesn't lose information"
+      "A) Extract, Transform, Load",
+      "B) Execute, Transfer, Link",
+      "C) Evaluate, Track, Log",
+      "D) Enter, Test, Launch"
     ],
-    "answer": "Fast at query time",
-    "image": null
+    "answer": "A",
+    "explanation": "ETL stands for Extract, Transform, and Load, which prepares data for the warehouse."
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "What happens when k=1 in KNN?",
+    "question": "Which component stores information about warehouse schema, views, and data lineage?",
     "options": [
-      "It becomes insensitive to noise",
-      "It becomes very sensitive to noise",
-      "It becomes a linear classifier",
-      "It stops working"
+      "A) Data Mart",
+      "B) Metadata Repository",
+      "C) Fact Table",
+      "D) OLAP Server"
     ],
-    "answer": "It becomes very sensitive to noise",
-    "image": null
+    "answer": "B",
+    "explanation": "Metadata repository stores information about warehouse structure, schema, hierarchies, and data lineage."
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "Which metric is calculated as (a + d)/(a + b + c + d) in classification?",
+    "question": "A Data Mart is:",
     "options": [
-      "Error Rate",
-      "Accuracy",
-      "Precision",
-      "Recall"
+      "A) The full enterprise warehouse",
+      "B) A subset of data warehouse for specific users",
+      "C) A temporary dataset",
+      "D) A backup database"
     ],
-    "answer": "Accuracy",
-    "image": null
+    "answer": "B",
+    "explanation": "A data mart is a subset of the enterprise data warehouse designed for specific departments or groups."
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What is Recall in classification metrics?",
+    "question": "Which data warehouse model is a set of views over operational databases?",
     "options": [
-      "a/(a+c)",
-      "a/(a+b)",
-      "d/(c+d)",
-      "(b+c)/(a+b+c+d)"
+      "A) Enterprise warehouse",
+      "B) Data mart",
+      "C) Virtual warehouse",
+      "D) Fact constellation"
     ],
-    "answer": "a/(a+b)",
-    "image": null
+    "answer": "C",
+    "explanation": "A virtual warehouse is a collection of views over operational databases."
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "In KNN regression with k>1, how is the prediction made?",
+    "question": "In ETL, detecting and correcting errors in data is called:",
     "options": [
-      "Take the maximum value of neighbors",
-      "Take the minimum value of neighbors",
-      "Take the average of neighbors' values",
-      "Take the median of neighbors' values"
+      "A) Extraction",
+      "B) Cleaning",
+      "C) Transformation",
+      "D) Loading"
     ],
-    "answer": "Take the average of neighbors' values",
-    "image": null
+    "answer": "B",
+    "explanation": "Data cleaning identifies and corrects errors in the data."
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "What does RMSE stand for in regression metrics?",
+    "question": "Which table stores measures and foreign keys in a data warehouse?",
     "options": [
-      "Root Mean Square Error",
-      "Relative Mean Squared Error",
-      "Root Median Squared Error",
-      "Relative Median Squared Error"
+      "A) Dimension table",
+      "B) Fact table",
+      "C) Metadata table",
+      "D) Data mart table"
     ],
-    "answer": "Root Mean Square Error",
-    "image": null
+    "answer": "B",
+    "explanation": "Fact tables contain measures and foreign keys that link to dimension tables."
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "In k-fold cross-validation, how many partitions are used for testing in each iteration?",
+    "question": "A data cube allows data to be analyzed:",
     "options": [
-      "1",
-      "k-1",
-      "k",
-      "All partitions"
+      "A) In one dimension only",
+      "B) In two dimensions only",
+      "C) In multiple dimensions",
+      "D) Without dimensions"
     ],
-    "answer": "1",
-    "image": null
+    "answer": "C",
+    "explanation": "Data cubes support multidimensional data analysis."
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "What is the main difference between k-fold cross-validation and leave-one-out method?",
+    "question": "The cuboid with the highest level of summarization is called:",
     "options": [
-      "k-fold uses k partitions while leave-one-out uses N partitions where N is the number of samples",
-      "k-fold is faster than leave-one-out",
-      "leave-one-out is less accurate than k-fold",
-      "There is no difference"
+      "A) Base cuboid",
+      "B) Apex cuboid",
+      "C) Fact cuboid",
+      "D) Dimension cuboid"
     ],
-    "answer": "k-fold uses k partitions while leave-one-out uses N partitions where N is the number of samples",
-    "image": null
+    "answer": "B",
+    "explanation": "The apex cuboid is the 0-D cuboid representing the highest level of summarization."
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What is the rationale behind ensemble learning?",
+    "question": "Which schema has a central fact table connected to multiple dimension tables?",
     "options": [
-      "To always use the same algorithm",
-      "To combine learners that when combined have higher accuracy",
-      "To reduce the number of features",
-      "To make training faster"
+      "A) Star schema",
+      "B) Snowflake schema",
+      "C) Fact constellation",
+      "D) Virtual schema"
     ],
-    "answer": "To combine learners that when combined have higher accuracy",
-    "image": null
+    "answer": "A",
+    "explanation": "Star schema consists of a fact table in the center linked to dimension tables."
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "In the voting method for ensemble learning, what condition must the weights satisfy?",
+    "question": "Which schema is a normalized extension of the star schema?",
     "options": [
-      "w_j ≥ 0 and sum(w_j) = 1",
-      "w_j ≤ 0 and sum(w_j) = 1",
-      "w_j can be any value",
-      "sum(w_j) = 0"
+      "A) Star schema",
+      "B) Snowflake schema",
+      "C) Fact constellation",
+      "D) Virtual warehouse"
     ],
-    "answer": "w_j ≥ 0 and sum(w_j) = 1",
-    "image": null
+    "answer": "B",
+    "explanation": "Snowflake schema normalizes dimension tables into smaller tables."
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "Which Python library is used for creating the KNN classifier in the example?",
+    "question": "Which schema contains multiple fact tables sharing dimension tables?",
     "options": [
-      "numpy",
-      "pandas",
-      "sklearn",
-      "matplotlib"
+      "A) Star schema",
+      "B) Snowflake schema",
+      "C) Fact constellation",
+      "D) Data mart schema"
     ],
-    "answer": "sklearn",
-    "image": null
+    "answer": "C",
+    "explanation": "Fact constellation schema includes multiple fact tables connected to shared dimension tables."
   },
   {
     "numb": 21,
     "type": "Multiple Choices",
-    "question": "is a metric for evaluating clustering algorithms, is an internal evaluation scheme, where the validation of how well the clustering has been done is made using quantities and features inherent to the dataset",
+    "question": "Which OLAP operation summarizes data to a higher level?",
     "options": [
-      "DBI",
-      "MBC",
-      "CPR",
-      "DML"
+      "A) Drill down",
+      "B) Roll up",
+      "C) Slice",
+      "D) Pivot"
     ],
-    "answer": "DBI",
-    "image": null
+    "answer": "B",
+    "explanation": "Roll-up aggregates data by climbing up a hierarchy or reducing dimensions."
   },
   {
     "numb": 22,
     "type": "Multiple Choices",
-    "question": "What visualization is used in the Python example to show feature correlations?",
+    "question": "Which OLAP operation moves from summarized data to more detailed data?",
     "options": [
-      "Scatter plot",
-      "Heatmap",
-      "Bar chart",
-      "Pie chart"
+      "A) Roll up",
+      "B) Drill down",
+      "C) Slice",
+      "D) Pivot"
     ],
-    "answer": "Heatmap",
-    "image": null
+    "answer": "B",
+    "explanation": "Drill-down moves from higher level summaries to more detailed levels."
   },
   {
     "numb": 23,
     "type": "Multiple Choices",
-    "question": "In the K-Nearest Neighbor (KNN) algorithm, when is classification typically performed?",
+    "question": "Which OLAP operation selects a subset of data from a cube?",
     "options": [
-      "During the training phase, before any new instances arrive",
-      "When a new instance arrives, by comparing its feature vector to others",
-      "Periodically, based on a predefined schedule",
-      "Only after all data has been standardized"
+      "A) Roll up",
+      "B) Drill through",
+      "C) Slice",
+      "D) Drill across"
     ],
-    "answer": "When a new instance arrives, by comparing its feature vector to others",
-    "image": null
+    "answer": "C",
+    "explanation": "Slice selects a single dimension value to create a smaller cube."
   },
   {
     "numb": 24,
     "type": "Multiple Choices",
-    "question": "What are \"Support Vectors\" in the context of a Support Vector Machine (SVM)?",
+    "question": "Which OLAP operation rotates the data cube to provide a different view?",
     "options": [
-      "All data points used in the training set",
-      "Data points that are misclassified by the SVM",
-      "Data points that the margin pushes up against",
-      "The data points that are furthest from the decision boundary"
+      "A) Slice",
+      "B) Dice",
+      "C) Pivot",
+      "D) Roll-up"
     ],
-    "answer": "Data points that the margin pushes up against",
-    "image": null
+    "answer": "C",
+    "explanation": "Pivot rotates the cube for better visualization of multidimensional data."
   },
   {
     "numb": 25,
     "type": "Multiple Choices",
-    "question": "What is the \"margin\" of a linear classifier?",
+    "question": "Which data warehouse application focuses on discovering hidden patterns in data?",
     "options": [
-      "The number of misclassified data points",
-      "The width that the boundary could be increased by before hitting a data point.",
-      "The distance between the two most separated data points",
-      "The angle of the classification boundary"
+      "A) Information processing",
+      "B) Analytical processing",
+      "C) Data mining",
+      "D) Data cleaning"
     ],
-    "answer": "The width that the boundary could be increased by before hitting a data point.",
-    "image": null
+    "answer": "C",
+    "explanation": "Data mining discovers hidden patterns, performs classification and prediction using warehouse data."
   },
   {
     "numb": 26,
     "type": "Multiple Choices",
-    "question": "Which metric is NOT mentioned in the classification performance metrics?",
+    "question": "Starting from the base cuboid [day, doctor, patient], what is the first OLAP operation needed to analyze yearly data?",
     "options": [
-      "Sensitivity",
-      "Specificity",
-      "F1-score",
-      "Mean Absolute Error"
+      "A) Slice",
+      "B) Roll-up",
+      "C) Pivot",
+      "D) Dice"
     ],
-    "answer": "Mean Absolute Error",
-    "image": null
+    "answer": "B",
+    "explanation": "We must roll-up from day → month → year to analyze yearly data."
   },
   {
     "numb": 27,
     "type": "Multiple Choices",
-    "question": "What is the formula for Precision in classification metrics? while a is TP , d is FN , c is FP , d is TN",
+    "question": "To analyze data only for year = 2010, which OLAP operation should be used?",
     "options": [
-      "a/(a+b)",
-      "a/(a+c)",
-      "d/(c+d)",
-      "(a+d)/(a+b+c+d)"
+      "A) Slice",
+      "B) Roll-up",
+      "C) Pivot",
+      "D) Drill-down"
     ],
-    "answer": "a/(a+c)",
-    "image": null
+    "answer": "A",
+    "explanation": "Slice selects a specific value from a dimension (year = 2010)."
   },
   {
     "numb": 28,
     "type": "Multiple Choices",
-    "question": "Which of the following is an application of pattern recognition ?",
+    "question": "If we want to calculate the total fee for all patients, what operation is required?",
     "options": [
-      "Optical character recognition",
-      "Weather prediction",
-      "Stock market analysis",
-      "All of the above"
+      "A) Roll-up on patient",
+      "B) Slice on patient",
+      "C) Dice on patient",
+      "D) Pivot on patient"
     ],
-    "answer": "Optical character recognition",
-    "image": null
+    "answer": "A",
+    "explanation": "We roll-up patient → all to aggregate data across all patients."
   },
   {
     "numb": 29,
     "type": "Multiple Choices",
-    "question": "What does the heatmap in the Python example show?",
+    "question": "Which operation allows selecting data for year = 2010 and doctor = Ahmed?",
     "options": [
-      "Distribution of each feature",
-      "Correlations between variables",
-      "Decision boundaries",
-      "Classification errors"
+      "A) Roll-up",
+      "B) Slice",
+      "C) Dice",
+      "D) Pivot"
     ],
-    "answer": "Correlations between variables",
-    "image": null
+    "answer": "C",
+    "explanation": "Dice selects a subcube using multiple conditions (year AND doctor)."
   },
   {
     "numb": 30,
     "type": "Multiple Choices",
-    "question": "Which function is used to split the dataset into training and testing sets ?",
+    "question": "Which OLAP operation changes the orientation of the data cube to view it differently?",
     "options": [
-      "train_test_split()",
-      "data_split()",
-      "partition_data()",
-      "split_dataset()"
+      "A) Slice",
+      "B) Dice",
+      "C) Roll-up",
+      "D) Pivot"
     ],
-    "answer": "train_test_split()",
-    "image": null
+    "answer": "D",
+    "explanation": "Pivot rotates the cube to present data in different perspectives."
   }
 ]
