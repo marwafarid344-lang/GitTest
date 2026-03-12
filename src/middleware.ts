@@ -1,49 +1,41 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// ⚠️ Toggle this to enable/disable maintenance mode
+// Toggle maintenance mode
 const MAINTENANCE_MODE = false
-
-// Block scrapers/crawlers but allow legit search engines
-const BLOCKED_BOT_PATTERNS = /scraper|crawler|spider|curl|wget|python-requests|Go-http-client|httpclient|java\/|libwww|lwp-trivial|sitesucker|grab|fetch|node-fetch/i
-const ALLOWED_BOTS = /googlebot|bingbot|yandexbot|duckduckbot|slurp|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
+const BLOCKED_BOTS =
+  /scraper|crawler|spider|curl|wget|python|httpclient|java|libwww|sitesucker|node-fetch/i
+const ALLOWED_BOTS =
+  /googlebot|bingbot|duckduckbot|yandexbot|slurp|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
-  const userAgent = request.headers.get('user-agent') || ''
-
-  // Block malicious bots (but allow search engines)
-  if (BLOCKED_BOT_PATTERNS.test(userAgent) && !ALLOWED_BOTS.test(userAgent)) {
-    return new NextResponse('Forbidden', { status: 403 })
+  const pathname = request.nextUrl.pathname
+  // ⚡ Skip very common safe paths immediately
+  if (
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/images') ||
+    pathname.startsWith('/quizzes') ||
+    pathname === '/favicon.ico'
+  ) {
+    return NextResponse.next()
   }
 
-  // If maintenance mode is enabled
+  const userAgent = request.headers.get('user-agent') || ''
+  if (BLOCKED_BOTS.test(userAgent) && !ALLOWED_BOTS.test(userAgent)) {
+    return new NextResponse('Forbidden', { status: 403 })
+  }
   if (MAINTENANCE_MODE) {
-    // Allow access to maintenance page itself and essential assets
-    const allowedPaths = [
-      '/maintenance',
-      '/api',
-      '/_next',
-      '/favicon.ico',
-    ]
-
-    // Check if the path is allowed
-    const isAllowed = allowedPaths.some(path => pathname.startsWith(path))
-
-    // If not allowed, redirect to maintenance page
-    if (!isAllowed) {
+    if (pathname !== '/maintenance') {
       const maintenanceUrl = new URL('/maintenance', request.url)
       return NextResponse.redirect(maintenanceUrl)
     }
   }
-
-  // Simply pass through all requests
   return NextResponse.next()
 }
 
-// Only run middleware on page routes – skip static assets, API routes, and public files
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|api/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|json|mp3|mp4|css|js|woff|woff2|ttf|eot)$).*)',
+    '/((?!_next|api|.*\\..*).*)',
   ],
 }
