@@ -1,30 +1,29 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  /* config options here */
-  // Production optimizations for security
-  productionBrowserSourceMaps: false, // Disable source maps in production
-  
+
+  // Performance
+  compress: true,
+  poweredByHeader: false,
+  productionBrowserSourceMaps: false,
+
   experimental: {
-    serverComponentsExternalPackages: [],
     serverActions: {
-      bodySizeLimit: '100mb',
+      bodySizeLimit: '10mb',
     },
   },
-  
-  // Production webpack configuration
+
   webpack: (config, { dev, isServer }) => {
-    // Only apply in production builds
+
     if (!dev && !isServer) {
-      // Minimize and obfuscate code
+
       config.optimization = {
         ...config.optimization,
         minimize: true,
         usedExports: true,
         sideEffects: false,
       }
-      
-      // Next.js already uses Terser by default with good settings
-      // Just ensure console.logs are removed
+
       if (config.optimization.minimizer) {
         config.optimization.minimizer.forEach((plugin) => {
           if (plugin.constructor.name === 'TerserPlugin') {
@@ -41,10 +40,13 @@ const nextConfig = {
         })
       }
     }
+
     return config
   },
-  
+
   images: {
+    formats: ['image/avif', 'image/webp'],
+
     remotePatterns: [
       {
         protocol: 'https',
@@ -60,33 +62,24 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh4.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh5.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh6.googleusercontent.com',
+        hostname: '*.googleusercontent.com',
       }
     ],
   },
+
   eslint: {
     ignoreDuringBuilds: true,
   },
+
   typescript: {
     ignoreBuildErrors: true,
   },
-  
-  // Security headers
+
   async headers() {
+
     return [
-      // Cache quiz JSON files aggressively (they rarely change)
+
+      // Aggressive caching for quizzes
       {
         source: '/quizzes/:path*',
         headers: [
@@ -96,7 +89,8 @@ const nextConfig = {
           },
         ],
       },
-      // Cache images aggressively
+
+      // Images caching
       {
         source: '/images/:path*',
         headers: [
@@ -106,35 +100,81 @@ const nextConfig = {
           },
         ],
       },
+
+      // Drive API caching (VERY IMPORTANT)
+      {
+        source: '/api/drive/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+
+      // Google API caching
+      {
+        source: '/api/google-drive/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=1800, stale-while-revalidate=86400',
+          },
+        ],
+      },
+
+      // Drive pages caching
+      {
+        source: '/drive/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=600, stale-while-revalidate=3600',
+          },
+        ],
+      },
+
+      // Static pages caching
+      {
+        source: '/specialization/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, s-maxage=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+
+      // Global security headers
       {
         source: '/:path*',
         headers: [
-          // Prevent clickjacking attacks
+
           {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
-          // Prevent MIME type sniffing
+
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
-          // Control referrer information
+
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
           },
-          // Restrict browser features
+
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+            value: 'camera=(), microphone=(), geolocation=()',
           },
-          // XSS Protection (legacy browsers)
+
           {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
-          // Content Security Policy
+
           {
             key: 'Content-Security-Policy',
             value: [
@@ -151,17 +191,19 @@ const nextConfig = {
               "frame-ancestors 'none'",
             ].join('; '),
           },
-          // Force HTTPS (only in production)
+
           ...(process.env.NODE_ENV === 'production'
-            ? [{
-                key: 'Strict-Transport-Security',
-                value: 'max-age=31536000; includeSubDomains; preload',
-              }]
+            ? [
+                {
+                  key: 'Strict-Transport-Security',
+                  value: 'max-age=31536000; includeSubDomains; preload',
+                },
+              ]
             : []),
         ],
       },
     ]
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
