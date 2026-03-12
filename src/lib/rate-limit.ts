@@ -1,15 +1,4 @@
-/**
- * In-Memory Rate Limiter
- * 
- * Protects against API abuse without external dependencies.
- * Uses sliding window algorithm for accurate rate limiting.
- * 
- * Limits are tiered to not affect normal users:
- * - Read operations: 60 requests/minute (1 per second)
- * - Write operations: 20 requests/minute (1 every 3 seconds)
- * - Auth operations: 5 requests/minute (prevent brute force)
- * - File uploads: 10 requests/minute (prevent spam)
- */
+
 
 interface RateLimitEntry {
   timestamps: number[]
@@ -248,3 +237,4 @@ export function getRateLimitStatus(identifier: string, tier: RateLimitTier): Rat
     violations: entry.violations,
   }
 }
+
