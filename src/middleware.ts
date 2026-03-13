@@ -3,14 +3,19 @@ import type { NextRequest } from 'next/server'
 
 // Toggle maintenance mode
 const MAINTENANCE_MODE = false
+
+// Bots we want to block
 const BLOCKED_BOTS =
-  /scraper|crawler|spider|curl|wget|python|httpclient|java|libwww|sitesucker|node-fetch/i
+  /scraper|spider|curl|wget|python|httpclient|java|libwww|sitesucker|node-fetch/i
+
+// Bots we allow (including Google AdSense crawler)
 const ALLOWED_BOTS =
-  /googlebot|bingbot|duckduckbot|yandexbot|slurp|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
+  /googlebot|adsbot-google|mediapartners-google|bingbot|duckduckbot|yandexbot|slurp|facebookexternalhit|twitterbot|linkedinbot|whatsapp|telegram/i
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-  // ⚡ Skip very common safe paths immediately
+
+  // Skip static and safe paths
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
@@ -22,15 +27,20 @@ export function middleware(request: NextRequest) {
   }
 
   const userAgent = request.headers.get('user-agent') || ''
+
+  // Block bad bots
   if (BLOCKED_BOTS.test(userAgent) && !ALLOWED_BOTS.test(userAgent)) {
     return new NextResponse('Forbidden', { status: 403 })
   }
+
+  // Maintenance mode
   if (MAINTENANCE_MODE) {
     if (pathname !== '/maintenance') {
       const maintenanceUrl = new URL('/maintenance', request.url)
       return NextResponse.redirect(maintenanceUrl)
     }
   }
+
   return NextResponse.next()
 }
 
