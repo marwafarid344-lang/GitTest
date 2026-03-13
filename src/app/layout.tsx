@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     icon: [{ url: "/images/1212-removebg-preview.png", sizes: "any" }],
     apple: "/images/1212-removebg-preview.png",
   },
+  other: {
+    "google-adsense-account": "ca-pub-5932974277970825",
+  },
 };
 
 export default function RootLayout({
