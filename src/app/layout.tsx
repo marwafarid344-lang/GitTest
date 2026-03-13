@@ -57,6 +57,9 @@ export default function RootLayout({
           <ToastProvider>{children}</ToastProvider>
         </NotificationProvider>
       </body>
+       <script async         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5932974277970825"
+     crossorigin="anonymous">
+     </script>
     </html>
   );
 }
