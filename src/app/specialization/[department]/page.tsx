@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 import React, { Suspense } from "react"
 import ErrorBoundary from "@/components/ErrorBoundary"
 import Navigation from "@/components/navigation"
+import AdBanner from "@/components/AdBanner"
 
 interface Props {
   params: Promise<{ department: string }>
@@ -157,6 +158,10 @@ async function DepartmentContent({ params }: Props) {
                 </Link>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-12">
+            <AdBanner dataAdSlot="8021269551" />
           </div>
         </div>
       </div>
