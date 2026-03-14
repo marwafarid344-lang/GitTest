@@ -48,6 +48,7 @@ import { createSecureDriveUrl } from "@/lib/secure-drive-urls"
 import { FileCardSkeleton, StatsCardSkeleton } from "@/components/loading-skeletons"
 import { UploadProvider } from "@/components/upload-context"
 import { UploadProgressBar } from "@/components/upload-progress-bar"
+import AdBanner from "@/components/AdBanner"
 
 interface DriveFile {
   id: string
@@ -953,6 +954,10 @@ export default function DrivePage() {
                 </ScrollAnimatedSection>
               </>
             )}
+          </div>
+          
+          <div className="mb-8">
+            <AdBanner dataAdSlot="8021269551" />
           </div>
 
           {/* Loading State */}
