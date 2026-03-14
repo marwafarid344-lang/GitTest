@@ -18,6 +18,7 @@ import { useEffect, useState } from "react"
 import GsapStackedCards from "@/components/gsap-stacked-cards"
 import AnimatedParticles from "@/components/animated-particles"
 import { formatTAName } from "@/lib/ta-utils"
+import AdBanner from "@/components/AdBanner"
 
 const specializations = [
   {
@@ -197,6 +198,10 @@ export default function HomePage() {
         </div>
       </div>
       
+      <div className="container mx-auto px-4 mt-8">
+        <AdBanner dataAdSlot="8021269551" />
+      </div>
+
       {/* Magic Search Section */}
       <ScrollAnimatedSection className="py-12 bg-[#030303] border-t border-white/5">
         <div className="container mx-auto px-4">
@@ -218,8 +223,9 @@ export default function HomePage() {
         </div>
       </ScrollAnimatedSection>
 
-      <ScrollAnimatedSection className="py-20 bg-[#030303] border-t border-white/5">
-        <div className="container mx-auto px-4">
+      <ScrollAnimatedSection className="py-20 bg-[#030303] border-t border-white/5">        <div className="container mx-auto px-4 mb-16">
+          <AdBanner dataAdSlot="8021269551" />
+        </div>        <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {/* Static stats */}
             {staticStats.map((stat, index) => (
