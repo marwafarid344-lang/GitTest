@@ -42,7 +42,7 @@ import {
 } from "@/lib/tournament";
 import ScrollAnimatedSection from "@/components/scroll-animated-section";
 import Navigation from "@/components/navigation";
-import { formatTAName } from "@/lib/ta-utils";
+import AdBanner from "@/components/AdBanner";
 
 // Import Stalinist One font
 import "@fontsource/stalinist-one";
@@ -1201,6 +1201,10 @@ export default function TournamentPage() {
           <ScrollAnimatedSection className="mb-8 md:mb-12">
             <CountdownTimer onTournamentEnd={setTournamentEnded} />
           </ScrollAnimatedSection>
+          
+          <div className="mb-8 md:mb-12">
+            <AdBanner dataAdSlot="8021269551" />
+          </div>
 
           {/* Show Winners Celebration when tournament ends, otherwise show leaderboard */}
           {tournamentEnded ? (
@@ -1585,7 +1589,7 @@ export default function TournamentPage() {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-white">
-                      {formatTAName(selectedUserStats.username, selectedUserStats.level)}
+                      {selectedUserStats.username}
                     </div>
                     {selectedUserStats.specialization && (
                       <div className="text-xs text-purple-300/70 font-medium mt-0.5">
@@ -1738,4 +1742,3 @@ export default function TournamentPage() {
     </div>
   );
 }
-
