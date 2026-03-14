@@ -53,6 +53,7 @@ import { createSecureDriveUrl } from "@/lib/secure-drive-urls";
 import { AdminAuthGuard } from "@/components/AdminAuthGuard";
 import { UploadProvider } from "@/components/upload-context";
 import { UploadProgressBar } from "@/components/upload-progress-bar";
+import AdBanner from "@/components/AdBanner";
 
 interface DriveFile {
   id: string;
@@ -926,6 +927,10 @@ export default function DriveRootPage() {
                     </ScrollAnimatedSection>
                   </>
                 )}
+              </div>
+              
+              <div className="mb-8">
+                <AdBanner dataAdSlot="8021269551" />
               </div>
 
               <AnimatePresence>
