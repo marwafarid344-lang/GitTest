@@ -1,4 +1,3 @@
-// [PERF] Optimized: removed backgroundAttachment:fixed (causes iOS repaint on every scroll), replaced icon JS hover with CSS
 "use client";
 
 import { motion } from "framer-motion";
@@ -26,6 +25,7 @@ import { cn } from "@/lib/utils";
 import React, { Suspense, memo, useState, useEffect } from "react";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Navigation from "@/components/navigation";
+import AdBanner from "@/components/AdBanner";
 
 interface Props {
   params: Promise<{ department: string; level: string; subject: string }>;
@@ -192,20 +192,20 @@ function TabsWrapper({
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center gap-3 text-white">
-                      {/* Plain div with CSS scale — no JS per hover */}
-                      <div
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
                         className={cn(
                           "w-12 h-12 rounded-lg flex items-center justify-center",
                           "bg-gradient-to-r to-transparent border border-white/[0.15]",
                           "backdrop-blur-sm shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]",
-                          "transition-transform duration-200 hover:scale-110",
                           section.color
                         )}
                       >
                         <IconComponent
                           className={cn("w-6 h-6", section.iconColor)}
                         />
-                      </div>
+                      </motion.div>
                       {section.title}
                     </CardTitle>
                     <CopyLinkButton tabId={section.id} />
@@ -557,7 +557,7 @@ async function SubjectContent({ params }: Props) {
         backgroundImage: "url('/images/Background.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        // Removed backgroundAttachment:'fixed' — on iOS it causes full-page repaint on every scroll
+        backgroundAttachment: "fixed",
       }}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
@@ -655,10 +655,13 @@ async function SubjectContent({ params }: Props) {
               <Card className="bg-white/[0.02] border-white/[0.08] backdrop-blur-sm overflow-hidden">
                 <CardHeader className="pb-3">
                   <CardTitle className="flex items-center gap-3 text-white">
-                    {/* Plain div with CSS scale — no JS per hover */}
-                    <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-amber-500/[0.15] to-transparent border border-white/[0.15] backdrop-blur-sm shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] transition-transform duration-200 hover:scale-110">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-r from-amber-500/[0.15] to-transparent border border-white/[0.15] backdrop-blur-sm shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]"
+                    >
                       <Layers className="w-6 h-6 text-amber-400" />
-                    </div>
+                    </motion.div>
                     Prerequisites
                   </CardTitle>
                 </CardHeader>
@@ -719,6 +722,10 @@ async function SubjectContent({ params }: Props) {
               resolvedParams={resolvedParams}
             />
           </motion.div>
+
+          <div className="mt-12">
+            <AdBanner dataAdSlot="8021269551" />
+          </div>
         </div>
       </div>
 
