@@ -2,7 +2,7 @@
 
 import { useState, useCallback, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronLeft, Send, Star, Loader2, Globe } from "lucide-react"
+import { ChevronRight, ChevronLeft, Send, Star, Loader2, Globe, Gift } from "lucide-react"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
 
@@ -277,7 +277,14 @@ export default function SurveyPage() {
               <p className="text-sm text-white/30 max-w-xl mb-8 leading-relaxed font-light">
                 Your responses are anonymous and will be used for academic purposes only.
               </p>
-
+              
+              <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 max-w-xl">
+                <Gift className="w-8 h-8 text-pink-500 animate-bounce shrink-0" />
+                <p className="text-sm md:text-base text-white/80 font-medium">
+                  Register Now for Exclusive Prizes! 🎁
+                </p>
+              </div>
+              
               <div className="flex flex-wrap gap-2 mb-12">
                 {["Tell Us About You", "1 · General Perception", "2 · Evaluation", "3 · Open-Ended"].map((s) => (
                   <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">
