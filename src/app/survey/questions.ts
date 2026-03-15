@@ -279,7 +279,7 @@ export const ALL_STEPS_EN: Question[] = [
   {
     id: "q15b", section: "2 · Evaluation", type: "star",
     quote: "\"Technology has changed the way we communicate, making it faster and more efficient, yet sometimes less personal and emotionally connected.\"",
-    label: "How would you rate the creativity of this text based on your personal impression?",
+    label: "How creative do you think this text is based on your personal impression?",
     sub: "Rate from 1 to 5.",
     required: true,
     accent: "#fbbf24", accent2: "#f59f0b8c",
