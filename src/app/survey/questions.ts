@@ -198,7 +198,7 @@ export const ALL_STEPS_EN: Question[] = [
 
   {
     id: "q6", section: "2 · Evaluation", type: "rating",
-    label: "Rate AI writing in\nemotionally related topics.",
+    label: "How effective do you think \nAI writing is when discussing emotional topics?",
     sub: "Select a rating from 1 to 5.",
     minLabel: "Not effective", maxLabel: "Very effective",
     required: true,
@@ -414,7 +414,7 @@ export const ALL_STEPS_AR: Question[] = [
 
   {
     id: "q6", section: "٢ · التقييم", type: "rating",
-    label: "قيّم كتابة الذكاء الاصطناعي\nفي المواضيع العاطفية.",
+    label: "ايه مدي فعالية الكتابة بالذكاء الاصطناعي برأيك \n لما بتناقشه في موضوعات عاطفية؟",
     sub: "اختار تقييم من 1 لـ 5.",
     minLabel: "غير فعال", maxLabel: "فعال جداً",
     required: true,
