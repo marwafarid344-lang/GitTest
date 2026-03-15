@@ -245,12 +245,12 @@ export default function SurveyPage() {
       <div aria-hidden className="pointer-events-none fixed rounded-full blur-[100px] opacity-15 survey-blob-2"
         style={{ width: 500, height: 500, background: `radial-gradient(circle,${accent2},transparent 70%)`, bottom: "-10%", left: "-5%", willChange: "transform" }} />
 
-      <a href="/survey/ar"
+      {/* <a href="/survey/ar"
         className="fixed top-5 right-5 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white/40 hover:text-white/80 hover:border-white/25 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
         title="عربي"
         dir="rtl">
         <Globe className="w-4.5 h-4.5" />
-      </a>
+      </a> */}
 
       {step >= 1 && step <= TOTAL && <ProgressBar step={step} accent={accent} accent2={accent2} />}
 
