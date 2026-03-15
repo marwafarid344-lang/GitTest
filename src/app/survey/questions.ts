@@ -270,7 +270,7 @@ export const ALL_STEPS_EN: Question[] = [
   },
   {
     id: "q15", section: "2 · Evaluation", type: "checkbox",
-    label: "What most distinguishes\nhuman writing?",
+    label: "Which aspect of human\nwriting do you value the most?",
     sub: "Select all that apply.",
     options: ["Emotional expression", "Personal style", "Creativity and imagination", "Writer’s experience and contextual understanding", "Informal writing style"],
     required: true,
@@ -486,7 +486,7 @@ export const ALL_STEPS_AR: Question[] = [
   },
   {
     id: "q15", section: "٢ · التقييم", type: "checkbox",
-    label: "إيه أكتر حاجة بتميز\nكتابة الإنسان؟",
+    label: "ايه الجانب الي بتقدره اكتر من\nغيره في الكتابة البشرية؟",
     sub: "اختار كل اللي ينطبق.",
     options: ["التعبير العاطفي", "الأسلوب الشخصي", "الإبداع والخيال", "خبرة الكاتب وفهمه للسياق", "أسلوب الكتابة غير الرسمي"],
     required: true,
