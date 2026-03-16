@@ -3,15 +3,21 @@
 import { useRef, useState, useCallback, useEffect } from "react"
 import Link from "next/link"
 import gsap from "gsap"
-import SurveyIntroBackground from "@/components/survey-intro/SurveyIntroBackground"
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   Survey Intro — /survey
+   Simple slide-based intro with manual next/prev arrows (RTL, Rubik)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 interface Slide {
   id: string
   render: () => React.ReactNode
 }
 
+/* ── Slide definitions ─────────────────────────────────────────────────── */
 
 const SLIDES: Slide[] = [
+  /* ──────── 0 — Greeting ──────── */
   {
     id: "greeting",
     render: () => (
@@ -152,10 +158,31 @@ const SLIDES: Slide[] = [
           {/* Arabic */}
           <Link
             href="/survey/ar"
-            className="group text-center focus-visible:outline-none"
+            className="group flex flex-col items-center text-center focus-visible:outline-none"
             aria-label="متابعة باللغة العربية"
           >
-            <div className="text-5xl mb-3 group-hover:-translate-y-1 transition-transform duration-200">🇪🇬</div>
+            <div className="relative flex items-center justify-center w-20 h-20 mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+              {/* Outer spinning ring */}
+              <div
+                className="absolute inset-0 rounded-full border border-dashed border-white/20 group-hover:border-violet-500/60 transition-colors duration-500"
+                style={{ animation: "spin 8s linear infinite" }}
+              />
+              {/* Inner reverse spinning ring */}
+              <div
+                className="absolute inset-1.5 rounded-full border border-dotted border-white/10 group-hover:border-violet-400/50 transition-colors duration-700"
+                style={{ animation: "spin 12s linear infinite reverse" }}
+              />
+              {/* Center core */}
+              <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-white/5 border border-white/10 text-white/80 group-hover:bg-violet-500/20 group-hover:border-violet-500/50 group-hover:text-violet-300 transition-all duration-300 shadow-sm group-hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] overflow-hidden">
+                {/* Floating shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1000 ease-in-out" />
+                <svg className="relative z-10 w-7 h-7 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="5" width="14" height="14" rx="2" transform="rotate(45 12 12)" />
+                  <rect x="5" y="5" width="14" height="14" rx="2" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </div>
+            </div>
             <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-violet-300 transition-colors duration-200">عربي</h3>
             <p className="text-white/25 text-xs sm:text-sm">النسخة العربية المصرية</p>
           </Link>
@@ -166,10 +193,31 @@ const SLIDES: Slide[] = [
           {/* English */}
           <Link
             href="/survey/en"
-            className="group text-center focus-visible:outline-none"
+            className="group flex flex-col items-center text-center focus-visible:outline-none"
             aria-label="Continue in English"
           >
-            <div className="text-5xl mb-3 group-hover:-translate-y-1 transition-transform duration-200">🇬🇧</div>
+            <div className="relative flex items-center justify-center w-20 h-20 mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+              {/* Outer spinning ring */}
+              <div
+                className="absolute inset-0 rounded-full border border-dashed border-white/20 group-hover:border-blue-500/60 transition-colors duration-500"
+                style={{ animation: "spin 8s linear infinite" }}
+              />
+              {/* Inner reverse spinning ring */}
+              <div
+                className="absolute inset-1.5 rounded-full border border-dotted border-white/10 group-hover:border-blue-400/50 transition-colors duration-700"
+                style={{ animation: "spin 12s linear infinite reverse" }}
+              />
+              {/* Center core */}
+              <div className="relative flex items-center justify-center w-14 h-14 rounded-full bg-white/5 border border-white/10 text-white/80 group-hover:bg-blue-500/20 group-hover:border-blue-500/50 group-hover:text-blue-300 transition-all duration-300 shadow-sm group-hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] overflow-hidden">
+                {/* Floating shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1000 ease-in-out" />
+                <svg className="relative z-10 w-7 h-7 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                  <line x1="2" y1="12" x2="22" y2="12" />
+                </svg>
+              </div>
+            </div>
             <h3 className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors duration-200">English</h3>
             <p className="text-white/25 text-xs sm:text-sm">English Version</p>
           </Link>
@@ -247,8 +295,14 @@ export default function SurveyIntro() {
       dir="rtl"
       lang="ar"
       className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden opacity-0"
+      style={{ background: "#070710" }}
     >
-      <SurveyIntroBackground />
+      {/* Blobs */}
+      <div aria-hidden className="pointer-events-none fixed rounded-full blur-[120px] opacity-25"
+        style={{ width: 600, height: 600, background: `radial-gradient(circle,#7c3aed,transparent 70%)`, top: "-15%", left: "-8%", willChange: "transform" }} />
+      <div aria-hidden className="pointer-events-none fixed rounded-full blur-[100px] opacity-15"
+        style={{ width: 500, height: 500, background: `radial-gradient(circle,#db2777,transparent 70%)`, bottom: "-10%", right: "-5%", willChange: "transform" }} />
+
 
       {/* ── Step dots ── */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
@@ -344,4 +398,3 @@ function SlideContent({ slide }: { slide: Slide }) {
 
   return <div data-s="">{node}</div>
 }
-
