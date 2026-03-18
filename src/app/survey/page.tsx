@@ -75,8 +75,8 @@ const SLIDES: Slide[] = [
         {/* Stats row */}
         <div className="flex items-center gap-8 sm:gap-12 mb-8">
           {[
-            { val: "21+", label: "سؤال" },
-            { val: "5", label: "محاور" },
+            { val: "22+", label: "سؤال" },
+            { val: "4", label: "محاور" },
             { val: "5 دقائق", label: "فقط" },
           ].map((s, i) => (
             <div key={i} className="text-center">
