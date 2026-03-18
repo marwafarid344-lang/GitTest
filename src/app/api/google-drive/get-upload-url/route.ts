@@ -78,18 +78,12 @@ export async function POST(request: NextRequest) {
       tokenEnd: '...' + accessToken.substring(accessToken.length - 20)
     })
 
-    // Always use direct multipart upload to avoid server limits (Vercel, etc.)
-    console.log(`File size: ${fileSize} bytes (${(fileSize / (1024 * 1024)).toFixed(2)} MB), using direct multipart upload method`)
-
-    // For multipart uploads, use the standard Google Drive upload URL
-    const uploadUrl = `https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true`
-
-    console.log('Using multipart upload URL:', uploadUrl)
+    // The client will construct the resumable upload URL directly
+    console.log(`File size: ${fileSize} bytes (${(fileSize / (1024 * 1024)).toFixed(2)} MB), client will use direct resumable upload method`)
 
     return NextResponse.json({
       success: true,
-      uploadMethod: 'direct',
-      uploadUrl: uploadUrl,
+      uploadMethod: 'resumable',
       accessToken: accessToken,
       fileMetadata: {
         name: fileName,
