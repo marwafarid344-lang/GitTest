@@ -543,7 +543,7 @@ export default function SurveyPage() {
                 Every response will be analyzed to understand how people perceive AI writing.<br />
                 <span className="text-white/25 text-base">Your answers are anonymous and will never be shared individually.</span>
               </p>
-              <a href="../ar"
+              <a href="../"
                 className="inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-2xl text-white/55 hover:text-white border border-white/10 hover:border-white/25 transition-[border-color,color,transform] duration-200 hover:scale-[1.03]">
                 Back to Home <ChevronRight className="w-5 h-5" />
               </a>
