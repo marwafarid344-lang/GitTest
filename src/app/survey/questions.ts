@@ -250,7 +250,7 @@ export const ALL_STEPS_EN: Question[] = [
     id: "q10", section: "1 · Perceptions", type: "checkbox-other",
     label: "What most distinguishes\nhuman writing?",
     sub: "Select all that apply.",
-    options: ["Emotional expression", "Personal style", "Creativity and imagination", "Writer's experience and contextual understanding", "Other"],
+    options: ["Emotional expression", "Personal style", "Creativity and imagination", "Writer’s experience and contextual understanding", "Other"],
     required: true,
     accent: "#a855f7", accent2: "#ec4899",
   },
