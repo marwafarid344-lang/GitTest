@@ -1,5 +1,5 @@
 // ─── Shared Question types & Data ────────────────────────────────────────────
-export type QType = "radio" | "checkbox" | "textarea" | "radio-other" | "checkbox-other" | "text-input" | "rating" | "text-compare"
+export type QType = "radio" | "checkbox" | "textarea" | "radio-other" | "checkbox-other" | "text-input" | "rating" | "text-compare" | "text-display"
 export interface SubQuestion {
   id: string
   label: string
@@ -257,10 +257,18 @@ export const ALL_STEPS_EN: Question[] = [
 
   // ──────────── SECTION 2: Text Comparison ───────────────────────────────
   {
-    id: "text-a", section: "2 · Text Comparison", type: "text-compare",
+    id: "text-a-read", section: "2 · Text Comparison", type: "text-display",
     textLabel: "TEXT A",
     textContent: "Reading is important because it influences the human mind and provides different ideas and information. Even if a person overlooks it, reading can enrich knowledge. Sometimes books contain many details, and those who do not read may feel lost in conversations and may not easily understand certain things.",
-    label: "Read the following text carefully\nthen answer the questions below.",
+    label: "Read the following text carefully.",
+    sub: "After reading, you will be asked questions about this text.",
+    required: false,
+    accent: "#10b981", accent2: "#06b6d4",
+  },
+  {
+    id: "text-a-qs", section: "2 · Text Comparison", type: "text-compare",
+    textLabel: "TEXT A",
+    label: "Now answer these questions\nabout TEXT A.",
     sub: "",
     subQuestions: [
       {
@@ -278,10 +286,18 @@ export const ALL_STEPS_EN: Question[] = [
     accent: "#10b981", accent2: "#06b6d4",
   },
   {
-    id: "text-b", section: "2 · Text Comparison", type: "text-compare",
+    id: "text-b-read", section: "2 · Text Comparison", type: "text-display",
     textLabel: "TEXT B",
     textContent: "Reading is an effective way to acquire knowledge and develop critical thinking. It broadens an individual's perspective and increases their knowledge. It also improves practical and personal performance and enhances a person's ability to solve problems.",
-    label: "Read the following text carefully\nthen answer the questions below.",
+    label: "Read the following text carefully.",
+    sub: "After reading, you will be asked questions about this text.",
+    required: false,
+    accent: "#10b981", accent2: "#06b6d4",
+  },
+  {
+    id: "text-b-qs", section: "2 · Text Comparison", type: "text-compare",
+    textLabel: "TEXT B",
+    label: "Now answer these questions\nabout TEXT B.",
     sub: "",
     subQuestions: [
       {
@@ -478,10 +494,18 @@ export const ALL_STEPS_AR: Question[] = [
 
   // ──────────── القسم 2: مقارنة النصوص ──────────────────────────────────
   {
-    id: "text-a", section: "٢ · مقارنة النصوص", type: "text-compare",
+    id: "text-a-read", section: "٢ · مقارنة النصوص", type: "text-display",
     textLabel: "النص أ",
     textContent: "القراءة مهمة لأنها بتأثر على عقل الإنسان وبتديه أفكار ومعلومات مختلفة. حتى لو الواحد مش واخد باله، القراءة ممكن تزود المعرفة. ساعات الكتب بيبقى فيها تفاصيل كتير، واللي مش بيقرأ ممكن يحس إنه تايه في الكلام ومش بيفهم حاجات معينة بسهولة.",
-    label: "اقرأ النص ده كويس\nوبعدين جاوب على الأسئلة اللي تحت.",
+    label: "اقرأ النص ده كويس.",
+    sub: "بعد ما تقرأ، هنسألك أسئلة عن النص ده.",
+    required: false,
+    accent: "#10b981", accent2: "#06b6d4",
+  },
+  {
+    id: "text-a-qs", section: "٢ · مقارنة النصوص", type: "text-compare",
+    textLabel: "النص أ",
+    label: "دلوقتي جاوب على الأسئلة دي\nعن النص أ.",
     sub: "",
     subQuestions: [
       {
@@ -499,10 +523,18 @@ export const ALL_STEPS_AR: Question[] = [
     accent: "#10b981", accent2: "#06b6d4",
   },
   {
-    id: "text-b", section: "٢ · مقارنة النصوص", type: "text-compare",
+    id: "text-b-read", section: "٢ · مقارنة النصوص", type: "text-display",
     textLabel: "النص ب",
     textContent: "القراءة طريقة فعّالة لاكتساب المعرفة وتطوير التفكير النقدي. بتوسّع أفق الفرد وبتزود معرفته. كمان بتحسّن الأداء العملي والشخصي وبتعزز قدرة الشخص على حل المشاكل.",
-    label: "اقرأ النص ده كويس\nوبعدين جاوب على الأسئلة اللي تحت.",
+    label: "اقرأ النص ده كويس.",
+    sub: "بعد ما تقرأ، هنسألك أسئلة عن النص ده.",
+    required: false,
+    accent: "#10b981", accent2: "#06b6d4",
+  },
+  {
+    id: "text-b-qs", section: "٢ · مقارنة النصوص", type: "text-compare",
+    textLabel: "النص ب",
+    label: "دلوقتي جاوب على الأسئلة دي\nعن النص ب.",
     sub: "",
     subQuestions: [
       {
