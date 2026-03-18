@@ -99,25 +99,49 @@ export function UploadProvider({ children }: UploadProviderProps) {
       }
 
       const urlData = await urlResponse.json()
-      const uploadUrl = urlData.uploadUrl
       const accessToken = urlData.accessToken
 
       console.log('Got upload info:', {
         success: urlData.success,
-        uploadMethod: 'direct', // Always direct now
-        hasUploadUrl: !!uploadUrl,
-        hasAccessToken: !!accessToken,
-        uploadUrlPreview: uploadUrl ? uploadUrl.substring(0, 50) + '...' : 'none'
+        uploadMethod: urlData.uploadMethod,
+        hasAccessToken: !!accessToken
       })
 
       // All uploads are now direct to Google Drive (no server proxy)
-      if (!uploadUrl || !accessToken) {
-        throw new Error('Missing upload URL or access token from server')
+      if (!accessToken) {
+        throw new Error('Missing access token from server')
       }
 
-      console.log('Starting direct multipart upload to Google Drive')
+      console.log('Starting direct resumable upload to Google Drive')
 
-      // Upload directly to Google Drive using multipart upload
+      // 1. Initiate Resumable Upload Session
+      const sessionMetadata = {
+        name: file.name,
+        ...(urlData.fileMetadata.parents && { parents: urlData.fileMetadata.parents })
+      }
+
+      const sessionResponse = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&supportsAllDrives=true', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json; charset=UTF-8',
+          'X-Upload-Content-Type': file.type || 'application/octet-stream',
+          'X-Upload-Content-Length': file.size.toString()
+        },
+        body: JSON.stringify(sessionMetadata)
+      })
+
+      if (!sessionResponse.ok) {
+        const errText = await sessionResponse.text()
+        throw new Error(`Failed to start upload session: ${sessionResponse.status} ${errText}`)
+      }
+
+      const resumableUrl = sessionResponse.headers.get('Location')
+      if (!resumableUrl) {
+        throw new Error('Google Drive did not return a resumable upload URL')
+      }
+
+      // 2. Upload file content to the resumable URL
       const xhr = new XMLHttpRequest()
 
       // Set up progress tracking
@@ -132,7 +156,7 @@ export function UploadProvider({ children }: UploadProviderProps) {
 
       // Set up completion
       xhr.addEventListener('load', () => {
-        console.log('Direct multipart upload completed:', {
+        console.log('Direct resumable upload completed:', {
           status: xhr.status,
           statusText: xhr.statusText,
           responseText: xhr.responseText?.substring(0, 200)
@@ -204,7 +228,11 @@ export function UploadProvider({ children }: UploadProviderProps) {
         addToast(`Network error uploading "${file.name}". Please check your connection and retry.`, 'error')
       })
 
-      // Set up timeout handling (much longer since direct to Google Drive)
+      // Set timeout for large files (30 minutes for files over 50MB, 15 minutes for large files, 5 minutes for small)
+      const timeoutMs = file.size > 50 * 1024 * 1024 ? 1800000 : file.size > 10 * 1024 * 1024 ? 900000 : 300000 // 30 min for >50MB, 15 min for >10MB, 5 min for small
+      xhr.timeout = timeoutMs
+
+      // Set up timeout handling
       xhr.addEventListener('timeout', () => {
         console.error('Direct upload timeout:', {
           fileName: file.name,
@@ -222,10 +250,6 @@ export function UploadProvider({ children }: UploadProviderProps) {
         addToast(`Upload timeout for "${file.name}". Large files may take longer.`, 'error')
       })
 
-      // Set timeout for large files (30 minutes for files over 50MB, 15 minutes for large files, 5 minutes for small)
-      const timeoutMs = file.size > 50 * 1024 * 1024 ? 1800000 : file.size > 10 * 1024 * 1024 ? 900000 : 300000 // 30 min for >50MB, 15 min for >10MB, 5 min for small
-      xhr.timeout = timeoutMs
-
       // Set up abort handling
       xhr.addEventListener('abort', () => {
         setUploads(prev => prev.map(u =>
@@ -238,57 +262,17 @@ export function UploadProvider({ children }: UploadProviderProps) {
         ))
       })
 
-      // Create multipart form data for Google Drive using proper format
-      const boundary = '----FormBoundary' + Math.random().toString(36).substr(2, 9)
-      const metadata = {
-        name: file.name,
-        ...(urlData.fileMetadata.parents && { parents: urlData.fileMetadata.parents })
-      }
-
-      // Create the multipart body parts manually (Google Drive specific format)
-      const metadataPart = `--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(metadata)}\r\n`
-      const filePartHeader = `--${boundary}\r\nContent-Type: ${file.type || 'application/octet-stream'}\r\n\r\n`
-      const closingBoundary = `\r\n--${boundary}--\r\n`
-
-      // Convert parts to Uint8Arrays
-      const encoder = new TextEncoder()
-      const metadataArray = encoder.encode(metadataPart)
-      const fileHeaderArray = encoder.encode(filePartHeader)
-      const closingArray = encoder.encode(closingBoundary)
-      const fileBuffer = await file.arrayBuffer()
-      const fileArray = new Uint8Array(fileBuffer)
-
-      // Combine all parts
-      const totalLength = metadataArray.length + fileHeaderArray.length + fileArray.length + closingArray.length
-      const multipartData = new Uint8Array(totalLength)
-
-      let offset = 0
-      multipartData.set(metadataArray, offset)
-      offset += metadataArray.length
-
-      multipartData.set(fileHeaderArray, offset)
-      offset += fileHeaderArray.length
-
-      multipartData.set(fileArray, offset)
-      offset += fileArray.length
-
-      multipartData.set(closingArray, offset)
-
-      // Configure and send multipart request
-      xhr.open('POST', uploadUrl)
-      xhr.setRequestHeader('Authorization', `Bearer ${accessToken}`)
-      xhr.setRequestHeader('Content-Type', `multipart/related; boundary=${boundary}`)
-      xhr.setRequestHeader('Content-Length', multipartData.length.toString())
-
-      console.log('Direct multipart request configuration:', {
-        method: 'POST',
-        url: uploadUrl,
-        boundary,
-        contentType: `multipart/related; boundary=${boundary}`,
-        contentLength: multipartData.length.toString(),
-        metadataSize: JSON.stringify(metadata).length,
+      // Configure and send file content request
+      xhr.open('PUT', resumableUrl)
+      // The Location URL includes an upload_id, so we don't need the Authorization header again,
+      // but we need to specify the content type to match what we initiated with
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream')
+      
+      console.log('Direct resumable upload configuration:', {
+        method: 'PUT',
+        url: resumableUrl,
         fileSize: file.size,
-        totalSize: multipartData.length,
+        fileType: file.type,
         timeoutMs
       })
 
@@ -298,8 +282,8 @@ export function UploadProvider({ children }: UploadProviderProps) {
         xhr.abort()
       })
 
-      // Send the multipart data
-      xhr.send(multipartData)
+      // Send the file directly (no multipart assembly)
+      xhr.send(file)
 
     } catch (error) {
       console.error('Upload setup error:', error)
