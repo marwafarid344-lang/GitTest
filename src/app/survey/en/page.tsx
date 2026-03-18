@@ -2,12 +2,11 @@
 
 import { useState, useCallback, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronLeft, Send, Star, Loader2, Globe, Gift } from "lucide-react"
+import { ChevronRight, ChevronLeft, Send, Loader2, Gift } from "lucide-react"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
 
 import {
-  type QType,
   type Question,
   ALL_STEPS_EN as ALL_STEPS,
   TOTAL,
@@ -18,26 +17,7 @@ import {
 
 type AnswerVal = string | string[] | number
 
-function buildGoogleFormUrl(answers: Record<string, AnswerVal>, otherText: string): string {
-  const params = new URLSearchParams()
-  for (const [qId, entryId] of Object.entries(FORM_MAP)) {
-    const val = answers[qId]
-    if (val === undefined || val === null || val === "") continue
-    if (Array.isArray(val)) {
-      for (const v of val) params.append(entryId, v)
-    } else if (typeof val === "number") {
-      params.append(entryId, String(val))
-    } else {
-      if (qId === "demo-field" && val === "Other" && otherText.trim()) {
-        params.append(entryId, otherText.trim())
-      } else {
-        params.append(entryId, val)
-      }
-    }
-  }
-  return `${FORM_BASE}?${params.toString()}`
-}
-
+// ─── Pill button (radio / checkbox option) ────────────────────────────────────
 const Pill = memo(function Pill({ label, selected, accent, onClick }: {
   label: string; selected: boolean; accent: string; onClick: () => void
 }) {
@@ -57,6 +37,7 @@ const Pill = memo(function Pill({ label, selected, accent, onClick }: {
   )
 })
 
+// ─── Rating scale (1–5 cubes) ─────────────────────────────────────────────────
 const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLabel, accent, accent2 }: {
   value: number | null; onChange: (v: number) => void
   minLabel: string; maxLabel: string; accent: string; accent2: string
@@ -87,51 +68,7 @@ const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLa
   )
 })
 
-const StarScale = memo(function StarScale({ value, onChange, accent, accent2 }: {
-  value: number | null; onChange: (v: number) => void
-  accent: string; accent2: string
-}) {
-  const [hovered, setHovered] = useState<number | null>(null)
-
-  return (
-    <div className="flex gap-3 md:gap-4 mt-4 max-w-sm" dir="ltr">
-      {[1, 2, 3, 4, 5].map((n) => {
-        const isActive = (hovered !== null && n <= hovered) || (hovered === null && value !== null && n <= value)
-        const isSelected = value !== null && n === value
-
-        return (
-          <motion.button
-            key={n}
-            onMouseEnter={() => setHovered(n)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => onChange(n)}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: isActive ? (isSelected ? 1.2 : 1.1) : 1 }}
-            whileHover={{ scale: 1.25 }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="p-3 md:p-4 rounded-full transition-all duration-300 outline-none flex items-center justify-center"
-            style={{
-              background: isActive ? `${accent}22` : "rgba(255,255,255,0.03)",
-              border: `2px solid ${isActive ? accent : "rgba(255,255,255,0.08)"}`,
-              boxShadow: isSelected ? `0 0 30px ${accent}66` : "none"
-            }}
-          >
-            <Star
-              className="w-8 h-8 md:w-10 md:h-10 transition-colors duration-300"
-              style={{
-                color: isActive ? accent : "rgba(255,255,255,0.15)",
-                fill: isActive ? accent : "transparent",
-                filter: isActive ? `drop-shadow(0 0 10px ${accent}aa)` : "none"
-              }}
-            />
-          </motion.button>
-        )
-      })}
-    </div>
-  )
-})
-
+// ─── Progress bar ─────────────────────────────────────────────────────────────
 const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step: number; accent: string; accent2: string }) {
   return (
     <div className="fixed top-0 left-0 right-0 h-0.5 bg-white/5 z-50">
@@ -146,41 +83,52 @@ const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step:
   )
 })
 
+// ─── Transition presets (GPU-only: opacity + transform) ───────────────────────
 const SLIDE   = { initial: { opacity: 0, x: 70 }, animate: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -70 } }
 const FADE_UP = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -30 } }
 const DUR     = { duration: 0.36, ease: [0.16, 1, 0.3, 1] } as const
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function SurveyPage() {
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(0) // 0=intro, 1..TOTAL=questions, TOTAL+1=done
   const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
-  const [otherText, setOtherText] = useState("")
+  const [otherText, setOtherText] = useState("") // for "Other" option in radio-other
   const [submitting, setSubmitting] = useState(false)
   const { addToast } = useToast()
 
   const q: Question | null = step >= 1 && step <= TOTAL ? ALL_STEPS[step - 1] : null
   const answer = q ? answers[q.id] : undefined
 
+  // For text-compare, check all sub-questions are answered
   const canProceed = !q
     || (q.type === "radio"       && typeof answer === "string" && answer.length > 0)
     || (q.type === "radio-other" && typeof answer === "string" && answer.length > 0 && (answer !== "Other" || otherText.trim().length > 0))
     || (q.type === "checkbox"    && Array.isArray(answer) && (answer as string[]).length > 0)
+    || (q.type === "checkbox-other" && Array.isArray(answer) && (answer as string[]).length > 0 && (!(answer as string[]).includes("Other") || otherText.trim().length > 0))
     || (q.type === "textarea"    && !q.required)
     || (q.type === "textarea"    && q.required && typeof answer === "string" && (answer as string).trim().length >= 5)
-    || (q.type === "text-input"  && !q.required)
+    || (q.type === "text-input"  && !q.required) // phone is optional — always can proceed
     || (q.type === "text-input"  && q.required && typeof answer === "string" && (answer as string).trim().length > 0)
     || (q.type === "rating"      && typeof answer === "number")
-    || (q.type === "star"        && typeof answer === "number")
+    || (q.type === "text-compare" && q.subQuestions != null && q.subQuestions.every(sq => {
+         const sqAnswer = answers[sq.id]
+         return typeof sqAnswer === "string" && sqAnswer.length > 0
+       }))
 
   const setAnswer = useCallback((val: AnswerVal) => {
     if (!q) return
     setAnswers((prev) => ({ ...prev, [q.id]: val }))
   }, [q])
 
+  const setSubAnswer = useCallback((subId: string, val: string) => {
+    setAnswers((prev) => ({ ...prev, [subId]: val }))
+  }, [])
+
   const handleNext = useCallback(async () => {
+    // Conditional logic: skip demo-field if High School is selected
     if (q?.id === "demo-education" && answers["demo-education"] === "High School") {
-      setAnswers((prev) => ({ ...prev, "demo-field": "Not specialized" }))
-      setStep((s) => s + 2)
+      setAnswers((prev) => ({ ...prev, "demo-field": "Not specialized" })) // Pre-fill to bypass optional/required limits
+      setStep((s) => s + 2) // Skip demo-field
       return
     }
 
@@ -192,19 +140,26 @@ export default function SurveyPage() {
         const val = answers[qId]
         if (val === undefined || val === null || val === "") continue
         if (Array.isArray(val)) {
-          for (const v of val) params.append(entryId, v)
+          for (const v of val) {
+            // checkbox-other: replace "Other" with otherText
+            const sendVal = (v === "Other" && otherText.trim()) ? otherText.trim() : v
+            params.append(entryId, sendVal)
+          }
         } else if (typeof val === "number") {
           params.append(entryId, String(val))
         } else {
+          // radio-other: if "Other" selected, send the custom text
           let finalVal = val as string
           if (qId === "demo-field" && val === "Other" && otherText.trim()) finalVal = otherText.trim()
-          else if (qId === "demo-field" && val === "Not specialized") finalVal = ""
+          else if (qId === "demo-field" && val === "Not specialized") finalVal = "" // Send empty if High School
 
           params.append(entryId, finalVal)
         }
       }
+      // Submit via the new API proxy
       const res = await fetch("/api/survey/submit", {
         method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params.toString(),
       })
 
@@ -217,10 +172,12 @@ export default function SurveyPage() {
     await new Promise((r) => setTimeout(r, 800))
     setSubmitting(false)
     setStep(TOTAL + 1)
-  }, [step, answers, otherText])
+  }, [step, answers, otherText, addToast])
 
   const handleBack = useCallback(() => {
-    const q1Index = ALL_STEPS.findIndex(s => s.id === "q1") + 1
+    // If we are on the step right AFTER the skipped demo-field (which is q1),
+    // and High School was selected, jump back 2 steps instead of 1.
+    const q1Index = ALL_STEPS.findIndex(s => s.id === "q1") + 1 // +1 because step 0 is intro
     if (step === q1Index && answers["demo-education"] === "High School") {
       setStep((s) => Math.max(s - 2, 0))
     } else {
@@ -231,6 +188,7 @@ export default function SurveyPage() {
   const accent  = q?.accent  ?? "#7c3aed"
   const accent2 = q?.accent2 ?? "#db2777"
 
+  // Step counter display — show demographic step or survey question number
   const stepDisplay = q
     ? q.section === "Tell Us About You"
       ? { label: q.section, counter: `${step} / ${DEMO_COUNT}` }
@@ -240,29 +198,26 @@ export default function SurveyPage() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-outfit" style={{ background: "#070710" }}>
 
+      {/* CSS blob animations — zero JS, compositor-only */}
       <div aria-hidden className="pointer-events-none fixed rounded-full blur-[120px] opacity-25 survey-blob-1"
         style={{ width: 600, height: 600, background: `radial-gradient(circle,${accent},transparent 70%)`, top: "-15%", right: "-8%", willChange: "transform" }} />
       <div aria-hidden className="pointer-events-none fixed rounded-full blur-[100px] opacity-15 survey-blob-2"
         style={{ width: 500, height: 500, background: `radial-gradient(circle,${accent2},transparent 70%)`, bottom: "-10%", left: "-5%", willChange: "transform" }} />
 
-      {/* <a href="/survey/ar"
-        className="fixed top-5 right-5 z-50 flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white/40 hover:text-white/80 hover:border-white/25 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm"
-        title="عربي"
-        dir="rtl">
-        <Globe className="w-4.5 h-4.5" />
-      </a> */}
-
+      {/* Progress strip */}
       {step >= 1 && step <= TOTAL && <ProgressBar step={step} accent={accent} accent2={accent2} />}
 
+      {/* ── Content ── */}
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-28 py-20">
         <AnimatePresence mode="wait" initial={false}>
 
+          {/* ── INTRO ── */}
           {step === 0 && (
             <motion.div key="intro" {...FADE_UP} transition={DUR}>
               <div className="flex items-center gap-2 mb-6">
                 <Image src="/images/1212-removebg-preview.png" alt="Chameleon" width={22} height={22} className="object-contain" />
                 <p className="text-sm font-semibold tracking-[0.2em] uppercase" style={{ color: "#a855f7" }}>
-                  Chameleon Survey 2025
+                  Chameleon Survey 2026
                 </p>
               </div>
               <h1 className="font-extrabold leading-[0.93] tracking-tight text-white mb-4" style={{ fontSize: "clamp(2.4rem,7vw,6.5rem)" }}>
@@ -277,20 +232,21 @@ export default function SurveyPage() {
               <p className="text-sm text-white/30 max-w-xl mb-8 leading-relaxed font-light">
                 Your responses are anonymous and will be used for academic purposes only.
               </p>
-              
+
+              {/* Section overview */}
+              <div className="flex flex-wrap gap-2 mb-12">
+                {["Tell Us About You", "1 · Perceptions", "2 · Text Comparison", "3 · Tools & Feedback"].map((s) => (
+                  <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">
+                    {s}
+                  </span>
+                ))}
+              </div>
+
               <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 max-w-xl">
                 <Gift className="w-8 h-8 text-pink-500 animate-bounce shrink-0" />
                 <p className="text-sm md:text-base text-white/80 font-medium">
                   Register Now for Exclusive Prizes! 🎁
                 </p>
-              </div>
-              
-              <div className="flex flex-wrap gap-2 mb-12">
-                {["Tell Us About You", "1 · General Perception", "2 · Evaluation", "3 · Open-Ended"].map((s) => (
-                  <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">
-                    {s}
-                  </span>
-                ))}
               </div>
 
               <button
@@ -303,9 +259,11 @@ export default function SurveyPage() {
             </motion.div>
           )}
 
+          {/* ── QUESTION (demographics + survey — all same design) ── */}
           {step >= 1 && step <= TOTAL && q && (
             <motion.div key={`q${step}`} {...SLIDE} transition={DUR}>
 
+              {/* Section + step label */}
               <div className="flex items-center gap-3 mb-5">
                 <span className="text-xs font-semibold tracking-[0.18em] uppercase" style={{ color: q.accent }}>
                   {stepDisplay?.label}
@@ -314,131 +272,209 @@ export default function SurveyPage() {
                 <span className="text-xs text-white/25 font-medium">{stepDisplay?.counter}</span>
               </div>
 
-              {q.quote && (
-                <div className="mb-6 p-6 rounded-2xl bg-white/5 border border-white/10"
-                  style={{ borderLeft: `4px solid ${q.accent}` }}>
-                  <p className="text-xl md:text-2xl text-white/90 leading-relaxed italic font-light">
-                    {q.quote}
-                  </p>
-                </div>
-              )}
-
-              <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-4"
-                style={{ fontSize: "clamp(2.4rem,5.5vw,5.5rem)", whiteSpace: "pre-line" }}>
-                {q.label}
-              </h2>
-              {q.sub && <p className="text-sm md:text-base text-white/40 mb-10 font-light">{q.sub}</p>}
-              {!q.sub && <div className="mb-10" />}
-
-              {q.type === "text-input" && (
-                <div className="max-w-md">
-                  <input
-                    type={q.inputType || "text"}
-                    placeholder={q.placeholder}
-                    value={(answer as string) || ""}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    className="w-full bg-transparent text-white text-2xl md:text-3xl font-light placeholder-white/20 outline-none border-b-2 pb-4 transition-[border-color] duration-300"
-                    style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                  />
-                  {!q.required && (
-                    <p className="text-xs text-white/25 mt-3 flex items-center gap-1.5">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/15" />
-                      Optional — skip if you prefer
-                    </p>
-                  )}
-                </div>
-              )}
-
-              {q.type === "rating" && (
-                <div className="max-w-lg">
-                  <RatingScale
-                    value={(answer as number) ?? null}
-                    onChange={setAnswer}
-                    minLabel={q.minLabel ?? ""}
-                    maxLabel={q.maxLabel ?? ""}
-                    accent={q.accent} accent2={q.accent2} />
-                </div>
-              )}
-
-              {q.type === "star" && (
-                <div className="max-w-lg">
-                  <StarScale
-                    value={(answer as number) ?? null}
-                    onChange={setAnswer}
-                    accent={q.accent} accent2={q.accent2} />
-                </div>
-              )}
-
-              {q.type === "radio" && q.options && (
-                <div className="flex flex-wrap gap-3 max-w-3xl">
-                  {q.options.map((opt) => (
-                    <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                      onClick={() => setAnswer(opt)} />
-                  ))}
-                </div>
-              )}
-
-              {q.type === "radio-other" && q.options && (
-                <div className="max-w-3xl">
-                  <div className="flex flex-wrap gap-3">
-                    {q.options.map((opt) => (
-                      <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                        onClick={() => { setAnswer(opt); if (opt !== "Other") setOtherText("") }} />
-                    ))}
+              {/* ── Text Compare (TEXT A / TEXT B) ── */}
+              {q.type === "text-compare" && q.textContent && q.subQuestions && (
+                <>
+                  {/* Text label badge */}
+                  <div className="inline-flex items-center gap-2 mb-4">
+                    <span
+                      className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full"
+                      style={{ background: `${q.accent}22`, color: q.accent, border: `1px solid ${q.accent}44` }}
+                    >
+                      {q.textLabel}
+                    </span>
                   </div>
-                  {answer === "Other" && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-                      <input
-                        type="text"
-                        placeholder="Please specify your field…"
-                        value={otherText}
-                        onChange={(e) => setOtherText(e.target.value)}
-                        autoFocus
-                        className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
-                        style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                      />
-                    </motion.div>
-                  )}
-                </div>
-              )}
 
-              {q.type === "checkbox" && q.options && (
-                <div className="flex flex-wrap gap-3 max-w-3xl">
-                  {q.options.map((opt) => {
-                    const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
-                    return (
-                      <Pill key={opt} label={opt} selected={checked} accent={q.accent}
-                        onClick={() => {
-                          const prev = (answer as string[]) || []
-                          setAnswer(checked ? prev.filter((v) => v !== opt) : [...prev, opt])
-                        }} />
-                    )
-                  })}
-                </div>
-              )}
+                  {/* Question label */}
+                  <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-6"
+                    style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>
+                    {q.label}
+                  </h2>
 
-              {q.type === "textarea" && (
-                <div className="max-w-2xl">
-                  <textarea
-                    rows={5}
-                    value={(answer as string) || ""}
-                    onChange={(e) => setAnswer(e.target.value)}
-                    placeholder={q.placeholder}
-                    className="w-full bg-transparent text-white text-lg md:text-xl font-light placeholder-white/20 resize-none outline-none border-b-2 pb-4 transition-[border-color] duration-300"
-                    style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                  />
-                  {q.required && (
-                    <p className="text-xs text-white/20 mt-2">
-                      {((answer as string) || "").trim().length} chars
-                      {((answer as string) || "").trim().length < 5 && " · minimum 5 characters"}
+                  {/* Text passage */}
+                  <div className="mb-8 p-6 md:p-8 rounded-2xl bg-white/[0.04] border border-white/10 max-w-2xl"
+                    style={{ borderLeft: `4px solid ${q.accent}` }}>
+                    <p className="text-base md:text-lg text-white/80 leading-[1.9] font-light">
+                      {q.textContent}
                     </p>
-                  )}
-                  {!q.required && (
-                    <p className="text-xs text-white/20 mt-2">Optional</p>
-                  )}
-                </div>
+                  </div>
+
+                  {/* Sub-questions */}
+                  <div className="space-y-10 max-w-3xl">
+                    {q.subQuestions.map((sq, idx) => {
+                      const sqAnswer = answers[sq.id] as string | undefined
+                      return (
+                        <div key={sq.id}>
+                          <p className="text-sm md:text-base text-white/60 font-medium mb-4">
+                            <span className="text-white/30 mr-2">{idx + 1}.</span>
+                            {sq.label}
+                          </p>
+                          <div className="flex flex-wrap gap-3">
+                            {sq.options.map((opt) => (
+                              <Pill key={opt} label={opt} selected={sqAnswer === opt} accent={q.accent}
+                                onClick={() => setSubAnswer(sq.id, opt)} />
+                            ))}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </>
               )}
 
+              {/* ── Non-text-compare questions ── */}
+              {q.type !== "text-compare" && (
+                <>
+                  {/* Question */}
+                  <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-4"
+                    style={{ fontSize: "clamp(2.4rem,5.5vw,5.5rem)", whiteSpace: "pre-line" }}>
+                    {q.label}
+                  </h2>
+                  {q.sub && <p className="text-sm md:text-base text-white/40 mb-10 font-light">{q.sub}</p>}
+                  {!q.sub && <div className="mb-10" />}
+
+                  {/* ── Text Input (phone) ── */}
+                  {q.type === "text-input" && (
+                    <div className="max-w-md">
+                      <input
+                        type={q.inputType || "text"}
+                        placeholder={q.placeholder}
+                        value={(answer as string) || ""}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        className="w-full bg-transparent text-white text-2xl md:text-3xl font-light placeholder-white/20 outline-none border-b-2 pb-4 transition-[border-color] duration-300"
+                        style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
+                      />
+                      {!q.required && (
+                        <p className="text-xs text-white/25 mt-3 flex items-center gap-1.5">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/15" />
+                          Optional — skip if you prefer
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Rating (5 cubes) ── */}
+                  {q.type === "rating" && (
+                    <div className="max-w-lg">
+                      <RatingScale
+                        value={(answer as number) ?? null}
+                        onChange={setAnswer}
+                        minLabel={q.minLabel ?? ""}
+                        maxLabel={q.maxLabel ?? ""}
+                        accent={q.accent} accent2={q.accent2} />
+                    </div>
+                  )}
+
+                  {/* ── Radio ── */}
+                  {q.type === "radio" && q.options && (
+                    <div className="flex flex-wrap gap-3 max-w-3xl">
+                      {q.options.map((opt) => (
+                        <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
+                          onClick={() => setAnswer(opt)} />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* ── Radio with "Other" text input ── */}
+                  {q.type === "radio-other" && q.options && (
+                    <div className="max-w-3xl">
+                      <div className="flex flex-wrap gap-3">
+                        {q.options.map((opt) => (
+                          <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
+                            onClick={() => { setAnswer(opt); if (opt !== "Other") setOtherText("") }} />
+                        ))}
+                      </div>
+                      {answer === "Other" && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+                          <input
+                            type="text"
+                            placeholder="Please specify your field…"
+                            value={otherText}
+                            onChange={(e) => setOtherText(e.target.value)}
+                            autoFocus
+                            className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
+                            style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
+                          />
+                        </motion.div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Checkbox ── */}
+                  {q.type === "checkbox" && q.options && (
+                    <div className="flex flex-wrap gap-3 max-w-3xl">
+                      {q.options.map((opt) => {
+                        const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
+                        return (
+                          <Pill key={opt} label={opt} selected={checked} accent={q.accent}
+                            onClick={() => {
+                              const prev = (answer as string[]) || []
+                              setAnswer(checked ? prev.filter((v) => v !== opt) : [...prev, opt])
+                            }} />
+                        )
+                      })}
+                    </div>
+                  )}
+
+                  {/* ── Checkbox with "Other" text input ── */}
+                  {q.type === "checkbox-other" && q.options && (
+                    <div className="max-w-3xl">
+                      <div className="flex flex-wrap gap-3">
+                        {q.options.map((opt) => {
+                          const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
+                          return (
+                            <Pill key={opt} label={opt} selected={checked} accent={q.accent}
+                              onClick={() => {
+                                const prev = (answer as string[]) || []
+                                const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]
+                                setAnswer(next)
+                                if (opt === "Other" && checked) setOtherText("")
+                              }} />
+                          )
+                        })}
+                      </div>
+                      {Array.isArray(answer) && (answer as string[]).includes("Other") && (
+                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+                          <input
+                            type="text"
+                            placeholder="Please specify…"
+                            value={otherText}
+                            onChange={(e) => setOtherText(e.target.value)}
+                            autoFocus
+                            className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
+                            style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
+                          />
+                        </motion.div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ── Textarea ── */}
+                  {q.type === "textarea" && (
+                    <div className="max-w-2xl">
+                      <textarea
+                        rows={5}
+                        value={(answer as string) || ""}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        placeholder={q.placeholder}
+                        className="w-full bg-transparent text-white text-lg md:text-xl font-light placeholder-white/20 resize-none outline-none border-b-2 pb-4 transition-[border-color] duration-300"
+                        style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
+                      />
+                      {q.required && (
+                        <p className="text-xs text-white/20 mt-2">
+                          {((answer as string) || "").trim().length} chars
+                          {((answer as string) || "").trim().length < 5 && " · minimum 5 characters"}
+                        </p>
+                      )}
+                      {!q.required && (
+                        <p className="text-xs text-white/20 mt-2">Optional</p>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* ── Nav ── */}
               <div className="flex items-center gap-6 mt-12">
                 <button
                   onClick={handleBack}
@@ -467,16 +503,10 @@ export default function SurveyPage() {
             </motion.div>
           )}
 
+          {/* ── DONE ── */}
           {step === TOTAL + 1 && (
             <motion.div key="done" {...FADE_UP} transition={DUR}>
-              <div className="flex gap-1.5 mb-10">
-                {[1,2,3,4,5].map((i) => (
-                  <motion.div key={i} initial={{ scale: 0, rotate: -20 }} animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: i * 0.08, type: "spring", stiffness: 220 }}>
-                    <Star className="w-8 h-8 fill-yellow-400 text-yellow-400" />
-                  </motion.div>
-                ))}
-              </div>
+              <div className="mb-10 text-6xl">🎉</div>
               <p className="text-sm font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: "#a855f7" }}>✦ All done</p>
               <h2 className="font-extrabold leading-[0.93] tracking-tight text-white mb-6"
                 style={{ fontSize: "clamp(3rem,9vw,8rem)" }}>
@@ -500,12 +530,14 @@ export default function SurveyPage() {
         </AnimatePresence>
       </div>
 
+      {/* CSS blob drift — zero JS */}
       <style>{`
         @keyframes blobDrift1{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-25px,18px) scale(1.04)}70%{transform:translate(15px,-12px) scale(0.97)}}
         @keyframes blobDrift2{0%,100%{transform:translate(0,0) scale(1)}35%{transform:translate(22px,-18px) scale(1.03)}65%{transform:translate(-12px,22px) scale(0.97)}}
         .survey-blob-1{animation:blobDrift1 14s ease-in-out infinite}
         .survey-blob-2{animation:blobDrift2 17s ease-in-out infinite}
-      `}</style>
+      `}
+      </style>
     </div>
   )
 }
