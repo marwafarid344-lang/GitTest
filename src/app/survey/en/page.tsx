@@ -114,6 +114,7 @@ export default function SurveyPage() {
          const sqAnswer = answers[sq.id]
          return typeof sqAnswer === "string" && sqAnswer.length > 0
        }))
+    || (q.type === "text-display")
 
   const setAnswer = useCallback((val: AnswerVal) => {
     if (!q) return
@@ -272,8 +273,8 @@ export default function SurveyPage() {
                 <span className="text-xs text-white/25 font-medium">{stepDisplay?.counter}</span>
               </div>
 
-              {/* ── Text Compare (TEXT A / TEXT B) ── */}
-              {q.type === "text-compare" && q.textContent && q.subQuestions && (
+              {/* ── Text Display (reading-only slide) ── */}
+              {q.type === "text-display" && q.textContent && (
                 <>
                   {/* Text label badge */}
                   <div className="inline-flex items-center gap-2 mb-4">
@@ -290,14 +291,36 @@ export default function SurveyPage() {
                     style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>
                     {q.label}
                   </h2>
+                  {q.sub && <p className="text-sm md:text-base text-white/40 mb-6 font-light">{q.sub}</p>}
 
                   {/* Text passage */}
-                  <div className="mb-8 p-6 md:p-8 rounded-2xl bg-white/[0.04] border border-white/10 max-w-2xl"
+                  <div className="p-6 md:p-8 rounded-2xl bg-white/[0.04] border border-white/10 max-w-2xl"
                     style={{ borderLeft: `4px solid ${q.accent}` }}>
                     <p className="text-base md:text-lg text-white/80 leading-[1.9] font-light">
                       {q.textContent}
                     </p>
                   </div>
+                </>
+              )}
+
+              {/* ── Text Compare (questions only, no passage) ── */}
+              {q.type === "text-compare" && q.subQuestions && (
+                <>
+                  {/* Text label badge */}
+                  <div className="inline-flex items-center gap-2 mb-4">
+                    <span
+                      className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full"
+                      style={{ background: `${q.accent}22`, color: q.accent, border: `1px solid ${q.accent}44` }}
+                    >
+                      {q.textLabel}
+                    </span>
+                  </div>
+
+                  {/* Question label */}
+                  <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-6"
+                    style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>
+                    {q.label}
+                  </h2>
 
                   {/* Sub-questions */}
                   <div className="space-y-10 max-w-3xl">
@@ -322,8 +345,8 @@ export default function SurveyPage() {
                 </>
               )}
 
-              {/* ── Non-text-compare questions ── */}
-              {q.type !== "text-compare" && (
+              {/* ── Non-text-compare / non-text-display questions ── */}
+              {q.type !== "text-compare" && q.type !== "text-display" && (
                 <>
                   {/* Question */}
                   <h2 className="font-extrabold leading-[0.95] tracking-tight text-white mb-4"
