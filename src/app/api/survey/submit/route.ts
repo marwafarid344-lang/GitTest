@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.text()
@@ -12,8 +14,14 @@ export async function POST(req: NextRequest) {
       }
     )
     
-    return NextResponse.json({ ok: res.ok, status: res.status })
+    return NextResponse.json(
+      { ok: res.ok, status: res.status },
+      { headers: { 'Access-Control-Allow-Origin': '*' } }
+    )
   } catch (e) {
-    return NextResponse.json({ ok: false, error: String(e) }, { status: 500 })
+    return NextResponse.json(
+      { ok: false, error: String(e) }, 
+      { status: 500, headers: { 'Access-Control-Allow-Origin': '*' } }
+    )
   }
 }
