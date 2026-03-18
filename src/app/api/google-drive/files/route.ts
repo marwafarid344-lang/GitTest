@@ -6,7 +6,7 @@ import { getValidAccessToken } from '@/lib/google-oauth'
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
-    const pageSize = parseInt(searchParams.get('pageSize') || '20')
+    const pageSize = parseInt(searchParams.get('pageSize') || '100')
     const pageToken = searchParams.get('pageToken')
     const folderId = searchParams.get('folderId')
     const fileId = searchParams.get('fileId')
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
       pageSize: pageSize,
       pageToken: pageToken || undefined,
       fields: 'nextPageToken, files(id, name, mimeType, size, createdTime, modifiedTime, owners, webViewLink, webContentLink, thumbnailLink, parents)',
-      orderBy: 'folder,name'
+      orderBy: 'folder,modifiedTime desc,name'
     })
     
     return NextResponse.json({
