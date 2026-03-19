@@ -59,12 +59,10 @@ export const departmentKeyMap: { [key: string]: string } = {
   'media analytics': 'media-analytics',
   'ma': 'media-analytics',
   
-  // Healthcare Informatics
   'healthcare-informatics': 'healthcare-informatics',
   'healthcare informatics': 'healthcare-informatics',
   'hi': 'healthcare-informatics',
   
-  // Cybersecurity
   'cybersecurity': 'cybersecurity',
   'cyber security': 'cybersecurity',
   'cs': 'cybersecurity'
