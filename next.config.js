@@ -46,24 +46,11 @@ const nextConfig = {
 
   images: {
     formats: ['image/avif', 'image/webp'],
-
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'morx-team.vercel.app',
-      },
-      {
-        protocol: 'https',
-        hostname: 'github.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.googleusercontent.com',
-      }
+      { protocol: 'https', hostname: 'morx-team.vercel.app' },
+      { protocol: 'https', hostname: 'github.com' },
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: '*.googleusercontent.com' },
     ],
   },
 
@@ -76,7 +63,6 @@ const nextConfig = {
   },
 
   async headers() {
-
     return [
 
       // Aggressive caching for quizzes
@@ -101,7 +87,7 @@ const nextConfig = {
         ],
       },
 
-      // Drive API caching (VERY IMPORTANT)
+      // Drive API caching
       {
         source: '/api/drive/:path*',
         headers: [
@@ -145,46 +131,40 @@ const nextConfig = {
         ],
       },
 
-      // Global security headers
+      // 🔐 Global security headers (UPDATED for AdSense)
       {
         source: '/:path*',
         headers: [
 
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
 
           {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://accounts.google.com https://www.gstatic.com",
+
+              // ✅ Scripts (AdSense enabled)
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://accounts.google.com https://www.gstatic.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net",
+
+              // ✅ Styles
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+
+              // ✅ Fonts
               "font-src 'self' https://fonts.gstatic.com",
+
+              // ✅ Images
               "img-src 'self' data: https: blob:",
-              "connect-src 'self' https://*.supabase.co https://accounts.google.com https://www.googleapis.com https://docs.google.com",
-              "frame-src 'self' https://accounts.google.com https://www.youtube.com https://www.youtube-nocookie.com https://docs.google.com",
+
+              // ✅ Connections
+              "connect-src 'self' https://*.supabase.co https://accounts.google.com https://www.googleapis.com https://docs.google.com https://pagead2.googlesyndication.com",
+
+              // ✅ Frames (AdSense important)
+              "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://accounts.google.com https://www.youtube.com https://www.youtube-nocookie.com https://docs.google.com",
+
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self' https://docs.google.com",
