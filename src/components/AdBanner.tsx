@@ -22,7 +22,7 @@ export default function AdBanner({
   }, [])
 
   return (
-    <div className="w-full flex justify-center items-center my-8 overflow-hidden bg-background/5 border border-border/10 rounded-lg min-h-[90px]">
+    <div className="ad-banner-container w-full flex justify-center items-center my-8 overflow-hidden bg-background/5 border border-border/10 rounded-lg min-h-[90px]">
       <ins
         className="adsbygoogle w-full"
         style={{ display: "block" }}
