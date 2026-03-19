@@ -136,7 +136,6 @@ const quizModes = [
   },
 ];
 
-// Detect mobile devices and reduced motion
 function useReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
