@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 // Ads toggle: Set to false to disable all ads across the site
-export const ENABLE_ADS = true;
+export const ENABLE_ADS = false;
 
 export default function RootLayout({
   children,
