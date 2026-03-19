@@ -1056,3 +1056,9 @@ html {
 .animate-fade-in {
   animation: fadeInMessage 0.5s ease-out;
 }
+
+/* Hide all ads when the toggle is off */
+.hide-all-ads .adsbygoogle,
+.hide-all-ads .ad-banner-container {
+  display: none !important;
+}
