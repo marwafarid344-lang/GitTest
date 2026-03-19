@@ -1130,7 +1130,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]
               },
             },
             {
@@ -1212,39 +1230,39 @@ export const departmentData: { [key: string]: Department } = {
                 quizzes: [
                   {
                     id: "DST_001",
-                    name: "Lecture 1 - (Team Materials)",
+                    name: "Introduction to Data Science Tools",
                     code: "DST_001",
                     duration: "OP",
-                    questions: 25,
+                    questions: 30,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_001.json"
                   },
                   {
                     id: "DST_002",
-                    name: "Lecture 2 - (Team Materials)",
+                    name: "Visualization",
                     code: "DST_002",
                     duration: "OP",
-                    questions: 25,
+                    questions: 30,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_002.json"
                   },
                   {
                     id: "DST_003",
-                    name: "Lecture 3 - (Team Materials)",
+                    name: "Data Preprocessing",
                     code: "DST_003",
                     duration: "OP",
-                    questions: 25,
+                    questions: 30,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_003.json"
                   },
                   {
                     id: "DST_004",
-                    name: "Lecture 4 - (Team Materials)",
+                    name: "Database Management Systems",
                     code: "DST_004",
                     duration: "OP",
-                    questions: 25,
+                    questions: 30,
                     jsonFile: "/quizzes/Data Science Tools/DST_Quizzes/DST_004.json"
                   },
                   {
                     id: "DST_005",
-                    name: "Lecture 5 - (Team Materials)",
+                    name: "Supervised Learning",
                     code: "DST_005",
                     duration: "OP",
                     questions: 30,
@@ -3280,7 +3298,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]              
               },
             },
             {
@@ -4762,7 +4798,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]   
               },
             },
             {
@@ -6137,7 +6191,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]   
               },
             },
             {
@@ -7357,7 +7429,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]   
               },
             },
             {
@@ -8788,7 +8878,25 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1hO_vvmFpCD9zw4rlK77HIIeNVWpjgM2K?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1XdboKP5n65WZCznnqiCrE0BZfiarSl4Z?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1WI08MEt_kVSuMITdlqqgPaVpTUPwiqgK?usp=drive_link",
+                quizzes:[
+                  {
+                    id: "ML_001",
+                    name: "Introduction to Machine Learning (Team Materials)",
+                    code: "ML_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Machine Learning/ML_001.json"
+                  },
+                  {
+                    id: "ML_004",
+                    name: "Lecture 2 to Midterm (Team Materials)",
+                    code: "ML_004",
+                    duration: "OP",
+                    questions: 40,
+                    jsonFile: "/quizzes/Machine Learning/ML_004.json"
+                  }
+                ]   
               },
             },
             {
@@ -9181,4 +9289,3 @@ export const departmentData: { [key: string]: Department } = {
     },
   },
 }
-
