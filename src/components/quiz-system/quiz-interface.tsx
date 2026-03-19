@@ -39,6 +39,8 @@ import { getStudentSession } from "@/lib/auth";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Dialog as ImageDialog, DialogContent as ImageDialogContent } from "@/components/ui/dialog";
 import Calculator from "@/components/Calculator";
+import "katex/dist/katex.min.css";
+import { InlineMath } from "react-katex";
 
 interface QuizQuestion {
   numb: number;
@@ -163,6 +165,23 @@ function useReducedMotion() {
   return { prefersReducedMotion: prefersReducedMotion || isMobile, isMobile };
 }
 
+// Helper to format LaTeX mathematically-like strings with inline code styling
+function formatTextWithLatex(text?: string | null) {
+  if (!text) return text;
+  const parts = text.split(/(\$[^$]+\$)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('$') && part.endsWith('$')) {
+      const math = part.slice(1, -1);
+      return (
+        <span key={i} className="inline-flex items-center mx-1 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-indigo-200 shadow-sm align-middle min-h-[1.5em] leading-none">
+          <InlineMath math={math} />
+        </span>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
+}
+
 // Memoized Option Button Component
 const OptionButton = memo(function OptionButton({ 
   option, 
@@ -237,7 +256,7 @@ const OptionButton = memo(function OptionButton({
       </AnimatePresence>
 
       <div className="flex items-center justify-between">
-        <span className="text-base md:text-lg">{option}</span>
+        <span className="text-base md:text-lg leading-relaxed">{formatTextWithLatex(option)}</span>
         {showFeedback && isCorrectOption && isMobile && (
           <CheckCircle className="w-6 h-6 text-green-400" />
         )}
@@ -1338,7 +1357,7 @@ export default function QuizInterface({
                   <CardHeader className="pb-6">
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-2xl leading-relaxed font-medium flex-1">
-                        {currentQ?.question}
+                        {formatTextWithLatex(currentQ?.question)}
                       </CardTitle>
                       {currentQ?.image && (
                         <motion.div
@@ -1427,7 +1446,7 @@ export default function QuizInterface({
                           <p className="text-white/80 mb-3">
                             The correct answer is:{" "}
                             <span className="font-semibold text-white">
-                              {currentQ?.answer}
+                              {formatTextWithLatex(currentQ?.answer)}
                             </span>
                           </p>
                           {currentQ?.explanation && (
@@ -1444,7 +1463,7 @@ export default function QuizInterface({
                                     Explanation:
                                   </p>
                                   <p className="text-white/70 text-sm leading-relaxed">
-                                    {currentQ.explanation}
+                                    {formatTextWithLatex(currentQ.explanation)}
                                   </p>
                                 </div>
                               </div>
