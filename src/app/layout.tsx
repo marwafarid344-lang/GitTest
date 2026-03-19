@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Ads toggle: Set to false to disable all ads across the site
+export const ENABLE_ADS = true;
+
 export default function RootLayout({
   children,
 }: {
@@ -51,16 +54,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5932974277970825"
-          crossOrigin="anonymous"
-        />
+        {ENABLE_ADS && (
+          <Script
+            async
+            strategy="afterInteractive"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5932974277970825"
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} ${outfit.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${rubik.variable} ${outfit.variable} antialiased ${
+          !ENABLE_ADS ? "hide-all-ads" : ""
+        }`}
       >
         <NotificationProvider>
           <ToastProvider>
