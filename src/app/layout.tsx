@@ -71,7 +71,7 @@ export default function RootLayout({
       >
         <NotificationProvider>
           <ToastProvider>
-            <DevToolsProtection />
+            {/* <DevToolsProtection /> */}
             {children}
           </ToastProvider>
         </NotificationProvider>
