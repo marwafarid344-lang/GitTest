@@ -46,6 +46,10 @@ export const metadata: Metadata = {
 // Ads toggle: Set to false to disable all ads across the site
 export const ENABLE_ADS = false;
 
+// Cache toggle: Set to true to force a refresh for all users by disabling browser caching
+// This is very useful when pushing updates and students' mobile devices are stuck on old versions.
+export const DISABLE_CACHE = true;
+
 export default function RootLayout({
   children,
 }: {
@@ -54,6 +58,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {DISABLE_CACHE && (
+          <>
+            <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+            <meta httpEquiv="Pragma" content="no-cache" />
+            <meta httpEquiv="Expires" content="0" />
+          </>
+        )}
         {ENABLE_ADS && (
           <Script
             async
@@ -71,7 +82,7 @@ export default function RootLayout({
       >
         <NotificationProvider>
           <ToastProvider>
-            {/* <DevToolsProtection /> */}
+            <DevToolsProtection />
             {children}
           </ToastProvider>
         </NotificationProvider>
