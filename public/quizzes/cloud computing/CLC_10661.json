@@ -2,261 +2,261 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "Which computing paradigm is characterized by centralized processing, high reliability, and extensive resource sharing among users?",
+    "question": "When did cloud computing become mainstream?",
     "options": [
-      "A) Cluster computing",
-      "B) Grid computing",
-      "C) Mainframe computing",
-      "D) Cloud computing"
+      "a) 1990s",
+      "b) 2000s",
+      "c) 2010s",
+      "d) 1980s"
     ],
-    "answer": "C) Mainframe computing",
+    "answer": "b) 2000s",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "What type of computing connects multiple computers to work together, enhancing performance, scalability, and fault tolerance for large-scale data processing tasks?",
+    "question": "Which is NOT a key characteristic of cloud computing?",
     "options": [
-      "A) Mainframe computing",
-      "B) Cluster computing",
-      "C) Grid computing",
-      "D) Service-Oriented Architecture"
+      "a) On-demand self-service",
+      "b) Dedicated hardware leasing",
+      "c) Broad network access",
+      "d) Rapid elasticity"
     ],
-    "answer": "B) Cluster computing",
+    "answer": "b) Dedicated hardware leasing",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "In which computing paradigm are distributed resources leveraged across networks for collaborative processing and efficient resource utilization, particularly in scientific research?",
+    "question": "Which service model provides virtualized computing resources over the internet?",
     "options": [
-      "A) Mainframe computing",
-      "B) Cluster computing",
-      "C) Grid computing",
-      "D) Cloud Computing"
+      "a) SaaS",
+      "b) IaaS",
+      "c) PaaS",
+      "d) FaaS"
     ],
-    "answer": "C) Grid computing",
+    "answer": "b) IaaS",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "Which architecture focuses on using services as the fundamental building blocks for software applications and integrations?",
+    "question": "A healthcare organization uses a cloud shared by other hospitals. This is a:",
     "options": [
-      "A) Cloud Computing",
-      "B) Grid Computing",
-      "C) Service-Oriented Architecture",
-      "D) Mainframe Computing"
+      "a) Public cloud",
+      "b) Private cloud",
+      "c) Hybrid cloud",
+      "d) Community cloud"
     ],
-    "answer": "C) Service-Oriented Architecture",
+    "answer": "d) Community cloud",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "Who envisioned computing as a utility in the 1960s, emphasizing shared access and efficient resource utilization for all users?",
+    "question": "Netflix’s migration to AWS is an example of cloud adoption driven by:",
     "options": [
-      "A) Jack McCarthy",
-      "B) Bill Gates",
-      "C) Steve Jobs",
-      "D) Jeff Bezos"
+      "a) Cost reduction",
+      "b) Scalability",
+      "c) Regulatory compliance",
+      "d) All of the above"
     ],
-    "answer": "A) Jack McCarthy",
+    "answer": "d) All of the above",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "Which technology allows multiple virtual instances to run on a single physical server, optimizing resource use and enhancing flexibility in cloud environments?",
+    "question": "Which is the oldest major cloud provider?",
     "options": [
-      "A) Internet Connectivity",
-      "B) Mainframe Computing",
-      "C) Virtualization Technology",
-      "D) Service-Oriented Architecture"
+      "a) AWS",
+      "b) Azure",
+      "c) Google Cloud",
+      "d) IBM Cloud"
     ],
-    "answer": "C) Virtualization Technology",
+    "answer": "a) AWS",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "What significant event related to cloud computing occurred in the 1970s?",
+    "question": "AWS’s geographic regions contain multiple:",
     "options": [
-      "A) Concept of utility computing is introduced",
-      "B) Amazon Web Services (AWS) launched",
-      "C) Emergence of virtualization technology",
-      "D) The cloud era officially begins"
+      "a) Edge locations",
+      "b) Availability Zones",
+      "c) Virtual Private Clouds",
+      "d) Content Delivery Networks"
     ],
-    "answer": "C) Emergence of virtualization technology",
+    "answer": "b) Availability Zones",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "When was Amazon Web Services (AWS) launched, revolutionizing cloud services and infrastructure?",
+    "question": "Vertical scaling refers to:",
     "options": [
-      "A) 1990s",
-      "B) 2000s",
-      "C) 2006",
-      "D) 2008"
+      "a) Adding more instances",
+      "b) Increasing CPU/RAM of an instance",
+      "c) Distributing traffic across servers",
+      "d) Migrating to hybrid cloud"
     ],
-    "answer": "C) 2006",
+    "answer": "b) Increasing CPU/RAM of an instance",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "Which major cloud platforms debuted in 2008, expanding cloud computing options widely?",
+    "question": "Auto-scaling primarily addresses:",
     "options": [
-      "A) AWS and Google Cloud",
-      "B) Google App Engine and Microsoft Azure",
-      "C) IBM Cloud and Oracle Cloud",
-      "D) Alibaba Cloud and Tencent Cloud"
+      "a) Security breaches",
+      "b) Variable workloads",
+      "c) Data redundancy",
+      "d) Network latency"
     ],
-    "answer": "B) Google App Engine and Microsoft Azure",
+    "answer": "b) Variable workloads",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "What characteristic of cloud computing allows multiple customers to share resources while keeping their data isolated, enhancing resource utilization?",
+    "question": "A VPC component that filters traffic is a:",
     "options": [
-      "A) On-demand Self-service",
-      "B) Broad Network Access",
-      "C) Multi-tenancy",
-      "D) Rapid Elasticity"
+      "a) Subnet",
+      "b) Route table",
+      "c) Security group",
+      "d) Internet Gateway"
     ],
-    "answer": "C) Multi-tenancy",
+    "answer": "c) Security group",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "Which cloud characteristic allows users to provision computing resources as needed without human intervention?",
+    "question": "Terraform is used for:",
     "options": [
-      "A) Resource Pooling",
-      "B) Rapid Elasticity",
-      "C) Cost Efficiency",
-      "D) On-demand Self-service"
+      "a) Container orchestration",
+      "b) Infrastructure as Code",
+      "c) Load balancing",
+      "d) Virtual machine monitoring"
     ],
-    "answer": "D) On-demand Self-service",
+    "answer": "b) Infrastructure as Code",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "The ability of cloud services to scale resources up or down based on demand, ensuring optimal performance and flexibility, is known as what?",
+    "question": "Edge computing reduces latency by processing data:",
     "options": [
-      "A) Resource Pooling",
-      "B) Rapid Elasticity",
-      "C) Cost Efficiency",
-      "D) Broad Network Access"
+      "a) In centralized data centers",
+      "b) At the network periphery",
+      "c) On hybrid clouds",
+      "d) Via community clouds"
     ],
-    "answer": "B) Rapid Elasticity",
+    "answer": "b) At the network periphery",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "Which cloud service model provides virtualized computing resources over the internet, allowing users to rent servers and storage as needed?",
+    "question": "Type 1 hypervisors run directly on:",
     "options": [
-      "A) PaaS",
-      "B) SaaS",
-      "C) IaaS",
-      "D) CaaS"
+      "a) Host OS",
+      "b) Bare-metal hardware",
+      "c) Containers",
+      "d) PaaS environments"
     ],
-    "answer": "C) IaaS",
+    "answer": "b) Bare-metal hardware",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "What cloud service model offers a cloud environment for developing, testing, and deploying applications without worrying about underlying infrastructure management?",
+    "question": "Docker is an example of:",
     "options": [
-      "A) IaaS",
-      "B) PaaS",
-      "C) SaaS",
-      "D) DaaS"
+      "a) Virtualization",
+      "b) Containerization",
+      "c) Bare-metal hypervisor",
+      "d) Fog computing"
     ],
-    "answer": "B) PaaS",
+    "answer": "b) Containerization",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "Delivering software applications over the internet on a subscription basis, enabling easy access and usage from any device, is characteristic of which cloud service model?",
+    "question": "Containers have lower performance overhead than VMs because they:",
     "options": [
-      "A) IaaS",
-      "B) PaaS",
-      "C) SaaS",
-      "D) XaaS"
+      "a) Use full OS isolation",
+      "b) Share the host OS kernel",
+      "c) Require more storage",
+      "d) Depend on Type 2 hypervisors"
     ],
-    "answer": "C) SaaS",
+    "answer": "b) Share the host OS kernel",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "Which cloud deployment model is a dedicated environment tailored for specific organizations, providing enhanced security, customization, and control?",
+    "question": "Which is a Type 1 hypervisor?",
     "options": [
-      "A) Public Cloud",
-      "B) Private Cloud",
-      "C) Hybrid Cloud",
-      "D) Community Cloud"
+      "a) VMware Workstation",
+      "b) Oracle VirtualBox",
+      "c) KVM",
+      "d) Docker"
     ],
-    "answer": "B) Private Cloud",
+    "answer": "c) KVM",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "What cloud deployment model combines public and private elements, allowing organizations to leverage the benefits of both while maintaining flexibility?",
+    "question": "Fog computing operates:",
     "options": [
-      "A) Public Cloud",
-      "B) Private Cloud",
-      "C) Hybrid Cloud",
-      "D) Community Cloud"
+      "a) Between edge devices and the cloud",
+      "b) Only on public clouds",
+      "c) Within SaaS applications",
+      "d) Exclusively for community clouds"
     ],
-    "answer": "C) Hybrid Cloud",
+    "answer": "a) Between edge devices and the cloud",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "Which economic model in cloud computing involves monthly payments for pay-as-you-go services and allows easy scaling without upfront hardware purchases?",
+    "question": "Kubernetes manages:",
     "options": [
-      "A) CapEx (Capital Expenditure)",
-      "B) OpEx (Operational Expenditure)",
-      "C) Fixed Expenditure",
-      "D) Capital Investment"
+      "a) Virtual machines",
+      "b) Containerized applications",
+      "c) Load balancers",
+      "d) Firewall rules"
     ],
-    "answer": "B) OpEx (Operational Expenditure)",
+    "answer": "b) Containerized applications",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "Which company migrated its streaming infrastructure to Amazon Web Services (AWS) using EC2 for computing and S3 for storage to achieve scalable global delivery?",
+    "question": "A hybrid cloud combines:",
     "options": [
-      "A) Spotify",
-      "B) Netflix",
-      "C) NASA",
-      "D) Healthcare organizations"
+      "a) Public and private clouds",
+      "b) IaaS and PaaS",
+      "c) Community and edge computing",
+      "d) SaaS and FaaS"
     ],
-    "answer": "B) Netflix",
+    "answer": "a) Public and private clouds",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "Healthcare organizations adopted hybrid cloud solutions for managing patient medical records to comply with which act, ensuring data security and patient care?",
+    "question": "Optimizing virtualization performance involves:",
     "options": [
-      "A) GDPR (General Data Protection Regulation)",
-      "B) HIPAA (Health Insurance Portability and Accountability Act)",
-      "C) PCI DSS (Payment Card Industry Data Security Standard)",
-      "D) SOX (Sarbanes-Oxley Act)"
+      "a) Increasing hypervisor overhead",
+      "b) Using nested virtualization",
+      "c) Allocating excess resources",
+      "d) Right-sizing VMs"
     ],
-    "answer": "B) HIPAA (Health Insurance Portability and Accountability Act)",
+    "answer": "d) Right-sizing VMs",
     "image": null
   }
 ]
