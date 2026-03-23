@@ -19,8 +19,8 @@ import {
 type AnswerVal = string | string[] | number
 
 /* ── Pill — glassmorphism with animated check ─────────────────────────────── */
-const Pill = memo(function Pill({ label, selected, accent, onClick }: {
-  label: string; selected: boolean; accent: string; onClick: () => void
+const Pill = memo(function Pill({ label, selected, accent, onClick, iconUrl }: {
+  label: string; selected: boolean; accent: string; onClick: () => void; iconUrl?: string
 }) {
   return (
     <motion.button onClick={onClick}
@@ -41,6 +41,9 @@ const Pill = memo(function Pill({ label, selected, accent, onClick }: {
           <motion.span initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className="inline-flex items-center justify-center size-4 rounded-full" style={{ background: accent }}>
             <Check className="size-2.5 text-white" strokeWidth={3} />
           </motion.span>
+        )}
+        {iconUrl && (
+          <img src={iconUrl} alt="" className="size-5 object-contain" style={{ filter: selected ? "none" : "grayscale(0.5) opacity(0.7)" }} />
         )}
         {label}
       </span>
@@ -431,7 +434,7 @@ export default function SurveyArPage() {
                           const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
                           return (
                             <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
-                              <Pill label={opt} selected={checked} accent={q.accent} onClick={() => { const prev = (answer as string[]) || []; const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]; setAnswer(next); if (opt === "أخرى" && checked) setOtherText("") }} />
+                              <Pill label={opt} selected={checked} accent={q.accent} iconUrl={q.optionIcons?.[opt]} onClick={() => { const prev = (answer as string[]) || []; const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]; setAnswer(next); if (opt === "أخرى" && checked) setOtherText("") }} />
                             </motion.div>
                           )
                         })}
@@ -501,7 +504,7 @@ export default function SurveyArPage() {
               </motion.div>
               <motion.p className="text-[11px] font-bold tracking-wider mb-4" style={{ color: "#a855f7", letterSpacing: "0.1em" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ خلصنا</motion.p>
               <h2 className="font-bold leading-[1.05] text-white mb-6" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>
-                شكرًا جدًا لك من{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>أعماق قلوبــ🤍ـنا</span>
+                ده كان معناه{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>كل حاجة.</span>
               </h2>
               <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-loose font-light">
                 كل إجابة هتتحلل عشان نفهم ازاي الناس بتشوف كتابة الذكاء الاصطناعي.<br />
