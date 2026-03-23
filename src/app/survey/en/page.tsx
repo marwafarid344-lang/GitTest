@@ -18,8 +18,8 @@ import {
 type AnswerVal = string | string[] | number
 
 /* ── Pill — glassmorphism with animated check ─────────────────────────────── */
-const Pill = memo(function Pill({ label, selected, accent, onClick }: {
-  label: string; selected: boolean; accent: string; onClick: () => void
+const Pill = memo(function Pill({ label, selected, accent, onClick, iconUrl }: {
+  label: string; selected: boolean; accent: string; onClick: () => void; iconUrl?: string
 }) {
   return (
     <motion.button
@@ -52,6 +52,9 @@ const Pill = memo(function Pill({ label, selected, accent, onClick }: {
           >
             <Check className="size-2.5 text-white" strokeWidth={3} />
           </motion.span>
+        )}
+        {iconUrl && (
+          <img src={iconUrl} alt="" className="size-5 object-contain" style={{ filter: selected ? "none" : "grayscale(0.5) opacity(0.7)" }} />
         )}
         {label}
       </span>
@@ -456,7 +459,7 @@ export default function SurveyPage() {
                           const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
                           return (
                             <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
-                              <Pill label={opt} selected={checked} accent={q.accent} onClick={() => { const prev = (answer as string[]) || []; const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]; setAnswer(next); if (opt === "Other" && checked) setOtherText("") }} />
+                              <Pill label={opt} selected={checked} accent={q.accent} iconUrl={q.optionIcons?.[opt]} onClick={() => { const prev = (answer as string[]) || []; const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]; setAnswer(next); if (opt === "Other" && checked) setOtherText("") }} />
                             </motion.div>
                           )
                         })}
@@ -527,7 +530,7 @@ export default function SurveyPage() {
               </motion.div>
               <motion.p className="text-[11px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#a855f7" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ All done</motion.p>
               <h2 className="font-extrabold leading-[0.92] tracking-tight text-white mb-6" style={{ fontSize: "clamp(3rem,9vw,8rem)" }}>
-                Thank You From{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>Depths of our Hearts 🤍</span>
+                That meant{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>everything.</span>
               </h2>
               <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-relaxed font-light">
                 Every response helps us understand how people perceive AI writing.<br />
