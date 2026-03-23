@@ -504,7 +504,7 @@ export default function SurveyArPage() {
               </motion.div>
               <motion.p className="text-[11px] font-bold tracking-wider mb-4" style={{ color: "#a855f7", letterSpacing: "0.1em" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ خلصنا</motion.p>
               <h2 className="font-bold leading-[1.05] text-white mb-6" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>
-                ده كان معناه{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>كل حاجة.</span>
+                من اعماق قلـ🤍ـوبنا{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>شكرًا جدًا ليك</span>
               </h2>
               <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-loose font-light">
                 كل إجابة هتتحلل عشان نفهم ازاي الناس بتشوف كتابة الذكاء الاصطناعي.<br />
