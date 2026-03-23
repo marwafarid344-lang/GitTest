@@ -2,7 +2,7 @@
 
 import { useState, useCallback, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Send, Loader2, Globe, Gift } from "lucide-react"
+import { ChevronLeft, ChevronRight, Send, Loader2, Globe, Gift, Check, Sparkles } from "lucide-react"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
 
@@ -18,44 +18,77 @@ import {
 
 type AnswerVal = string | string[] | number
 
-// ─── Pill ─────────────────────────────────────────────────────────────────────
+/* ── Pill — glassmorphism with animated check ─────────────────────────────── */
 const Pill = memo(function Pill({ label, selected, accent, onClick }: {
   label: string; selected: boolean; accent: string; onClick: () => void
 }) {
   return (
-    <button onClick={onClick} className="px-5 py-3 rounded-full text-sm md:text-base font-medium transition-[border-color,background,color,box-shadow] duration-200 outline-none text-right"
+    <motion.button onClick={onClick}
+      whileHover={{ scale: 1.03, y: -1 }}
+      whileTap={{ scale: 0.97 }}
+      className="relative px-5 py-3.5 rounded-2xl text-sm md:text-base font-medium transition-all duration-300 outline-none text-right overflow-hidden backdrop-blur-sm"
       style={{
-        border: `2px solid ${selected ? accent : "rgba(255,255,255,0.12)"}`,
-        background: selected ? `${accent}22` : "rgba(255,255,255,0.04)",
-        color: selected ? "#fff" : "rgba(255,255,255,0.55)",
-        boxShadow: selected ? `0 0 20px ${accent}44` : "none",
+        border: `1.5px solid ${selected ? accent : "rgba(255,255,255,0.08)"}`,
+        background: selected ? `${accent}12` : "rgba(255,255,255,0.03)",
+        color: selected ? "#fff" : "rgba(255,255,255,0.5)",
+        boxShadow: selected ? `0 4px 20px ${accent}25, inset 0 1px 0 ${accent}15` : "0 1px 3px rgba(0,0,0,0.2)",
       }}>
-      {label}
-    </button>
+      {selected && (
+        <motion.div layoutId="pill-glow-ar" className="absolute inset-0 rounded-2xl" style={{ background: `linear-gradient(135deg, ${accent}08, ${accent}05)` }} transition={{ type: "spring", stiffness: 300, damping: 30 }} />
+      )}
+      <span className="relative z-10 flex items-center gap-2">
+        {selected && (
+          <motion.span initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className="inline-flex items-center justify-center size-4 rounded-full" style={{ background: accent }}>
+            <Check className="size-2.5 text-white" strokeWidth={3} />
+          </motion.span>
+        )}
+        {label}
+      </span>
+    </motion.button>
   )
 })
 
-// ─── Rating scale (1–5 cubes) ─────────────────────────────────────────────────
+/* ── Rating scale — creative with connecting track ────────────────────────── */
 const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLabel, accent, accent2 }: {
   value: number | null; onChange: (v: number) => void
   minLabel: string; maxLabel: string; accent: string; accent2: string
 }) {
   return (
     <div>
-      <div className="flex gap-3 mt-2">
-        {[1, 2, 3, 4, 5].map((n) => (
-          <button key={n} onClick={() => onChange(n)}
-            className="flex-1 h-14 md:h-16 rounded-2xl font-bold text-lg md:text-xl transition-[transform,background,box-shadow,color] duration-150"
-            style={
-              value === n
-                ? { background: `linear-gradient(135deg,${accent},${accent2})`, color: "#fff", boxShadow: `0 6px 24px ${accent}55`, transform: "scale(1.08)" }
-                : { background: "rgba(255,255,255,0.06)", border: "2px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }
-            }>
-            {n}
-          </button>
-        ))}
+      <div className="relative flex gap-2 sm:gap-3 mt-2">
+        <div className="absolute top-1/2 left-4 right-4 h-[2px] -translate-y-1/2 bg-white/[0.06] rounded-full" />
+        {value && value > 1 && (
+          <motion.div
+            className="absolute top-1/2 right-4 h-[2px] -translate-y-1/2 rounded-full"
+            style={{ background: `linear-gradient(270deg, ${accent}, ${accent2})` }}
+            initial={false}
+            animate={{ width: `${((value - 1) / 4) * (100 - 8)}%` }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          />
+        )}
+        {[1, 2, 3, 4, 5].map((n) => {
+          const isSelected = value === n
+          const isFilled = value !== null && n <= value
+          return (
+            <motion.button key={n} onClick={() => onChange(n)}
+              whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }}
+              className="relative z-10 flex-1 h-14 md:h-16 rounded-2xl font-bold text-lg md:text-xl transition-all duration-200"
+              style={
+                isSelected
+                  ? { background: `linear-gradient(135deg,${accent},${accent2})`, color: "#fff", boxShadow: `0 8px 30px ${accent}40` }
+                  : isFilled
+                    ? { background: `${accent}20`, border: `2px solid ${accent}40`, color: "#fff" }
+                    : { background: "rgba(255,255,255,0.03)", border: "1.5px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)", backdropFilter: "blur(8px)" }
+              }>
+              {n}
+              {isSelected && (
+                <motion.div layoutId="rating-dot-ar" className="absolute -bottom-1 left-1/2 -translate-x-1/2 size-2 rounded-full" style={{ background: accent2 }} />
+              )}
+            </motion.button>
+          )
+        })}
       </div>
-      <div className="flex justify-between mt-2 text-xs text-white/35 font-medium">
+      <div className="flex justify-between mt-3 text-[11px] text-white/25 font-medium">
         <span>{minLabel}</span>
         <span>{maxLabel}</span>
       </div>
@@ -63,14 +96,18 @@ const RatingScale = memo(function RatingScale({ value, onChange, minLabel, maxLa
   )
 })
 
-// ─── Progress bar ─────────────────────────────────────────────────────────────
+/* ── Progress bar — creative glowing ──────────────────────────────────────── */
 const ProgressBar = memo(function ProgressBar({ step, accent, accent2 }: { step: number; accent: string; accent2: string }) {
+  const pct = (step / TOTAL) * 100
   return (
-    <div className="fixed top-0 left-0 right-0 h-0.5 bg-white/5 z-50">
-      <motion.div className="h-full" initial={false}
-        animate={{ width: `${(step / TOTAL) * 100}%` }}
+    <div className="fixed top-0 left-0 right-0 h-1 bg-white/[0.03] z-50">
+      <motion.div className="h-full relative" initial={false}
+        animate={{ width: `${pct}%` }}
         transition={{ type: "spring", stiffness: 280, damping: 28 }}
-        style={{ background: `linear-gradient(90deg,${accent},${accent2})`, willChange: "width" }} />
+        style={{ background: `linear-gradient(90deg,${accent},${accent2})`, willChange: "width" }}>
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 size-2.5 rounded-full bg-white shadow-lg" style={{ boxShadow: `0 0 10px ${accent}` }} />
+      </motion.div>
+      <div className="absolute top-3 left-4 text-[10px] text-white/20 font-bold tabular-nums">{step} / {TOTAL}</div>
     </div>
   )
 })
@@ -209,211 +246,164 @@ export default function SurveyArPage() {
       <div className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-28 py-20">
         <AnimatePresence mode="wait" initial={false}>
 
-          {/* ── مقدمة ── */}
+          {/* ── مقدمة — creative ── */}
           {step === 0 && (
             <motion.div key="intro" {...FADE_UP} transition={DUR}>
-              <div className="flex items-center gap-2 mb-6">
+              <motion.div className="flex items-center gap-2 mb-8" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
                 <Image src="/images/1212-removebg-preview.png" alt="Chameleon" width={22} height={22} className="object-contain" />
-                <p className="text-sm font-semibold tracking-widest uppercase" style={{ color: "#a855f7", letterSpacing: "0.1em" }}>
-                  استبيان كاميليون 2026
+                <p className="text-[11px] font-bold tracking-widest" style={{ color: "#a855f7", letterSpacing: "0.15em" }}>
+                  استبيان كاميليون ٢٠٢٦
                 </p>
-              </div>
+              </motion.div>
 
-              <h1 className="font-bold leading-[1.1] text-white mb-4" style={{ fontSize: "clamp(2.4rem,7vw,6.5rem)" }}>
-                كتابة الذكاء الاصطناعي<br />
-                <span className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>
-                  مقابل كتابة الإنسان.
+              <motion.h1
+                className="font-bold leading-[1.05] text-white mb-5"
+                style={{ fontSize: "clamp(2.4rem,7vw,6.5rem)" }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.6 }}
+              >
+                الذكاء الاصطناعي بيكتب.{"\n"}
+                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)", WebkitBackgroundClip: "text" }}>
+                  بس هل بيحس؟
                 </span>
-              </h1>
+              </motion.h1>
 
-              <p className="text-base md:text-lg text-white/50 max-w-xl mb-3 leading-loose font-light">
-                <span className="font-semibold text-white/70">استبيان الانطباعات</span> — الاستبيان ده هدفه يستكشف انطباعات الناس عن كتابة الذكاء الاصطناعي مقارنة بكتابة الإنسان.
-              </p>
-              <p className="text-sm text-white/30 max-w-xl mb-8 leading-loose font-light">
+              <motion.p className="text-base md:text-lg text-white/40 max-w-xl mb-3 leading-loose font-light" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                <span className="font-semibold text-white/60">استبيان الانطباعات</span> — هدفه يستكشف ازاي الناس بتشوف كتابة الذكاء الاصطناعي مقارنة بكتابة الإنسان.
+              </motion.p>
+              <motion.p className="text-sm text-white/20 max-w-xl mb-10 leading-loose font-light" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
                 إجاباتك مجهولة الهوية وهتُستخدم لأغراض أكاديمية فقط.
-              </p>
+              </motion.p>
 
-              <div className="mb-8 p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-4 max-w-xl">
+              <motion.div className="mb-8 p-5 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] flex items-center gap-4 max-w-xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
                 <Gift className="w-8 h-8 text-pink-500 animate-bounce shrink-0" />
-                <p className="text-sm md:text-base text-white/80 font-medium">
+                <p className="text-sm md:text-base text-white/70 font-medium">
                   سجل بياناتك عشان تدخل السحب العشوائي على هدية قيمة! 🎁
                 </p>
-              </div>
+              </motion.div>
 
-              {/* Section tags */}
-              <div className="flex flex-wrap gap-2 mb-12">
-                {["احكيلنا عنك", "١ · الانطباعات", "٢ · مقارنة النصوص", "٣ · أدوات وملاحظات"].map((s) => (
-                  <span key={s} className="text-xs font-medium px-3 py-1 rounded-full border border-white/10 text-white/40">{s}</span>
-                ))}
-              </div>
-
-              <button onClick={() => setStep(1)}
-                className="inline-flex items-center gap-4 text-white font-bold text-xl md:text-2xl px-10 py-5 rounded-2xl transition-transform duration-200 hover:scale-[1.04] active:scale-95"
-                style={{ background: "linear-gradient(135deg,#7c3aed,#db2777)" }}>
+              <motion.button onClick={() => setStep(1)}
+                whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-4 text-white font-bold text-xl md:text-2xl px-10 py-5 rounded-2xl"
+                style={{ background: "linear-gradient(135deg,#7c3aed,#db2777)", boxShadow: "0 10px 40px rgba(124,58,237,0.3)" }}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
                 <ChevronLeft className="w-6 h-6" />
                 خلينا نبدأ
-              </button>
+              </motion.button>
             </motion.div>
           )}
 
-          {/* ── سؤال ── */}
+          {/* ── سؤال — creative ── */}
           {step >= 1 && step <= TOTAL && q && (
             <motion.div key={`q${step}`} {...SLIDE} transition={DUR}>
-              <div className="flex items-center gap-3 mb-5">
-                <span className="text-xs font-bold tracking-wider" style={{ color: q.accent }}>{stepDisplay?.label}</span>
-                <div className="h-px flex-1 bg-white/8" />
-                <span className="text-xs text-white/25 font-medium">{stepDisplay?.counter}</span>
-              </div>
+              {/* Section header — glowing dot */}
+              <motion.div className="flex items-center gap-3 mb-6" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.4 }}>
+                <div className="size-2 rounded-full" style={{ background: q.accent, boxShadow: `0 0 8px ${q.accent}66` }} />
+                <span className="text-[11px] font-bold tracking-wider" style={{ color: q.accent }}>{stepDisplay?.label}</span>
+                <div className="h-px flex-1" style={{ background: `linear-gradient(270deg, ${q.accent}30, transparent)` }} />
+                <span className="text-[10px] text-white/15 font-bold tabular-nums">{stepDisplay?.counter}</span>
+              </motion.div>
 
-              {/* ── Text Display (سلايد القراءة فقط) ── */}
+              {/* ── Text Display ── */}
               {q.type === "text-display" && q.textContent && (
                 <>
-                  {/* Text label badge */}
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span
-                      className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full"
-                      style={{ background: `${q.accent}22`, color: q.accent, border: `1px solid ${q.accent}44` }}
-                    >
-                      {q.textLabel}
-                    </span>
-                  </div>
-
-                  {/* Question label */}
-                  <h2 className="font-bold leading-[1.1] text-white mb-6"
-                    style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>
-                    {q.label}
-                  </h2>
-                  {q.sub && <p className="text-sm md:text-base text-white/40 mb-6 font-light">{q.sub}</p>}
-
-                  {/* Text passage */}
-                  <div className="p-6 md:p-8 rounded-2xl bg-white/[0.04] border border-white/10 max-w-2xl"
-                    style={{ borderRight: `4px solid ${q.accent}` }}>
-                    <p className="text-base md:text-lg text-white/80 leading-[1.9] font-light">
-                      {q.textContent}
-                    </p>
+                  <motion.div className="inline-flex items-center gap-2 mb-4" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}>
+                    <span className="text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm" style={{ background: `${q.accent}10`, color: q.accent, border: `1px solid ${q.accent}25` }}>{q.textLabel}</span>
+                  </motion.div>
+                  <h2 className="font-bold leading-[1.05] text-white mb-6" style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>{q.label}</h2>
+                  {q.sub && <p className="text-sm md:text-base text-white/30 mb-6 font-light">{q.sub}</p>}
+                  <div className="p-6 md:p-8 rounded-3xl bg-white/[0.02] backdrop-blur-xl border border-white/[0.06] max-w-2xl relative overflow-hidden shadow-lg" style={{ borderRight: `3px solid ${q.accent}` }}>
+                    <div className="absolute top-0 left-0 w-32 h-32 rounded-full blur-[60px] opacity-[0.06]" style={{ background: q.accent }} />
+                    <p className="text-base md:text-lg text-white/60 leading-[1.9] font-light relative z-10">{q.textContent}</p>
                   </div>
                 </>
               )}
 
-              {/* ── Text Compare (أسئلة فقط) ── */}
+              {/* ── Text Compare ── */}
               {q.type === "text-compare" && q.subQuestions && (
                 <>
-                  {/* Text label badge */}
-                  <div className="inline-flex items-center gap-2 mb-4">
-                    <span
-                      className="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full"
-                      style={{ background: `${q.accent}22`, color: q.accent, border: `1px solid ${q.accent}44` }}
-                    >
-                      {q.textLabel}
-                    </span>
-                  </div>
-
-                  {/* Question label */}
-                  <h2 className="font-bold leading-[1.1] text-white mb-6"
-                    style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>
-                    {q.label}
-                  </h2>
-
-                  {/* Sub-questions */}
-                  <div className="space-y-10 max-w-3xl">
+                  <motion.div className="inline-flex items-center gap-2 mb-4" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}>
+                    <span className="text-[10px] font-bold tracking-wider px-3 py-1.5 rounded-full backdrop-blur-sm" style={{ background: `${q.accent}10`, color: q.accent, border: `1px solid ${q.accent}25` }}>{q.textLabel}</span>
+                  </motion.div>
+                  <h2 className="font-bold leading-[1.05] text-white mb-8" style={{ fontSize: "clamp(1.8rem,4vw,3.5rem)", whiteSpace: "pre-line" }}>{q.label}</h2>
+                  <div className="space-y-8 max-w-3xl">
                     {q.subQuestions.map((sq, idx) => {
                       const sqAnswer = answers[sq.id] as string | undefined
                       return (
-                        <div key={sq.id}>
-                          <p className="text-sm md:text-base text-white/60 font-medium mb-4">
-                            <span className="text-white/30 ml-2">{idx + 1}.</span>
+                        <motion.div key={sq.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + idx * 0.08 }} className="p-5 rounded-2xl bg-white/[0.02] backdrop-blur-sm border border-white/[0.05]">
+                          <p className="text-sm md:text-base text-white/50 font-medium mb-4">
+                            <span className="inline-flex items-center justify-center size-5 rounded-full text-[10px] font-bold ml-2" style={{ background: `${q.accent}20`, color: q.accent }}>{idx + 1}</span>
                             {sq.label}
                           </p>
-                          <div className="flex flex-wrap gap-3">
-                            {sq.options.map((opt) => (
-                              <Pill key={opt} label={opt} selected={sqAnswer === opt} accent={q.accent}
-                                onClick={() => setSubAnswer(sq.id, opt)} />
-                            ))}
+                          <div className="flex flex-wrap gap-2.5">
+                            {sq.options.map((opt) => (<Pill key={opt} label={opt} selected={sqAnswer === opt} accent={q.accent} onClick={() => setSubAnswer(sq.id, opt)} />))}
                           </div>
-                        </div>
+                        </motion.div>
                       )
                     })}
                   </div>
                 </>
               )}
 
-              {/* ── Non-text-compare / non-text-display questions ── */}
+              {/* ── Standard questions ── */}
               {q.type !== "text-compare" && q.type !== "text-display" && (
                 <>
-                  <h2 className="font-bold leading-[1.1] text-white mb-4 flex items-center gap-4 flex-wrap"
-                    style={{ fontSize: "clamp(2.4rem,5.5vw,5rem)", whiteSpace: "pre-line" }}>
+                  <motion.h2 className="font-bold leading-[1.05] text-white mb-4 flex items-center gap-4 flex-wrap" style={{ fontSize: "clamp(2.2rem,5.5vw,5rem)", whiteSpace: "pre-line" }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}>
                     <span>{q.label}</span>
-                    {q.section === "احكيلنا عنك" && (
-                      <Gift className="w-10 h-10 md:w-14 md:h-14 text-pink-500 animate-bounce mt-2" />
-                    )}
-                  </h2>
-                  {q.sub && <p className="text-sm md:text-base text-white/40 mb-10 font-light leading-loose">{q.sub}</p>}
+                    {q.section === "احكيلنا عنك" && (<Gift className="w-10 h-10 md:w-14 md:h-14 text-pink-500 animate-bounce mt-2" />)}
+                  </motion.h2>
+                  {q.sub && <motion.p className="text-sm md:text-base text-white/30 mb-10 font-light leading-loose" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>{q.sub}</motion.p>}
                   {!q.sub && <div className="mb-10" />}
 
-                  {/* ── Text Input (phone) ── */}
+                  {/* Text Input — animated underline */}
                   {q.type === "text-input" && (
-                    <div className="max-w-md">
-                      <input
-                        type={q.inputType || "text"}
-                        placeholder={q.placeholder}
-                        value={(answer as string) || ""}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        dir={q.inputType === "tel" ? "ltr" : "rtl"}
-                        className="w-full bg-transparent text-white text-2xl md:text-3xl font-light placeholder-white/20 outline-none border-b-2 pb-4 transition-[border-color] duration-300"
-                        style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                      />
-                      {!q.required && (
-                        <p className="text-xs text-white/25 mt-3 flex items-center gap-1.5">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/15" />
-                          اختياري — ممكن تتخطاه
-                        </p>
-                      )}
-                    </div>
+                    <motion.div className="max-w-md" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                      <div className="relative">
+                        <input type={q.inputType || "text"} placeholder={q.placeholder} value={(answer as string) || ""} onChange={(e) => setAnswer(e.target.value)} dir={q.inputType === "tel" ? "ltr" : "rtl"}
+                          className="w-full bg-transparent text-white text-2xl md:text-3xl font-light placeholder-white/15 outline-none pb-4" style={{ caretColor: q.accent }} />
+                        <div className="h-[2px] bg-white/[0.06] rounded-full" />
+                        <motion.div className="absolute bottom-0 right-0 h-[2px] rounded-full" style={{ background: `linear-gradient(270deg, ${q.accent}, ${q.accent2})` }} initial={false} animate={{ width: (answer as string)?.trim() ? "100%" : "0%" }} transition={{ duration: 0.4, ease: "easeOut" }} />
+                      </div>
+                      {!q.required && <p className="text-[11px] text-white/20 mt-3">اختياري — ممكن تتخطاه</p>}
+                    </motion.div>
                   )}
 
-                  {/* ── Rating (5 cubes) ── */}
+                  {/* Rating */}
                   {q.type === "rating" && (
-                    <div className="max-w-lg">
-                      <RatingScale
-                        value={(answer as number) ?? null}
-                        onChange={setAnswer}
-                        minLabel={q.minLabel ?? ""}
-                        maxLabel={q.maxLabel ?? ""}
-                        accent={q.accent} accent2={q.accent2} />
-                    </div>
+                    <motion.div className="max-w-lg" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                      <RatingScale value={(answer as number) ?? null} onChange={setAnswer} minLabel={q.minLabel ?? ""} maxLabel={q.maxLabel ?? ""} accent={q.accent} accent2={q.accent2} />
+                    </motion.div>
                   )}
 
                   {/* Radio */}
                   {q.type === "radio" && q.options && (
-                    <div className="flex flex-wrap gap-3 max-w-3xl">
-                      {q.options.map((opt) => (
-                        <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                          onClick={() => setAnswer(opt)} />
+                    <motion.div className="flex flex-wrap gap-2.5 max-w-3xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+                      {q.options.map((opt, i) => (
+                        <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
+                          <Pill label={opt} selected={answer === opt} accent={q.accent} onClick={() => setAnswer(opt)} />
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   )}
 
-                  {/* Radio with "Other" */}
+                  {/* Radio with Other */}
                   {q.type === "radio-other" && q.options && (
                     <div className="max-w-3xl">
-                      <div className="flex flex-wrap gap-3">
-                        {q.options.map((opt) => (
-                          <Pill key={opt} label={opt} selected={answer === opt} accent={q.accent}
-                            onClick={() => { setAnswer(opt); if (opt !== "أخرى") setOtherText("") }} />
+                      <motion.div className="flex flex-wrap gap-2.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+                        {q.options.map((opt, i) => (
+                          <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
+                            <Pill label={opt} selected={answer === opt} accent={q.accent} onClick={() => { setAnswer(opt); if (opt !== "أخرى") setOtherText("") }} />
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                       {answer === "أخرى" && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-                          <input
-                            type="text"
-                            placeholder="حدد مجالك…"
-                            value={otherText}
-                            onChange={(e) => setOtherText(e.target.value)}
-                            autoFocus
-                            className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
-                            style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                          />
+                        <motion.div initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.3 }}>
+                          <div className="relative mt-5 max-w-md">
+                            <input type="text" placeholder="حدد مجالك…" value={otherText} onChange={(e) => setOtherText(e.target.value)} autoFocus className="w-full bg-transparent text-white text-lg font-light placeholder-white/15 outline-none pb-3" style={{ caretColor: q.accent }} />
+                            <div className="h-[2px] bg-white/[0.06] rounded-full" />
+                            <motion.div className="absolute bottom-0 right-0 h-[2px] rounded-full" style={{ background: q.accent }} initial={false} animate={{ width: otherText.trim() ? "100%" : "0%" }} transition={{ duration: 0.4 }} />
+                          </div>
                         </motion.div>
                       )}
                     </div>
@@ -421,48 +411,38 @@ export default function SurveyArPage() {
 
                   {/* Checkbox */}
                   {q.type === "checkbox" && q.options && (
-                    <div className="flex flex-wrap gap-3 max-w-3xl">
-                      {q.options.map((opt) => {
+                    <motion.div className="flex flex-wrap gap-2.5 max-w-3xl" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+                      {q.options.map((opt, i) => {
                         const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
                         return (
-                          <Pill key={opt} label={opt} selected={checked} accent={q.accent}
-                            onClick={() => {
-                              const prev = (answer as string[]) || []
-                              setAnswer(checked ? prev.filter((v) => v !== opt) : [...prev, opt])
-                            }} />
+                          <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
+                            <Pill label={opt} selected={checked} accent={q.accent} onClick={() => { const prev = (answer as string[]) || []; setAnswer(checked ? prev.filter((v) => v !== opt) : [...prev, opt]) }} />
+                          </motion.div>
                         )
                       })}
-                    </div>
+                    </motion.div>
                   )}
 
-                  {/* Checkbox with "Other" */}
+                  {/* Checkbox with Other */}
                   {q.type === "checkbox-other" && q.options && (
                     <div className="max-w-3xl">
-                      <div className="flex flex-wrap gap-3">
-                        {q.options.map((opt) => {
+                      <motion.div className="flex flex-wrap gap-2.5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+                        {q.options.map((opt, i) => {
                           const checked = Array.isArray(answer) && (answer as string[]).includes(opt)
                           return (
-                            <Pill key={opt} label={opt} selected={checked} accent={q.accent}
-                              onClick={() => {
-                                const prev = (answer as string[]) || []
-                                const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]
-                                setAnswer(next)
-                                if (opt === "أخرى" && checked) setOtherText("")
-                              }} />
+                            <motion.div key={opt} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.04 }}>
+                              <Pill label={opt} selected={checked} accent={q.accent} onClick={() => { const prev = (answer as string[]) || []; const next = checked ? prev.filter((v) => v !== opt) : [...prev, opt]; setAnswer(next); if (opt === "أخرى" && checked) setOtherText("") }} />
+                            </motion.div>
                           )
                         })}
-                      </div>
+                      </motion.div>
                       {Array.isArray(answer) && (answer as string[]).includes("أخرى") && (
-                        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
-                          <input
-                            type="text"
-                            placeholder="حدد إجابتك…"
-                            value={otherText}
-                            onChange={(e) => setOtherText(e.target.value)}
-                            autoFocus
-                            className="mt-5 w-full max-w-md bg-transparent text-white text-lg font-light placeholder-white/20 outline-none border-b-2 pb-3 transition-[border-color] duration-300"
-                            style={{ borderColor: otherText.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                          />
+                        <motion.div initial={{ opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.3 }}>
+                          <div className="relative mt-5 max-w-md">
+                            <input type="text" placeholder="حدد إجابتك…" value={otherText} onChange={(e) => setOtherText(e.target.value)} autoFocus className="w-full bg-transparent text-white text-lg font-light placeholder-white/15 outline-none pb-3" style={{ caretColor: q.accent }} />
+                            <div className="h-[2px] bg-white/[0.06] rounded-full" />
+                            <motion.div className="absolute bottom-0 right-0 h-[2px] rounded-full" style={{ background: q.accent }} initial={false} animate={{ width: otherText.trim() ? "100%" : "0%" }} transition={{ duration: 0.4 }} />
+                          </div>
                         </motion.div>
                       )}
                     </div>
@@ -470,73 +450,62 @@ export default function SurveyArPage() {
 
                   {/* Textarea */}
                   {q.type === "textarea" && (
-                    <div className="max-w-2xl">
-                      <textarea rows={5}
-                        value={(answer as string) || ""}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        placeholder={q.placeholder}
-                        className="w-full bg-transparent text-white text-lg md:text-xl font-light placeholder-white/20 resize-none outline-none border-b-2 pb-4 transition-[border-color] duration-300 text-right leading-loose"
-                        style={{ borderColor: (answer as string)?.trim() ? q.accent : "rgba(255,255,255,0.12)", caretColor: q.accent }}
-                      />
-                      {q.required && (
-                        <p className="text-xs text-white/20 mt-2 text-left" dir="ltr">
-                          {((answer as string) || "").trim().length} chars
-                          {((answer as string) || "").trim().length < 5 && " · اكتب 5 حروف على الأقل"}
-                        </p>
-                      )}
-                      {!q.required && (
-                        <p className="text-xs text-white/20 mt-2">اختياري</p>
-                      )}
-                    </div>
+                    <motion.div className="max-w-2xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                      <textarea rows={5} value={(answer as string) || ""} onChange={(e) => setAnswer(e.target.value)} placeholder={q.placeholder}
+                        className="w-full bg-white/[0.02] backdrop-blur-sm text-white text-lg md:text-xl font-light placeholder-white/15 resize-none outline-none rounded-2xl p-5 border border-white/[0.06] transition-all duration-300 focus:border-transparent text-right leading-loose"
+                        style={{ caretColor: q.accent, boxShadow: (answer as string)?.trim() ? `0 0 0 1.5px ${q.accent}40, 0 4px 20px ${q.accent}10` : "none" }} />
+                      <div className="flex items-center justify-between mt-2">
+                        {q.required ? (
+                          <p className="text-[11px] text-white/20" dir="ltr">{((answer as string) || "").trim().length} chars{((answer as string) || "").trim().length < 5 && <span style={{ color: q.accent }}> · اكتب ٥ حروف على الأقل</span>}</p>
+                        ) : (<p className="text-[11px] text-white/15">اختياري</p>)}
+                        {(answer as string)?.trim() && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="size-1.5 rounded-full" style={{ background: q.accent }} />}
+                      </div>
+                    </motion.div>
                   )}
                 </>
               )}
 
-              {/* Navigation */}
-              <div className="flex items-center gap-6 mt-12">
-                <button
+              {/* ── Nav — creative ── */}
+              <motion.div className="flex items-center gap-4 mt-14" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+                <motion.button
                   onClick={canProceed && !submitting ? handleNext : undefined}
                   disabled={!canProceed || submitting}
-                  className="flex items-center gap-3 font-bold text-base md:text-lg px-7 py-4 rounded-2xl transition-[transform,opacity] duration-200 hover:scale-[1.04] active:scale-95 disabled:cursor-not-allowed"
+                  whileHover={canProceed && !submitting ? { scale: 1.04, y: -1 } : {}}
+                  whileTap={canProceed && !submitting ? { scale: 0.97 } : {}}
+                  className="flex items-center gap-3 font-bold text-base md:text-lg px-8 py-4 rounded-2xl transition-all duration-300 disabled:cursor-not-allowed"
                   style={
                     canProceed && !submitting
-                      ? { background: `linear-gradient(135deg,${q.accent},${q.accent2})`, color: "#fff", boxShadow: `0 10px 32px ${q.accent}44` }
-                      : { background: "rgba(255,255,255,0.05)", color: "rgba(255,255,255,0.2)", border: "1px solid rgba(255,255,255,0.08)" }
+                      ? { background: q.accent, color: "#fff", boxShadow: `0 8px 30px ${q.accent}30` }
+                      : { background: "rgba(255,255,255,0.03)", color: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.06)", backdropFilter: "blur(8px)" }
                   }>
-                  {submitting
-                    ? <><Loader2 className="w-5 h-5 animate-spin" /> جاري الإرسال…</>
-                    : step === TOTAL
-                    ? <><Send className="w-4 h-4" /> إرسال</>
-                    : <>التالي <ChevronLeft className="w-4 h-4" /></>}
+                  {submitting ? <><Loader2 className="w-5 h-5 animate-spin" /> جاري الإرسال…</> : step === TOTAL ? <><Send className="w-4 h-4" /> إرسال</> : <>التالي <ChevronLeft className="w-4 h-4" /></>}
+                </motion.button>
+                <button onClick={handleBack} className="flex items-center gap-2 text-white/20 hover:text-white/45 transition-all duration-300 text-sm font-medium hover:translate-x-0.5">
+                  <ChevronRight className="w-3.5 h-3.5" /> رجوع
                 </button>
-
-                <button onClick={handleBack}
-                  className="flex items-center gap-2 text-white/30 hover:text-white/60 transition-colors text-sm font-medium">
-                  <ChevronRight className="w-4 h-4" />
-                  رجوع
-                </button>
-              </div>
+              </motion.div>
             </motion.div>
           )}
 
-          {/* ── شكراً ── */}
+          {/* ── شكراً — creative ── */}
           {step === TOTAL + 1 && (
-            <motion.div key="done" {...FADE_UP} transition={DUR}>
-              <div className="mb-10 text-6xl">🎉</div>
-              <p className="text-sm font-bold tracking-widest mb-4" style={{ color: "#a855f7", letterSpacing: "0.08em" }}>
-                ✦ خلصنا
-              </p>
-              <h2 className="font-bold leading-[1.1] text-white mb-6"
-                style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>
-                شكراً جداً،{" "}
-                <span className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>
-                  بجد.
-                </span>
+            <motion.div key="done" {...FADE_UP} transition={DUR} className="text-center flex flex-col items-center">
+              <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 15 }} className="relative mb-8">
+                <div className="size-24 rounded-full flex items-center justify-center" style={{ background: "rgba(168,85,247,0.1)" }}>
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4, type: "spring", stiffness: 200 }}>
+                    <Check className="size-12 text-purple-400" strokeWidth={3} />
+                  </motion.div>
+                </div>
+                <Sparkles className="absolute -top-1 -right-1 size-6 text-pink-400 animate-pulse" />
+                <Sparkles className="absolute -bottom-1 -left-2 size-4 text-purple-400/60 animate-pulse" style={{ animationDelay: "0.5s" }} />
+              </motion.div>
+              <motion.p className="text-[11px] font-bold tracking-wider mb-4" style={{ color: "#a855f7", letterSpacing: "0.1em" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ خلصنا</motion.p>
+              <h2 className="font-bold leading-[1.05] text-white mb-6" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>
+                شكرًا جدًا لك من{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>أعماق قلوبــ🤍ـنا</span>
               </h2>
-              <p className="text-lg md:text-2xl text-white/45 max-w-lg mb-14 leading-loose font-light">
+              <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-loose font-light">
                 كل إجابة هتتحلل عشان نفهم ازاي الناس بتشوف كتابة الذكاء الاصطناعي.<br />
-                <span className="text-white/25 text-base">إجاباتك مجهولة ومش هتتشارك بشكل فردي أبداً.</span>
+                <span className="text-white/20 text-base">إجاباتك مجهولة ومش هتتشارك بشكل فردي أبداً.</span>
               </p>
             </motion.div>
           )}
