@@ -23,6 +23,8 @@ export interface Question {
   textContent?: string
   textLabel?: string
   subQuestions?: SubQuestion[]
+  // Optional mapping of option label → icon URL
+  optionIcons?: Record<string, string>
 }
 
 export const DEMO_COUNT = 5;
@@ -116,7 +118,7 @@ export const AR_TO_EN_MAP: Record<string, string> = {
   "التعبير العاطفي": "Emotional expression",
   "الأسلوب الشخصي": "Personal style",
   "الإبداع والخيال": "Creativity and imagination",
-  "خبرة الكاتب وفهمه للسياق": "Writer's experience and contextual understanding",
+  "خبرة الكاتب وفهمه للسياق": "Writer’s experience and contextual understanding",
   // q11/q13 — Text clarity
   "واضح جداً وأسلوبه حلو": "Very clear with a good style",
   "واضح لحد ما": "Moderately clear",
@@ -323,6 +325,14 @@ export const ALL_STEPS_EN: Question[] = [
     options: ["ChatGPT", "Grammarly", "Notion AI", "Google Gemini", "Microsoft Copilot", "Anthropic Claude", "Other"],
     required: true,
     accent: "#ec4899", accent2: "#f97316",
+    optionIcons: {
+      "ChatGPT": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/openai.png",
+      "Grammarly": "https://thesvg.org/icons/grammarly/default.svg",
+      "Notion AI": "https://thesvg.org/icons/notion/default.svg",
+      "Google Gemini": "https://thesvg.org/icons/google-gemini/default.svg",
+      "Microsoft Copilot": "https://thesvg.org/icons/microsoft-copilot/default.svg",
+      "Anthropic Claude": "https://thesvg.org/icons/claude/default.svg",
+    },
   },
   {
     id: "q16", section: "3 · Tools & Feedback", type: "radio",
@@ -525,7 +535,7 @@ export const ALL_STEPS_AR: Question[] = [
   {
     id: "text-b-read", section: "٢ · مقارنة النصوص", type: "text-display",
     textLabel: "النص ب",
-    textContent: ".القراءة توسع أفق الفرد وتزيد معارفه، فهي وسيلة فعّالة لاكتساب المعلومات وتنمية التفكير النقدي. بالاستمرار في القراءة يتحسّن الأداء العملي والشخصي وتزداد قدرة الإنسان على حل المشكلات",
+    textContent: "القراءة طريقة فعّالة لاكتساب المعرفة وتطوير التفكير النقدي. بتوسّع أفق الفرد وبتزود معرفته. كمان بتحسّن الأداء العملي والشخصي وبتعزز قدرة الشخص على حل المشاكل.",
     label: "اقرأ النص ده كويس.",
     sub: "بعد ما تقرأ، هنسألك أسئلة عن النص ده.",
     required: false,
@@ -560,6 +570,14 @@ export const ALL_STEPS_AR: Question[] = [
     options: ["ChatGPT", "Grammarly", "Notion AI", "Google Gemini", "Microsoft Copilot", "Anthropic Claude", "أخرى"],
     required: true,
     accent: "#ec4899", accent2: "#f97316",
+    optionIcons: {
+      "ChatGPT": "https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/openai.png",
+      "Grammarly": "https://thesvg.org/icons/grammarly/default.svg",
+      "Notion AI": "https://thesvg.org/icons/notion/default.svg",
+      "Google Gemini": "https://thesvg.org/icons/google-gemini/default.svg",
+      "Microsoft Copilot": "https://thesvg.org/icons/microsoft-copilot/default.svg",
+      "Anthropic Claude": "https://thesvg.org/icons/claude/default.svg",
+    },
   },
   {
     id: "q16", section: "٣ · أدوات وملاحظات", type: "radio",
