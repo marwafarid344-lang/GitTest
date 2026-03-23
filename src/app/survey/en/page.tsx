@@ -530,7 +530,7 @@ export default function SurveyPage() {
               </motion.div>
               <motion.p className="text-[11px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#a855f7" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ All done</motion.p>
               <h2 className="font-extrabold leading-[0.92] tracking-tight text-white mb-6" style={{ fontSize: "clamp(3rem,9vw,8rem)" }}>
-                That meant{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>everything.</span>
+                Thank You From{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>Depths of our Hearts 🤍</span>
               </h2>
               <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-relaxed font-light">
                 Every response helps us understand how people perceive AI writing.<br />
