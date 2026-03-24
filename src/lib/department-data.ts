@@ -3388,11 +3388,11 @@ export const departmentData: { [key: string]: Department } = {
               description: "Business system analysis and design methodologies",
               creditHours: 3,
               materials: {
-                lectures: "https://drive.google.com/drive/folders/system-analysis-design-lectures",
-                sections: "https://drive.google.com/drive/folders/system-analysis-design-sections",
-                videos: "https://youtube.com/playlist?list=system-analysis-design-videos",
-                summaries: "https://drive.google.com/drive/folders/system-analysis-design-summaries",
-                exams: "https://drive.google.com/drive/folders/system-analysis-design-lastexam"
+                lectures: "https://drive.google.com/drive/folders/1XCk9YrAfo70uV9hfybNmvLvJn69lHFiZ?usp=drive_link",
+                sections: "https://drive.google.com/drive/folders/10ttM9_EA2sEAPEj6_fsyKEaxP2AItRcP?usp=drive_link",
+                videos: "",
+                summaries: "https://drive.google.com/drive/folders/1-TUMlZnHgD5NSahx8Ab5v8tR4gBZ_bGy?usp=drive_link",
+                exams: "https://drive.google.com/drive/folders/1bYzfL7z6ce132wz5wAEYxWP29khFj81k?usp=drive_link"
               },
             },
             {
@@ -3402,26 +3402,26 @@ export const departmentData: { [key: string]: Department } = {
               description: "Financial planning and analytical techniques",
               creditHours: 3,
               materials: {
-                lectures: "https://drive.google.com/drive/folders/financial-planning-analysis-lectures",
-                sections: "https://drive.google.com/drive/folders/financial-planning-analysis-sections",
-                videos: "https://youtube.com/playlist?list=financial-planning-analysis-videos",
-                summaries: "https://drive.google.com/drive/folders/financial-planning-analysis-summaries",
-                exams: "https://drive.google.com/drive/folders/financial-planning-analysis-lastexam"
+                lectures: "https://drive.google.com/drive/folders/1u0wz8C_h5LNO3Vkf6hXAUggP3aq3e0uL?usp=drive_link",
+                sections: "https://drive.google.com/drive/folders/1eqL3uQ9EENUQFZwjh_JUPww3hqGTbNI4?usp=drive_link",
+                videos: "",
+                summaries: "https://drive.google.com/drive/folders/1amK-_rvbeSG0hC-B90BKZxaI-9Y-U-Qj?usp=drive_link",
+                exams: "https://drive.google.com/drive/folders/1hNRPVXo_r0PxY6YhLHBC36eKiPjwp82e?usp=drive_link"
               },
             },
-            {
-              id: "university-elective-ba-2",
-              name: "University Elective",
-              code: "02-0X-000XX",
-              description: "University-wide elective course",
-              creditHours: 1,
-              materials: {
-                lectures: "https://drive.google.com/drive/folders/university-elective-ba-2-lectures",
-                sections: "https://drive.google.com/drive/folders/university-elective-ba-2-sections",
-                videos: "https://youtube.com/playlist?list=university-elective-ba-2-videos",
-                summaries: "https://drive.google.com/drive/folders/university-elective-ba-2-summaries",
-                exams: "https://drive.google.com/drive/folders/university-elective-ba-2-lastexam"
-              },
+            // {
+            //   id: "university-elective-ba-2",
+            //   name: "University Elective",
+            //   code: "02-0X-000XX",
+            //   description: "University-wide elective course",
+            //   creditHours: 1,
+            //   materials: {
+            //     lectures: "https://drive.google.com/drive/folders/university-elective-ba-2-lectures",
+            //     sections: "https://drive.google.com/drive/folders/university-elective-ba-2-sections",
+            //     videos: "https://youtube.com/playlist?list=university-elective-ba-2-videos",
+            //     summaries: "https://drive.google.com/drive/folders/university-elective-ba-2-summaries",
+            //     exams: "https://drive.google.com/drive/folders/university-elective-ba-2-lastexam"
+            //   },
             },
           ],
         },
