@@ -8,6 +8,30 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { useNotifications } from "@/hooks/use-notifications"
 import { formatDistanceToNow } from "date-fns"
 
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+function renderMessageWithLinks(message: string | null | undefined) {
+  if (!message) return 'No content';
+  const parts = message.split(urlRegex);
+  return parts.map((part, i) => {
+    if (part.match(urlRegex)) {
+      return (
+        <a 
+          key={i} 
+          href={part} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-blue-400 hover:text-blue-300 underline underline-offset-2"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 interface NotificationDropdownProps {
   isOpen: boolean
   onClose: () => void
@@ -215,7 +239,7 @@ export function NotificationDropdown({ isOpen, onClose }: NotificationDropdownPr
                               {/* Message content - auto-expanding without overflow */}
                               <div className="w-full">
                                 <p className="text-xs text-white/70 whitespace-pre-wrap break-words">
-                                  {notification.message_content || 'No content'}
+                                  {renderMessageWithLinks(notification.message_content)}
                                 </p>
                               </div>
                               
