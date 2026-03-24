@@ -3422,7 +3422,6 @@ export const departmentData: { [key: string]: Department } = {
             //     summaries: "https://drive.google.com/drive/folders/university-elective-ba-2-summaries",
             //     exams: "https://drive.google.com/drive/folders/university-elective-ba-2-lastexam"
             //   },
-            },
           ],
         },
       },
