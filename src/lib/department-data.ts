@@ -3382,21 +3382,21 @@ export const departmentData: { [key: string]: Department } = {
               },
             },
             {
-              id: "system-analysis-design",
-              name: "System Analysis & Design",
-              code: "02-24-02203",
-              description: "Business system analysis and design methodologies",
+              id: "System-Analysis-Design-ba",
+              name: "System Analysis and Design",
+              code: "02-24-00304",
+              description: "Explore system development life cycle and design methodologies",
               creditHours: 3,
               materials: {
                 lectures: "https://drive.google.com/drive/folders/1XCk9YrAfo70uV9hfybNmvLvJn69lHFiZ?usp=drive_link",
                 sections: "https://drive.google.com/drive/folders/10ttM9_EA2sEAPEj6_fsyKEaxP2AItRcP?usp=drive_link",
-                videos: "",
+                videos: [""],
                 summaries: "https://drive.google.com/drive/folders/1-TUMlZnHgD5NSahx8Ab5v8tR4gBZ_bGy?usp=drive_link",
                 exams: "https://drive.google.com/drive/folders/1bYzfL7z6ce132wz5wAEYxWP29khFj81k?usp=drive_link"
               },
             },
             {
-              id: "financial-planning-analysis",
+              id: "financial-planning-analysis-ba",
               name: "Financial Planning and Analysis",
               code: "02-24-02204",
               description: "Financial planning and analytical techniques",
