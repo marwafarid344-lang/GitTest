@@ -3,6 +3,7 @@
 import { createServerClient } from "@/lib/supabase/server"
 import { createAdminClient } from "@/lib/supabase/admin"
 import { calculateTournamentPoints } from "@/lib/utils"
+import { unstable_noStore as noStore } from "next/cache"
 
 
 export interface LeaderboardEntry {
@@ -44,6 +45,7 @@ export async function getLeaderboardData(level: 1 | 2 | 3): Promise<{
   leaderboard: LeaderboardEntry[]
   currentUserEntry?: LeaderboardEntry
 }> {
+  noStore()
   try {
     const supabase = await createServerClient()
 
@@ -329,6 +331,7 @@ async function getPublicLeaderboardData(supabase: Awaited<ReturnType<typeof crea
   leaderboard: LeaderboardEntry[]
   currentUserEntry?: LeaderboardEntry
 }> {
+  noStore()
   // Use the same date range - Updated to October 11, 2025
   const tournamentStart = new Date('2025-10-11T00:00:00.000Z')
   const tournamentEnd = new Date('2026-06-30T23:59:59.999Z')
@@ -501,6 +504,7 @@ async function getPublicLeaderboardData(supabase: Awaited<ReturnType<typeof crea
 }
 
 export async function getUserTournamentStats(authId: string, level: 1 | 2 | 3): Promise<UserTournamentStats | null> {
+  noStore()
   try {
     const supabase = await createServerClient()
 
