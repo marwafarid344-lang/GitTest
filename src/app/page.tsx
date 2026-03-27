@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import CountUp from "@/components/CountUp"
-import { BookOpen, Shield, Brain, Database, Award, Hospital, Cloud, ServerCrash, BookOpenCheck, ChevronDown, Users, RefreshCw, Sparkles } from "lucide-react"
+import { BookOpen, Shield, Brain, Database, Award, Hospital, Cloud, ServerCrash, BookOpenCheck, ChevronDown, Users, RefreshCw, Sparkles, Crown } from "lucide-react"
 import CreativeFeatureSlider from "@/components/creative-feature-slider"
 import ScrollAnimatedSection from "@/components/scroll-animated-section"
 import Navigation from "@/components/navigation"
@@ -37,7 +37,7 @@ const specializations = [
     title: "Cyber Security",
     description: "Advanced security protocols, ethical hacking, and digital forensics to protect digital assets.",
     courses: 32,
-    students: "+1.8k students get enrolled",
+    students: "+0.4k students get enrolled",
     color: "bg-red-500/10 text-red-400 border-red-500/20",
   },
   {
@@ -46,7 +46,7 @@ const specializations = [
     title: "Artificial Intelligence",
     description: "Machine learning, neural networks, and AI development for the future of technology.",
     courses: 28,
-    students: "+2.0k students get enrolled",
+    students: "+0.2k students get enrolled",
     color: "bg-purple-500/10 text-purple-400 border-purple-500/20",
   },
   {
@@ -79,8 +79,8 @@ const specializations = [
 ]
 
 const staticStats = [
-  { icon: BookOpen, label: "Courses Available", value: 200, suffix: "" },
-  { icon: ServerCrash , label: "Monthly Visits", value: 5.36, suffix: "M" },
+  { icon: Crown , label: "trustworthy in FCDS", value: 0, suffix: "Approved" },
+  { icon: BookOpen, label: "Courses Available", value: 200, suffix: "+" },
 ]
 
 interface LevelStat {
@@ -234,14 +234,16 @@ export default function HomePage() {
                   <stat.icon className="w-6 h-6 text-white/60" />
                 </div>
                 <div className="text-2xl md:text-3xl font-bold text-white mb-2">
-                  <CountUp
-                    from={0}
-                    to={stat.value}
-                    separator=","
-                    direction="up"
-                    duration={1}
-                    className="count-up-text"
-                  />
+                  {stat.value !== 0 && (
+                    <CountUp
+                      from={0}
+                      to={stat.value}
+                      separator=","
+                      direction="up"
+                      duration={1}
+                      className="count-up-text"
+                    />
+                  )}
                   {stat.suffix}
                 </div>
                 <div className="text-sm text-white/40">{stat.label}</div>
