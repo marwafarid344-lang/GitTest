@@ -9,7 +9,7 @@
       "C) Data encryption",
       "D) Data discretization"
     ],
-    "answer": "C",
+    "answer": "C) Data encryption",
     "explanation": "Encryption is not part of preprocessing. Preprocessing focuses on cleaning, integrating, transforming, reducing, and discretizing data."
   },
   {
@@ -22,7 +22,7 @@
       "C) To delete irrelevant features",
       "D) To store data on disk"
     ],
-    "answer": "B",
+    "answer": "B) To convert data into a format easier to analyze",
     "explanation": "Transformation adjusts scales and formats to make analysis meaningful."
   },
   {
@@ -48,7 +48,7 @@
       "C) Aggregates data into cubes",
       "D) Removes missing values"
     ],
-    "answer": "B",
+    "answer": "B) Scales data so each observation has unit length",
     "explanation": "Normalization ensures fair contribution of each row, especially for sparse data."
   },
   {
@@ -57,11 +57,11 @@
     "question": "What is standardization (scaling)?",
     "options": [
       "A) Removing all outliers",
-      "B) Converting data to a mean of 0 and standard deviation of 1",
+      "B) Merging neighboring data points",
       "C) Converting categorical to numeric",
-      "D) Merging neighboring data points"
+      "D) Converting data to a mean of 0 and standard deviation of 1"
     ],
-    "answer": "B",
+    "answer": "D) Converting data to a mean of 0 and standard deviation of 1",
     "explanation": "Standardization makes features comparable when they follow Gaussian distributions."
   },
   {
@@ -74,7 +74,7 @@
       "C) Z-scores",
       "D) Standard deviations"
     ],
-    "answer": "B",
+    "answer": "B) Sequential numeric values to categories",
     "explanation": "Converts textual labels to numbers 0 to (n-1)."
   },
   {
@@ -87,7 +87,7 @@
       "C) Merge datasets",
       "D) Normalize data"
     ],
-    "answer": "B",
+    "answer": "B) Split a categorical column into multiple binary columns",
     "explanation": "Each category becomes a separate column with 0 or 1."
   },
   {
@@ -100,7 +100,7 @@
       "C) Normalization",
       "D) Feature extraction"
     ],
-    "answer": "A",
+    "answer": "A) Log transformation",
     "explanation": "Useful for right-skewed data like income."
   },
   {
@@ -113,7 +113,7 @@
       "C) PCA",
       "D) Standardization"
     ],
-    "answer": "B",
+    "answer": "B) Yeo-Johnson",
     "explanation": "Box-Cox requires positive values; Yeo-Johnson works with negatives too."
   },
   {
@@ -126,7 +126,7 @@
       "C) Standardization",
       "D) Binarization"
     ],
-    "answer": "A",
+    "answer": "A) Grouping and rolling",
     "explanation": "Combines data points for summary statistics."
   },
   {
@@ -139,7 +139,7 @@
       "C) Removing redundant columns",
       "D) Encoding text"
     ],
-    "answer": "B",
+    "answer": "B) Combining two features or adding polynomial terms",
     "explanation": "Helps capture non-linear relationships."
   },
   {
@@ -152,7 +152,7 @@
       "C) Data storage type",
       "D) Number of categories"
     ],
-    "answer": "B",
+    "answer": "B) Number of features",
     "explanation": "Reduces feature space while retaining important information."
   },
   {
@@ -165,7 +165,7 @@
       "C) Transform numerical to categorical",
       "D) Merge datasets"
     ],
-    "answer": "B",
+    "answer": "B) Choose a smaller subset of relevant features",
     "explanation": "Filters out irrelevant or redundant features."
   },
   {
@@ -178,7 +178,7 @@
       "C) Embedded",
       "D) Clustering"
     ],
-    "answer": "D",
+    "answer": "D) Clustering",
     "explanation": "Clustering is used in reduction, not selection."
   },
   {
@@ -191,7 +191,7 @@
       "C) Transforming data to 0-1 scale",
       "D) Aggregating cubes"
     ],
-    "answer": "A",
+    "answer": "A) Removing the least relevant features iteratively",
     "explanation": "It greedily searches for the best subset."
   },
   {
@@ -204,7 +204,7 @@
       "C) Removes features one by one",
       "D) Applies PCA"
     ],
-    "answer": "B",
+    "answer": "B) Starts with an empty set and adds features",
     "explanation": "Stops when remaining features are not statistically significant."
   },
   {
@@ -217,7 +217,7 @@
       "C) Applies one-hot encoding",
       "D) Uses rolling aggregation"
     ],
-    "answer": "B",
+    "answer": "B) Starts with all features and removes irrelevant ones",
     "explanation": "Opposite of forward selection."
   },
   {
@@ -230,7 +230,7 @@
       "C) Aggregates data cubes",
       "D) Normalizes numerical data"
     ],
-    "answer": "B",
+    "answer": "B) Tests attributes and discards irrelevant ones",
     "explanation": "Branches represent tests; irrelevant attributes are ignored."
   },
   {
@@ -243,7 +243,7 @@
       "C) A form of clustering",
       "D) Label encoding"
     ],
-    "answer": "B",
+    "answer": "B) Unsupervised",
     "explanation": "Creates linear combinations of features, ranked by variance."
   },
   {
@@ -256,7 +256,7 @@
       "C) Clustering",
       "D) Normalization"
     ],
-    "answer": "B",
+    "answer": "B) Supervised",
     "explanation": "Works only with labeled data to create linear combinations."
   },
   {
@@ -269,7 +269,7 @@
       "C) Encoded labels",
       "D) Standardized features"
     ],
-    "answer": "B",
+    "answer": "B) Multidimensional aggregated information",
     "explanation": "Example: sales by brand, branch, and year."
   },
   {
@@ -282,7 +282,7 @@
       "C) Converts categories to numbers",
       "D) Applies PCA"
     ],
-    "answer": "A",
+    "answer": "A) Converts data to smaller forms",
     "explanation": "Reduces volume; can be parametric or non-parametric."
   },
   {
@@ -295,7 +295,7 @@
       "C) Histogram",
       "D) Sampling"
     ],
-    "answer": "B",
+    "answer": "B) Regression",
     "explanation": "Stores parameters instead of all raw data."
   },
   {
@@ -308,7 +308,7 @@
       "C) Sampling",
       "D) Linear discriminant analysis"
     ],
-    "answer": "C",
+    "answer": "C) Sampling",
     "explanation": "Stores a reduced representation without parameters."
   },
   {
@@ -321,7 +321,7 @@
       "C) Both split data",
       "D) Both merge data"
     ],
-    "answer": "B",
+    "answer": "B) Top-down splits, Bottom-up merges",
     "explanation": "Top-down divides large ranges; Bottom-up combines small ranges."
   }
 ]
