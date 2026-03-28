@@ -9,7 +9,7 @@
       "C) Managing application security",
       "D) Storing temporary operational data"
     ],
-    "answer": "B",
+    "answer": "B) Supporting decision making using historical data",
     "explanation": "A data warehouse is a decision support database that stores consolidated historical data for analysis and decision making."
   },
   {
@@ -22,7 +22,7 @@
       "C) Time-variant",
       "D) Nonvolatile"
     ],
-    "answer": "B",
+    "answer": "B) Subject-oriented",
     "explanation": "Subject-oriented means the data warehouse is organized around important subjects like customers, products, and sales."
   },
   {
@@ -35,7 +35,7 @@
       "C) Time-variant",
       "D) Nonvolatile"
     ],
-    "answer": "B",
+    "answer": "B) Integrated",
     "explanation": "Integration combines multiple heterogeneous sources and ensures consistent naming conventions and data formats."
   },
   {
@@ -48,7 +48,7 @@
       "C) It frequently updates operational data",
       "D) It deletes old data automatically"
     ],
-    "answer": "B",
+    "answer": "B) It includes historical data over long periods",
     "explanation": "Data warehouses store historical data for long time horizons such as 5–10 years."
   },
   {
@@ -61,7 +61,7 @@
       "C) Data is loaded once and mainly accessed for analysis",
       "D) Data changes every second"
     ],
-    "answer": "C",
+    "answer": "C) Data is loaded once and mainly accessed for analysis",
     "explanation": "Nonvolatile means data is loaded initially and then mainly accessed for analysis without frequent updates."
   },
   {
@@ -74,7 +74,7 @@
       "C) Complex analytical queries",
       "D) Historical analysis"
     ],
-    "answer": "B",
+    "answer": "B) Day-to-day transaction processing",
     "explanation": "OLTP systems support daily operational transactions such as banking or order processing."
   },
   {
@@ -87,7 +87,7 @@
       "C) Complex analytical queries",
       "D) Index creation queries"
     ],
-    "answer": "C",
+    "answer": "C) Complex analytical queries",
     "explanation": "OLAP systems process complex analytical queries on large volumes of historical data."
   },
   {
@@ -100,7 +100,7 @@
       "C) Data analysts and executives",
       "D) Bank tellers"
     ],
-    "answer": "C",
+    "answer": "C) Data analysts and executives",
     "explanation": "OLAP systems support decision-making and are mainly used by analysts, executives, and knowledge workers."
   },
   {
@@ -113,7 +113,7 @@
       "C) To reduce database complexity",
       "D) To prevent data storage"
     ],
-    "answer": "B",
+    "answer": "B) To optimize performance for both OLTP and OLAP systems",
     "explanation": "Separating them allows OLTP systems to handle transactions efficiently and OLAP systems to handle analysis."
   },
   {
@@ -126,7 +126,7 @@
       "C) Evaluate, Track, Log",
       "D) Enter, Test, Launch"
     ],
-    "answer": "A",
+    "answer": "A) Extract, Transform, Load",
     "explanation": "ETL stands for Extract, Transform, and Load, which prepares data for the warehouse."
   },
   {
@@ -139,7 +139,7 @@
       "C) Fact Table",
       "D) OLAP Server"
     ],
-    "answer": "B",
+    "answer": "B) Metadata Repository",
     "explanation": "Metadata repository stores information about warehouse structure, schema, hierarchies, and data lineage."
   },
   {
@@ -152,7 +152,7 @@
       "C) A temporary dataset",
       "D) A backup database"
     ],
-    "answer": "B",
+    "answer": "B) A subset of data warehouse for specific users",
     "explanation": "A data mart is a subset of the enterprise data warehouse designed for specific departments or groups."
   },
   {
@@ -165,7 +165,7 @@
       "C) Virtual warehouse",
       "D) Fact constellation"
     ],
-    "answer": "C",
+    "answer": "C) Virtual warehouse",
     "explanation": "A virtual warehouse is a collection of views over operational databases."
   },
   {
@@ -178,7 +178,7 @@
       "C) Transformation",
       "D) Loading"
     ],
-    "answer": "B",
+    "answer": "B) Cleaning",
     "explanation": "Data cleaning identifies and corrects errors in the data."
   },
   {
@@ -191,7 +191,7 @@
       "C) Metadata table",
       "D) Data mart table"
     ],
-    "answer": "B",
+    "answer": "B) Fact table",
     "explanation": "Fact tables contain measures and foreign keys that link to dimension tables."
   },
   {
@@ -204,7 +204,7 @@
       "C) In multiple dimensions",
       "D) Without dimensions"
     ],
-    "answer": "C",
+    "answer": "C) In multiple dimensions",
     "explanation": "Data cubes support multidimensional data analysis."
   },
   {
@@ -217,7 +217,7 @@
       "C) Fact cuboid",
       "D) Dimension cuboid"
     ],
-    "answer": "B",
+    "answer": "B) Apex cuboid",
     "explanation": "The apex cuboid is the 0-D cuboid representing the highest level of summarization."
   },
   {
@@ -230,7 +230,7 @@
       "C) Fact constellation",
       "D) Virtual schema"
     ],
-    "answer": "A",
+    "answer": "A) Star schema",
     "explanation": "Star schema consists of a fact table in the center linked to dimension tables."
   },
   {
@@ -243,7 +243,7 @@
       "C) Fact constellation",
       "D) Virtual warehouse"
     ],
-    "answer": "B",
+    "answer": "B) Snowflake schema",
     "explanation": "Snowflake schema normalizes dimension tables into smaller tables."
   },
   {
@@ -256,7 +256,7 @@
       "C) Fact constellation",
       "D) Data mart schema"
     ],
-    "answer": "C",
+    "answer": "C) Fact constellation",
     "explanation": "Fact constellation schema includes multiple fact tables connected to shared dimension tables."
   },
   {
@@ -269,7 +269,7 @@
       "C) Slice",
       "D) Pivot"
     ],
-    "answer": "B",
+    "answer": "B) Roll up",
     "explanation": "Roll-up aggregates data by climbing up a hierarchy or reducing dimensions."
   },
   {
@@ -282,7 +282,7 @@
       "C) Slice",
       "D) Pivot"
     ],
-    "answer": "B",
+    "answer": "B) Drill down",
     "explanation": "Drill-down moves from higher level summaries to more detailed levels."
   },
   {
@@ -295,7 +295,7 @@
       "C) Slice",
       "D) Drill across"
     ],
-    "answer": "C",
+    "answer": "C) Slice",
     "explanation": "Slice selects a single dimension value to create a smaller cube."
   },
   {
@@ -308,7 +308,7 @@
       "C) Pivot",
       "D) Roll-up"
     ],
-    "answer": "C",
+    "answer": "C) Pivot",
     "explanation": "Pivot rotates the cube for better visualization of multidimensional data."
   },
   {
@@ -321,7 +321,7 @@
       "C) Data mining",
       "D) Data cleaning"
     ],
-    "answer": "C",
+    "answer": "C) Data mining",
     "explanation": "Data mining discovers hidden patterns, performs classification and prediction using warehouse data."
   },
   {
@@ -334,7 +334,7 @@
       "C) Pivot",
       "D) Dice"
     ],
-    "answer": "B",
+    "answer": "B) Roll-up",
     "explanation": "We must roll-up from day → month → year to analyze yearly data."
   },
   {
@@ -347,7 +347,7 @@
       "C) Pivot",
       "D) Drill-down"
     ],
-    "answer": "A",
+    "answer": "A) Slice",
     "explanation": "Slice selects a specific value from a dimension (year = 2010)."
   },
   {
@@ -360,7 +360,7 @@
       "C) Dice on patient",
       "D) Pivot on patient"
     ],
-    "answer": "A",
+    "answer": "A) Roll-up on patient",
     "explanation": "We roll-up patient → all to aggregate data across all patients."
   },
   {
@@ -373,7 +373,7 @@
       "C) Dice",
       "D) Pivot"
     ],
-    "answer": "C",
+    "answer": "C) Dice",
     "explanation": "Dice selects a subcube using multiple conditions (year AND doctor)."
   },
   {
@@ -386,7 +386,7 @@
       "C) Roll-up",
       "D) Pivot"
     ],
-    "answer": "D",
+    "answer": "D) Pivot",
     "explanation": "Pivot rotates the cube to present data in different perspectives."
   }
 ]
