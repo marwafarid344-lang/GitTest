@@ -18,9 +18,9 @@ export function FileCardSkeleton({ isLoggedIn = false }: { isLoggedIn?: boolean 
       <CardContent className="pt-0">
         {!isLoggedIn && (
           <div className="text-red-500 font-semibold mb-4">
-            Unlogged users cannot see the drive data due to <Link href="/privacy" className="underline">policy of privacy</Link>
+            Unlogged users cannot see the drive data due to <Link href="/privacy" className="underline">Policy of Privacy</Link>
             <br>
-            <Link href="/login" className="underline">Login From Here</Link>
+            You Need to Login From <Link href="/login" className="underline">Here</Link>
           </div>
         )}
 
