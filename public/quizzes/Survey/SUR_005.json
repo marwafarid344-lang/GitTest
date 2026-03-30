@@ -1,0 +1,282 @@
+[
+  {
+    "numb": 1,
+    "type": "Multiple Choices",
+    "question": "A $\\text{pilot test}$ in survey research is best described as:",
+    "options": [
+      "A) The full-scale deployment of a finalized survey to the entire target population",
+      "B) A small-scale rehearsal of the survey used to evaluate the survey instrument before full-scale launch",
+      "C) A statistical test run only after all data has been collected",
+      "D) The process of selecting a random sample from the population"
+    ],
+    "answer": "B) A small-scale rehearsal of the survey used to evaluate the survey instrument before full-scale launch",
+    "explanation": "A pilot test is a trial run with a small group of participants to identify problems before committing to the full study. It catches issues like confusing wording, technical glitches, or poor response flow that might compromise the entire data collection if not fixed first.",
+    "image": null
+  },
+  {
+    "numb": 2,
+    "type": "Multiple Choices",
+    "question": "Which of the following is NOT a purpose of pilot testing?",
+    "options": [
+      "A) Uncovering problems in survey design, question wording, or technology",
+      "B) Identifying confusing instructions, response options, or layout issues",
+      "C) Generating final results that can be published in academic journals",
+      "D) Observing user behavior such as skip patterns and time taken"
+    ],
+    "answer": "C) Generating final results that can be published in academic journals",
+    "explanation": "Pilot tests are diagnostic — they're designed to improve the survey, not to produce publishable findings. The sample is too small and often non-representative. Their purpose is to identify problems in design (A), instructions (B), and user behavior (D) before the real study.",
+    "image": null
+  },
+  {
+    "numb": 3,
+    "type": "Multiple Choices",
+    "question": "Key pilot testing activities include all of the following EXCEPT:",
+    "options": [
+      "A) Administering the survey to a small group",
+      "B) Collecting feedback from test participants",
+      "C) Measuring metrics like completion time and dropout rate",
+      "D) Publishing preliminary findings before the main study"
+    ],
+    "answer": "D) Publishing preliminary findings before the main study",
+    "explanation": "Pilot testing involves administering the survey, collecting feedback, and measuring operational metrics. It's a quality assurance process, not a research output. Publishing pilot data as findings would be premature and potentially misleading.",
+    "image": null
+  },
+  {
+    "numb": 4,
+    "type": "Multiple Choices",
+    "question": "$\\text{Reliability}$ in survey measurement refers to:",
+    "options": [
+      "A) How well a question measures the construct it is intended to measure",
+      "B) The consistency or repeatability of survey results when the same measurement is applied",
+      "C) The visual appeal and professional formatting of the survey",
+      "D) The percentage of respondents who agree with each question"
+    ],
+    "answer": "B) The consistency or repeatability of survey results when the same measurement is applied",
+    "explanation": "Reliability is about consistency: if you measure the same thing multiple times with the same instrument, do you get the same result? A reliable bathroom scale gives you the same weight each time you step on it (even if it might be wrong — that's a validity issue, not reliability).",
+    "image": null
+  },
+  {
+    "numb": 5,
+    "type": "Multiple Choices",
+    "question": "$\\text{Test-retest reliability}$ is assessed by:",
+    "options": [
+      "A) Comparing results from two different measurement instruments",
+      "B) Administering the same survey to the same group at two different times and comparing the results",
+      "C) Having multiple raters independently score the same responses",
+      "D) Splitting the survey into halves and comparing internal scores"
+    ],
+    "answer": "B) Administering the same survey to the same group at two different times and comparing the results",
+    "explanation": "Test-retest reliability checks temporal stability: give the same survey to the same people twice (with some time gap) and see if their responses are consistent. High correlation between the two administrations indicates the instrument produces stable, reliable measurements.",
+    "image": null
+  },
+  {
+    "numb": 6,
+    "type": "Multiple Choices",
+    "question": "$\\text{Internal consistency}$ as a type of reliability measures:",
+    "options": [
+      "A) Whether different raters produce the same scores",
+      "B) Whether results are stable when the survey is repeated after a time interval",
+      "C) Whether all items within a scale consistently measure the same underlying construct",
+      "D) Whether the survey is valid in different cultural contexts"
+    ],
+    "answer": "C) Whether all items within a scale consistently measure the same underlying construct",
+    "explanation": "Internal consistency checks that all questions in a scale 'agree' with each other. If you have 10 questions measuring 'anxiety,' they should all correlate — a person scoring high on some shouldn't score low on others. Cronbach's alpha is the most common statistic for measuring this.",
+    "image": null
+  },
+  {
+    "numb": 7,
+    "type": "Multiple Choices",
+    "question": "$\\text{Inter-rater reliability}$ evaluates:",
+    "options": [
+      "A) The consistency of a single respondent's answers over time",
+      "B) Whether multiple independent raters or observers produce consistent scores when evaluating the same data",
+      "C) How well a survey's content covers the intended domain",
+      "D) The correlation between a survey score and an external criterion"
+    ],
+    "answer": "B) Whether multiple independent raters or observers produce consistent scores when evaluating the same data",
+    "explanation": "Inter-rater reliability tests whether different observers/graders assign similar scores to the same data. This is crucial for subjective measurements — for example, if two psychologists independently evaluate the same interview, they should reach similar conclusions.",
+    "image": null
+  },
+  {
+    "numb": 8,
+    "type": "Multiple Choices",
+    "question": "$\\text{Validity}$ in survey research is defined as:",
+    "options": [
+      "A) The consistency of results when the measurement is repeated",
+      "B) The response rate achieved by the survey",
+      "C) How accurately a method measures what it is intended to measure",
+      "D) The number of questions included in the survey"
+    ],
+    "answer": "C) How accurately a method measures what it is intended to measure",
+    "explanation": "Validity answers the question: 'Am I measuring the right thing?' A survey intended to measure 'creativity' that actually measures 'extroversion' would be reliable (consistent) but not valid (measuring the wrong construct). Consistency (A) is reliability, a separate concept.",
+    "image": null
+  },
+  {
+    "numb": 9,
+    "type": "Multiple Choices",
+    "question": "$\\text{Face validity}$ refers to:",
+    "options": [
+      "A) Statistical proof that the survey measures the right construct",
+      "B) Whether the survey appears on the surface to measure what it claims to measure",
+      "C) The correlation between the survey results and an established criterion measure",
+      "D) Whether all relevant content areas are covered by the survey items"
+    ],
+    "answer": "B) Whether the survey appears on the surface to measure what it claims to measure",
+    "explanation": "Face validity is the weakest form of validity — it's simply a subjective judgment of whether the survey 'looks like' it measures what it's supposed to. It relies on appearance rather than statistical evidence. A survey about math skills that contains math questions has face validity.",
+    "image": null
+  },
+  {
+    "numb": 10,
+    "type": "Multiple Choices",
+    "question": "$\\text{Content validity}$ ensures that:",
+    "options": [
+      "A) The survey produces consistent results over time",
+      "B) The survey items adequately cover all relevant aspects of the construct being measured",
+      "C) The survey correlates with a future outcome or criterion",
+      "D) The survey looks professional and trustworthy to respondents"
+    ],
+    "answer": "B) The survey items adequately cover all relevant aspects of the construct being measured",
+    "explanation": "Content validity asks: 'Does the survey comprehensively cover the entire domain?' A test on 'Survey Methodology' that only asks about sampling but ignores ethics, question design, and validity would lack content validity — it doesn't represent the full subject.",
+    "image": null
+  },
+  {
+    "numb": 11,
+    "type": "Multiple Choices",
+    "question": "$\\text{Construct validity}$ assesses whether a survey:",
+    "options": [
+      "A) Has an attractive and professional visual design",
+      "B) Accurately measures the theoretical construct or concept it is supposed to measure",
+      "C) Covers a representative set of content areas",
+      "D) Produces identical results when administered by different researchers"
+    ],
+    "answer": "B) Accurately measures the theoretical construct or concept it is supposed to measure",
+    "explanation": "Construct validity is about measuring abstract concepts (constructs) like intelligence, satisfaction, or anxiety correctly. It's verified by showing the survey correlates with things it should (convergent validity) and doesn't correlate with things it shouldn't (discriminant validity).",
+    "image": null
+  },
+  {
+    "numb": 12,
+    "type": "Multiple Choices",
+    "question": "$\\text{Criterion validity}$ is evaluated by:",
+    "options": [
+      "A) Asking experts whether the survey appears to measure the right thing",
+      "B) Checking whether the survey results correlate with an external criterion or standard",
+      "C) Repeating the survey multiple times and comparing results",
+      "D) Using only open-ended questions to capture detailed responses"
+    ],
+    "answer": "B) Checking whether the survey results correlate with an external criterion or standard",
+    "explanation": "Criterion validity compares your survey's results against an established, trusted measure or real-world outcome. For example, a new job aptitude test has good criterion validity if its scores predict actual job performance (the external criterion).",
+    "image": null
+  },
+  {
+    "numb": 13,
+    "type": "Multiple Choices",
+    "question": "$\\text{Cognitive testing}$ in survey methodology is a specialized method to:",
+    "options": [
+      "A) Measure respondents' IQ before allowing them to participate",
+      "B) Evaluate how respondents understand, interpret, and mentally process survey questions",
+      "C) Test the survey's statistical power and significance levels",
+      "D) Determine the optimal number of questions for maximum engagement"
+    ],
+    "answer": "B) Evaluate how respondents understand, interpret, and mentally process survey questions",
+    "explanation": "Cognitive testing examines the mental processes respondents go through when answering questions: How do they interpret the words? What memories do they search? How do they formulate their answer? This reveals misunderstandings that aren't visible from response data alone.",
+    "image": null
+  },
+  {
+    "numb": 14,
+    "type": "Multiple Choices",
+    "question": "The $\\text{Think-Aloud Method}$ in cognitive testing requires respondents to:",
+    "options": [
+      "A) Write down their answers silently and submit them without discussion",
+      "B) Verbalize their thought process out loud while answering each survey question",
+      "C) Choose from pre-written explanations of what each question means",
+      "D) Complete the survey as quickly as possible to test time pressure"
+    ],
+    "answer": "B) Verbalize their thought process out loud while answering each survey question",
+    "explanation": "In the Think-Aloud method, participants narrate everything they're thinking as they read and answer each question: 'I'm reading this word as meaning... I'm thinking about... I'm choosing this option because...' This reveals interpretation issues in real-time.",
+    "image": null
+  },
+  {
+    "numb": 15,
+    "type": "Multiple Choices",
+    "question": "Cognitive testing is important because survey questions can be interpreted differently due to:",
+    "options": [
+      "A) Background, culture, language, and personal experience of the respondent",
+      "B) The color scheme and font used in the survey design",
+      "C) The order in which multiple surveys are administered",
+      "D) Whether the survey is online or paper-based"
+    ],
+    "answer": "A) Background, culture, language, and personal experience of the respondent",
+    "explanation": "The same word can mean very different things to different people. For example, 'regularly' might mean 'daily' to one person and 'monthly' to another based on their cultural background and personal habits. Cognitive testing reveals these interpretation differences before the full survey launch.",
+    "image": null
+  },
+  {
+    "numb": 16,
+    "type": "Multiple Choices",
+    "question": "Benefits of cognitive testing include all of the following EXCEPT:",
+    "options": [
+      "A) Improving question clarity and reducing ambiguity",
+      "B) Boosting response rates by making questions easier to understand",
+      "C) Eliminating the need for pilot testing entirely",
+      "D) Detecting unintended meanings in question wording"
+    ],
+    "answer": "C) Eliminating the need for pilot testing entirely",
+    "explanation": "Cognitive testing complements pilot testing — it doesn't replace it. Cognitive testing focuses on how individuals interpret questions (micro-level), while pilot testing evaluates the overall survey administration (macro-level: timing, dropout, logistics). Both are needed for a thorough evaluation.",
+    "image": null
+  },
+  {
+    "numb": 17,
+    "type": "Multiple Choices",
+    "question": "$\\text{Response rate}$ is defined as:",
+    "options": [
+      "A) The average time it takes respondents to complete each question",
+      "B) The percentage of people who completed the survey out of those who were invited",
+      "C) The number of questions answered correctly by respondents",
+      "D) The ratio of open-ended to closed-ended responses"
+    ],
+    "answer": "B) The percentage of people who completed the survey out of those who were invited",
+    "explanation": "Response rate = (Number of completed surveys ÷ Number of people invited) × 100%. For example, if 200 out of 1,000 invited people complete the survey, the response rate is 20%. Higher rates generally indicate more representative data.",
+    "image": null
+  },
+  {
+    "numb": 18,
+    "type": "Multiple Choices",
+    "question": "A low response rate in surveys is problematic primarily because it leads to:",
+    "options": [
+      "A) Increased data storage costs",
+      "B) $\\text{Nonresponse bias}$, where the collected data may not be representative of the full population",
+      "C) Longer survey completion times for remaining participants",
+      "D) Reduced reliability of the measurement scale itself"
+    ],
+    "answer": "B) $\\text{Nonresponse bias}$, where the collected data may not be representative of the full population",
+    "explanation": "When many people don't respond, those who do may be systematically different from those who don't. For example, satisfied customers are more likely to respond to feedback surveys, making results overly positive. This nonresponse bias threatens the validity of conclusions drawn from the data.",
+    "image": null
+  },
+  {
+    "numb": 19,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a proven strategy for improving response rates?",
+    "options": [
+      "A) Making the survey as long as possible to collect maximum data",
+      "B) Sending personalized invitations, providing incentives, and keeping the survey short and focused",
+      "C) Using only technical jargon to demonstrate the survey's academic rigor",
+      "D) Removing all privacy notices to shorten the survey introduction"
+    ],
+    "answer": "B) Sending personalized invitations, providing incentives, and keeping the survey short and focused",
+    "explanation": "Proven strategies include: personalized invitations (people feel valued), incentives (gift cards, discounts), short focused designs (reduces burden), clear purpose communication (people want to know why), privacy assurance, and timely follow-up reminders. Longer surveys and jargon decrease rates.",
+    "image": null
+  },
+  {
+    "numb": 20,
+    "type": "Multiple Choices",
+    "question": "The question $\\text{\"Do you work out regularly?\"}$ can illustrate problems with both reliability and validity because:",
+    "options": [
+      "A) It uses too many technical terms that respondents cannot understand",
+      "B) The word 'regularly' is subjective — different respondents may interpret it differently, leading to inconsistent (unreliable) and potentially inaccurate (invalid) results",
+      "C) It is a bipolar question that restricts the response to Yes or No",
+      "D) It requires respondents to recall exact dates and times of exercise"
+    ],
+    "answer": "B) The word 'regularly' is subjective — different respondents may interpret it differently, leading to inconsistent (unreliable) and potentially inaccurate (invalid) results",
+    "explanation": "The word 'regularly' is ambiguous — one person may think it means 'daily,' another 'weekly,' another 'a few times a month.' This ambiguity causes unreliability (different interpretations give inconsistent answers) and invalidity (the question doesn't precisely measure what the researcher intended).",
+    "image": null
+  }
+]

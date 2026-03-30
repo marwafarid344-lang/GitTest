@@ -1,0 +1,1302 @@
+[
+  {
+    "numb": 1,
+    "type": "Multiple Choices",
+    "question": "A government agency needs to understand public satisfaction with healthcare services across the nation. The most fundamental step before designing the survey is to:",
+    "options": [
+      "A) Select the sampling technique",
+      "B) Clearly define the research objective and target population",
+      "C) Choose between online and paper-based formats",
+      "D) Determine the number of interviewers needed"
+    ],
+    "answer": "B) Clearly define the research objective and target population",
+    "image": null
+  },
+  {
+    "numb": 2,
+    "type": "Multiple Choices",
+    "question": "Which data collection mode is generally the most accurate and reliable but also the most expensive to implement?",
+    "options": [
+      "A) Online surveys via Google Forms",
+      "B) Telephone interviews",
+      "C) Paper-based mail surveys",
+      "D) Face-to-face interviews"
+    ],
+    "answer": "D) Face-to-face interviews",
+    "image": null
+  },
+  {
+    "numb": 3,
+    "type": "Multiple Choices",
+    "question": "An interviewer asks: $\\text{\"Can you tell me more about that?\"}$ after a respondent's answer. This is an example of:",
+    "options": [
+      "A) A leading question that biases the response",
+      "B) A probing question that requests more detail",
+      "C) A double-barreled question combining two topics",
+      "D) A bipolar question requiring a yes/no answer"
+    ],
+    "answer": "B) A probing question that requests more detail",
+    "image": null
+  },
+  {
+    "numb": 4,
+    "type": "Multiple Choices",
+    "question": "Which question structure begins with $\\text{broad, open-ended}$ questions and progressively narrows to $\\text{specific, closed}$ questions?",
+    "options": [
+      "A) Pyramid structure",
+      "B) Funnel structure",
+      "C) Diamond structure",
+      "D) Spiral structure"
+    ],
+    "answer": "B) Funnel structure",
+    "image": null
+  },
+  {
+    "numb": 5,
+    "type": "Multiple Choices",
+    "question": "A survey instrument that uses pre-defined responses such as a Likert scale from $1$ to $5$ is called a:",
+    "options": [
+      "A) Free format questionnaire",
+      "B) Open-ended questionnaire",
+      "C) Fixed format questionnaire",
+      "D) Narrative questionnaire"
+    ],
+    "answer": "C) Fixed format questionnaire",
+    "image": null
+  },
+  {
+    "numb": 6,
+    "type": "Multiple Choices",
+    "question": "The $\\text{nominal scale}$ differs from the $\\text{ordinal scale}$ because the nominal scale:",
+    "options": [
+      "A) Has categories with a meaningful ranking or order",
+      "B) Assigns numerical values that can be averaged",
+      "C) Groups data into categories with no inherent order or ranking",
+      "D) Measures continuous variables with equal intervals"
+    ],
+    "answer": "C) Groups data into categories with no inherent order or ranking",
+    "image": null
+  },
+  {
+    "numb": 7,
+    "type": "Multiple Choices",
+    "question": "Questionnaires are considered the most appropriate data collection method when the target population is:",
+    "options": [
+      "A) A small group of executives in one office",
+      "B) Large and geographically dispersed",
+      "C) Available for face-to-face interviews every day",
+      "D) Already known to have strong opinions on the topic"
+    ],
+    "answer": "B) Large and geographically dispersed",
+    "image": null
+  },
+  {
+    "numb": 8,
+    "type": "Multiple Choices",
+    "question": "A closed question's primary disadvantage is that it:",
+    "options": [
+      "A) Wastes too much time in administration",
+      "B) May fail to capture the richness and depth of the respondent's true opinion",
+      "C) Always introduces leading bias into the response",
+      "D) Cannot be used in online survey platforms"
+    ],
+    "answer": "B) May fail to capture the richness and depth of the respondent's true opinion",
+    "image": null
+  },
+  {
+    "numb": 9,
+    "type": "Multiple Choices",
+    "question": "The $\\text{Diamond}$ question sequencing structure follows the pattern:",
+    "options": [
+      "A) Open → Closed → Open",
+      "B) Closed → Open → Closed",
+      "C) All closed questions throughout",
+      "D) All open questions throughout"
+    ],
+    "answer": "B) Closed → Open → Closed",
+    "image": null
+  },
+  {
+    "numb": 10,
+    "type": "Multiple Choices",
+    "question": "If a measurement scale gives the same result each time you measure the same thing, the scale demonstrates high:",
+    "options": [
+      "A) Validity",
+      "B) Sensitivity",
+      "C) Reliability",
+      "D) Generalizability"
+    ],
+    "answer": "C) Reliability",
+    "image": null
+  },
+  {
+    "numb": 11,
+    "type": "Multiple Choices",
+    "question": "When designing a survey for geographically dispersed populations, which data collection mode offers the best trade-off between cost and reach?",
+    "options": [
+      "A) In-person interviews at each location",
+      "B) Online surveys using digital tools",
+      "C) On-site observation at multiple facilities",
+      "D) Focus groups in the capital city"
+    ],
+    "answer": "B) Online surveys using digital tools",
+    "image": null
+  },
+  {
+    "numb": 12,
+    "type": "Multiple Choices",
+    "question": "The $\\text{self-selection bias}$ observed in the $\\text{2016 US Election}$ polling failure occurred because:",
+    "options": [
+      "A) The sample size was too small for statistical significance",
+      "B) Certain demographic groups (e.g., urban, college-educated) were more likely to voluntarily participate, skewing the sample",
+      "C) All surveys used only face-to-face interviews",
+      "D) The polls were conducted in only one state"
+    ],
+    "answer": "B) Certain demographic groups (e.g., urban, college-educated) were more likely to voluntarily participate, skewing the sample",
+    "image": null
+  },
+  {
+    "numb": 13,
+    "type": "Multiple Choices",
+    "question": "A cross-sectional survey provides a $\\text{\"snapshot\"}$ of a population. This means it:",
+    "options": [
+      "A) Tracks the same individuals over multiple years",
+      "B) Captures data at a single point in time, offering no longitudinal tracking",
+      "C) Uses photographic documentation of respondent behavior",
+      "D) Requires repeated administration to the same sample"
+    ],
+    "answer": "B) Captures data at a single point in time, offering no longitudinal tracking",
+    "image": null
+  },
+  {
+    "numb": 14,
+    "type": "Multiple Choices",
+    "question": "A social scientist wants to study how $\\text{political attitudes}$ have shifted in the general public over the past 20 years by surveying different random samples every 4 years. This is a:",
+    "options": [
+      "A) Panel study",
+      "B) Cross-sectional study",
+      "C) Trend study",
+      "D) Cohort study"
+    ],
+    "answer": "C) Trend study",
+    "image": null
+  },
+  {
+    "numb": 15,
+    "type": "Multiple Choices",
+    "question": "The primary risk unique to $\\text{panel surveys}$ (compared to other longitudinal designs) is:",
+    "options": [
+      "A) High upfront cost of initial recruitment",
+      "B) Panel attrition — the same individuals may drop out over successive waves",
+      "C) Inability to compare responses across time points",
+      "D) Difficulty in defining the research question"
+    ],
+    "answer": "B) Panel attrition — the same individuals may drop out over successive waves",
+    "image": null
+  },
+  {
+    "numb": 16,
+    "type": "Multiple Choices",
+    "question": "Longitudinal surveys are superior to cross-sectional surveys specifically in their ability to:",
+    "options": [
+      "A) Collect data more quickly and cheaply",
+      "B) Avoid all participant dropout",
+      "C) Identify cause-and-effect relationships by tracking changes over time",
+      "D) Guarantee 100% response rates"
+    ],
+    "answer": "C) Identify cause-and-effect relationships by tracking changes over time",
+    "image": null
+  },
+  {
+    "numb": 17,
+    "type": "Multiple Choices",
+    "question": "A researcher selects $1{,}000$ university freshmen and surveys them each semester until graduation to measure changes in academic motivation. This design is best classified as a:",
+    "options": [
+      "A) Cross-sectional survey",
+      "B) Trend study",
+      "C) Panel survey",
+      "D) Experimental survey"
+    ],
+    "answer": "C) Panel survey",
+    "image": null
+  },
+  {
+    "numb": 18,
+    "type": "Multiple Choices",
+    "question": "In a $\\text{cohort study}$, the defining characteristic is that the study follows:",
+    "options": [
+      "A) Any randomly selected individual from the general population",
+      "B) A specific group sharing a common characteristic (e.g., birth year, graduation class) over time",
+      "C) The same group but with different questions at each wave",
+      "D) Different groups at a single point in time"
+    ],
+    "answer": "B) A specific group sharing a common characteristic (e.g., birth year, graduation class) over time",
+    "image": null
+  },
+  {
+    "numb": 19,
+    "type": "Multiple Choices",
+    "question": "Which of the following best describes the relationship between a $\\text{panel survey}$ and a $\\text{longitudinal survey}$?",
+    "options": [
+      "A) They are completely unrelated types of research",
+      "B) A panel survey is a specific type of longitudinal survey that follows the exact same individuals",
+      "C) A longitudinal survey is a subset of panel surveys",
+      "D) Panel surveys collect data only once, unlike longitudinal surveys"
+    ],
+    "answer": "B) A panel survey is a specific type of longitudinal survey that follows the exact same individuals",
+    "image": null
+  },
+  {
+    "numb": 20,
+    "type": "Multiple Choices",
+    "question": "Cross-sectional surveys cannot establish $\\text{causation}$ because they:",
+    "options": [
+      "A) Use too many open-ended questions",
+      "B) Only observe variables at one point in time, making it impossible to determine temporal ordering",
+      "C) Never use random sampling methods",
+      "D) Are always conducted with too small a sample"
+    ],
+    "answer": "B) Only observe variables at one point in time, making it impossible to determine temporal ordering",
+    "image": null
+  },
+  {
+    "numb": 21,
+    "type": "Multiple Choices",
+    "question": "The key difference between $\\text{experimental}$ and $\\text{non-experimental}$ survey research is that experimental surveys:",
+    "options": [
+      "A) Use larger sample sizes",
+      "B) Deliberately manipulate variables and use control groups to test causation",
+      "C) Collect data only through online platforms",
+      "D) Never require ethical approval"
+    ],
+    "answer": "B) Deliberately manipulate variables and use control groups to test causation",
+    "image": null
+  },
+  {
+    "numb": 22,
+    "type": "Multiple Choices",
+    "question": "A marketing team tests two different email subject lines to see which generates more clicks. This is an example of:",
+    "options": [
+      "A) A non-experimental descriptive survey",
+      "B) A/B testing (experimental survey)",
+      "C) A longitudinal trend study",
+      "D) Snowball sampling"
+    ],
+    "answer": "B) A/B testing (experimental survey)",
+    "image": null
+  },
+  {
+    "numb": 23,
+    "type": "Multiple Choices",
+    "question": "In a $\\text{factorial survey design}$, the researcher can study:",
+    "options": [
+      "A) Only one independent variable at a time",
+      "B) The individual and combined effects of multiple independent variables simultaneously",
+      "C) Only the main effect without any interaction effects",
+      "D) Participants' responses without any structured questions"
+    ],
+    "answer": "B) The individual and combined effects of multiple independent variables simultaneously",
+    "image": null
+  },
+  {
+    "numb": 24,
+    "type": "Multiple Choices",
+    "question": "$\\text{Random assignment}$ in experimental surveys is essential because it:",
+    "options": [
+      "A) Ensures the survey is completed faster",
+      "B) Eliminates confounding variables by ensuring groups are comparable before manipulation",
+      "C) Makes the survey anonymous",
+      "D) Reduces the total sample size needed"
+    ],
+    "answer": "B) Eliminates confounding variables by ensuring groups are comparable before manipulation",
+    "image": null
+  },
+  {
+    "numb": 25,
+    "type": "Multiple Choices",
+    "question": "A non-experimental survey measuring the relationship between $\\text{social media usage hours}$ and $\\text{academic study time}$ without changing any conditions is classified as:",
+    "options": [
+      "A) A randomized controlled experiment",
+      "B) A correlational survey",
+      "C) An A/B test",
+      "D) A factorial experiment"
+    ],
+    "answer": "B) A correlational survey",
+    "image": null
+  },
+  {
+    "numb": 26,
+    "type": "Multiple Choices",
+    "question": "The $\\text{informed consent}$ principle requires all of the following EXCEPT:",
+    "options": [
+      "A) Explaining the study's purpose and how data will be used",
+      "B) Informing participants of potential risks and benefits",
+      "C) Guaranteeing that participants will receive monetary compensation",
+      "D) Notifying participants of their right to withdraw at any time"
+    ],
+    "answer": "C) Guaranteeing that participants will receive monetary compensation",
+    "image": null
+  },
+  {
+    "numb": 27,
+    "type": "Multiple Choices",
+    "question": "In survey ethics, $\\text{anonymity}$ provides stronger protection than $\\text{confidentiality}$ because:",
+    "options": [
+      "A) Anonymous data is encrypted while confidential data is not",
+      "B) In anonymity, no personally identifiable information is collected at all, whereas confidential data is linked to individuals but kept private",
+      "C) Anonymity requires government approval while confidentiality does not",
+      "D) There is no difference; the terms are interchangeable"
+    ],
+    "answer": "B) In anonymity, no personally identifiable information is collected at all, whereas confidential data is linked to individuals but kept private",
+    "image": null
+  },
+  {
+    "numb": 28,
+    "type": "Multiple Choices",
+    "question": "Facebook's controversial $\\text{Emotional Contagion}$ study (2014) violated the principle of:",
+    "options": [
+      "A) Random sampling",
+      "B) Statistical significance",
+      "C) Informed consent, as users were not told their feeds were being manipulated",
+      "D) Systematic sampling methodology"
+    ],
+    "answer": "C) Informed consent, as users were not told their feeds were being manipulated",
+    "image": null
+  },
+  {
+    "numb": 29,
+    "type": "Multiple Choices",
+    "question": "Making a survey $\\text{mandatory for a course grade}$ is an example of the ethical violation known as:",
+    "options": [
+      "A) Data manipulation",
+      "B) Survey fraud",
+      "C) Coercion",
+      "D) Leading questions"
+    ],
+    "answer": "C) Coercion",
+    "image": null
+  },
+  {
+    "numb": 30,
+    "type": "Multiple Choices",
+    "question": "A political organization publishes survey results where they selectively removed responses that contradicted their narrative. This is an example of:",
+    "options": [
+      "A) Random sampling error",
+      "B) Data manipulation",
+      "C) Panel attrition",
+      "D) Nonresponse bias"
+    ],
+    "answer": "B) Data manipulation",
+    "image": null
+  },
+  {
+    "numb": 31,
+    "type": "Multiple Choices",
+    "question": "$\\text{Probability sampling}$ is preferred over non-probability sampling when the researcher needs to:",
+    "options": [
+      "A) Conduct the study as quickly as possible",
+      "B) Generalize findings to the broader population with statistical confidence",
+      "C) Study hard-to-reach communities",
+      "D) Minimize the number of participants"
+    ],
+    "answer": "B) Generalize findings to the broader population with statistical confidence",
+    "image": null
+  },
+  {
+    "numb": 32,
+    "type": "Multiple Choices",
+    "question": "A researcher has a complete list of $5{,}000$ employees and uses a random number generator to select $500$. This is:",
+    "options": [
+      "A) Stratified sampling",
+      "B) Cluster sampling",
+      "C) Simple random sampling",
+      "D) Convenience sampling"
+    ],
+    "answer": "C) Simple random sampling",
+    "image": null
+  },
+  {
+    "numb": 33,
+    "type": "Multiple Choices",
+    "question": "To study student satisfaction, a university divides students by $\\text{department}$ and randomly samples $50$ from each. This is:",
+    "options": [
+      "A) Simple random sampling",
+      "B) Stratified sampling",
+      "C) Cluster sampling",
+      "D) Snowball sampling"
+    ],
+    "answer": "B) Stratified sampling",
+    "image": null
+  },
+  {
+    "numb": 34,
+    "type": "Multiple Choices",
+    "question": "A health researcher wants to survey villages in a remote region. She randomly selects $10$ villages and surveys $\\text{all}$ residents in those villages. This is:",
+    "options": [
+      "A) Stratified sampling",
+      "B) Simple random sampling",
+      "C) Cluster sampling",
+      "D) Systematic sampling"
+    ],
+    "answer": "C) Cluster sampling",
+    "image": null
+  },
+  {
+    "numb": 35,
+    "type": "Multiple Choices",
+    "question": "In $\\text{systematic sampling}$, if the population has $N = 10{,}000$ and the desired sample size is $n = 500$, the sampling interval $k$ is:",
+    "options": [
+      "A) $k = 5$",
+      "B) $k = 10$",
+      "C) $k = 20$",
+      "D) $k = 50$"
+    ],
+    "answer": "C) $k = 20$",
+    "image": null
+  },
+  {
+    "numb": 36,
+    "type": "Multiple Choices",
+    "question": "A census bureau first selects $5$ states, then $3$ districts from each state, then $2$ blocks from each district. This multi-level approach is called:",
+    "options": [
+      "A) Stratified sampling",
+      "B) Cluster sampling",
+      "C) Multistage sampling",
+      "D) Systematic sampling"
+    ],
+    "answer": "C) Multistage sampling",
+    "image": null
+  },
+  {
+    "numb": 37,
+    "type": "Multiple Choices",
+    "question": "A researcher studying illegal drug use asks initial participants to refer others who also use drugs. This technique is:",
+    "options": [
+      "A) Quota sampling",
+      "B) Convenience sampling",
+      "C) Snowball sampling",
+      "D) Purposive sampling"
+    ],
+    "answer": "C) Snowball sampling",
+    "image": null
+  },
+  {
+    "numb": 38,
+    "type": "Multiple Choices",
+    "question": "The key difference between $\\text{sampling error}$ and $\\text{non-sampling error}$ is that sampling error:",
+    "options": [
+      "A) Is caused by researcher bias while non-sampling error is purely random",
+      "B) Arises from studying a subset instead of the full population, while non-sampling error arises from issues like data entry mistakes or nonresponse",
+      "C) Can be eliminated by using larger samples",
+      "D) Only occurs in non-probability sampling methods"
+    ],
+    "answer": "B) Arises from studying a subset instead of the full population, while non-sampling error arises from issues like data entry mistakes or nonresponse",
+    "image": null
+  },
+  {
+    "numb": 39,
+    "type": "Multiple Choices",
+    "question": "$\\text{Purposive sampling}$ is most commonly used in:",
+    "options": [
+      "A) Large-scale quantitative surveys requiring statistical generalization",
+      "B) Qualitative research where participants are selected for their specific knowledge or experience",
+      "C) Government censuses that require covering every household",
+      "D) Clinical trials with randomized controlled groups"
+    ],
+    "answer": "B) Qualitative research where participants are selected for their specific knowledge or experience",
+    "image": null
+  },
+  {
+    "numb": 40,
+    "type": "Multiple Choices",
+    "question": "A researcher ensures she interviews exactly $40$ males and $60$ females to match the population gender ratio, selecting from whoever is available. This is:",
+    "options": [
+      "A) Stratified sampling",
+      "B) Quota sampling",
+      "C) Simple random sampling",
+      "D) Cluster sampling"
+    ],
+    "answer": "B) Quota sampling",
+    "image": null
+  },
+  {
+    "numb": 41,
+    "type": "Multiple Choices",
+    "question": "A $\\text{pilot test}$ should be conducted:",
+    "options": [
+      "A) After the full-scale survey data collection is complete",
+      "B) Before the full-scale launch to identify and correct problems in the survey instrument",
+      "C) Only when the survey has more than 100 questions",
+      "D) Simultaneously with the main data collection to save time"
+    ],
+    "answer": "B) Before the full-scale launch to identify and correct problems in the survey instrument",
+    "image": null
+  },
+  {
+    "numb": 42,
+    "type": "Multiple Choices",
+    "question": "During pilot testing, researchers should measure all of the following EXCEPT:",
+    "options": [
+      "A) Completion time for the survey",
+      "B) Dropout rate at each question",
+      "C) Final publishable results and conclusions",
+      "D) Participant feedback on clarity and difficulty of questions"
+    ],
+    "answer": "C) Final publishable results and conclusions",
+    "image": null
+  },
+  {
+    "numb": 43,
+    "type": "Multiple Choices",
+    "question": "A survey produces nearly identical results when administered to the same group two weeks apart. This demonstrates high:",
+    "options": [
+      "A) Content validity",
+      "B) Construct validity",
+      "C) Test-retest reliability",
+      "D) Face validity"
+    ],
+    "answer": "C) Test-retest reliability",
+    "image": null
+  },
+  {
+    "numb": 44,
+    "type": "Multiple Choices",
+    "question": "If all 10 items on a stress measurement scale are highly correlated with each other, this indicates strong:",
+    "options": [
+      "A) Test-retest reliability",
+      "B) Internal consistency",
+      "C) Inter-rater reliability",
+      "D) Criterion validity"
+    ],
+    "answer": "B) Internal consistency",
+    "image": null
+  },
+  {
+    "numb": 45,
+    "type": "Multiple Choices",
+    "question": "Two independent graders evaluate the same set of written survey responses and arrive at very similar scores. This demonstrates:",
+    "options": [
+      "A) Face validity",
+      "B) Content validity",
+      "C) Inter-rater reliability",
+      "D) Test-retest reliability"
+    ],
+    "answer": "C) Inter-rater reliability",
+    "image": null
+  },
+  {
+    "numb": 46,
+    "type": "Multiple Choices",
+    "question": "A newly developed anxiety scale is shown to correlate strongly with an established, validated anxiety instrument. This provides evidence for:",
+    "options": [
+      "A) Face validity",
+      "B) Content validity",
+      "C) Construct validity",
+      "D) Criterion validity"
+    ],
+    "answer": "D) Criterion validity",
+    "image": null
+  },
+  {
+    "numb": 47,
+    "type": "Multiple Choices",
+    "question": "A survey on academic stress that only asks about exam-related stress but ignores social pressure, workload, and financial concerns would lack:",
+    "options": [
+      "A) Face validity",
+      "B) Content validity",
+      "C) Criterion validity",
+      "D) Test-retest reliability"
+    ],
+    "answer": "B) Content validity",
+    "image": null
+  },
+  {
+    "numb": 48,
+    "type": "Multiple Choices",
+    "question": "In $\\text{cognitive testing}$, the $\\text{probing technique}$ involves:",
+    "options": [
+      "A) Asking respondents to verbalize all thoughts while reading each question",
+      "B) Asking specific follow-up questions to check whether respondents understood the survey questions as intended",
+      "C) Measuring the time it takes to answer each question",
+      "D) Removing all ambiguous words from the survey automatically"
+    ],
+    "answer": "B) Asking specific follow-up questions to check whether respondents understood the survey questions as intended",
+    "image": null
+  },
+  {
+    "numb": 49,
+    "type": "Multiple Choices",
+    "question": "$\\text{Nonresponse bias}$ occurs when:",
+    "options": [
+      "A) All invitees complete the survey but answer dishonestly",
+      "B) The people who choose not to respond differ systematically from those who do respond, skewing the results",
+      "C) The survey has too many questions",
+      "D) The researcher uses only open-ended questions"
+    ],
+    "answer": "B) The people who choose not to respond differ systematically from those who do respond, skewing the results",
+    "image": null
+  },
+  {
+    "numb": 50,
+    "type": "Multiple Choices",
+    "question": "Which strategy is LEAST likely to improve $\\text{response rates}$?",
+    "options": [
+      "A) Keeping the survey short and focused",
+      "B) Sending personalized invitations",
+      "C) Using intimidating legal language to pressure responses",
+      "D) Communicating the purpose and privacy policies clearly"
+    ],
+    "answer": "C) Using intimidating legal language to pressure responses",
+    "image": null
+  },
+  {
+    "numb": 51,
+    "type": "Multiple Choices",
+    "question": "A company wants to understand why customers are switching to competitors. They interview $20$ former customers in depth. The most appropriate question format is:",
+    "options": [
+      "A) Only bipolar (yes/no) questions to keep interviews short",
+      "B) Primarily open-ended questions to explore reasons in depth",
+      "C) Only fixed-format Likert scales",
+      "D) Pre-coded multiple choice with no follow-up"
+    ],
+    "answer": "B) Primarily open-ended questions to explore reasons in depth",
+    "image": null
+  },
+  {
+    "numb": 52,
+    "type": "Multiple Choices",
+    "question": "A researcher classifies respondents' favorite colors: Red, Blue, Green, Yellow. This variable is measured on a:",
+    "options": [
+      "A) Ordinal scale",
+      "B) Ratio scale",
+      "C) Nominal scale",
+      "D) Interval scale"
+    ],
+    "answer": "C) Nominal scale",
+    "image": null
+  },
+  {
+    "numb": 53,
+    "type": "Multiple Choices",
+    "question": "Respondents rank their university experience as: $\\text{Very Poor} < \\text{Poor} < \\text{Average} < \\text{Good} < \\text{Excellent}$. This is measured on:",
+    "options": [
+      "A) A nominal scale",
+      "B) An ordinal scale",
+      "C) A ratio scale",
+      "D) A binary scale"
+    ],
+    "answer": "B) An ordinal scale",
+    "image": null
+  },
+  {
+    "numb": 54,
+    "type": "Multiple Choices",
+    "question": "The $\\text{Pyramid}$ question structure is particularly useful for:",
+    "options": [
+      "A) Handling emotionally sensitive topics right from the start",
+      "B) Warming up respondents by starting with easy, specific questions before moving to broader ones",
+      "C) Collecting only quantitative data in a fixed format",
+      "D) Eliminating the need for probing questions"
+    ],
+    "answer": "B) Warming up respondents by starting with easy, specific questions before moving to broader ones",
+    "image": null
+  },
+  {
+    "numb": 55,
+    "type": "Multiple Choices",
+    "question": "Which of the following is the correct distinction between $\\text{reliability}$ and $\\text{validity}$?",
+    "options": [
+      "A) Reliability measures accuracy; validity measures consistency",
+      "B) Reliability measures consistency of results; validity measures whether the right thing is being measured",
+      "C) Both terms refer to the same concept in different contexts",
+      "D) Validity is about sample size; reliability is about response rate"
+    ],
+    "answer": "B) Reliability measures consistency of results; validity measures whether the right thing is being measured",
+    "image": null
+  },
+  {
+    "numb": 56,
+    "type": "Multiple Choices",
+    "question": "A survey can be $\\text{reliable but not valid}$. An example of this would be:",
+    "options": [
+      "A) A scale that gives random, inconsistent results each time",
+      "B) A scale that consistently measures something, but not the intended construct — for example, a 'creativity' survey that actually measures extroversion consistently",
+      "C) A scale that perfectly measures what it intends but gives different results each time",
+      "D) A scale with high response rates but low completion rates"
+    ],
+    "answer": "B) A scale that consistently measures something, but not the intended construct — for example, a 'creativity' survey that actually measures extroversion consistently",
+    "image": null
+  },
+  {
+    "numb": 57,
+    "type": "Multiple Choices",
+    "question": "An experimental survey studying the effect of question framing would typically:",
+    "options": [
+      "A) Present the same question in different wordings to different random groups and compare their responses",
+      "B) Ask all participants the same question in the same format",
+      "C) Observe respondents without asking any questions",
+      "D) Collect data only through paper-based mail surveys"
+    ],
+    "answer": "A) Present the same question in different wordings to different random groups and compare their responses",
+    "image": null
+  },
+  {
+    "numb": 58,
+    "type": "Multiple Choices",
+    "question": "In the context of survey ethics, a $\\text{control group}$ is a group that:",
+    "options": [
+      "A) Receives the experimental treatment or manipulation",
+      "B) Serves as a baseline comparison by not receiving the experimental manipulation",
+      "C) Is excluded from the study due to ethical concerns",
+      "D) Only answers open-ended questions"
+    ],
+    "answer": "B) Serves as a baseline comparison by not receiving the experimental manipulation",
+    "image": null
+  },
+  {
+    "numb": 59,
+    "type": "Multiple Choices",
+    "question": "A non-experimental $\\text{descriptive survey}$ is designed to:",
+    "options": [
+      "A) Test cause-and-effect hypotheses using random assignment",
+      "B) Describe characteristics or behaviors of a population as they naturally exist",
+      "C) Manipulate variables to see their effect on outcomes",
+      "D) Replace longitudinal designs when time constraints exist"
+    ],
+    "answer": "B) Describe characteristics or behaviors of a population as they naturally exist",
+    "image": null
+  },
+  {
+    "numb": 60,
+    "type": "Multiple Choices",
+    "question": "Compared to $\\text{experimental surveys}$, non-experimental surveys are generally:",
+    "options": [
+      "A) Better at establishing causation",
+      "B) More likely to use control groups",
+      "C) Easier to design and implement, but unable to establish definitive cause-and-effect",
+      "D) More expensive and time-consuming"
+    ],
+    "answer": "C) Easier to design and implement, but unable to establish definitive cause-and-effect",
+    "image": null
+  },
+  {
+    "numb": 61,
+    "type": "Multiple Choices",
+    "question": "The difference between $\\text{stratified sampling}$ and $\\text{quota sampling}$ is that:",
+    "options": [
+      "A) Stratified sampling uses random selection within each stratum, while quota sampling selects whoever is available until the quota is filled",
+      "B) Quota sampling randomly selects participants, while stratified sampling does not",
+      "C) They are identical methods with different names",
+      "D) Stratified sampling does not divide the population into subgroups"
+    ],
+    "answer": "A) Stratified sampling uses random selection within each stratum, while quota sampling selects whoever is available until the quota is filled",
+    "image": null
+  },
+  {
+    "numb": 62,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a key advantage of $\\text{cluster sampling}$ over simple random sampling?",
+    "options": [
+      "A) It produces more precise estimates",
+      "B) It is more practical and cost-effective for geographically dispersed populations",
+      "C) It requires a complete list of every individual in the population",
+      "D) It eliminates all forms of sampling error"
+    ],
+    "answer": "B) It is more practical and cost-effective for geographically dispersed populations",
+    "image": null
+  },
+  {
+    "numb": 63,
+    "type": "Multiple Choices",
+    "question": "A researcher studying a sensitive topic like domestic violence wants respondents to be completely honest. The most important design choice is to ensure:",
+    "options": [
+      "A) The survey is as long as possible to collect comprehensive data",
+      "B) Full anonymity so that no identifying information is connected to responses",
+      "C) That all interviews are conducted face-to-face for accuracy",
+      "D) The use of only closed-ended questions"
+    ],
+    "answer": "B) Full anonymity so that no identifying information is connected to responses",
+    "image": null
+  },
+  {
+    "numb": 64,
+    "type": "Multiple Choices",
+    "question": "The assessment breakdown for the Survey Methodology course includes: Final Exam ($50\\%$), Assignment ($20\\%$), and Project ($30\\%$). If a student scores $40/50$ on the exam, $18/20$ on the assignment, and $25/30$ on the project, their total percentage is:",
+    "options": [
+      "A) $80\\%$",
+      "B) $83\\%$",
+      "C) $85\\%$",
+      "D) $88\\%$"
+    ],
+    "answer": "B) $83\\%$",
+    "image": null
+  },
+  {
+    "numb": 65,
+    "type": "Multiple Choices",
+    "question": "Which of the following scenarios represents $\\text{survey fraud}$?",
+    "options": [
+      "A) A respondent misunderstands a question due to poor wording",
+      "B) A data collector fabricates responses instead of actually conducting interviews",
+      "C) A researcher uses stratified sampling instead of simple random sampling",
+      "D) Respondents skip optional questions they find irrelevant"
+    ],
+    "answer": "B) A data collector fabricates responses instead of actually conducting interviews",
+    "image": null
+  },
+  {
+    "numb": 66,
+    "type": "Multiple Choices",
+    "question": "A major advantage of $\\text{open-ended questions}$ is that they:",
+    "options": [
+      "A) Make data analysis fast and straightforward",
+      "B) Allow respondents to express views in their own words, potentially revealing unexpected insights",
+      "C) Ensure the interviewer maintains full control of the conversation",
+      "D) Make comparison across interviews simple and standardized"
+    ],
+    "answer": "B) Allow respondents to express views in their own words, potentially revealing unexpected insights",
+    "image": null
+  },
+  {
+    "numb": 67,
+    "type": "Multiple Choices",
+    "question": "Interviews are described as effective for $\\text{\"digging into users' knowledge base.\"}$ This means interviews are best at:",
+    "options": [
+      "A) Collecting standardized quantitative data from thousands of people",
+      "B) Extracting deep, contextual information and understanding through direct conversation",
+      "C) Ensuring complete anonymity of respondent data",
+      "D) Reducing the time needed for data collection"
+    ],
+    "answer": "B) Extracting deep, contextual information and understanding through direct conversation",
+    "image": null
+  },
+  {
+    "numb": 68,
+    "type": "Multiple Choices",
+    "question": "Which of the following correctly pairs a $\\text{sampling method}$ with its type?",
+    "options": [
+      "A) Snowball sampling → Probability sampling",
+      "B) Systematic sampling → Non-probability sampling",
+      "C) Convenience sampling → Probability sampling",
+      "D) Stratified sampling → Probability sampling"
+    ],
+    "answer": "D) Stratified sampling → Probability sampling",
+    "image": null
+  },
+  {
+    "numb": 69,
+    "type": "Multiple Choices",
+    "question": "When a survey question like $\\text{\"Don't you think our product is excellent?\"}$ is used, this is problematic because it is a:",
+    "options": [
+      "A) Double-barreled question",
+      "B) Leading question that suggests the desired answer",
+      "C) Probing question seeking clarification",
+      "D) Bipolar question with two balanced options"
+    ],
+    "answer": "B) Leading question that suggests the desired answer",
+    "image": null
+  },
+  {
+    "numb": 70,
+    "type": "Multiple Choices",
+    "question": "The $\\text{Think-Aloud Method}$ used in cognitive testing helps researchers by:",
+    "options": [
+      "A) Providing statistical measures of reliability and validity",
+      "B) Revealing in real-time how respondents interpret, reason, and struggle with survey questions",
+      "C) Allowing automated analysis of survey responses by AI",
+      "D) Replacing the need for pilot testing the survey"
+    ],
+    "answer": "B) Revealing in real-time how respondents interpret, reason, and struggle with survey questions",
+    "image": null
+  },
+  {
+    "numb": 71,
+    "type": "Multiple Choices",
+    "question": "A survey about $\\text{workplace satisfaction}$ asks employees to rate aspects on a Likert scale from $1$ (Strongly Disagree) to $7$ (Strongly Agree). The question $\\text{\"I feel valued and I have excellent benefits\"}$ violates the survey design principle of avoiding:",
+    "options": [
+      "A) Probing questions",
+      "B) Bipolar questions",
+      "C) Double-barreled questions",
+      "D) Leading questions"
+    ],
+    "answer": "C) Double-barreled questions",
+    "image": null
+  },
+  {
+    "numb": 72,
+    "type": "Multiple Choices",
+    "question": "A $\\text{free format}$ questionnaire differs from a $\\text{fixed format}$ questionnaire in that it:",
+    "options": [
+      "A) Uses predefined response categories like checkboxes or radio buttons",
+      "B) Provides open space for respondents to write their own answers",
+      "C) Is always shorter and faster to complete",
+      "D) Can only be administered electronically"
+    ],
+    "answer": "B) Provides open space for respondents to write their own answers",
+    "image": null
+  },
+  {
+    "numb": 73,
+    "type": "Multiple Choices",
+    "question": "A disadvantage of a $\\text{fixed format}$ questionnaire is that it:",
+    "options": [
+      "A) Takes too long to complete",
+      "B) Limits respondents' ability to express opinions beyond the predefined options",
+      "C) Is impossible to analyze quantitatively",
+      "D) Requires face-to-face administration"
+    ],
+    "answer": "B) Limits respondents' ability to express opinions beyond the predefined options",
+    "image": null
+  },
+  {
+    "numb": 74,
+    "type": "Multiple Choices",
+    "question": "To study the health habits of a $\\text{rare disease}$ patient community where no official registry exists, the best sampling approach is:",
+    "options": [
+      "A) Simple random sampling from the general population",
+      "B) Stratified sampling by hospital region",
+      "C) Snowball sampling, where known patients refer other patients",
+      "D) Systematic sampling from a voter registration list"
+    ],
+    "answer": "C) Snowball sampling, where known patients refer other patients",
+    "image": null
+  },
+  {
+    "numb": 75,
+    "type": "Multiple Choices",
+    "question": "Which of the following survey designs would be most appropriate for studying how $\\text{smartphone usage patterns}$ evolve as a specific generation (e.g., Gen Z) ages?",
+    "options": [
+      "A) A single cross-sectional survey administered today",
+      "B) A cohort study tracking Gen Z members over multiple years",
+      "C) A convenience sample of current app users",
+      "D) A one-time experimental survey with control groups"
+    ],
+    "answer": "B) A cohort study tracking Gen Z members over multiple years",
+    "image": null
+  },
+  {
+    "numb": 76,
+    "type": "Multiple Choices",
+    "question": "$\\text{Construct validity}$ would be questioned if a survey designed to measure $\\text{\"job satisfaction\"}$ actually measured:",
+    "options": [
+      "A) Job satisfaction across different departments",
+      "B) Salary satisfaction instead of overall job satisfaction",
+      "C) Job satisfaction using a 7-point Likert scale",
+      "D) Both full-time and part-time employee satisfaction"
+    ],
+    "answer": "B) Salary satisfaction instead of overall job satisfaction",
+    "image": null
+  },
+  {
+    "numb": 77,
+    "type": "Multiple Choices",
+    "question": "A researcher sends follow-up reminders to non-respondents after the initial survey invitation. This strategy primarily aims to:",
+    "options": [
+      "A) Increase the internal consistency of the survey",
+      "B) Improve the response rate and reduce nonresponse bias",
+      "C) Increase the number of questions in the survey",
+      "D) Replace the need for pilot testing"
+    ],
+    "answer": "B) Improve the response rate and reduce nonresponse bias",
+    "image": null
+  },
+  {
+    "numb": 78,
+    "type": "Multiple Choices",
+    "question": "If a survey's response rate is only $15\\%$, the biggest concern is that:",
+    "options": [
+      "A) The survey was too easy",
+      "B) The data may suffer from nonresponse bias because the $85\\%$ who didn't respond may differ systematically from those who did",
+      "C) The survey questions were probably invalid",
+      "D) The pilot test was not conducted properly"
+    ],
+    "answer": "B) The data may suffer from nonresponse bias because the $85\\%$ who didn't respond may differ systematically from those who did",
+    "image": null
+  },
+  {
+    "numb": 79,
+    "type": "Multiple Choices",
+    "question": "Which cognitive testing finding would be most alarming for a survey researcher?",
+    "options": [
+      "A) Respondents take slightly longer than expected to answer",
+      "B) Different respondents interpret the same key term in completely different ways",
+      "C) Respondents find the survey visually appealing",
+      "D) Respondents complete the survey faster than the pilot test predicted"
+    ],
+    "answer": "B) Different respondents interpret the same key term in completely different ways",
+    "image": null
+  },
+  {
+    "numb": 80,
+    "type": "Multiple Choices",
+    "question": "A survey measures $\\text{customer loyalty}$ using questions about $\\text{repeat purchase intention}$, $\\text{recommendation likelihood}$, and $\\text{overall satisfaction}$. If these three measures are poorly correlated with each other, this indicates low:",
+    "options": [
+      "A) Face validity",
+      "B) Test-retest reliability",
+      "C) Internal consistency",
+      "D) Criterion validity"
+    ],
+    "answer": "C) Internal consistency",
+    "image": null
+  },
+  {
+    "numb": 81,
+    "type": "Multiple Choices",
+    "question": "A researcher wants to survey public opinion about a new environmental policy but can only afford to study one city. She surveys $500$ residents of Cairo at a single point in time. This is:",
+    "options": [
+      "A) A longitudinal panel study limited to Cairo",
+      "B) A cross-sectional survey using a geographically limited sample",
+      "C) A trend study tracking environmental attitudes",
+      "D) An experimental survey testing policy effects"
+    ],
+    "answer": "B) A cross-sectional survey using a geographically limited sample",
+    "image": null
+  },
+  {
+    "numb": 82,
+    "type": "Multiple Choices",
+    "question": "Which of the following is the strongest design for establishing that $\\text{exercise causes improved mental health}$?",
+    "options": [
+      "A) A cross-sectional survey correlating exercise and mental health",
+      "B) A non-experimental descriptive survey about exercise habits",
+      "C) A randomized controlled experiment with exercise and control groups measured over time",
+      "D) A convenience sample asking people about their exercise and mood"
+    ],
+    "answer": "C) A randomized controlled experiment with exercise and control groups measured over time",
+    "image": null
+  },
+  {
+    "numb": 83,
+    "type": "Multiple Choices",
+    "question": "The sequence $\\text{Define question} \\to \\text{Choose survey type} \\to \\text{Select population} \\to \\text{Collect data} \\to \\text{Analyze findings}$ describes the steps for conducting a:",
+    "options": [
+      "A) Pilot test",
+      "B) Non-experimental survey",
+      "C) Cognitive test",
+      "D) Data cleaning process"
+    ],
+    "answer": "B) Non-experimental survey",
+    "image": null
+  },
+  {
+    "numb": 84,
+    "type": "Multiple Choices",
+    "question": "When conducting an interview, $\\text{preparing the interviewee}$ beforehand is important because it:",
+    "options": [
+      "A) Allows the researcher to tell the interviewee what answers to give",
+      "B) Helps the interviewee feel comfortable, understand the purpose, and gather relevant thoughts or documents",
+      "C) Eliminates the need for any probing questions during the interview",
+      "D) Ensures the interview will not exceed 5 minutes"
+    ],
+    "answer": "B) Helps the interviewee feel comfortable, understand the purpose, and gather relevant thoughts or documents",
+    "image": null
+  },
+  {
+    "numb": 85,
+    "type": "Multiple Choices",
+    "question": "A researcher studying $\\text{online shopping behavior}$ collects data from her social media followers because they are easy to reach. The biggest threat to this study is:",
+    "options": [
+      "A) The sample is too large",
+      "B) Selection bias — her followers may not represent the general population of online shoppers",
+      "C) The questions are too easy",
+      "D) The survey will have too high a response rate"
+    ],
+    "answer": "B) Selection bias — her followers may not represent the general population of online shoppers",
+    "image": null
+  },
+  {
+    "numb": 86,
+    "type": "Multiple Choices",
+    "question": "An organization claims their product satisfaction is $95\\%$ based on a survey, but they only surveyed people who voluntarily signed up for their rewards program. This result is likely biased due to:",
+    "options": [
+      "A) Non-sampling error from data entry mistakes",
+      "B) Self-selection bias — only satisfied customers likely joined the rewards program",
+      "C) Systematic sampling error",
+      "D) The use of too many open-ended questions"
+    ],
+    "answer": "B) Self-selection bias — only satisfied customers likely joined the rewards program",
+    "image": null
+  },
+  {
+    "numb": 87,
+    "type": "Multiple Choices",
+    "question": "Which type of validity is the weakest form because it relies only on subjective judgment of whether the survey $\\text{\"looks right\"}$?",
+    "options": [
+      "A) Criterion validity",
+      "B) Content validity",
+      "C) Face validity",
+      "D) Construct validity"
+    ],
+    "answer": "C) Face validity",
+    "image": null
+  },
+  {
+    "numb": 88,
+    "type": "Multiple Choices",
+    "question": "A well-designed survey achieves both high reliability and high validity. The relationship between these two concepts is that:",
+    "options": [
+      "A) A valid survey is always reliable, but a reliable survey is not necessarily valid",
+      "B) A reliable survey is always valid",
+      "C) They are completely independent and unrelated properties",
+      "D) High validity automatically guarantees high response rates"
+    ],
+    "answer": "A) A valid survey is always reliable, but a reliable survey is not necessarily valid",
+    "image": null
+  },
+  {
+    "numb": 89,
+    "type": "Multiple Choices",
+    "question": "A company discovers through cognitive testing that respondents interpret $\\text{\"frequently\"}$ as $\\text{\"daily\"}$ in some cultures but $\\text{\"weekly\"}$ in others. The best fix is to:",
+    "options": [
+      "A) Remove the question entirely",
+      "B) Replace vague terms with specific, measurable language (e.g., 'more than 3 times per week')",
+      "C) Use a longer survey to compensate",
+      "D) Only survey people from one culture"
+    ],
+    "answer": "B) Replace vague terms with specific, measurable language (e.g., 'more than 3 times per week')",
+    "image": null
+  },
+  {
+    "numb": 90,
+    "type": "Multiple Choices",
+    "question": "A trend study and a panel study both collect data over time. The key difference is that in a trend study:",
+    "options": [
+      "A) The same individuals are surveyed repeatedly",
+      "B) Different random samples are drawn from the same population at each time point",
+      "C) No sampling is needed because the entire population is surveyed",
+      "D) Only qualitative methods are used"
+    ],
+    "answer": "B) Different random samples are drawn from the same population at each time point",
+    "image": null
+  },
+  {
+    "numb": 91,
+    "type": "Multiple Choices",
+    "question": "An advantage of using $\\text{incentives}$ in surveys (e.g., gift cards, discounts) is that they:",
+    "options": [
+      "A) Guarantee that all responses will be honest and accurate",
+      "B) Increase participation rates and help reduce nonresponse bias",
+      "C) Eliminate the need for anonymity protections",
+      "D) Replace the need for informed consent"
+    ],
+    "answer": "B) Increase participation rates and help reduce nonresponse bias",
+    "image": null
+  },
+  {
+    "numb": 92,
+    "type": "Multiple Choices",
+    "question": "A pharmaceutical company runs a clinical trial where one group receives the drug and another receives a placebo. Both groups are assessed using the same survey at weeks $1, 4,$ and $12$. This study combines elements of:",
+    "options": [
+      "A) Cross-sectional survey and convenience sampling",
+      "B) Experimental design and longitudinal data collection",
+      "C) Non-experimental correlational study",
+      "D) Trend study with snowball sampling"
+    ],
+    "answer": "B) Experimental design and longitudinal data collection",
+    "image": null
+  },
+  {
+    "numb": 93,
+    "type": "Multiple Choices",
+    "question": "Which of the following best describes why $\\text{pilot testing catches errors before}$ the main study launch?",
+    "options": [
+      "A) It uses a larger sample than the main study",
+      "B) It is administered under ideal laboratory conditions only",
+      "C) It exposes the survey to real respondents on a small scale, revealing practical issues like confusing wording, technical glitches, and poor skip logic",
+      "D) It replaces the statistical analysis phase"
+    ],
+    "answer": "C) It exposes the survey to real respondents on a small scale, revealing practical issues like confusing wording, technical glitches, and poor skip logic",
+    "image": null
+  },
+  {
+    "numb": 94,
+    "type": "Multiple Choices",
+    "question": "A researcher has $N = 1{,}000$ employees and wants a sample of $n = 100$ using $\\text{systematic sampling}$. Starting from an employee randomly chosen between position $1$ and $10$, she selects every:",
+    "options": [
+      "A) $5\\text{th}$ employee",
+      "B) $10\\text{th}$ employee",
+      "C) $50\\text{th}$ employee",
+      "D) $100\\text{th}$ employee"
+    ],
+    "answer": "B) $10\\text{th}$ employee",
+    "image": null
+  },
+  {
+    "numb": 95,
+    "type": "Multiple Choices",
+    "question": "In survey questionnaire design, using $\\text{clear language}$, $\\text{short format}$, and $\\text{consistent layout}$ are all principles of:",
+    "options": [
+      "A) Cognitive testing methodology",
+      "B) Good questionnaire design practice",
+      "C) Experimental manipulation techniques",
+      "D) Sampling strategy selection"
+    ],
+    "answer": "B) Good questionnaire design practice",
+    "image": null
+  },
+  {
+    "numb": 96,
+    "type": "Multiple Choices",
+    "question": "A study finds that students who $\\text{study more hours}$ tend to have $\\text{higher GPAs}$, but the researchers used a cross-sectional, non-experimental design. The correct conclusion is:",
+    "options": [
+      "A) Studying more hours definitely causes higher GPAs",
+      "B) There is an association between study hours and GPA, but causation cannot be established from this design",
+      "C) Higher GPAs cause students to study more",
+      "D) The finding is meaningless because no experiment was conducted"
+    ],
+    "answer": "B) There is an association between study hours and GPA, but causation cannot be established from this design",
+    "image": null
+  },
+  {
+    "numb": 97,
+    "type": "Multiple Choices",
+    "question": "When a survey's $\\text{dropout rate}$ is measured during pilot testing, researchers are assessing:",
+    "options": [
+      "A) The survey's construct validity",
+      "B) How many pilot participants stop before completing the survey, indicating potential design or length problems",
+      "C) The statistical significance of the pilot results",
+      "D) Whether the survey questions are biased"
+    ],
+    "answer": "B) How many pilot participants stop before completing the survey, indicating potential design or length problems",
+    "image": null
+  },
+  {
+    "numb": 98,
+    "type": "Multiple Choices",
+    "question": "The ethical principle that participants must be able to $\\text{leave the study at any time without consequences}$ is part of:",
+    "options": [
+      "A) Data manipulation guidelines",
+      "B) The right to withdraw, a component of informed consent",
+      "C) Sampling error reduction",
+      "D) Survey fraud prevention"
+    ],
+    "answer": "B) The right to withdraw, a component of informed consent",
+    "image": null
+  },
+  {
+    "numb": 99,
+    "type": "Multiple Choices",
+    "question": "If a researcher wants to study public opinion on a topic that has $\\textbf{never been researched before}$ and has no established measurement tools, the most important step is to:",
+    "options": [
+      "A) Immediately launch a large-scale survey to collect maximum data",
+      "B) Use an existing survey from a different topic without modification",
+      "C) Develop new questions and rigorously pilot test them, including cognitive testing, to establish reliability and validity",
+      "D) Skip the measurement development and rely on observational data alone"
+    ],
+    "answer": "C) Develop new questions and rigorously pilot test them, including cognitive testing, to establish reliability and validity",
+    "image": null
+  },
+  {
+    "numb": 100,
+    "type": "Multiple Choices",
+    "question": "A comprehensive survey research project should ideally follow this sequence of phases:",
+    "options": [
+      "A) Data collection → Research question → Sampling → Analysis → Pilot testing",
+      "B) Research question → Survey design → Pilot testing → Sampling → Data collection → Analysis",
+      "C) Pilot testing → Research question → Data collection → Sampling → Analysis",
+      "D) Sampling → Data collection → Research question → Survey design → Analysis"
+    ],
+    "answer": "B) Research question → Survey design → Pilot testing → Sampling → Data collection → Analysis",
+    "image": null
+  }
+]

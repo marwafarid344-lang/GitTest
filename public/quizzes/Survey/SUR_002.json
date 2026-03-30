@@ -1,0 +1,282 @@
+[
+  {
+    "numb": 1,
+    "type": "Multiple Choices",
+    "question": "A $\\text{cross-sectional survey}$ is best described as a research method that:",
+    "options": [
+      "A) Follows the same individuals repeatedly over several years",
+      "B) Collects data from a specific population at a single point in time",
+      "C) Manipulates variables to test cause-and-effect relationships",
+      "D) Uses only qualitative interviews with no structured questions"
+    ],
+    "answer": "B) Collects data from a specific population at a single point in time",
+    "explanation": "Cross-sectional surveys provide a 'snapshot' of the population at one moment. They do not track changes over time (that's longitudinal), nor do they manipulate variables (that's experimental). Their strength is efficiently describing the current state of a population.",
+    "image": null
+  },
+  {
+    "numb": 2,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a key limitation of cross-sectional surveys?",
+    "options": [
+      "A) They require expensive longitudinal tracking software",
+      "B) They cannot track changes or trends over time",
+      "C) They always suffer from high participant dropout rates",
+      "D) They can only be conducted through face-to-face interviews"
+    ],
+    "answer": "B) They cannot track changes or trends over time",
+    "explanation": "Since cross-sectional surveys collect data only once, they cannot observe how variables change over time. They provide no information about trends, development, or causal ordering. Dropout (C) is a concern for longitudinal/panel studies, not cross-sectional ones.",
+    "image": null
+  },
+  {
+    "numb": 3,
+    "type": "Multiple Choices",
+    "question": "A $\\text{longitudinal survey}$ differs from a cross-sectional survey primarily because it:",
+    "options": [
+      "A) Only uses closed-ended questions",
+      "B) Collects data from the same individuals or groups over an extended period to track changes",
+      "C) Provides a single snapshot of the population at one moment",
+      "D) Does not require any sampling strategy"
+    ],
+    "answer": "B) Collects data from the same individuals or groups over an extended period to track changes",
+    "explanation": "Longitudinal surveys involve repeated data collection over time, allowing researchers to observe trends, developments, and potential cause-and-effect relationships. This is their fundamental difference from cross-sectional surveys, which collect data only once.",
+    "image": null
+  },
+  {
+    "numb": 4,
+    "type": "Multiple Choices",
+    "question": "A researcher measures public trust in government every five years using different random samples each time. This is an example of a:",
+    "options": [
+      "A) Panel study",
+      "B) Cohort study",
+      "C) Trend study",
+      "D) Cross-sectional study"
+    ],
+    "answer": "C) Trend study",
+    "explanation": "A trend study tracks the same topic over time but uses different samples at each measurement point. The key distinction from a panel study is that different people are surveyed each time. This allows tracking population-level changes without needing to relocate the same individuals.",
+    "image": null
+  },
+  {
+    "numb": 5,
+    "type": "Multiple Choices",
+    "question": "A university tracks the career paths of all $\\text{Class of 2024}$ graduates over the next decade. This design is classified as a:",
+    "options": [
+      "A) Trend study",
+      "B) Cohort study",
+      "C) Cross-sectional study",
+      "D) Convenience study"
+    ],
+    "answer": "B) Cohort study",
+    "explanation": "A cohort study follows a specific group sharing a common characteristic (in this case, graduating in 2024) over time. Unlike a panel study that tracks the exact same individuals, a cohort study may sample from within the defined cohort at each wave.",
+    "image": null
+  },
+  {
+    "numb": 6,
+    "type": "Multiple Choices",
+    "question": "A $\\text{panel survey}$ is a specific type of longitudinal survey where:",
+    "options": [
+      "A) Different groups are sampled at each wave to ensure diversity",
+      "B) The exact same group of individuals is surveyed multiple times over the study period",
+      "C) Data is collected only once from a very large population",
+      "D) Researchers manipulate the independent variable between waves"
+    ],
+    "answer": "B) The exact same group of individuals is surveyed multiple times over the study period",
+    "explanation": "The defining feature of a panel survey is that the exact same participants are tracked across all survey waves. This allows researchers to observe individual-level changes in opinions or behaviors, not just population-level trends.",
+    "image": null
+  },
+  {
+    "numb": 7,
+    "type": "Multiple Choices",
+    "question": "Which survey type is most vulnerable to the risk of $\\text{panel dropout}$ (attrition)?",
+    "options": [
+      "A) Cross-sectional survey",
+      "B) One-time descriptive survey",
+      "C) Panel survey",
+      "D) Anonymous online poll"
+    ],
+    "answer": "C) Panel survey",
+    "explanation": "Panel surveys require the same individuals to participate repeatedly, which means some will inevitably leave the study over time (move, lose interest, become unavailable). This attrition can bias results if those dropping out differ systematically from those remaining.",
+    "image": null
+  },
+  {
+    "numb": 8,
+    "type": "Multiple Choices",
+    "question": "A researcher surveyed $10{,}000$ high school students once to study the relationship between daily social media usage hours and anxiety levels. This study design is:",
+    "options": [
+      "A) A longitudinal trend study",
+      "B) A panel survey",
+      "C) A cross-sectional survey",
+      "D) An experimental survey"
+    ],
+    "answer": "C) A cross-sectional survey",
+    "explanation": "The key indicator is 'surveyed once' — data was collected at a single point in time from the population. Even though 10,000 students is a large sample and the study examines a relationship, the one-time data collection makes it cross-sectional, not longitudinal.",
+    "image": null
+  },
+  {
+    "numb": 9,
+    "type": "Multiple Choices",
+    "question": "One of the main advantages of a $\\text{cross-sectional survey}$ is that it:",
+    "options": [
+      "A) Can establish strong cause-and-effect relationships",
+      "B) Is efficient, time-saving, and supports large-scale data collection with no risk of participant dropout",
+      "C) Provides detailed tracking of individual behavioral changes",
+      "D) Eliminates all forms of response bias"
+    ],
+    "answer": "B) Is efficient, time-saving, and supports large-scale data collection with no risk of participant dropout",
+    "explanation": "Cross-sectional surveys collect data once, making them fast, affordable, and scalable. Since participants are only contacted once, dropout is not an issue. However, they cannot prove causation (A) or track individual changes (C), and no survey design eliminates all bias (D).",
+    "image": null
+  },
+  {
+    "numb": 10,
+    "type": "Multiple Choices",
+    "question": "A key advantage that $\\text{longitudinal surveys}$ have over cross-sectional surveys is the ability to:",
+    "options": [
+      "A) Collect data faster and at lower cost",
+      "B) Avoid all forms of participant dropout",
+      "C) Establish cause-and-effect relationships by observing changes over time",
+      "D) Guarantee a 100% response rate in every wave"
+    ],
+    "answer": "C) Establish cause-and-effect relationships by observing changes over time",
+    "explanation": "By collecting data at multiple points, longitudinal surveys can observe temporal ordering — whether A happens before B — which is essential for inferring causation. Cross-sectional surveys can only show correlations. However, longitudinal studies are slower and more expensive, not faster (A).",
+    "image": null
+  },
+  {
+    "numb": 11,
+    "type": "Multiple Choices",
+    "question": "When designing a cross-sectional survey, the correct sequence of steps is:",
+    "options": [
+      "A) Analyze results → Define objective → Design questions → Conduct survey",
+      "B) Define objective → Identify population → Choose method → Design questions → Conduct survey → Analyze results",
+      "C) Choose method → Conduct survey → Define objective → Analyze results",
+      "D) Design questions → Identify population → Define objective → Conduct survey"
+    ],
+    "answer": "B) Define objective → Identify population → Choose method → Design questions → Conduct survey → Analyze results",
+    "explanation": "Survey design follows a logical flow: first define what you want to know, then identify who to ask, choose how to reach them, craft the questions, collect the data, and finally analyze it. Skipping or reordering these steps leads to poorly designed surveys.",
+    "image": null
+  },
+  {
+    "numb": 12,
+    "type": "Multiple Choices",
+    "question": "A $\\text{continuous panel survey}$ differs from a $\\text{discontinuous panel survey}$ in that:",
+    "options": [
+      "A) The continuous panel collects data at regular, ongoing intervals while the discontinuous collects at irregular or episodic intervals",
+      "B) The continuous panel uses only qualitative methods",
+      "C) The discontinuous panel never tracks the same individuals",
+      "D) They are identical in design but differ only in sample size"
+    ],
+    "answer": "A) The continuous panel collects data at regular, ongoing intervals while the discontinuous collects at irregular or episodic intervals",
+    "explanation": "Continuous panels survey participants on a fixed schedule (e.g., monthly, quarterly), while discontinuous panels collect data at specific events or irregular intervals. Both track the same individuals — the difference is the timing pattern of data collection.",
+    "image": null
+  },
+  {
+    "numb": 13,
+    "type": "Multiple Choices",
+    "question": "Which of the following is NOT a limitation of longitudinal surveys?",
+    "options": [
+      "A) They are time-consuming and expensive",
+      "B) There is a risk of participant dropout over time",
+      "C) Data collection across multiple waves poses logistical challenges",
+      "D) They cannot identify trends or patterns in data"
+    ],
+    "answer": "D) They cannot identify trends or patterns in data",
+    "explanation": "Identifying trends is actually the primary strength of longitudinal surveys, not a limitation. Their real limitations include high cost, time requirements, attrition risk, and logistical complexity of maintaining the study across multiple waves.",
+    "image": null
+  },
+  {
+    "numb": 14,
+    "type": "Multiple Choices",
+    "question": "A researcher wants to determine how $\\text{study habits}$ affect $\\text{GPA}$ from freshman year to senior year by tracking the same group of students. The most appropriate design is:",
+    "options": [
+      "A) Cross-sectional survey",
+      "B) Panel survey",
+      "C) One-time descriptive study",
+      "D) Convenience sampling"
+    ],
+    "answer": "B) Panel survey",
+    "explanation": "This requires following the exact same students from freshman to senior year and measuring both study habits and GPA repeatedly. Only a panel survey tracks the same individuals over time, allowing observation of how one variable affects another within the same person.",
+    "image": null
+  },
+  {
+    "numb": 15,
+    "type": "Multiple Choices",
+    "question": "Cross-sectional surveys are described as $\\text{descriptive}$ in nature because they:",
+    "options": [
+      "A) Manipulate variables to test hypotheses",
+      "B) Provide a snapshot that describes the state of a population at one point in time, without establishing causation",
+      "C) Are only used to describe physical characteristics of respondents",
+      "D) Require lengthy written descriptions from each participant"
+    ],
+    "answer": "B) Provide a snapshot that describes the state of a population at one point in time, without establishing causation",
+    "explanation": "Cross-sectional surveys describe 'what is' at a specific moment — prevalence of behaviors, distribution of opinions, etc. Without repeated measurements, they cannot demonstrate that one variable causes changes in another, only that they co-occur.",
+    "image": null
+  },
+  {
+    "numb": 16,
+    "type": "Multiple Choices",
+    "question": "In a longitudinal design, conducting surveys at $\\text{multiple key points}$ (e.g., three times during a semester) is essential because:",
+    "options": [
+      "A) It increases the survey's anonymity",
+      "B) It allows the researcher to observe how variables change and interact over time",
+      "C) It reduces the total number of questions needed",
+      "D) It eliminates the need for a defined research objective"
+    ],
+    "answer": "B) It allows the researcher to observe how variables change and interact over time",
+    "explanation": "Multiple measurement points are the essence of longitudinal research. By comparing data across time points, researchers can see trajectories of change, identify turning points, and understand how variables evolve and influence each other over the study period.",
+    "image": null
+  },
+  {
+    "numb": 17,
+    "type": "Multiple Choices",
+    "question": "Tracking stress levels and coping strategies among university students throughout a full semester using the same participants is an example of:",
+    "options": [
+      "A) A cross-sectional survey",
+      "B) An experimental survey with control groups",
+      "C) A panel survey",
+      "D) A trend study using different samples"
+    ],
+    "answer": "C) A panel survey",
+    "explanation": "The same students are measured repeatedly over the semester — this is the hallmark of a panel survey. It's not cross-sectional (data collected multiple times), not experimental (no manipulation), and not a trend study (same individuals, not different samples).",
+    "image": null
+  },
+  {
+    "numb": 18,
+    "type": "Multiple Choices",
+    "question": "Which of the following statements about cross-sectional surveys is $\\textbf{FALSE}$?",
+    "options": [
+      "A) They are useful for measuring the prevalence of behaviors in a population",
+      "B) They support large-scale data collection efficiently",
+      "C) They can definitively establish cause-and-effect relationships between variables",
+      "D) They have no risk of participant dropout since data is collected once"
+    ],
+    "answer": "C) They can definitively establish cause-and-effect relationships between variables",
+    "explanation": "Cross-sectional surveys capture data at one point in time, so they can only identify correlations or associations between variables. Without tracking changes over time, it's impossible to determine whether A causes B, B causes A, or both are caused by an unmeasured factor C.",
+    "image": null
+  },
+  {
+    "numb": 19,
+    "type": "Multiple Choices",
+    "question": "A $\\text{cohort study}$ differs from a $\\text{trend study}$ in that a cohort study:",
+    "options": [
+      "A) Tracks the same defined group over time, while a trend study samples different people from the population at each wave",
+      "B) Uses only closed-ended questions",
+      "C) Is always shorter in duration",
+      "D) Does not require any defined population"
+    ],
+    "answer": "A) Tracks the same defined group over time, while a trend study samples different people from the population at each wave",
+    "explanation": "A cohort study follows a specific group sharing a common characteristic (e.g., Class of 2024), while a trend study surveys different random samples from the same population at each time point. Both are longitudinal, but they differ in whether the same people are tracked.",
+    "image": null
+  },
+  {
+    "numb": 20,
+    "type": "Multiple Choices",
+    "question": "A company wants to understand how $\\text{customer satisfaction}$ with a new product changes over 12 months by surveying the same 500 early adopters quarterly. This research design combines aspects of:",
+    "options": [
+      "A) Cross-sectional and experimental surveys",
+      "B) Panel and longitudinal surveys",
+      "C) Trend study and cross-sectional surveys",
+      "D) Descriptive and convenience sampling"
+    ],
+    "answer": "B) Panel and longitudinal surveys",
+    "explanation": "This design is longitudinal (data collected over 12 months) and specifically a panel survey (the same 500 early adopters are surveyed repeatedly). A panel survey is a subtype of longitudinal research that tracks identical individuals across waves.",
+    "image": null
+  }
+]

@@ -1,0 +1,282 @@
+[
+  {
+    "numb": 1,
+    "type": "Multiple Choices",
+    "question": "An $\\text{experimental survey}$ is research that:",
+    "options": [
+      "A) Observes phenomena without any researcher intervention",
+      "B) Tests cause-and-effect relationships by manipulating one or more variables while keeping others constant",
+      "C) Collects opinions anonymously without any structure",
+      "D) Describes the natural state of a population using observational data"
+    ],
+    "answer": "B) Tests cause-and-effect relationships by manipulating one or more variables while keeping others constant",
+    "explanation": "Experimental surveys deliberately change (manipulate) independent variables to observe their effect on dependent variables, while controlling all other factors. This is the only design that can establish true cause-and-effect, unlike non-experimental approaches which only observe.",
+    "image": null
+  },
+  {
+    "numb": 2,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a key feature of experimental surveys that distinguishes them from non-experimental surveys?",
+    "options": [
+      "A) Use of open-ended questions exclusively",
+      "B) Presence of control groups and deliberate manipulation of variables",
+      "C) Reliance on convenience sampling without random selection",
+      "D) Data collection at a single point in time only"
+    ],
+    "answer": "B) Presence of control groups and deliberate manipulation of variables",
+    "explanation": "The two defining features of experimental design are: (1) the researcher actively manipulates at least one variable, and (2) there are control groups for comparison. Non-experimental surveys lack both — they observe the world as it is without interference.",
+    "image": null
+  },
+  {
+    "numb": 3,
+    "type": "Multiple Choices",
+    "question": "In $\\text{A/B Testing}$, a researcher:",
+    "options": [
+      "A) Simultaneously changes multiple independent variables to observe combined effects",
+      "B) Compares two versions of a single variable to determine which performs better",
+      "C) Surveys the same participants repeatedly over several years",
+      "D) Removes all control groups to maximize sample size"
+    ],
+    "answer": "B) Compares two versions of a single variable to determine which performs better",
+    "explanation": "A/B testing isolates a single variable by creating two versions (A and B) that differ in only that one aspect — for example, two email subject lines. By comparing outcomes, researchers can determine which version is more effective. Changing multiple variables simultaneously is factorial design, not A/B.",
+    "image": null
+  },
+  {
+    "numb": 4,
+    "type": "Multiple Choices",
+    "question": "A $\\text{Factorial Survey}$ design is characterized by:",
+    "options": [
+      "A) Testing only one variable at a time with a single control group",
+      "B) Simultaneously changing multiple variables to observe their individual and combined effects",
+      "C) Collecting purely qualitative data through unstructured interviews",
+      "D) Using convenience sampling without random assignment"
+    ],
+    "answer": "B) Simultaneously changing multiple variables to observe their individual and combined effects",
+    "explanation": "Factorial designs manipulate two or more independent variables at the same time. This allows researchers to study not just each variable's individual effect, but also how they interact with each other (interaction effects). A/B testing, by contrast, tests just one variable.",
+    "image": null
+  },
+  {
+    "numb": 5,
+    "type": "Multiple Choices",
+    "question": "Which of the following correctly orders the steps for performing an experimental survey?",
+    "options": [
+      "A) Collect responses → Choose research question → Randomly select participants → Compare results",
+      "B) Choose a research question → Randomly select participants → Divide into groups → Expose to different stimuli → Collect and compare responses",
+      "C) Divide into groups → Choose research question → Expose to stimuli → Randomly select participants",
+      "D) Expose to stimuli → Choose research question → Divide into groups → Collect responses"
+    ],
+    "answer": "B) Choose a research question → Randomly select participants → Divide into groups → Expose to different stimuli → Collect and compare responses",
+    "explanation": "Experimental research follows a logical sequence: first define what you're testing, then select and randomize participants, assign them to groups, apply the experimental conditions, and finally collect and compare results. The research question must always come first to guide all subsequent decisions.",
+    "image": null
+  },
+  {
+    "numb": 6,
+    "type": "Multiple Choices",
+    "question": "A $\\text{non-experimental survey}$ is defined as research that:",
+    "options": [
+      "A) Manipulates independent variables to test hypotheses",
+      "B) Uses randomized controlled trials to compare group outcomes",
+      "C) Describes things as they naturally occur without any manipulation by the researcher",
+      "D) Always requires the use of a placebo group"
+    ],
+    "answer": "C) Describes things as they naturally occur without any manipulation by the researcher",
+    "explanation": "Non-experimental surveys observe and describe reality as it exists — the researcher does not change, control, or manipulate any variables. This makes them useful for describing populations and identifying correlations, but unable to prove causation.",
+    "image": null
+  },
+  {
+    "numb": 7,
+    "type": "Multiple Choices",
+    "question": "A survey asking $\\text{\"How often do people use social media?\"}$ without changing any conditions is an example of a:",
+    "options": [
+      "A) Randomized controlled survey",
+      "B) Factorial survey",
+      "C) Descriptive non-experimental survey",
+      "D) A/B test"
+    ],
+    "answer": "C) Descriptive non-experimental survey",
+    "explanation": "This question simply asks about current behavior without manipulating anything. It describes how things are (descriptive) and involves no experimental conditions (non-experimental). It's measuring the prevalence of a behavior in the population.",
+    "image": null
+  },
+  {
+    "numb": 8,
+    "type": "Multiple Choices",
+    "question": "A $\\text{correlational survey}$ aims to:",
+    "options": [
+      "A) Establish definitive causation between two variables through manipulation",
+      "B) Understand the relationship or association between two variables without manipulating them",
+      "C) Divide participants into control and experimental groups",
+      "D) Track a single individual's behavior over 10 years"
+    ],
+    "answer": "B) Understand the relationship or association between two variables without manipulating them",
+    "explanation": "Correlational surveys measure two or more variables simultaneously to see if they are related (e.g., does social media usage correlate with study time?). Crucially, correlation ≠ causation — finding a relationship doesn't prove one variable causes changes in the other.",
+    "image": null
+  },
+  {
+    "numb": 9,
+    "type": "Multiple Choices",
+    "question": "Which of the following is TRUE about experimental surveys but FALSE about non-experimental surveys?",
+    "options": [
+      "A) They observe the natural state of phenomena",
+      "B) They use control and experimental groups with random assignment",
+      "C) They never use random selection of participants",
+      "D) They are always faster and cheaper to conduct"
+    ],
+    "answer": "B) They use control and experimental groups with random assignment",
+    "explanation": "Control and experimental groups with random assignment are hallmarks of experimental designs. Non-experimental surveys have no control groups and no manipulation. Observing natural phenomena (A) is actually true about non-experimental surveys, not experimental ones.",
+    "image": null
+  },
+  {
+    "numb": 10,
+    "type": "Multiple Choices",
+    "question": "$\\text{Informed consent}$ in survey research requires that participants are made aware of:",
+    "options": [
+      "A) Only the name of the research institution",
+      "B) The study's purpose, data usage, confidentiality, potential risks/benefits, and their right to withdraw",
+      "C) Only whether the survey is mandatory or optional",
+      "D) The statistical methods that will be used to analyze data"
+    ],
+    "answer": "B) The study's purpose, data usage, confidentiality, potential risks/benefits, and their right to withdraw",
+    "explanation": "Informed consent is a comprehensive ethical requirement covering: what the study is about, how their data will be used, how it will be protected, what risks and benefits exist, and that they can leave anytime without penalty. Partial disclosure (only the institution name or mandatory status) is insufficient.",
+    "image": null
+  },
+  {
+    "numb": 11,
+    "type": "Multiple Choices",
+    "question": "The distinction between $\\text{confidentiality}$ and $\\text{anonymity}$ in surveys is that:",
+    "options": [
+      "A) They are identical concepts used interchangeably",
+      "B) Confidentiality means data is private but linked to the individual, while anonymity means no personally identifiable information is collected at all",
+      "C) Anonymity links data to individuals but keeps it private, while confidentiality removes all identifying data",
+      "D) Both require collecting the respondent's full name and address"
+    ],
+    "answer": "B) Confidentiality means data is private but linked to the individual, while anonymity means no personally identifiable information is collected at all",
+    "explanation": "In confidential surveys, the researcher knows who said what but promises to keep it private. In anonymous surveys, there is no way to connect any response to any individual — not even the researcher can identify who gave which answer. Anonymity provides stronger protection for sensitive topics.",
+    "image": null
+  },
+  {
+    "numb": 12,
+    "type": "Multiple Choices",
+    "question": "Anonymity in surveys is important because it:",
+    "options": [
+      "A) Makes data analysis more complicated",
+      "B) Encourages honesty, reduces social desirability bias, protects participants from harm, and increases participation",
+      "C) Allows the researcher to follow up with specific respondents",
+      "D) Is legally required in every country for all types of research"
+    ],
+    "answer": "B) Encourages honesty, reduces social desirability bias, protects participants from harm, and increases participation",
+    "explanation": "When respondents know they cannot be identified, they are more likely to answer honestly — especially on sensitive topics like illegal behavior, controversial opinions, or personal struggles. This reduces social desirability bias (answering how they think they 'should' rather than truthfully).",
+    "image": null
+  },
+  {
+    "numb": 13,
+    "type": "Multiple Choices",
+    "question": "Facebook's 2014 $\\text{\"Emotional Contagion\"}$ study was ethically controversial because it:",
+    "options": [
+      "A) Used too many open-ended questions in the survey",
+      "B) Manipulated user news feeds to study emotional responses without obtaining informed consent",
+      "C) Shared user data with a government agency",
+      "D) Only collected data from minors under 18"
+    ],
+    "answer": "B) Manipulated user news feeds to study emotional responses without obtaining informed consent",
+    "explanation": "Facebook secretly altered what 689,003 users saw in their news feeds — showing some users more positive content and others more negative content — to study if emotions are contagious. Users were never told their feeds were being manipulated, violating the fundamental principle of informed consent.",
+    "image": null
+  },
+  {
+    "numb": 14,
+    "type": "Multiple Choices",
+    "question": "Which of the following is considered a common ethical violation in survey research?",
+    "options": [
+      "A) Using stratified sampling to ensure representation",
+      "B) Offering incentives for participation",
+      "C) Using leading questions designed to sway the respondent's answer toward a preferred outcome",
+      "D) Providing participants with a clear privacy notice"
+    ],
+    "answer": "C) Using leading questions designed to sway the respondent's answer toward a preferred outcome",
+    "explanation": "Leading questions manipulate respondents into giving the researcher's preferred answer, which constitutes a form of data manipulation and violates research integrity. Stratified sampling (A), incentives (B), and privacy notices (D) are all acceptable and even recommended practices.",
+    "image": null
+  },
+  {
+    "numb": 15,
+    "type": "Multiple Choices",
+    "question": "$\\text{Survey fraud}$ specifically refers to:",
+    "options": [
+      "A) Accidentally including a double-barreled question in the survey",
+      "B) Faking or fabricating survey responses",
+      "C) Choosing an inappropriate sampling method",
+      "D) Collecting data from too small a sample size"
+    ],
+    "answer": "B) Faking or fabricating survey responses",
+    "explanation": "Survey fraud is the deliberate fabrication of responses — either by data collectors who fake interviews to save time, or by respondents who submit false information. This is distinct from design errors (double-barreled questions) or methodological weaknesses (poor sampling).",
+    "image": null
+  },
+  {
+    "numb": 16,
+    "type": "Multiple Choices",
+    "question": "$\\text{Coercion}$ in survey ethics refers to:",
+    "options": [
+      "A) Asking participants to provide honest feedback",
+      "B) Offering voluntary incentives for completing the survey",
+      "C) Forcing participation, such as making a survey mandatory for a grade",
+      "D) Using anonymous response collection methods"
+    ],
+    "answer": "C) Forcing participation, such as making a survey mandatory for a grade",
+    "explanation": "Coercion occurs when participation is not truly voluntary — for example, when a professor requires students to complete a survey for course credit. Ethical research requires that participation be genuinely optional with no negative consequences for declining.",
+    "image": null
+  },
+  {
+    "numb": 17,
+    "type": "Multiple Choices",
+    "question": "$\\text{Data manipulation}$ as an ethical issue in survey research involves:",
+    "options": [
+      "A) Cleaning data to remove duplicate entries",
+      "B) Misrepresenting or altering data to produce desired outcomes, such as in political polls",
+      "C) Using statistical software to analyze responses",
+      "D) Converting qualitative data into quantitative categories"
+    ],
+    "answer": "B) Misrepresenting or altering data to produce desired outcomes, such as in political polls",
+    "explanation": "Data manipulation is the unethical practice of selectively presenting, altering, or fabricating data to support a predetermined conclusion. This is different from legitimate data processing like cleaning duplicates (A), using statistical software (C), or coding qualitative data (D).",
+    "image": null
+  },
+  {
+    "numb": 18,
+    "type": "Multiple Choices",
+    "question": "A study examining whether neutral phrasing versus biased phrasing influences opinions on social media usage would be classified as:",
+    "options": [
+      "A) A non-experimental descriptive survey",
+      "B) An experimental survey testing the effect of question wording",
+      "C) A cross-sectional survey with no manipulation",
+      "D) A panel survey tracking the same respondents"
+    ],
+    "answer": "B) An experimental survey testing the effect of question wording",
+    "explanation": "This study actively manipulates the independent variable (neutral vs. biased phrasing) and compares outcomes across groups, making it experimental. The researcher is changing a condition to see its effect, not just observing things as they naturally exist.",
+    "image": null
+  },
+  {
+    "numb": 19,
+    "type": "Multiple Choices",
+    "question": "In a $\\text{Randomized Controlled Survey}$, participants are:",
+    "options": [
+      "A) Selected based on convenience and assigned to groups by the researcher's preference",
+      "B) Randomly assigned to different versions of a scenario or condition to control for confounding variables",
+      "C) Asked only open-ended questions without any structured format",
+      "D) Observed in their natural setting without any interaction"
+    ],
+    "answer": "B) Randomly assigned to different versions of a scenario or condition to control for confounding variables",
+    "explanation": "Random assignment is critical because it ensures that any pre-existing differences between participants are evenly distributed across groups. This means any observed differences in outcomes can be attributed to the experimental condition rather than to characteristics of the participants themselves.",
+    "image": null
+  },
+  {
+    "numb": 20,
+    "type": "Multiple Choices",
+    "question": "The main goal of an $\\text{experimental survey}$ is to test $\\text{cause-and-effect}$, while the main goal of a $\\text{non-experimental survey}$ is to:",
+    "options": [
+      "A) Test cause-and-effect using larger samples",
+      "B) Describe situations, phenomena, or relationships as they naturally exist",
+      "C) Manipulate variables without control groups",
+      "D) Eliminate all forms of sampling error"
+    ],
+    "answer": "B) Describe situations, phenomena, or relationships as they naturally exist",
+    "explanation": "Non-experimental surveys aim to describe reality as it is — documenting what exists, how prevalent certain behaviors are, and what associations exist between variables. They do not try to change anything; they observe and report. Only experimental designs can test causation through manipulation.",
+    "image": null
+  }
+]
