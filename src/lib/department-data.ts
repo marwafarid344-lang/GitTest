@@ -1063,7 +1063,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Platform and Infrastructure Services",
                     code: "CLC_10662",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10662.json"
                   },
                   {
@@ -1079,8 +1079,16 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Parallel Programming",
                     code: "CLC_10664",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10664.json"
+                  },
+                  {
+                    id: "CLC_MID_2025",
+                    name: "Midterm 2025",
+                    code: "CLC_MID_2025",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/cloud computing/CLC_MID_2025.json"
                   },
                   {
                     id: "CLC_10665",
