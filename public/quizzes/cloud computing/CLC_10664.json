@@ -51,7 +51,7 @@
       "C) Persistent Virtual Machines",
       "D) Managed Hadoop Clusters"
     ],
-    "answer": "B) Function-as-a-Service (Serverless)",
+    "answer": "B) Function-as-a-Service",
     "explanation": "Serverless/FaaS is ideal for sporadic, short-lived tasks because you only pay for the execution time, rather than paying for a server to sit idle for 23 hours and 59 minutes.",
     "image": null
   },
