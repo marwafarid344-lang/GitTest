@@ -191,7 +191,7 @@
       "C) Processed data is aggregated",
       "D) Data is stored permanently in the HDFS."
     ],
-    "answer": "C) Processed data is aggregated and combined to produce a final result.",
+    "answer": "C) Processed data is aggregated",
     "explanation": "The Map phase handles initial processing/filtering, while the Reduce phase aggregates those intermediate results into a summary or final output.",
     "image": null
   },
@@ -205,7 +205,7 @@
       "C) They are stored on physical tapes for long-term backup.",
       "D) They prevent any errors from occurring in the code."
     ],
-    "answer": "B) They can automatically reconstruct lost data using a lineage of transformations.",
+    "answer": "B) They can automatically reconstruct lost data",
     "explanation": "RDDs are fault-tolerant because they track the 'lineage' (history) of how they were created. If a node fails, Spark uses this history to recompute the missing data.",
     "image": null
   },
@@ -219,7 +219,7 @@
       "C) Docker Container",
       "D) Apache Spark MLlib"
     ],
-    "answer": "B) Message Queues (e.g., Kafka)",
+    "answer": "B) Kafka",
     "explanation": "Message queues like Kafka or RabbitMQ act as buffers that store events asynchronously, allowing the consumer to process them at its own pace without crashing.",
     "image": null
   },
@@ -233,7 +233,7 @@
       "C) It provides a way to store large binary files.",
       "D) It increases the physical speed of the internet connection."
     ],
-    "answer": "B) It automates the testing and deployment of code updates.",
+    "answer": "B) It automates the testing and deployment",
     "explanation": "Continuous Integration/Continuous Deployment (CI/CD) is a key cloud-native principle that automates the delivery of software, allowing for frequent and reliable updates.",
     "image": null
   },
@@ -247,7 +247,7 @@
       "C) A specialized hard drive used for storing log files.",
       "D) A mobile version of a desktop application."
     ],
-    "answer": "B) A helper application that runs in its own container right next to the main application container.",
+    "answer": "B) A helper application that runs in its own container",
     "explanation": "The sidecar pattern involves deploying a proxy (like Linkerd) alongside every instance of a service to handle its networking, security, and telemetry.",
     "image": null
   },
