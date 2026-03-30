@@ -1079,7 +1079,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Parallel Programming",
                     code: "CLC_10664",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10664.json"
                   },
                   {
@@ -1955,7 +1955,57 @@ export const departmentData: { [key: string]: Department } = {
                 sections: "https://drive.google.com/drive/folders/1NwcCR9EQyYjtEqshFechfDzQJwERAr8-?usp=drive_link",
                 videos: "",
                 summaries: "https://drive.google.com/drive/folders/1AKHPJXp9VVhYGUutKPP7XqgPjfTbrkIf?usp=drive_link",
-                exams: "https://drive.google.com/drive/folders/1vgvf18-SQ8zlkhFk_HyNQVl6HhzlbtC4?usp=drive_link"
+                exams: "https://drive.google.com/drive/folders/1vgvf18-SQ8zlkhFk_HyNQVl6HhzlbtC4?usp=drive_link",
+                quizzes: [
+                  {
+                    id: "SUR_001",
+                    name: "Introduction to Survey Methodology",
+                    code: "SUR_001",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Survey/SUR_001.json"
+                  },
+                  {
+                    id: "SUR_002",
+                    name: "Survey Types by Time Frame",
+                    code: "SUR_002",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Survey/SUR_002.json"
+                  },
+                  {
+                    id: "SUR_003",
+                    name: "Experimental & Non-Experimental Surveys",
+                    code: "SUR_003",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Survey/SUR_003.json"
+                  },
+                  {
+                    id: "SUR_004",
+                    name: "Sampling Strategies",
+                    code: "SUR_004",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Survey/SUR_004.json"
+                  },
+                  {
+                    id: "SUR_005",
+                    name: "Pilot Testing & Validity",
+                    code: "SUR_005",
+                    duration: "OP",
+                    questions: 20,
+                    jsonFile: "/quizzes/Survey/SUR_005.json"
+                  },
+                  {
+                    id: "SUR_MID",
+                    name: "Before Midterm Revision",
+                    code: "SUR_MID",
+                    duration: "OP",
+                    questions: 100,
+                    jsonFile: "/quizzes/Survey/SUR_MID.json"
+                  },
+                ],
               },
             },
             {
@@ -3247,7 +3297,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Parallel Programming",
                     code: "CLC_10664",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10664.json"
                   },
                   {
@@ -3382,21 +3432,21 @@ export const departmentData: { [key: string]: Department } = {
               },
             },
             {
-              id: "System-Analysis-Design-ba",
-              name: "System Analysis and Design",
-              code: "02-24-00304",
-              description: "Explore system development life cycle and design methodologies",
+              id: "system-analysis-design",
+              name: "System Analysis & Design",
+              code: "02-24-02203",
+              description: "Business system analysis and design methodologies",
               creditHours: 3,
               materials: {
                 lectures: "https://drive.google.com/drive/folders/1XCk9YrAfo70uV9hfybNmvLvJn69lHFiZ?usp=drive_link",
                 sections: "https://drive.google.com/drive/folders/10ttM9_EA2sEAPEj6_fsyKEaxP2AItRcP?usp=drive_link",
-                videos: [""],
+                videos: "",
                 summaries: "https://drive.google.com/drive/folders/1-TUMlZnHgD5NSahx8Ab5v8tR4gBZ_bGy?usp=drive_link",
                 exams: "https://drive.google.com/drive/folders/1bYzfL7z6ce132wz5wAEYxWP29khFj81k?usp=drive_link"
               },
             },
             {
-              id: "financial-planning-analysis-ba",
+              id: "financial-planning-analysis",
               name: "Financial Planning and Analysis",
               code: "02-24-02204",
               description: "Financial planning and analytical techniques",
@@ -4746,7 +4796,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Parallel Programming",
                     code: "CLC_10664",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10664.json"
                   },
                   {
@@ -7377,7 +7427,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Parallel Programming",
                     code: "CLC_10664",
                     duration: "OP",
-                    questions: 30,
+                    questions: 20,
                     jsonFile: "/quizzes/cloud computing/CLC_10664.json"
                   },
                   {
