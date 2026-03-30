@@ -2,391 +2,281 @@
   {
     "numb": 1,
     "type": "Multiple Choices",
-    "question": "What is the foundation of modern cloud computing that enables simultaneous execution of computations?",
+    "question": "An image processing application receives 10,000 high-resolution photos and applies the exact same grayscale filter to every single one simultaneously across 50 processors. What model of parallelism is being demonstrated here?",
     "options": [
-      "Serial computing",
-      "Parallel computing",
-      "Quantum computing",
-      "Edge computing"
+      "A) Data Parallelism",
+      "B) Task Parallelism",
+      "C) Pipeline Parallelism",
+      "D) Sequential Processing"
     ],
-    "answer": "Parallel computing",
+    "answer": "A) Data Parallelism",
+    "explanation": "The same operation is distributed across different subsets of a large dataset to be processed concurrently.",
     "image": null
   },
   {
     "numb": 2,
     "type": "Multiple Choices",
-    "question": "Which parallelism model involves executing different tasks simultaneously across different computing units?",
+    "question": "A weather forecasting system runs three different models at the same time: one for wind speed, one for humidity, and one for temperature. Each model is a distinct program. What type of parallelism is this?",
     "options": [
-      "Data parallelism",
-      "Task parallelism",
-      "Pipeline parallelism",
-      "Vector parallelism"
+      "A) Service Mesh",
+      "B) Data Parallelism",
+      "C) Task Parallelism",
+      "D) Pipeline Parallelism"
     ],
-    "answer": "Task parallelism",
+    "answer": "C) Task Parallelism",
+    "explanation": "Different tasks or functions are being executed simultaneously across various computing resources.",
     "image": null
   },
   {
     "numb": 3,
     "type": "Multiple Choices",
-    "question": "In data parallelism, what happens to the operation being performed?",
+    "question": "A developer needs to process a massive dataset of 500 terabytes of historical logs once a month. The priority is low cost and fault tolerance, rather than sub-second response times. Which framework is most appropriate?",
     "options": [
-      "Different operations are performed on the same data",
-      "The same operation is performed on subsets of data",
-      "Operations are performed sequentially",
-      "No operations are performed on the data"
+      "A) AWS Lambda",
+      "B) Service Mesh",
+      "C) Hadoop MapReduce",
+      "D) Apache Spark"
     ],
-    "answer": "The same operation is performed on subsets of data",
+    "answer": "C) Hadoop MapReduce",
+    "explanation": "Its disk-based batch processing and HDFS storage make it a cost-effective and reliable choice for massive, non-time-critical historical data.",
     "image": null
   },
   {
     "numb": 4,
     "type": "Multiple Choices",
-    "question": "What are the two main phases of the MapReduce programming model?",
+    "question": "A startup has a backend function that is only triggered once a day for 30 seconds to generate a report. Which cloud model would be the most cost-effective for them?",
     "options": [
-      "Sort and Merge",
-      "Map and Reduce",
-      "Split and Combine",
-      "Read and Write"
+      "A) Dedicated On-premises Servers",
+      "B) Function-as-a-Service",
+      "C) Persistent Virtual Machines",
+      "D) Managed Hadoop Clusters"
     ],
-    "answer": "Map and Reduce",
+    "answer": "B) Function-as-a-Service (Serverless)",
+    "explanation": "Serverless/FaaS is ideal for sporadic, short-lived tasks because you only pay for the execution time, rather than paying for a server to sit idle for 23 hours and 59 minutes.",
     "image": null
   },
   {
     "numb": 5,
     "type": "Multiple Choices",
-    "question": "Which component of Hadoop provides fault-tolerant storage?",
+    "question": "A machine learning engineer needs to run an iterative training algorithm where the same data is accessed repeatedly. Why would they choose Apache Spark over Hadoop MapReduce?",
     "options": [
-      "YARN",
-      "HDFS",
-      "MapReduce API",
-      "Spark"
+      "A) Spark uses HDFS for storage.",
+      "B) Spark processes data in-memory.",
+      "C) Hadoop does not support machine learning.",
+      "D) Spark is only compatible with cloud storage."
     ],
-    "answer": "HDFS",
+    "answer": "B) Spark processes data in-memory.",
+    "explanation": "By keeping data in RAM (via RDDs), Spark avoids the high cost of writing to and reading from the disk between every iteration.",
     "image": null
   },
   {
     "numb": 6,
     "type": "Multiple Choices",
-    "question": "What is the primary limitation of Hadoop's MapReduce?",
+    "question": "A company wants to encrypt all traffic between their 50 microservices and monitor which service is calling which, but they don't want to rewrite any of their application code to do it. What should they implement?",
     "options": [
-      "Lack of scalability",
-      "Batch-processing nature",
-      "Inability to handle large datasets",
-      "No fault tolerance"
+      "A) Kubernetes",
+      "B) A Service Mesh",
+      "C) A new API Gateway",
+      "D) Task Parallelism"
     ],
-    "answer": "Batch-processing nature",
+    "answer": "B) A Service Mesh",
+    "explanation": "Service meshes like Linkerd or Istio provide security and observability at the platform layer using sidecar proxies.",
     "image": null
   },
   {
     "numb": 7,
     "type": "Multiple Choices",
-    "question": "What is the key advantage of Apache Spark over Hadoop?",
+    "question": "In a service mesh architecture, where are the network proxies that handle communication between microservices typically located?",
     "options": [
-      "Disk-based processing",
-      "In-memory computation",
-      "Single-node execution",
-      "No fault tolerance"
+      "A) Inside the centralized Control Plane",
+      "B) On a single hardware firewall at the network edge",
+      "C) Compiled directly into the application binary",
+      "D) As sidecar alongside application code"
     ],
-    "answer": "In-memory computation",
+    "answer": "D) As sidecar alongside application code",
+    "explanation": "Proxies are deployed in the same scheduling unit (like a pod) as the service to handle its networking transparently.",
     "image": null
   },
   {
     "numb": 8,
     "type": "Multiple Choices",
-    "question": "What does RDD stand for in Apache Spark?",
+    "question": "A financial system needs to process stock market data as it arrives, calculating moving averages every millisecond. Which Spark feature is best suited for this?",
     "options": [
-      "Random Distributed Data",
-      "Resilient Distributed Dataset",
-      "Redundant Data Distribution",
-      "Rapid Data Deployment"
+      "A) Spark MLlib",
+      "B) Spark SQL",
+      "C) Spark GraphX",
+      "D) Spark Streaming"
     ],
-    "answer": "Resilient Distributed Dataset",
+    "answer": "D) Spark Streaming",
+    "explanation": "This component enables scalable, high-throughput, fault-tolerant stream processing of live data streams.",
     "image": null
   },
   {
     "numb": 9,
     "type": "Multiple Choices",
-    "question": "Which Spark component enables graph computation?",
+    "question": "What is the primary role of YARN (Yet Another Resource Negotiator) within a Hadoop cluster?",
     "options": [
-      "Spark SQL",
-      "Spark Streaming",
-      "GraphX",
-      "MLlib"
+      "A) Encrypting data-in-transit",
+      "B) Running SQL queries on big data",
+      "C) Storing files across multiple disks",
+      "D) Scheduling tasks"
     ],
-    "answer": "GraphX",
+    "answer": "D) Scheduling tasks",
+    "explanation": "YARN acts as the operating system for the cluster, managing how CPU and memory are distributed to jobs.",
     "image": null
   },
   {
     "numb": 10,
     "type": "Multiple Choices",
-    "question": "What is the main characteristic of serverless computing?",
+    "question": "A developer needs to aggregate the total number of 'Likes' for every video on a platform from billions of raw activity records. Which phase of MapReduce will produce the final total per video?",
     "options": [
-      "Requires manual server management",
-      "Developers manage underlying infrastructure",
-      "Code runs without managing infrastructure",
-      "Only works with virtual machines"
+      "A) Map Phase",
+      "B) Reduce Phase",
+      "C) Ingestion Phase",
+      "D) Containerization Phase"
     ],
-    "answer": "Code runs without managing infrastructure",
+    "answer": "B) Reduce Phase",
+    "explanation": "The reduce phase takes the intermediate pairs and aggregates them to produce the final result.",
     "image": null
   },
   {
     "numb": 11,
     "type": "Multiple Choices",
-    "question": "Which of these is a Function-as-a-Service (FaaS) provider?",
+    "question": "In Hadoop, which component is responsible for resource management and scheduling?",
     "options": [
-      "AWS EC2",
-      "AWS Lambda",
-      "Google Compute Engine",
-      "Azure Virtual Machines"
+      "A) HDFS",
+      "B) YARN",
+      "C) MapReduce",
+      "D) Spark"
     ],
-    "answer": "AWS Lambda",
+    "answer": "B) YARN",
+    "explanation": "YARN (Yet Another Resource Negotiator) is the cluster management layer of Hadoop.",
     "image": null
   },
   {
     "numb": 12,
     "type": "Multiple Choices",
-    "question": "What is the primary benefit of automatic scaling in serverless computing?",
+    "question": "A developer wants to deploy applications in portable environments with all dependencies included. What is the best solution?",
     "options": [
-      "Higher costs during peak times",
-      "Resources adjust based on demand",
-      "Fixed resource allocation",
-      "Manual intervention required"
+      "A) Kubernetes",
+      "B) Docker",
+      "C) Spark",
+      "D) Hadoop"
     ],
-    "answer": "Resources adjust based on demand",
+    "answer": "B) Docker",
+    "explanation": "Docker allows developers to package applications into containers that include everything needed to run, ensuring portability.",
     "image": null
   },
   {
     "numb": 13,
     "type": "Multiple Choices",
-    "question": "What architectural style decomposes applications into small, independent services?",
+    "question": "A social media company needs to process billions of posts every night to generate daily analytics reports. The system does not require real-time processing and can run in batch mode. Which technology is most suitable?",
     "options": [
-      "Monolithic architecture",
-      "Microservices architecture",
-      "Client-server architecture",
-      "Peer-to-peer architecture"
+      "A) Apache Spark Streaming",
+      "B) Hadoop MapReduce",
+      "C) AWS Lambda",
+      "D) Kubernetes"
     ],
-    "answer": "Microservices architecture",
+    "answer": "B) Hadoop MapReduce",
+    "explanation": "MapReduce is designed for high-throughput batch processing where real-time latency is not a priority.",
     "image": null
   },
   {
     "numb": 14,
     "type": "Multiple Choices",
-    "question": "Which technology is used to package applications and dependencies into lightweight containers?",
+    "question": "What happens in the 'Reduce' phase of a MapReduce job?",
     "options": [
-      "VirtualBox",
-      "Docker",
-      "VMware",
-      "Hyper-V"
+      "A) The raw input data is split into chunks.",
+      "B) Data is filtered and converted into key-value pairs.",
+      "C) Processed data is aggregated",
+      "D) Data is stored permanently in the HDFS."
     ],
-    "answer": "Docker",
+    "answer": "C) Processed data is aggregated and combined to produce a final result.",
+    "explanation": "The Map phase handles initial processing/filtering, while the Reduce phase aggregates those intermediate results into a summary or final output.",
     "image": null
   },
   {
     "numb": 15,
     "type": "Multiple Choices",
-    "question": "What is the primary purpose of Kubernetes?",
+    "question": "Why are Resilient Distributed Datasets (RDDs) in Spark considered 'Resilient'?",
     "options": [
-      "Virtual machine management",
-      "Container orchestration",
-      "Network routing",
-      "Database administration"
+      "A) They are encrypted so hackers cannot read them.",
+      "B) They can automatically reconstruct lost data.",
+      "C) They are stored on physical tapes for long-term backup.",
+      "D) They prevent any errors from occurring in the code."
     ],
-    "answer": "Container orchestration",
+    "answer": "B) They can automatically reconstruct lost data using a lineage of transformations.",
+    "explanation": "RDDs are fault-tolerant because they track the 'lineage' (history) of how they were created. If a node fails, Spark uses this history to recompute the missing data.",
     "image": null
   },
   {
     "numb": 16,
     "type": "Multiple Choices",
-    "question": "What is a service mesh primarily used for in cloud-native applications?",
+    "question": "A developer needs to handle 'backpressure' where a data producer is faster than the data consumer. Which technology acts as a buffer between them?",
     "options": [
-      "Adding security and observability features",
-      "Replacing containers",
-      "Managing physical servers",
-      "Eliminating microservices"
+      "A) Kubernetes Orchestrator",
+      "B) Kafka",
+      "C) Docker Container",
+      "D) Apache Spark MLlib"
     ],
-    "answer": "Adding security and observability features",
+    "answer": "B) Message Queues (e.g., Kafka)",
+    "explanation": "Message queues like Kafka or RabbitMQ act as buffers that store events asynchronously, allowing the consumer to process them at its own pace without crashing.",
     "image": null
   },
   {
     "numb": 17,
     "type": "Multiple Choices",
-    "question": "How is a service mesh typically implemented?",
+    "question": "A 'Cloud-Native' application usually utilizes a CI/CD pipeline. What does this achieve?",
     "options": [
-      "As a single centralized proxy",
-      "As network proxies deployed alongside application code",
-      "As a replacement for Kubernetes",
-      "As a physical network device"
+      "A) It replaces the need for a service mesh.",
+      "B) It automates the testing and deployment.",
+      "C) It provides a way to store large binary files.",
+      "D) It increases the physical speed of the internet connection."
     ],
-    "answer": "As network proxies deployed alongside application code",
+    "answer": "B) It automates the testing and deployment of code updates.",
+    "explanation": "Continuous Integration/Continuous Deployment (CI/CD) is a key cloud-native principle that automates the delivery of software, allowing for frequent and reliable updates.",
     "image": null
   },
   {
     "numb": 18,
     "type": "Multiple Choices",
-    "question": "What is the data plane in a service mesh architecture?",
+    "question": "In the context of the service mesh, what is a 'sidecar'?",
     "options": [
-      "The proxies that handle communication between services",
-      "The user interface for managing services",
-      "The physical network infrastructure",
-      "The database layer"
+      "A) A backup server located in a different country.",
+      "B) A helper application that runs next to the main application container.",
+      "C) A specialized hard drive used for storing log files.",
+      "D) A mobile version of a desktop application."
     ],
-    "answer": "The proxies that handle communication between services",
+    "answer": "B) A helper application that runs in its own container right next to the main application container.",
+    "explanation": "The sidecar pattern involves deploying a proxy (like Linkerd) alongside every instance of a service to handle its networking, security, and telemetry.",
     "image": null
   },
   {
     "numb": 19,
     "type": "Multiple Choices",
-    "question": "What computing paradigm responds to events like API calls or file uploads?",
+    "question": "What is the primary function of the HDFS (Hadoop Distributed File System)?",
     "options": [
-      "Batch computing",
-      "Event-driven computing",
-      "Serial computing",
-      "Grid computing"
+      "A) To manage CPU resources across the cluster.",
+      "B) To provide high-performance in-memory caching.",
+      "C) To store massive datasets across multiple commodity hardware nodes.",
+      "D) To execute SQL queries on real-time data streams."
     ],
-    "answer": "Event-driven computing",
+    "answer": "C) To store massive datasets across multiple commodity hardware nodes.",
+    "explanation": "HDFS is the storage layer of Hadoop, designed to hold very large files across many machines with built-in redundancy.",
     "image": null
   },
   {
     "numb": 20,
     "type": "Multiple Choices",
-    "question": "Which technology facilitates asynchronous event processing?",
+    "question": "A company has hundreds of Docker containers running and needs to automate their deployment, scaling, and management. Which tool is the industry standard for this?",
     "options": [
-      "Relational databases",
-      "Message queues",
-      "Block storage",
-      "CPU caches"
+      "A) Apache Spark",
+      "B) Kubernetes",
+      "C) HDFS",
+      "D) MapReduce"
     ],
-    "answer": "Message queues",
-    "image": null
-  },
-  {
-    "numb": 21,
-    "type": "Multiple Choices",
-    "question": "What is an example of an event-driven FaaS scenario?",
-    "options": [
-      "AWS Lambda triggering from an S3 upload",
-      "Scheduled batch job running at midnight",
-      "Manual server restart",
-      "Static website hosting"
-    ],
-    "answer": "AWS Lambda triggering from an S3 upload",
-    "image": null
-  },
-  {
-    "numb": 22,
-    "type": "Multiple Choices",
-    "question": "Which technology enables real-time data analytics in event-driven architectures?",
-    "options": [
-      "Apache Hadoop",
-      "Batch processing",
-      "Stream processing",
-      "ETL pipelines"
-    ],
-    "answer": "Stream processing",
-    "image": null
-  },
-  {
-    "numb": 23,
-    "type": "Multiple Choices",
-    "question": "What is the primary advantage of event-driven architectures?",
-    "options": [
-      "Improved responsiveness and efficiency",
-      "Higher hardware costs",
-      "Slower processing times",
-      "Increased manual intervention"
-    ],
-    "answer": "Improved responsiveness and efficiency",
-    "image": null
-  },
-  {
-    "numb": 24,
-    "type": "Multiple Choices",
-    "question": "What does DAG stand for in Apache Spark?",
-    "options": [
-      "Data Access Gateway",
-      "Directed Acyclic Graph",
-      "Distributed Application Group",
-      "Dynamic Allocation Gateway"
-    ],
-    "answer": "Directed Acyclic Graph",
-    "image": null
-  },
-  {
-    "numb": 25,
-    "type": "Multiple Choices",
-    "question": "Which Spark component provides machine learning capabilities?",
-    "options": [
-      "Spark SQL",
-      "Spark Streaming",
-      "GraphX",
-      "MLlib"
-    ],
-    "answer": "MLlib",
-    "image": null
-  },
-  {
-    "numb": 26,
-    "type": "Multiple Choices",
-    "question": "What is the primary benefit of containerization in cloud-native development?",
-    "options": [
-      "Increased hardware dependency",
-      "Portability and consistency across environments",
-      "Larger application footprint",
-      "Slower deployment times"
-    ],
-    "answer": "Portability and consistency across environments",
-    "image": null
-  },
-  {
-    "numb": 27,
-    "type": "Multiple Choices",
-    "question": "What is the main purpose of CI/CD pipelines in cloud-native development?",
-    "options": [
-      "Manual software deployment",
-      "Automating software delivery",
-      "Increasing development time",
-      "Reducing testing"
-    ],
-    "answer": "Automating software delivery",
-    "image": null
-  },
-  {
-    "numb": 28,
-    "type": "Multiple Choices",
-    "question": "Which of these is NOT a characteristic of cloud-native applications?",
-    "options": [
-      "Scalability",
-      "Resilience",
-      "Tight coupling",
-      "Optimization for cloud platforms"
-    ],
-    "answer": "Tight coupling",
-    "image": null
-  },
-  {
-    "numb": 29,
-    "type": "Multiple Choices",
-    "question": "What is the primary advantage of pipeline parallelism?",
-    "options": [
-      "Sequential processing of stages",
-      "Output of one stage serves as input to the next",
-      "Independent processing of unrelated tasks",
-      "Single-threaded execution"
-    ],
-    "answer": "Output of one stage serves as input to the next",
-    "image": null
-  },
-  {
-    "numb": 30,
-    "type": "Multiple Choices",
-    "question": "Which technology is mentioned as enhancing communication between microservices?",
-    "options": [
-      "Service mesh",
-      "Virtual machines",
-      "Bare metal servers",
-      "Traditional monoliths"
-    ],
-    "answer": "Service mesh",
+    "answer": "B) Kubernetes",
+    "explanation": "Kubernetes is an orchestration platform used to manage the lifecycle of containerized applications at scale.",
     "image": null
   }
 ]
