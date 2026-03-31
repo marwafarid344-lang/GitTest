@@ -1978,7 +1978,7 @@ export default function QuizInterface({
                           )}
                         </div>
                         <CardTitle className="text-xl text-white leading-relaxed">
-                          {question.question}
+                          {formatTextWithLatex(question.question)}
                         </CardTitle>
                       </div>
                       <motion.div
@@ -2016,7 +2016,7 @@ export default function QuizInterface({
                             isCorrect ? "text-green-400" : "text-red-400"
                           )}
                         >
-                          {userAnswer || "No answer selected"}
+                          {userAnswer ? formatTextWithLatex(userAnswer) : "No answer selected"}
                         </p>
                       </div>
 
@@ -2035,7 +2035,7 @@ export default function QuizInterface({
                             </span>
                           </div>
                           <p className="text-lg font-medium text-green-400">
-                            {question.answer}
+                            {formatTextWithLatex(question.answer)}
                           </p>
                         </motion.div>
                       )}
@@ -2055,7 +2055,7 @@ export default function QuizInterface({
                                 Explanation:
                               </span>
                               <p className="text-white/80 text-sm leading-relaxed">
-                                {question.explanation}
+                                {formatTextWithLatex(question.explanation)}
                               </p>
                             </div>
                           </div>
