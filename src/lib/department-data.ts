@@ -2006,6 +2006,14 @@ export const departmentData: { [key: string]: Department } = {
                     jsonFile: "/quizzes/Survey/SUR_005.json"
                   },
                   {
+                    id: "SUR_LEC",
+                    name: "Lecture 1-3 Questions",
+                    code: "SUR_LEC",
+                    duration: "OP",
+                    questions: 21,
+                    jsonFile: "/quizzes/Survey/SUR_LEC.json"
+                  },
+                  {
                     id: "SUR_MID",
                     name: "Before Midterm Revision",
                     code: "SUR_MID",
