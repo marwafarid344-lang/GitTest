@@ -278,19 +278,5 @@
     "answer": "B) Pyramid",
     "explanation": "The Pyramid structure starts narrow (specific, closed questions) and expands to broad (general, open-ended questions) — like the shape of a pyramid widening upward. The Funnel (A) does the opposite: starts broad/open and narrows to specific/closed.",
     "image": null
-  },
-  {
-    "numb": 21,
-    "type": "Multiple Choices",
-    "question": "Which of the following is a characteristic of $\\text{non-experimental surveys}$?",
-    "options": [
-      "A) They involve manipulation of variables",
-      "B) They describe or analyze data without testing cause-and-effect",
-      "C) They require random assignment of participants",
-      "D) They exclusively use laboratory experiments"
-    ],
-    "answer": "B) They describe or analyze data without testing cause-and-effect",
-    "explanation": "Non-experimental surveys observe and describe things as they naturally occur — no variables are manipulated and no control groups are used. Manipulation (A), random assignment (C), and lab experiments (D) are all features of experimental research.",
-    "image": null
   }
 ]
