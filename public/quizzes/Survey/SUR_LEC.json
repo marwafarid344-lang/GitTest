@@ -1,0 +1,296 @@
+[
+  {
+    "numb": 1,
+    "type": "Multiple Choices",
+    "question": "What is one potential drawback of using free-format questionnaires?",
+    "options": [
+      "A) They force respondents into predefined answer choices",
+      "B) They can yield responses that are difficult to quantify and compare",
+      "C) They always lead to biased responses",
+      "D) They are too short for meaningful analysis"
+    ],
+    "answer": "B) They can yield responses that are difficult to quantify and compare",
+    "explanation": "Free-format (open-ended) questionnaires let respondents write anything, making responses non-standardized. This makes statistical comparison and quantification challenging, unlike fixed-format surveys with predefined options.",
+    "image": null
+  },
+  {
+    "numb": 2,
+    "type": "Multiple Choices",
+    "question": "What does $\\text{\"measurement scales\"}$ refer to in survey research?",
+    "options": [
+      "A) The tools used to physically measure respondents' heights",
+      "B) The process of assigning numbers to survey responses for quantification",
+      "C) A method to determine survey cost",
+      "D) The scale used to track the number of survey participants"
+    ],
+    "answer": "B) The process of assigning numbers to survey responses for quantification",
+    "explanation": "Measurement scales (nominal, ordinal, interval, ratio) are methods for converting qualitative survey responses into numbers so they can be analyzed statistically. They are not about physical measurement or cost estimation.",
+    "image": null
+  },
+  {
+    "numb": 3,
+    "type": "Multiple Choices",
+    "question": "Which of the following best describes a $\\text{correlational survey}$?",
+    "options": [
+      "A) It explores the relationship between two or more variables without inferring causality",
+      "B) It manipulates variables to determine cause and effect",
+      "C) It is only used for experimental surveys",
+      "D) It exclusively uses closed-ended questions"
+    ],
+    "answer": "A) It explores the relationship between two or more variables without inferring causality",
+    "explanation": "Correlational surveys measure the association between variables (e.g., study hours and GPA) without manipulating anything. They can show that variables are related but cannot prove that one causes the other — correlation does not imply causation.",
+    "image": null
+  },
+  {
+    "numb": 4,
+    "type": "Multiple Choices",
+    "question": "What is a key consideration when writing a consent form for survey participants?",
+    "options": [
+      "A) Avoiding any mention of the study purpose",
+      "B) Clearly stating the purpose, data usage, confidentiality measures, and any potential risks",
+      "C) Including only legal jargon",
+      "D) Requiring participants to waive all rights"
+    ],
+    "answer": "B) Clearly stating the purpose, data usage, confidentiality measures, and any potential risks",
+    "explanation": "Informed consent requires transparency: participants must know what the study is about, how their data will be used, how privacy is protected, and any risks involved. Hiding the purpose (A) or waiving rights (D) are ethical violations.",
+    "image": null
+  },
+  {
+    "numb": 5,
+    "type": "Multiple Choices",
+    "question": "When designing a survey, why is it important to choose the correct target population?",
+    "options": [
+      "A) It minimizes the number of questions needed",
+      "B) It ensures that the data collected is relevant and representative of the group being studied",
+      "C) It allows for the use of open-ended questions only",
+      "D) It reduces the cost of data analysis"
+    ],
+    "answer": "B) It ensures that the data collected is relevant and representative of the group being studied",
+    "explanation": "Choosing the right target population is critical for validity and generalizability. Surveying the wrong group produces irrelevant data — for example, surveying college students about retirement planning would not represent retirees' actual experiences.",
+    "image": null
+  },
+  {
+    "numb": 6,
+    "type": "Multiple Choices",
+    "question": "Which of the following is an advantage of $\\text{open-ended questions}$?",
+    "options": [
+      "A) They are easy to analyze",
+      "B) They allow for detailed responses",
+      "C) They restrict responses to fixed choices",
+      "D) They save interview time"
+    ],
+    "answer": "B) They allow for detailed responses",
+    "explanation": "Open-ended questions let respondents express their views fully in their own words, providing depth and nuance that closed-ended questions miss. The trade-off is that they're harder to analyze (A is false) and take more time (D is false).",
+    "image": null
+  },
+  {
+    "numb": 7,
+    "type": "Multiple Choices",
+    "question": "Which survey type collects data at a $\\text{single point in time}$?",
+    "options": [
+      "A) Longitudinal survey",
+      "B) Cross-sectional survey",
+      "C) Panel survey",
+      "D) Experimental survey"
+    ],
+    "answer": "B) Cross-sectional survey",
+    "explanation": "Cross-sectional surveys provide a 'snapshot' of a population at one moment. Longitudinal (A) and panel (C) surveys collect data at multiple time points, and experimental surveys (D) focus on manipulation, not timing.",
+    "image": null
+  },
+  {
+    "numb": 8,
+    "type": "Multiple Choices",
+    "question": "What is the primary purpose of a survey?",
+    "options": [
+      "A) To develop theories",
+      "B) To collect large-scale data efficiently",
+      "C) To design experiments",
+      "D) To replace interviews entirely"
+    ],
+    "answer": "B) To collect large-scale data efficiently",
+    "explanation": "Surveys are designed for efficiency — gathering data from many respondents at relatively low cost. While survey data can inform theories (A), the survey itself is a data collection tool, not a theory-building or experiment-designing method.",
+    "image": null
+  },
+  {
+    "numb": 9,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a characteristic of a well-designed questionnaire?",
+    "options": [
+      "A) Specific and clear language that matches the respondents' vocabulary",
+      "B) Ambiguous wording",
+      "C) Overly technical terminology",
+      "D) Lengthy and complex sentences"
+    ],
+    "answer": "A) Specific and clear language that matches the respondents' vocabulary",
+    "explanation": "Good questionnaire design uses simple, unambiguous language appropriate for the target audience. Ambiguity (B), technical jargon (C), and complex sentences (D) all increase the risk of misinterpretation and reduce response quality.",
+    "image": null
+  },
+  {
+    "numb": 10,
+    "type": "Multiple Choices",
+    "question": "Which method is used to observe participants without interfering with their behavior?",
+    "options": [
+      "A) Structured interview",
+      "B) Online questionnaire",
+      "C) Direct observation",
+      "D) Focus group discussion"
+    ],
+    "answer": "C) Direct observation",
+    "explanation": "Direct observation involves watching people in their natural environment without interacting or influencing them. Interviews (A), questionnaires (B), and focus groups (D) all involve direct interaction that can alter natural behavior.",
+    "image": null
+  },
+  {
+    "numb": 11,
+    "type": "Multiple Choices",
+    "question": "Which is a $\\text{fixed-format}$ survey?",
+    "options": [
+      "A) Google Forms with predefined choices",
+      "B) An empty-based survey",
+      "C) A face-to-face discussion",
+      "D) An open-ended feedback survey"
+    ],
+    "answer": "A) Google Forms with predefined choices",
+    "explanation": "Fixed-format surveys use structured questions with predetermined response options (checkboxes, radio buttons, dropdowns). Google Forms with predefined choices is a classic example, unlike empty/open-ended formats (B, D) or unstructured discussions (C).",
+    "image": null
+  },
+  {
+    "numb": 12,
+    "type": "Multiple Choices",
+    "question": "What is an example of a $\\text{cohort study}$?",
+    "options": [
+      "A) Tracking opinions of different age groups at one point in time",
+      "B) Following a group of graduates over time",
+      "C) Conducting a one-time customer feedback survey",
+      "D) Running an online poll for a day"
+    ],
+    "answer": "B) Following a group of graduates over time",
+    "explanation": "A cohort study follows a specific group sharing a common characteristic (e.g., same graduation year) over an extended period. Tracking different age groups at one time (A) is cross-sectional, while one-time surveys (C) and polls (D) are not longitudinal.",
+    "image": null
+  },
+  {
+    "numb": 13,
+    "type": "Multiple Choices",
+    "question": "What is one risk associated with $\\text{panel surveys}$?",
+    "options": [
+      "A) They always use outdated questions",
+      "B) Panel dropout can lead to biased results",
+      "C) They cannot track changes over time",
+      "D) They never use follow-up questions"
+    ],
+    "answer": "B) Panel dropout can lead to biased results",
+    "explanation": "Panel attrition (dropout) is the biggest threat to panel surveys. When participants leave over time, the remaining group may no longer be representative of the original population, introducing systematic bias into the results.",
+    "image": null
+  },
+  {
+    "numb": 14,
+    "type": "Multiple Choices",
+    "question": "Which survey method involves the $\\text{direct observation}$ of behavior?",
+    "options": [
+      "A) Questionnaire",
+      "B) Interview",
+      "C) Observation method",
+      "D) Experimental survey"
+    ],
+    "answer": "C) Observation method",
+    "explanation": "The observation method specifically relies on watching and recording participant behavior without direct interaction. Questionnaires (A) and interviews (B) involve asking questions, while experimental surveys (D) involve manipulation.",
+    "image": null
+  },
+  {
+    "numb": 15,
+    "type": "Multiple Choices",
+    "question": "Which survey design is most appropriate for testing the effect of website changes on user's behavior?",
+    "options": [
+      "A) Longitudinal survey",
+      "B) Cross-sectional survey",
+      "C) Descriptive survey",
+      "D) Experimental survey with A/B testing"
+    ],
+    "answer": "D) Experimental survey with A/B testing",
+    "explanation": "A/B testing is the ideal experimental design for testing website changes — one group sees version A (original), another sees version B (changed), and their behavior is compared. This isolates the effect of the specific change being tested.",
+    "image": null
+  },
+  {
+    "numb": 16,
+    "type": "Multiple Choices",
+    "question": "Which survey design is most appropriate for testing the effect of question wording on respondents' opinions?",
+    "options": [
+      "A) Correlational survey",
+      "B) Longitudinal survey",
+      "C) Descriptive survey",
+      "D) Experimental survey with A/B testing"
+    ],
+    "answer": "D) Experimental survey with A/B testing",
+    "explanation": "To test whether different question wording affects opinions, you need to manipulate the wording (independent variable) and compare responses. Split-ballot A/B testing randomly gives different respondents different versions of the same question to isolate the wording effect.",
+    "image": null
+  },
+  {
+    "numb": 17,
+    "type": "Multiple Choices",
+    "question": "What is one major limitation of $\\text{cross-sectional surveys}$?",
+    "options": [
+      "A) They can track trends over time",
+      "B) They are very expensive to conduct",
+      "C) They provide a snapshot and cannot establish cause-and-effect relationships",
+      "D) They require extensive longitudinal data"
+    ],
+    "answer": "C) They provide a snapshot and cannot establish cause-and-effect relationships",
+    "explanation": "Cross-sectional surveys collect data at one point in time, so they cannot determine temporal ordering (which came first) or prove causation. They can only show correlations. Tracking trends (A) is actually something they cannot do.",
+    "image": null
+  },
+  {
+    "numb": 18,
+    "type": "Multiple Choices",
+    "question": "How can survey researchers address the problem of $\\text{non-response bias}$?",
+    "options": [
+      "A) By making the survey longer",
+      "B) By following up with non-respondents with reminders or alternative contact methods",
+      "C) By increasing the number of closed questions",
+      "D) By reducing the target population"
+    ],
+    "answer": "B) By following up with non-respondents with reminders or alternative contact methods",
+    "explanation": "Follow-up reminders and alternative contact methods (email, phone, mail) help recover responses from people who initially didn't respond, reducing the gap between respondents and non-respondents. Making surveys longer (A) would worsen the problem.",
+    "image": null
+  },
+  {
+    "numb": 19,
+    "type": "Multiple Choices",
+    "question": "Which interview style offers flexibility while still following a general guideline?",
+    "options": [
+      "A) Structured interview",
+      "B) Unstructured interview",
+      "C) Semi-structured interview",
+      "D) Group interview"
+    ],
+    "answer": "C) Semi-structured interview",
+    "explanation": "Semi-structured interviews use a prepared guide of key questions but allow the interviewer to deviate, probe, and explore unexpected responses. Structured interviews (A) are rigid with no deviation, while unstructured (B) have no guide at all.",
+    "image": null
+  },
+  {
+    "numb": 20,
+    "type": "Multiple Choices",
+    "question": "Which structure starts with closed-ended questions and moves to open-ended ones?",
+    "options": [
+      "A) Funnel",
+      "B) Pyramid",
+      "C) Diamond",
+      "D) Circle"
+    ],
+    "answer": "B) Pyramid",
+    "explanation": "The Pyramid structure starts narrow (specific, closed questions) and expands to broad (general, open-ended questions) — like the shape of a pyramid widening upward. The Funnel (A) does the opposite: starts broad/open and narrows to specific/closed.",
+    "image": null
+  },
+  {
+    "numb": 21,
+    "type": "Multiple Choices",
+    "question": "Which of the following is a characteristic of $\\text{non-experimental surveys}$?",
+    "options": [
+      "A) They involve manipulation of variables",
+      "B) They describe or analyze data without testing cause-and-effect",
+      "C) They require random assignment of participants",
+      "D) They exclusively use laboratory experiments"
+    ],
+    "answer": "B) They describe or analyze data without testing cause-and-effect",
+    "explanation": "Non-experimental surveys observe and describe things as they naturally occur — no variables are manipulated and no control groups are used. Manipulation (A), random assignment (C), and lab experiments (D) are all features of experimental research.",
+    "image": null
+  }
+]
