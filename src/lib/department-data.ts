@@ -2010,7 +2010,7 @@ export const departmentData: { [key: string]: Department } = {
                     name: "Lecture 1-3 Questions",
                     code: "SUR_LEC",
                     duration: "OP",
-                    questions: 21,
+                    questions: 20,
                     jsonFile: "/quizzes/Survey/SUR_LEC.json"
                   },
                   {
