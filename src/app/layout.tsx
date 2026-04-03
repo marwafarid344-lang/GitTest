@@ -48,7 +48,7 @@ export const ENABLE_ADS = false;
 
 // Cache toggle: Set to true to force a refresh for all users by disabling browser caching
 // This is very useful when pushing updates and students' mobile devices are stuck on old versions.
-export const DISABLE_CACHE = true;
+export const DISABLE_CACHE = false;
 
 export default function RootLayout({
   children,
