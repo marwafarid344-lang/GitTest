@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 
+export const revalidate = 3600 // Cache public file indexes for 1 hour
+
 export async function GET(request: NextRequest) {
   try {
 
