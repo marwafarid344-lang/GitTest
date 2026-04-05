@@ -984,11 +984,11 @@ export default function ProfilePage() {
                         variant="outline" 
                         onClick={loadMoreQuizzes} 
                         disabled={loadingMore}
-                        className="w-full md:w-auto min-w-[200px] border-white/20 hover:bg-white/10 text-white font-outfit"
+                        className="w-full md:w-auto min-w-[200px] border-white/20 bg-white text-black hover:text-white hover:bg-purple-600"
                       >
                         {loadingMore ? (
                           <div className="flex items-center gap-2">
-                            <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin bg-white text-black hover:text-white hover:bg-purple-600"></span>
+                            <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
                             Loading...
                           </div>
                         ) : 'Load More Options'}
@@ -1300,3 +1300,4 @@ export default function ProfilePage() {
     </div>
   )
 }
+
