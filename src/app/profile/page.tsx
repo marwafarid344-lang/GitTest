@@ -988,7 +988,7 @@ export default function ProfilePage() {
                       >
                         {loadingMore ? (
                           <div className="flex items-center gap-2">
-                            <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+                            <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin bg-white text-black hover:text-white hover:bg-purple-600"></span>
                             Loading...
                           </div>
                         ) : 'Load More Options'}
@@ -1011,7 +1011,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Stats Overview */}
+        {/* Stats Overview
         <div className="mt-12 animate-in fade-in duration-500 delay-300">
           <Card className="bg-black/40 border-white/20 shadow-2xl">
             <CardHeader className="text-center pb-6">
@@ -1065,7 +1065,7 @@ export default function ProfilePage() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
 
         {/* Registered Subjects Section - NEW SEPARATE SECTION */}
         <div className="mt-12 animate-in fade-in duration-500 delay-400">
@@ -1300,4 +1300,3 @@ export default function ProfilePage() {
     </div>
   )
 }
-
