@@ -222,6 +222,10 @@ function getCurrentTerm(): 'term1' | 'term2' {
 export default function ProfilePage() {
   const [userData, setUserData] = useState<any>(null)
   const [quizData, setQuizData] = useState<any[]>([])
+  const [paginatedData, setPaginatedData] = useState<any[]>([])
+  const [page, setPage] = useState(0)
+  const [hasMore, setHasMore] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
   const [loading, setLoading] = useState(true)
   const [isRedirecting, setIsRedirecting] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
@@ -291,19 +295,54 @@ export default function ProfilePage() {
         }))
       }
 
-      // Get user's quiz attempts
-      const { data: attemptsData } = await supabase
+      // Get user's quiz attempts for stats (lightweight)
+      const { data: statsData } = await supabase
+        .from("quiz_data")
+        .select(`id, auth_id, score, solved_at, created_at, quiz_title, total_questions, duration_selected, answering_mode`)
+        .eq("auth_id", session.auth_id)
+        .order("solved_at", { ascending: false })
+
+      setQuizData(statsData || [])
+
+      // Get user's paginated quiz list (detailed)
+      const { data: pageData } = await supabase
         .from("quiz_data")
         .select(`*`)
         .eq("auth_id", session.auth_id)
         .order("solved_at", { ascending: false })
+        .range(0, 4) // Fetch 5 items
 
-      setQuizData(attemptsData || [])
+      setPaginatedData(pageData || [])
+      setHasMore(pageData && pageData.length === 5)
+      setPage(0)
       setLoading(false)
     }
 
     loadProfileData()
   }, [router])
+
+  const loadMoreQuizzes = async () => {
+    if (!userData || !userData.auth_id || loadingMore || !hasMore) return
+    setLoadingMore(true)
+    
+    const nextPage = page + 1
+    const supabase = createBrowserClient()
+    const { data: moreData, error } = await supabase
+      .from("quiz_data")
+      .select(`*`)
+      .eq("auth_id", userData.auth_id)
+      .order("solved_at", { ascending: false })
+      .range(nextPage * 5, (nextPage + 1) * 5 - 1)
+      
+    if (moreData && moreData.length > 0) {
+      setPaginatedData(prev => [...prev, ...moreData])
+      setPage(nextPage)
+      setHasMore(moreData.length === 5)
+    } else {
+      setHasMore(false)
+    }
+    setLoadingMore(false)
+  }
 
   const handleLogout = async () => {
     if (typeof window !== 'undefined') {
@@ -776,9 +815,9 @@ export default function ProfilePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent style={{height: "47rem"}} className="overflow-y-auto custom-scrollbar">
-                {quizData.length > 0 ? (
+                {paginatedData.length > 0 ? (
                   <div className="space-y-4 flex-1">
-                    {quizData.map((attempt, index) => {
+                    {paginatedData.map((attempt, index) => {
                     // Default indigo theme
                     let themeColor = '#433b86'; 
                     let themeShadow = 'rgba(67, 59, 134, 0.3)';
@@ -939,6 +978,23 @@ export default function ProfilePage() {
                     </div>
                     );
                   })}
+                  {hasMore && (
+                    <div className="flex justify-center pt-6 pb-2">
+                      <Button 
+                        variant="outline" 
+                        onClick={loadMoreQuizzes} 
+                        disabled={loadingMore}
+                        className="w-full md:w-auto min-w-[200px] border-white/20 hover:bg-white/10 text-white font-outfit"
+                      >
+                        {loadingMore ? (
+                          <div className="flex items-center gap-2">
+                            <span className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+                            Loading...
+                          </div>
+                        ) : 'Load More Options'}
+                      </Button>
+                    </div>
+                  )}
                   </div>
                 ) : (
                   <div className="text-center py-12 h-full flex flex-col items-center justify-center">
