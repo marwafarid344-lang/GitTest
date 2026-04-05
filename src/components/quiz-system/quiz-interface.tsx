@@ -173,7 +173,7 @@ function formatTextWithLatex(text?: string | null) {
     if (part.startsWith('$') && part.endsWith('$')) {
       const math = part.slice(1, -1);
       return (
-        <span key={i} className="inline-flex items-center mx-1 px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-indigo-200 shadow-sm align-middle min-h-[1.5em] leading-none">
+        <span key={i} className="inline px-1.5 py-0.5 rounded bg-white/10 border border-white/20 text-indigo-200 shadow-sm align-middle" style={{ wordBreak: 'break-word', whiteSpace: 'normal', display: 'inline' }}>
           <InlineMath math={math} />
         </span>
       );
@@ -325,7 +325,7 @@ export default function QuizInterface({
 
       const { error, count } = await supabase
         .from("quiz_data")
-        .select("*", { count: "exact" })
+        .select("*", { count: "exact", head: true })
         .eq("auth_id", session.auth_id)
         .eq("quiz_id", quizData.code)
         .gte("solved_at", todayISO);
