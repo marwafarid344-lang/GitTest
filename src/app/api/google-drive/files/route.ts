@@ -3,6 +3,8 @@ import { google } from 'googleapis'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getValidAccessToken } from '@/lib/google-oauth'
 
+export const revalidate = 300 // Cache for 5 minutes
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
