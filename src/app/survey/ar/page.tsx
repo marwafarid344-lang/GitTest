@@ -2,9 +2,11 @@
 
 import { useState, useCallback, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight, Send, Loader2, Globe, Gift, Check, Sparkles } from "lucide-react"
+import { ChevronLeft, ChevronRight, Send, Loader2, Globe, Gift, Check, Sparkles, Share2, Facebook, MessageCircle, ArrowRight, BarChart3, BrainCircuit } from "lucide-react"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
+import { Fireworks } from "@/components/fireworks"
 
 import {
   type Question,
@@ -121,6 +123,94 @@ const FADE_UP = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 },
 const DUR     = { duration: 0.36, ease: [0.16, 1, 0.3, 1] } as const
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
+
+const getChartDataAR = (answers: Record<string, any>) => {
+  const q8 = Number(answers["q8"]) || 3; 
+  const trustScore = answers["q2"] === "كتابة الذكاء الاصطناعي" ? 5 : answers["q2"] === "الاتنين بالتساوي" ? 3 : 1;
+  const toolCount = Array.isArray(answers["q15"]) && !answers["q15"].includes("مش بستخدم أدوات ذكاء اصطناعي") ? Math.min(answers["q15"].length, 5) : 1;
+  const emotionScore = answers["q6"] === "أيوه، بشكل كبير" ? 5 : answers["q6"] === "أيوه، بشكل متوسط" ? 3 : 1;
+
+  return [
+    { name: "الإبداع", score: q8 * 20, color: "#f97316" },
+    { name: "الثقة", score: trustScore * 20, color: "#10b981" },
+    { name: "الأدوات", score: toolCount * 20, color: "#3b82f6" },
+    { name: "المشاعر", score: emotionScore * 20, color: "#a855f7" },
+  ];
+};
+
+const getRadarDataAR = (answers: Record<string, any>) => {
+  const q3 = answers["q3"] || [];
+  const speed = Array.isArray(q3) && q3.includes("السرعة في إتمام المهام") ? 95 : 45;
+  const effort = Array.isArray(q3) && q3.includes("توفير الجهد") ? 90 : 50;
+  const emotion = answers["q10"] && Array.isArray(answers["q10"]) && answers["q10"].includes("التعبير العاطفي") ? 85 : 30;
+  const style = Array.isArray(q3) && q3.includes("صياغة اللغة/الأسلوب") ? 85 : 40;
+  const generation = Array.isArray(q3) && q3.includes("المساعدة في توليد الأفكار") ? 95 : 55;
+
+  return [
+    { subject: 'السرعة', A: speed, fullMark: 100 },
+    { subject: 'الكفاءة', A: effort, fullMark: 100 },
+    { subject: 'التعاطف', A: emotion, fullMark: 100 },
+    { subject: 'الأسلوب', A: style, fullMark: 100 },
+    { subject: 'الأفكار', A: generation, fullMark: 100 },
+  ];
+};
+
+const getAIAnalysisAR = (answers: Record<string, any>, personaTitle: string) => {
+  const trustAI = answers["q2"] === "كتابة الذكاء الاصطناعي" || answers["q2"] === "الاتنين بالتساوي";
+  const editOften = answers["q9"] === "دايماً" || answers["q9"] === "غالباً";
+
+  let analysis = `بناءً على تحليل ذكي وخوارزمي لاختياراتك، مقاييسنا بتأكد إن نمط تفكيرك بيتوافق تماماً مع شخصية **${personaTitle}**. `;
+  
+  if (trustAI && editOften) {
+    analysis += "إنت بتثق بشكل كبير في الذكاء الاصطناعي، بس في نفس الوقت عندك عين دقيقة لتفاصيل الصياغة، وبتتأكد إن اللمسة البشرية بتاعتك هي اللي بتدي الشكل النهائي.";
+  } else if (trustAI && !editOften) {
+    analysis += "إنت بتعتمد بشكل كامل على المحتوى اللي بيولده الذكاء الاصطناعي زي ما هو، ومتبني تماماً سرعته وكفاءته في شغلك اليومي.";
+  } else if (!trustAI && editOften) {
+    analysis += "إنت شخصيتك تحليلية ومتشككة جداً في النتائج، وبتتعامل مع الذكاء الاصطناعي على إنه مجرد أداة للكتابة المبدئية ومحتاج دايماً للتدخل البشري عشان يتضبط.";
+  } else {
+    analysis += "بتتعامل مع أدوات الذكاء الاصطناعي بمسافة واقعية وعملية، ودايماً بتفضل الإبداع البشري على مجرد الدقة الخوارزمية.";
+  }
+
+  return analysis;
+};
+
+const getPersonaAR = (answers: Record<string, AnswerVal>) => {
+  const q1 = answers["q1"] as string;
+  const q2 = answers["q2"] as string;
+  const q4 = answers["q4"] as string;
+  const q15 = answers["q15"] as string[];
+
+  const isPositive = q1 === "بحبه جداً" || q1 === "بحبه لحد ما";
+  const trustsAI = q2 === "كتابة الذكاء الاصطناعي" || q2 === "الاتنين بالتساوي";
+  const usesTools = q15 && q15.length > 0 && !q15.includes("مش بستخدم أدوات ذكاء اصطناعي");
+
+  if (isPositive && trustsAI && usesTools) {
+    return {
+      title: "رائد الذكاء الاصطناعي",
+      desc: "إنت عايش في المستقبل! بنسبة ٨٥٪ هتخلي الذكاء الاصطناعي يكتب رسالتك الجاية.",
+      color: "#10b981",
+    };
+  } else if (!isPositive && !trustsAI && (q4 === "مينفعش يُعتمد عليه" || q4 === "في الكتابة الرسمية بس")) {
+    return {
+      title: "المتشكك",
+      desc: "بتثق في الورقة والقلم أكتر من أي خوارزمية ذكاء اصطناعي.",
+      color: "#ef4444",
+    };
+  } else if (!isPositive && !trustsAI) {
+    return {
+      title: "المدافع عن اللمسة البشرية",
+      desc: "١٠٠٪ إنسان أصيل! بتقدر تكتشف كتابة الروبوت من على بعد ميل.",
+      color: "#8b5cf6",
+    };
+  } else {
+    return {
+      title: "العملي",
+      desc: "السرعة والإنجاز هما عنوانك. الذكاء الاصطناعي مساعد ليك، مش بديل.",
+      color: "#3b82f6",
+    };
+  }
+};
+
 export default function SurveyArPage() {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
@@ -228,6 +318,21 @@ export default function SurveyArPage() {
       ? { label: q.section, counter: `${step} / ${DEMO_COUNT}` }
       : { label: q.section, counter: `${step - DEMO_COUNT} / ${TOTAL - DEMO_COUNT}` }
     : null
+
+  const personaInfo = step === TOTAL + 1 ? getPersonaAR(answers) : null;
+  const shareText = personaInfo ? `أنا لسه مخلص استبيان كاميليون والنتيجة طلعت إني '${personaInfo.title}'! اكتشف نتيجتك من هنا:` : "";
+  const shareUrl = typeof window !== 'undefined' ? window.location.origin + "/survey" : "";
+
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "استبيان كاميليون", text: shareText, url: shareUrl });
+      } catch (err) { }
+    } else {
+      navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+      addToast("تم نسخ الرابط!", "success");
+    }
+  };
 
   return (
     <div
@@ -491,25 +596,109 @@ export default function SurveyArPage() {
           )}
 
           {/* ── شكراً — creative ── */}
-          {step === TOTAL + 1 && (
-            <motion.div key="done" {...FADE_UP} transition={DUR} className="text-center flex flex-col items-center">
-              <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 15 }} className="relative mb-8">
-                <div className="size-24 rounded-full flex items-center justify-center" style={{ background: "rgba(168,85,247,0.1)" }}>
+          {step === TOTAL + 1 && personaInfo && (
+            <motion.div key="done" {...FADE_UP} transition={DUR} className="text-center flex flex-col items-center w-full max-w-2xl mx-auto">
+              <Fireworks />
+              
+              <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 15 }} className="relative mb-6">
+                <div className="size-24 rounded-full flex items-center justify-center" style={{ background: `${personaInfo.color}15` }}>
                   <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4, type: "spring", stiffness: 200 }}>
-                    <Check className="size-12 text-purple-400" strokeWidth={3} />
+                    <Sparkles className="size-12" style={{ color: personaInfo.color }} />
                   </motion.div>
                 </div>
-                <Sparkles className="absolute -top-1 -right-1 size-6 text-pink-400 animate-pulse" />
-                <Sparkles className="absolute -bottom-1 -left-2 size-4 text-purple-400/60 animate-pulse" style={{ animationDelay: "0.5s" }} />
               </motion.div>
-              <motion.p className="text-[11px] font-bold tracking-wider mb-4" style={{ color: "#a855f7", letterSpacing: "0.1em" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ خلصنا</motion.p>
-              <h2 className="font-bold leading-[1.05] text-white mb-6" style={{ fontSize: "clamp(2.8rem,8.5vw,8rem)" }}>
-                من اعماق قلـ🤍ـوبنا{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>شكرًا جدًا ليك</span>
+              
+              <motion.p className="text-[11px] font-bold tracking-wider mb-2" style={{ color: personaInfo.color, letterSpacing: "0.1em" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+                شخصيتك في الذكاء الاصطناعي
+              </motion.p>
+              
+              <h2 className="font-bold leading-[1.05] text-white mb-4" style={{ fontSize: "clamp(2.5rem,7vw,5rem)" }}>
+                {personaInfo.title}
               </h2>
-              <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-loose font-light">
-                كل إجابة هتتحلل عشان نفهم ازاي الناس بتشوف كتابة الذكاء الاصطناعي.<br />
-                <span className="text-white/20 text-base">إجاباتك مجهولة ومش هتتشارك بشكل فردي أبداً.</span>
+              
+              <p className="text-lg md:text-xl text-white/50 max-w-lg mb-12 leading-loose font-light">
+                {personaInfo.desc}
               </p>
+
+              {/* ── AI ANALYSIS & CHARTS ── */}
+              <div className="w-full flex justify-start mb-4">
+                <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">
+                  <BrainCircuit className="size-4" /> تم التحليل بواسطة الشبكة العصبية
+                </div>
+              </div>
+
+              <div className="w-full bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 md:p-8 mb-10 backdrop-blur-sm shadow-xl text-right">
+                <p className="text-sm md:text-base text-white/70 leading-relaxed font-light text-right">
+                  {getAIAnalysisAR(answers, personaInfo.title).split('**').map((part, i) => i % 2 === 1 ? <strong key={i} className="text-white font-bold">{part}</strong> : part)}
+                </p>
+              </div>
+
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <div className="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 backdrop-blur-sm shadow-xl">
+                  <div className="flex items-center gap-3 mb-8 justify-center">
+                    <h3 className="text-sm text-white/60 font-bold tracking-widest uppercase">مؤشراتك</h3>
+                    <BarChart3 className="size-5 text-white/40" />
+                  </div>
+                  <div className="h-56 w-full" dir="ltr">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={getChartDataAR(answers)} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                        <XAxis dataKey="name" stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} />
+                        <YAxis stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+                        <Tooltip 
+                          cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                          contentStyle={{ background: '#070710', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff' }} 
+                          itemStyle={{ color: '#fff', fontSize: '14px', fontWeight: 'bold' }}
+                        />
+                        <Bar dataKey="score" radius={[8, 8, 0, 0]} animationDuration={1500}>
+                          {getChartDataAR(answers).map((entry, index) => (
+                             <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                <div className="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 backdrop-blur-sm shadow-xl">
+                  <div className="flex items-center gap-3 mb-2 justify-center">
+                    <h3 className="text-sm text-white/60 font-bold tracking-widest uppercase">تخطيط السلوك</h3>
+                    <BrainCircuit className="size-5 text-white/40" />
+                  </div>
+                  <div className="h-64 w-full" dir="ltr">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RadarChart cx="50%" cy="50%" outerRadius="70%" data={getRadarDataAR(answers)}>
+                        <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                        <PolarAngleAxis dataKey="subject" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                        <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                        <Radar name="إنت" dataKey="A" stroke={personaInfo.color} fill={personaInfo.color} fillOpacity={0.3} animationDuration={2000} />
+                        <Tooltip 
+                          contentStyle={{ background: '#070710', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff' }} 
+                          itemStyle={{ color: personaInfo.color, fontSize: '14px', fontWeight: 'bold' }}
+                        />
+                      </RadarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full max-w-md bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 mb-10 backdrop-blur-sm">
+                <p className="text-sm text-white/40 mb-4 font-medium">شارك نتيجتك مع صحابك</p>
+                <div className="flex justify-center gap-3">
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] py-3 rounded-2xl transition-colors font-semibold">
+                    <Facebook className="size-5" /> <span className="hidden sm:inline">فيسبوك</span>
+                  </a>
+                  <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] py-3 rounded-2xl transition-colors font-semibold">
+                    <MessageCircle className="size-5" /> <span className="hidden sm:inline">واتساب</span>
+                  </a>
+                  <button onClick={handleNativeShare} className="flex-1 flex items-center justify-center gap-2 bg-pink-500/10 hover:bg-pink-500/20 text-pink-500 py-3 rounded-2xl transition-colors font-semibold">
+                    <Share2 className="size-5" /> <span className="hidden sm:inline">إنستجرام</span>
+                  </button>
+                </div>
+              </div>
+
+              <a href="../" className="inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-2xl text-white/40 hover:text-white border border-white/[0.06] hover:border-white/15 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03]">
+                <ArrowRight className="w-4 h-4" /> العودة للرئيسية
+              </a>
             </motion.div>
           )}
 
