@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 
+export const revalidate = 900; // Cache admin check for 15 minutes per user
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = createAdminClient()
