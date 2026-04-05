@@ -108,9 +108,7 @@ export async function POST(request: NextRequest) {
     // Get user data by auth_id (using the authenticated user's ID)
     const { data: userData, error: userError } = await supabase
       .from('chameleons')
-      .select('*')
-      .eq('auth_id', studentId)
-      .single()
+        .select('auth_id, username, email, role, current_level, specialization, profile_image, is_admin, age, created_at')
 
     if (userError || !userData) {
       recordFailedAttempt(clientIP)
