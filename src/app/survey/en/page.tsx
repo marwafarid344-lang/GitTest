@@ -2,9 +2,11 @@
 
 import { useState, useCallback, memo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, ChevronLeft, Send, Loader2, Gift, Check, Sparkles, ArrowLeft } from "lucide-react"
+import { ChevronRight, ChevronLeft, Send, Loader2, Gift, Check, Sparkles, ArrowLeft, Share2, Facebook, MessageCircle, BarChart3, BrainCircuit } from "lucide-react"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
+import { Fireworks } from "@/components/fireworks"
 
 import {
   type Question,
@@ -143,6 +145,94 @@ const FADE_UP = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 },
 const DUR     = { duration: 0.36, ease: [0.16, 1, 0.3, 1] } as const
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
+
+const getChartDataEN = (answers: Record<string, any>) => {
+  const q8 = Number(answers["q8"]) || 3; 
+  const trustScore = answers["q2"] === "AI writing" ? 5 : answers["q2"] === "Both equally" ? 3 : 1;
+  const toolCount = Array.isArray(answers["q15"]) && !answers["q15"].includes("I do not use AI tools") ? Math.min(answers["q15"].length, 5) : 1;
+  const emotionScore = answers["q6"] === "Yes, to a great extent" ? 5 : answers["q6"] === "Yes, to a moderate extent" ? 3 : 1;
+
+  return [
+    { name: "Creativity", score: q8 * 20, color: "#f97316" },
+    { name: "AI Trust", score: trustScore * 20, color: "#10b981" },
+    { name: "Tools Usage", score: toolCount * 20, color: "#3b82f6" },
+    { name: "Emotion", score: emotionScore * 20, color: "#a855f7" },
+  ];
+};
+
+const getRadarDataEN = (answers: Record<string, any>) => {
+  const q3 = answers["q3"] || [];
+  const speed = Array.isArray(q3) && q3.includes("Speed in completing tasks") ? 95 : 45;
+  const effort = Array.isArray(q3) && q3.includes("Saving effort") ? 90 : 50;
+  const emotion = answers["q10"] && Array.isArray(answers["q10"]) && answers["q10"].includes("Emotional expression") ? 85 : 30;
+  const style = Array.isArray(q3) && q3.includes("Language formulation/style") ? 85 : 40;
+  const generation = Array.isArray(q3) && q3.includes("Helps generate ideas") ? 95 : 55;
+
+  return [
+    { subject: 'Speed', A: speed, fullMark: 100 },
+    { subject: 'Efficiency', A: effort, fullMark: 100 },
+    { subject: 'Empathy', A: emotion, fullMark: 100 },
+    { subject: 'Style', A: style, fullMark: 100 },
+    { subject: 'Ideation', A: generation, fullMark: 100 },
+  ];
+};
+
+const getAIAnalysisEN = (answers: Record<string, any>, personaTitle: string) => {
+  const trustAI = answers["q2"] === "AI writing" || answers["q2"] === "Both equally";
+  const editOften = answers["q9"] === "Always" || answers["q9"] === "Often";
+
+  let analysis = `Based on a multi-dimensional analysis of your interactive choices, our metrics strongly align your cognitive framework with the **${personaTitle}** archetype. `;
+  
+  if (trustAI && editOften) {
+    analysis += "You exhibit a high baseline trust in algorithmic generation, yet you maintain a meticulous eye for detail—ensuring your human oversight ultimately polishes the final output.";
+  } else if (trustAI && !editOften) {
+    analysis += "You heavily rely on AI-generated content in its pure form, fully embracing machine efficiency and speed within your primary workflow.";
+  } else if (!trustAI && editOften) {
+    analysis += "You remain highly analytical and skeptical of generative outputs, treating AI merely as a raw drafting tool that necessitates heavy human intervention.";
+  } else {
+    analysis += "You maintain a balanced, pragmatic distance from generative tools, typically favoring biological creativity over algorithmic precision.";
+  }
+
+  return analysis;
+};
+
+const getPersonaEN = (answers: Record<string, AnswerVal>) => {
+  const q1 = answers["q1"] as string;
+  const q2 = answers["q2"] as string;
+  const q4 = answers["q4"] as string;
+  const q15 = answers["q15"] as string[];
+
+  const isPositive = q1 === "I like it very much" || q1 === "I somewhat like it";
+  const trustsAI = q2 === "AI writing" || q2 === "Both equally";
+  const usesTools = q15 && q15.length > 0 && !q15.includes("I do not use AI tools");
+
+  if (isPositive && trustsAI && usesTools) {
+    return {
+      title: "The AI Pioneer",
+      desc: "You're living in the future! 85% likely to let AI write your next text message.",
+      color: "#10b981",
+    };
+  } else if (!isPositive && !trustsAI && (q4 === "It cannot be relied upon" || q4 === "Only in formal writing")) {
+    return {
+      title: "The Skeptic",
+      desc: "You trust a pen and paper far more than any algorithm.",
+      color: "#ef4444",
+    };
+  } else if (!isPositive && !trustsAI) {
+    return {
+      title: "The Humanist",
+      desc: "100% purely human! You can spot a robot's writing from a mile away.",
+      color: "#8b5cf6",
+    };
+  } else {
+    return {
+      title: "The Pragmatist",
+      desc: "Efficiency is your middle name. AI is your assistant, not your replacement.",
+      color: "#3b82f6",
+    };
+  }
+};
+
 export default function SurveyPage() {
   const [step, setStep] = useState(0) // 0=intro, 1..TOTAL=questions, TOTAL+1=done
   const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
@@ -249,6 +339,21 @@ export default function SurveyPage() {
       ? { label: q.section, counter: `${step} / ${DEMO_COUNT}` }
       : { label: q.section, counter: `${step - DEMO_COUNT} / ${TOTAL - DEMO_COUNT}` }
     : null
+
+  const personaInfo = step === TOTAL + 1 ? getPersonaEN(answers) : null;
+  const shareText = personaInfo ? `I just took the Chameleon Survey and my persona is '${personaInfo.title}'! Find out yours here:` : "";
+  const shareUrl = typeof window !== 'undefined' ? window.location.origin + "/survey" : "";
+
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Chameleon Survey", text: shareText, url: shareUrl });
+      } catch (err) { }
+    } else {
+      navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+      addToast("Link copied to clipboard!", "success");
+    }
+  };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-outfit" style={{ background: "#070710" }}>
@@ -517,25 +622,107 @@ export default function SurveyPage() {
           )}
 
           {/* ── DONE — creative ── */}
-          {step === TOTAL + 1 && (
-            <motion.div key="done" {...FADE_UP} transition={DUR} className="text-center flex flex-col items-center">
-              <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 15 }} className="relative mb-8">
-                <div className="size-24 rounded-full flex items-center justify-center" style={{ background: "rgba(168,85,247,0.1)" }}>
+          {step === TOTAL + 1 && personaInfo && (
+            <motion.div key="done" {...FADE_UP} transition={DUR} className="text-center flex flex-col items-center w-full max-w-2xl mx-auto">
+              <Fireworks />
+              
+              <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.1, type: "spring", stiffness: 150, damping: 15 }} className="relative mb-6">
+                <div className="size-24 rounded-full flex items-center justify-center" style={{ background: `${personaInfo.color}15` }}>
                   <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.4, type: "spring", stiffness: 200 }}>
-                    <Check className="size-12 text-purple-400" strokeWidth={3} />
+                    <Sparkles className="size-12" style={{ color: personaInfo.color }} />
                   </motion.div>
                 </div>
-                <Sparkles className="absolute -top-1 -right-1 size-6 text-pink-400 animate-pulse" />
-                <Sparkles className="absolute -bottom-1 -left-2 size-4 text-purple-400/60 animate-pulse" style={{ animationDelay: "0.5s" }} />
               </motion.div>
-              <motion.p className="text-[11px] font-bold tracking-[0.25em] uppercase mb-4" style={{ color: "#a855f7" }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>✦ All done</motion.p>
-              <h2 className="font-extrabold leading-[0.92] tracking-tight text-white mb-6" style={{ fontSize: "clamp(3rem,9vw,8rem)" }}>
-                Thank You From{" "}<span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg,#a855f7,#ec4899,#f97316)" }}>Depths of our Hearts 🤍</span>
+              
+              <motion.p className="text-[11px] font-bold tracking-[0.25em] uppercase mb-2" style={{ color: personaInfo.color }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+                Your AI Persona
+              </motion.p>
+              
+              <h2 className="font-extrabold leading-[0.92] tracking-tight text-white mb-4" style={{ fontSize: "clamp(2.5rem,7vw,5rem)" }}>
+                {personaInfo.title}
               </h2>
-              <p className="text-lg md:text-2xl text-white/35 max-w-lg mb-14 leading-relaxed font-light">
-                Every response helps us understand how people perceive AI writing.<br />
-                <span className="text-white/20 text-base">Your answers are anonymous and will never be shared.</span>
+              
+              <p className="text-lg md:text-xl text-white/50 max-w-lg mb-12 leading-relaxed font-light">
+                {personaInfo.desc}
               </p>
+
+              {/* ── AI ANALYSIS & CHARTS ── */}
+              <div className="w-full flex justify-end mb-4">
+                <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">
+                  <BrainCircuit className="size-4" /> Neural Analysis Complete
+                </div>
+              </div>
+
+              <div className="w-full bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 md:p-8 mb-10 backdrop-blur-sm shadow-xl text-left">
+                <p className="text-sm md:text-base text-white/70 leading-relaxed font-light">
+                  {/* Parsing simple bold markdown */}
+                  {getAIAnalysisEN(answers, personaInfo.title).split('**').map((part, i) => i % 2 === 1 ? <strong key={i} className="text-white font-bold">{part}</strong> : part)}
+                </p>
+              </div>
+
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                <div className="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 backdrop-blur-sm shadow-xl">
+                  <div className="flex items-center gap-3 mb-8 justify-center">
+                    <BarChart3 className="size-5 text-white/40" />
+                    <h3 className="text-sm text-white/60 font-bold tracking-widest uppercase">Trait Metrics</h3>
+                  </div>
+                  <div className="h-56 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={getChartDataEN(answers)} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                        <XAxis dataKey="name" stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} />
+                        <YAxis stroke="rgba(255,255,255,0.2)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+                        <Tooltip 
+                          cursor={{ fill: 'rgba(255,255,255,0.05)' }}
+                          contentStyle={{ background: '#070710', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff' }} 
+                          itemStyle={{ color: '#fff', fontSize: '14px', fontWeight: 'bold' }}
+                        />
+                        <Bar dataKey="score" radius={[8, 8, 0, 0]} animationDuration={1500}>
+                          {getChartDataEN(answers).map((entry, index) => (
+                             <Cell key={`cell-${index}`} fill={entry.color} />
+                          ))}
+                        </Bar>
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+
+                <div className="bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 backdrop-blur-sm shadow-xl">
+                  <div className="flex items-center gap-3 mb-2 justify-center">
+                    <BrainCircuit className="size-5 text-white/40" />
+                    <h3 className="text-sm text-white/60 font-bold tracking-widest uppercase">Mental Mapping</h3>
+                  </div>
+                  <div className="h-64 w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RadarChart cx="50%" cy="50%" outerRadius="70%" data={getRadarDataEN(answers)}>
+                        <PolarGrid stroke="rgba(255,255,255,0.1)" />
+                        <PolarAngleAxis dataKey="subject" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 11 }} />
+                        <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                        <Radar name="You" dataKey="A" stroke={personaInfo.color} fill={personaInfo.color} fillOpacity={0.3} animationDuration={2000} />
+                        <Tooltip 
+                          contentStyle={{ background: '#070710', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff' }} 
+                          itemStyle={{ color: personaInfo.color, fontSize: '14px', fontWeight: 'bold' }}
+                        />
+                      </RadarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+
+              <div className="w-full bg-white/[0.02] border border-white/[0.06] rounded-3xl p-6 mb-10 backdrop-blur-sm">
+                <p className="text-sm text-white/40 mb-4 uppercase tracking-[0.15em] font-medium">Share your result</p>
+                <div className="flex justify-center gap-3">
+                  <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 text-[#1877F2] py-3 rounded-2xl transition-colors font-semibold">
+                    <Facebook className="size-5" /> <span className="hidden sm:inline">Facebook</span>
+                  </a>
+                  <a href={`https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + " " + shareUrl)}`} target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#25D366] py-3 rounded-2xl transition-colors font-semibold">
+                    <MessageCircle className="size-5" /> <span className="hidden sm:inline">WhatsApp</span>
+                  </a>
+                  <button onClick={handleNativeShare} className="flex-1 flex items-center justify-center gap-2 bg-pink-500/10 hover:bg-pink-500/20 text-pink-500 py-3 rounded-2xl transition-colors font-semibold">
+                    <Share2 className="size-5" /> <span className="hidden sm:inline">Instagram</span>
+                  </button>
+                </div>
+              </div>
+
               <a href="../" className="inline-flex items-center gap-3 font-bold text-base px-8 py-4 rounded-2xl text-white/40 hover:text-white border border-white/[0.06] hover:border-white/15 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03]">
                 <ArrowLeft className="w-4 h-4" /> Back to Home
               </a>
