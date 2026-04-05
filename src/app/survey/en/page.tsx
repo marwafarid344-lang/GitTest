@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useCallback, memo } from "react"
+import { useState, useCallback, memo, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronRight, ChevronLeft, Send, Loader2, Gift, Check, Sparkles, ArrowLeft, Share2, Facebook, MessageCircle, BarChart3, BrainCircuit } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from "recharts"
 import Image from "next/image"
 import { useToast } from "@/components/ToastProvider"
 import { Fireworks } from "@/components/fireworks"
+import ChallengeEnergy from "@/components/ChallengeEnergy"
 
 import {
   type Question,
@@ -234,14 +235,51 @@ const getPersonaEN = (answers: Record<string, AnswerVal>) => {
 };
 
 export default function SurveyPage() {
+  const [isMounted, setIsMounted] = useState(false)
   const [step, setStep] = useState(0) // 0=intro, 1..TOTAL=questions, TOTAL+1=done
   const [answers, setAnswers] = useState<Record<string, AnswerVal>>({})
   const [otherText, setOtherText] = useState("") // for "Other" option in radio-other
   const [submitting, setSubmitting] = useState(false)
+  const [showChallenge, setShowChallenge] = useState(false)
   const { addToast } = useToast()
+
+  // Hydration & Local Storage Load
+  useEffect(() => {
+    setIsMounted(true)
+    try {
+      const savedStep = localStorage.getItem("chameleon-step-en")
+      const savedAnswers = localStorage.getItem("chameleon-answers-en")
+      const savedOther = localStorage.getItem("chameleon-other-en")
+      if (savedStep) setStep(parseInt(savedStep, 10))
+      if (savedAnswers) setAnswers(JSON.parse(savedAnswers))
+      if (savedOther) setOtherText(savedOther)
+    } catch(e) {}
+  }, [])
+
+  // Sync to Local Storage
+  useEffect(() => {
+    if (!isMounted) return;
+    if (step > 0 && step <= TOTAL) {
+      localStorage.setItem("chameleon-step-en", step.toString())
+      localStorage.setItem("chameleon-answers-en", JSON.stringify(answers))
+      localStorage.setItem("chameleon-other-en", otherText)
+    } else if (step > TOTAL) {
+      localStorage.removeItem("chameleon-step-en")
+      localStorage.removeItem("chameleon-answers-en")
+      localStorage.removeItem("chameleon-other-en")
+    }
+  }, [step, answers, otherText, isMounted])
 
   const q: Question | null = step >= 1 && step <= TOTAL ? ALL_STEPS[step - 1] : null
   const answer = q ? answers[q.id] : undefined
+
+  useEffect(() => {
+    if (q?.id === "text-a-read") {
+      setShowChallenge(true)
+    } else {
+      setShowChallenge(false)
+    }
+  }, [step, q?.id])
 
   // For text-compare, check all sub-questions are answered
   const canProceed = !q
@@ -260,6 +298,59 @@ export default function SurveyPage() {
        }))
     || (q.type === "text-display")
 
+  const audioObj = useRef<HTMLAudioElement | null>(null)
+  const audioEndObj = useRef<HTMLAudioElement | null>(null)
+  const audioChallengeObj = useRef<HTMLAudioElement | null>(null)
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      audioObj.current = new Audio("/audio/duolingo-correct.mp3")
+      audioObj.current.volume = 0.4
+      audioObj.current.load()
+
+      audioEndObj.current = new Audio("/audio/duolingo-lesson-complete-results.mp3")
+      audioEndObj.current.volume = 0.6
+      audioEndObj.current.load()
+
+      audioChallengeObj.current = new Audio("/audio/duolingo-rajoute-de-energie.mp3")
+      audioChallengeObj.current.volume = 0.5
+      audioChallengeObj.current.load()
+    }
+  }, [])
+
+  const prevCanProceed = useRef(canProceed)
+  useEffect(() => {
+    if (canProceed && !prevCanProceed.current && step >= 1 && step <= TOTAL) {
+      if (audioObj.current) {
+        audioObj.current.currentTime = 0
+        const playPromise = audioObj.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {})
+        }
+      }
+    }
+    prevCanProceed.current = canProceed
+  }, [canProceed, step])
+
+  useEffect(() => {
+    if (step === TOTAL + 1 && audioEndObj.current) {
+      audioEndObj.current.currentTime = 0
+      const playPromise = audioEndObj.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {})
+      }
+    }
+  }, [step])
+
+  useEffect(() => {
+    if (showChallenge && audioChallengeObj.current) {
+      audioChallengeObj.current.currentTime = 0
+      const playPromise = audioChallengeObj.current.play()
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {})
+      }
+    }
+  }, [showChallenge])
   const setAnswer = useCallback((val: AnswerVal) => {
     if (!q) return
     setAnswers((prev) => ({ ...prev, [q.id]: val }))
@@ -355,6 +446,8 @@ export default function SurveyPage() {
     }
   };
 
+  if (!isMounted) return null;
+
   return (
     <div className="relative min-h-screen w-full overflow-hidden font-outfit" style={{ background: "#070710" }}>
 
@@ -397,9 +490,20 @@ export default function SurveyPage() {
               <motion.p className="text-base md:text-lg text-white/40 max-w-xl mb-3 leading-relaxed font-light" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                 <span className="font-semibold text-white/60">Perception Survey</span> — Exploring how people perceive AI writing versus human writing.
               </motion.p>
-              <motion.p className="text-sm text-white/20 max-w-xl mb-10 leading-relaxed font-light" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
-                Your responses are anonymous and will be used for academic research only.
-              </motion.p>
+
+
+              <motion.div 
+                className="flex items-center gap-2 mb-4 ml-1"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.38 }}
+              >
+                <div className="flex items-center gap-3 bg-white/10 border border-white/20 px-4 py-2 rounded-2xl backdrop-blur-xl shadow-[0_0_20px_rgba(88,204,2,0.2)]">
+                  <span className="text-[11px] font-extrabold tracking-widest uppercase text-white/60 leading-none">Sound Effects By</span>
+                  <div className="h-4 w-px bg-white/20" />
+                  <Image src="/images/Duolingo.svg" alt="Duolingo" width={80} height={80} className="drop-shadow-[0_0_12px_rgba(88,204,2,0.6)]" />
+                </div>
+              </motion.div>
 
               <motion.div className="mb-8 p-5 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] flex items-center gap-4 max-w-xl" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
                 <Gift className="w-8 h-8 text-pink-500 animate-bounce shrink-0" />
@@ -420,11 +524,49 @@ export default function SurveyPage() {
               >
                 Begin Survey <ChevronRight className="w-6 h-6" />
               </motion.button>
+
+
             </motion.div>
           )}
 
-          {/* ── QUESTION — creative ── */}
-          {step >= 1 && step <= TOTAL && q && (
+          {/* CHALLENGE SPLASH SCREEN */}
+          {q?.id === "text-a-read" && showChallenge ? (
+            <motion.div key="challenge-splash" {...FADE_UP} transition={DUR} className="relative text-center flex flex-col items-center justify-center min-h-[50vh] rounded-3xl p-10">
+
+               <ChallengeEnergy />
+               
+               <motion.div 
+                 initial={{ y: -300, scaleY: 1.8, opacity: 0 }} 
+                 animate={{ 
+                   y: [ -300, 0, -30, 0 ],
+                   scaleY: [ 1.8, 0.5, 1.3, 1 ],
+                   scaleX: [ 0.6, 1.6, 0.8, 1 ],
+                   opacity: 1
+                 }} 
+                 transition={{ 
+                   duration: 0.8, 
+                   times: [ 0, 0.4, 0.7, 1 ],
+                   ease: "circOut"
+                 }} 
+                 className="mb-8 relative z-10"
+               >
+                 <div className="size-24 bg-rose-500/10 rounded-full flex items-center justify-center mx-auto border border-rose-500/20">
+                   <span className="text-5xl drop-shadow-[0_0_15px_rgba(244,63,94,0.8)]">🔥</span>
+                 </div>
+               </motion.div>
+               <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-rose-500 mb-6 drop-shadow-lg relative z-10">
+                 Challenge Starts Now!
+               </h2>
+               <p className="text-xl md:text-2xl text-white/80 mb-10 max-w-lg font-light leading-relaxed relative z-10">
+                 Can you tell the difference between Human and AI?<br/>
+                 <span className="font-semibold text-white">Let's see how sharp your eyes are.</span>
+               </p>
+               <button onClick={() => setShowChallenge(false)} className="relative z-10 bg-white text-black px-10 py-5 rounded-2xl font-bold text-xl hover:bg-gray-200 transition-all hover:scale-105 shadow-[0_0_25px_rgba(255,255,255,0.4)]">
+                 Start Challenge
+               </button>
+            </motion.div>
+
+          ) : step >= 1 && step <= TOTAL && q && (
             <motion.div key={`q${step}`} {...SLIDE} transition={DUR}>
 
               {/* Section header — glowing dot */}
