@@ -102,7 +102,7 @@ export async function checkSuspicious(
  */
 export function validateRequestOrigin(request: NextRequest): NextResponse | null {
   const allowedOrigins = [
-    process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.tech',
+    process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.vercel.app',
     'http://localhost:3000',
     'http://localhost:3001',
   ]
