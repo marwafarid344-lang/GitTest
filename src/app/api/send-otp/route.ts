@@ -97,11 +97,11 @@ export async function POST(request: Request) {
         © 2026 Chameleon Educational Platform. All rights reserved.
       </p>
       <div style="margin-top: 20px;">
-        <a href="https://chameleon-nu.tech" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Visit Website</a>
+        <a href="https://chameleon-nu.vercel.app" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Visit Website</a>
         <span style="color: #475569;">•</span>
-        <a href="https://chameleon-nu.tech/privacy" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Privacy Policy</a>
+        <a href="https://chameleon-nu.vercel.app/privacy" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Privacy Policy</a>
         <span style="color: #475569;">•</span>
-        <a href="https://chameleon-nu.tech/terms" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Terms</a>
+        <a href="https://chameleon-nu.vercel.app/terms" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Terms</a>
       </div>
     </div>
   </div>
@@ -112,7 +112,7 @@ export async function POST(request: Request) {
     // Send email using Resend
     console.log('Attempting to send email via Resend...')
     const { data, error } = await resend.emails.send({
-      from: 'Chameleon Team <noreply@chameleon-nu.tech>',
+      from: 'Chameleon Team <noreply@chameleon-nu.vercel.app>',
       to: [email], // Send to user's email
       subject: `${otp} is your Chameleon verification code`,
       html: emailHtml,
