@@ -149,7 +149,7 @@ export async function GET(request: NextRequest) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
     
     // Use proper base URL for error redirect too
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.vercel.app'
+    const baseUrl = process.env.NEXT_PUBLIC_PRODUCTION_URL || 'https://www.chameleon-nu.vercel.app'
     return NextResponse.redirect(
       new URL(`/drive?error=${encodeURIComponent(errorMessage)}`, baseUrl)
     )
