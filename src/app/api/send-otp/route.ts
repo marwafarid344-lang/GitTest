@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 40px;">
       <div style="width: 80px; height: 80px; border-radius: 20px; margin: 0 auto 20px; display: inline-flex; align-items: center; justify-content: center;">
-        <img src="https://chameleon-nu.tech/images/1212.jpg" alt="Chameleon" style="width: 100px; height: 90px; object-fit: contain; display: block;" />
+        <img src="https://chameleon-nu.vercel.app/images/1212.jpg" alt="Chameleon" style="width: 100px; height: 90px; object-fit: contain; display: block;" />
       </div>
       <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">Chameleon</h1>
       <p style="color: #94a3b8; margin: 8px 0 0; font-size: 14px;">Educational Platform</p>
@@ -97,11 +97,11 @@ export async function POST(request: Request) {
         © 2026 Chameleon Educational Platform. All rights reserved.
       </p>
       <div style="margin-top: 20px;">
-        <a href="https://chameleon-nu.tech" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Visit Website</a>
+        <a href="https://chameleon-nu.vercel.app" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Visit Website</a>
         <span style="color: #475569;">•</span>
-        <a href="https://chameleon-nu.tech/privacy" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Privacy Policy</a>
+        <a href="https://chameleon-nu.vercel.app/privacy" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Privacy Policy</a>
         <span style="color: #475569;">•</span>
-        <a href="https://chameleon-nu.tech/terms" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Terms</a>
+        <a href="https://chameleon-nu.vercel.app/terms" style="color: #8b5cf6; text-decoration: none; font-size: 13px; margin: 0 10px;">Terms</a>
       </div>
     </div>
   </div>
