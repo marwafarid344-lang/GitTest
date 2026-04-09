@@ -379,7 +379,7 @@ export default function ExploChatbot() {
       {/* Back to Chameleon Button */}
       <div className="fixed top-4 left-4 z-50">
         <a
-          href="https://chameleon-nu.tech"
+          href="https://chameleon-nu.vercel.app"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-300 backdrop-blur-sm border border-white/20"
           style={{ fontFamily: 'Rubik, sans-serif' }}
