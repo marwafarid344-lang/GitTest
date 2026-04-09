@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "Chameleon",
   title: "Chameleon | Future Skills",
   description: "Master your future skills with Chameleon, the ultimate platform for learning and growth with a focus on technology, design, and innovation.",
-  url: "https://chameleon-app.com", // Replace with your actual domain
+  url: "https://chameleon-nu.vercel.app", // Updated to the new Vercel domain
   ogImage: "/images/1212.jpg", // Using your existing image as OG image
   icon: "/images/1212-removebg-preview.png",
   creator: "Chameleon Team",
