@@ -261,10 +261,10 @@ export default function ProfilePage() {
 
       const supabase = createBrowserClient()
 
-      // Fetch fresh deletion status from database (not from session cache)
+      // Fetch deletion status AND existence check in single query (was previously 2 separate queries)
       const { data: freshUserData, error: userCheckError } = await supabase
         .from("chameleons")
-        .select("deletion_scheduled_at")
+        .select("auth_id, deletion_scheduled_at")
         .eq("auth_id", session.auth_id)
         .single()
 
@@ -295,25 +295,28 @@ export default function ProfilePage() {
         }))
       }
 
-      // Get user's quiz attempts for stats (lightweight)
-      const { data: statsData } = await supabase
+      // Get ALL quiz attempts for stats computation (head count only — no data transfer)
+      const { count: totalQuizCount } = await supabase
         .from("quiz_data")
-        .select(`id, auth_id, score, solved_at, created_at, quiz_title, total_questions, duration_selected, answering_mode`)
+        .select('*', { count: 'exact', head: true })
+        .eq("auth_id", session.auth_id)
+
+      // Get user's last 5 quizzes for display (paginated, select * since only 5 rows)
+      const { data: pageData, error: pageError } = await supabase
+        .from("quiz_data")
+        .select('*')
         .eq("auth_id", session.auth_id)
         .order("solved_at", { ascending: false })
+        .range(0, 4)
 
-      setQuizData(statsData || [])
+      if (pageError) {
+        console.error("Error loading quiz data:", pageError)
+      }
 
-      // Get user's paginated quiz list (detailed)
-      const { data: pageData } = await supabase
-        .from("quiz_data")
-        .select(`*`)
-        .eq("auth_id", session.auth_id)
-        .order("solved_at", { ascending: false })
-        .range(0, 4) // Fetch 5 items
-
+      // Use paginated data for both stats and display
+      setQuizData(pageData || [])
       setPaginatedData(pageData || [])
-      setHasMore(pageData && pageData.length === 5)
+      setHasMore((pageData?.length || 0) === 5 && (totalQuizCount || 0) > 5)
       setPage(0)
       setLoading(false)
     }
@@ -329,7 +332,7 @@ export default function ProfilePage() {
     const supabase = createBrowserClient()
     const { data: moreData, error } = await supabase
       .from("quiz_data")
-      .select(`*`)
+      .select('*')
       .eq("auth_id", userData.auth_id)
       .order("solved_at", { ascending: false })
       .range(nextPage * 5, (nextPage + 1) * 5 - 1)
@@ -1250,8 +1253,9 @@ export default function ProfilePage() {
           </Card>
         </div>
 
-        {/* Progress Visualization */}
+        {/* Progress Visualization — disabled: quizData is now paginated (last 5 only)
         <ProgressDotPlot quizData={quizData} />
+        */}
 
         <div className="mt-12">
           <AdBanner dataAdSlot="8021269551" />
