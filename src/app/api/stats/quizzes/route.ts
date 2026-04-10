@@ -3,6 +3,10 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import { createClient } from '@supabase/supabase-js'
 
+// In-memory server-side cache
+let cachedQuizResult: { data: any; timestamp: number } | null = null
+const QUIZ_CACHE_TTL = 60 * 60 * 1000 // 1 hour (quiz count changes rarely)
+
 // Cache for 1 hour – quiz count changes very rarely
 export const revalidate = 3600
 
@@ -31,6 +35,16 @@ async function countJsonFiles(dir: string): Promise<number> {
 
 export async function GET() {
   try {
+    // Return cached result if still valid
+    if (cachedQuizResult && Date.now() - cachedQuizResult.timestamp < QUIZ_CACHE_TTL) {
+      return NextResponse.json(cachedQuizResult.data, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
+          'X-Cache': 'HIT',
+        },
+      })
+    }
+
     // Count solved quizzes from Supabase
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -57,15 +71,21 @@ export async function GET() {
     // Count all JSON files recursively for available quizzes
     const totalQuizzes = await countJsonFiles(quizzesDir)
 
+    const responseData = {
+      totalQuizzes,
+      solvedQuizzes: solvedQuizzes ?? 30000, // Fallback if error
+      timestamp: new Date().toISOString(),
+    }
+
+    // Store in server-side cache
+    cachedQuizResult = { data: responseData, timestamp: Date.now() }
+
     return NextResponse.json(
-      {
-        totalQuizzes,
-        solvedQuizzes: solvedQuizzes ?? 30000, // Fallback if error
-        timestamp: new Date().toISOString(),
-      },
+      responseData,
       {
         headers: {
           'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=7200',
+          'X-Cache': 'MISS',
         },
       }
     )
