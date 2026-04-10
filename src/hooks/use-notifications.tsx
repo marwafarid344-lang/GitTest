@@ -22,16 +22,25 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     loadUser()
   }, [])
 
-  const fetchNotifications = useCallback(async () => {
+  // Dedup guard — prevent fetching more often than every 30 seconds
+  const lastFetchRef = React.useRef<number>(0)
+
+  const fetchNotifications = useCallback(async (force = false) => {
     if (!user?.auth_id) return
+
+    // Dedup: skip if fetched within last 30 seconds (unless forced)
+    const now = Date.now()
+    if (!force && now - lastFetchRef.current < 30_000) return
+    lastFetchRef.current = now
 
     setIsLoading(true)
     try {
       const { data, error } = await supabase
         .from('Notifications')
-        .select('*')
+        .select('id, auth_id, title, message_content, type, provider, seen, created_at')
         .eq('auth_id', user.auth_id)
         .order('created_at', { ascending: false })
+        .limit(50)
 
       if (error) {
         console.error('Error fetching notifications:', error)
@@ -144,9 +153,10 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     try {
       const { data, error } = await supabase
         .from('Notifications')
-        .select('*')
+        .select('id, auth_id, title, message_content, type, provider, seen, created_at')
         .eq('auth_id', authId)
         .order('created_at', { ascending: false })
+        .limit(50)
 
       if (error) {
         console.error('Error fetching notifications on login:', error)
