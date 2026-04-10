@@ -48,7 +48,7 @@ export async function getAdminData(authId: string): Promise<AdminData | null> {
   
   const { data, error } = await supabase
     .from('admins')
-    .select('*')
+    .select('auth_id, username, email, is_admin, current_level, specialization, profile_image')
     .eq('auth_id', authId)
     .single()
   
