@@ -2,7 +2,7 @@
 
 // CACHE TOGGLE: Set to true to disable all caching site-wide (forces refresh for all users)
 // Very useful when making changes and students' mobile devices (which don't have hard refresh) are stuck on old versions.
-const DISABLE_CACHE = true;
+const DISABLE_CACHE = false;
 
 const nextConfig = {
   /* config options here */
