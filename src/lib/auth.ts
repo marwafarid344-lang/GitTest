@@ -15,7 +15,7 @@ export interface StudentUser {
 }
 
 const SESSION_CACHE_KEY = 'chameleon_user_cache'
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes — reduced DB hits significantly
 
 interface CachedSession {
   data: StudentUser
@@ -82,13 +82,15 @@ export async function getStudentSession(forceRefresh = false): Promise<StudentUs
   try {
     const supabase = createBrowserClient()
     
-    // Get Supabase auth session (validates JWT locally, no DB hit)
-    const { data: { user }, error: authError } = await supabase.auth.getUser()
+    // Use getSession() — validates JWT locally without a network round-trip
+    // getUser() makes a network call to Supabase Auth every time
+    const { data: { session }, error: authError } = await supabase.auth.getSession()
     
-    if (authError || !user) {
+    if (authError || !session?.user) {
       clearSessionCache()
       return null
     }
+    const user = session.user
 
     // Check cache first unless force refresh
     if (!forceRefresh) {
@@ -98,10 +100,10 @@ export async function getStudentSession(forceRefresh = false): Promise<StudentUs
       }
     }
 
-    // Fetch fresh user data from chameleons table using auth_id
+    // Fetch fresh user data from chameleons table — select ONLY needed columns to minimize egress
     const { data: userData, error: dbError } = await supabase
       .from('chameleons')
-      .select('*')
+      .select('auth_id, username, phone_number, specialization, age, current_level, is_admin, is_banned, created_at, profile_image, email')
       .eq('auth_id', user.id)
       .single()
 
