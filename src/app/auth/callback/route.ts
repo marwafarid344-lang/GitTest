@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
       const adminSupabase = createAdminClient()
       const { data: existingUser, error: dbError } = await adminSupabase
         .from("chameleons")
-        .select("*")
+        .select("auth_id")
         .eq("auth_id", session.user.id)
         .single()
 
