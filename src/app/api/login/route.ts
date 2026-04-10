@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import bcrypt from 'bcryptjs'
+import { checkRateLimit, getRequestIdentifier, RateLimitTier } from '@/lib/rate-limit'
 
 // In-memory storage for login attempts (per IP address)
 // In production, this should be replaced with a proper database or Redis
@@ -90,6 +91,23 @@ export async function POST(request: NextRequest) {
 
     const clientIP = getClientIP(request)
 
+    // Rate limit check — prevent brute force attacks
+    const rateLimitId = getRequestIdentifier(request)
+    const rateLimit = checkRateLimit(rateLimitId, RateLimitTier.AUTH)
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.', retryAfter: Math.ceil((rateLimit.reset - Date.now()) / 1000) },
+        { 
+          status: 429,
+          headers: {
+            'Retry-After': String(Math.ceil((rateLimit.reset - Date.now()) / 1000)),
+            'X-RateLimit-Limit': String(rateLimit.limit),
+            'X-RateLimit-Remaining': String(rateLimit.remaining),
+          }
+        }
+      )
+    }
+
     // Check if IP is currently locked out
     if (isLockedOut(clientIP)) {
       const remainingTime = Math.ceil(getRemainingLockoutTime(clientIP) / 1000 / 60) // minutes
@@ -105,10 +123,12 @@ export async function POST(request: NextRequest) {
     // Create Supabase admin client (bypasses RLS for server-side operations)
     const supabase = createAdminClient()
 
-    // Get user data by auth_id (using the authenticated user's ID)
+    // Get user data by username (MUST filter to a single row — never fetch all users)
     const { data: userData, error: userError } = await supabase
       .from('chameleons')
-        .select('auth_id, username, email, role, current_level, specialization, profile_image, is_admin, age, created_at')
+      .select('auth_id, username, email, role, current_level, specialization, profile_image, is_admin, is_banned, age, created_at, pass')
+      .eq('username', studentId)
+      .single()
 
     if (userError || !userData) {
       recordFailedAttempt(clientIP)
