@@ -1,11 +1,25 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
+// In-memory server-side cache — survives across requests within the same serverless instance
+let cachedResult: { data: any; timestamp: number } | null = null
+const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+
 // Cache for 5 minutes – user count changes slowly
 export const revalidate = 300
 
 export async function GET() {
   try {
+    // Return cached result if still valid
+    if (cachedResult && Date.now() - cachedResult.timestamp < CACHE_TTL) {
+      return NextResponse.json(cachedResult.data, {
+        headers: {
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+          'X-Cache': 'HIT',
+        },
+      })
+    }
+
     // Use service role to bypass RLS and get ALL users
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -66,15 +80,21 @@ export async function GET() {
       }))
       .sort((a, b) => a.level - b.level)
 
+    const responseData = {
+      totalUsers,
+      levels,
+      timestamp: new Date().toISOString(),
+    }
+
+    // Store in server-side cache
+    cachedResult = { data: responseData, timestamp: Date.now() }
+
     return NextResponse.json(
-      {
-        totalUsers,
-        levels,
-        timestamp: new Date().toISOString(),
-      },
+      responseData,
       {
         headers: {
           'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+          'X-Cache': 'MISS',
         },
       }
     )
@@ -86,3 +106,4 @@ export async function GET() {
     )
   }
 }
+
