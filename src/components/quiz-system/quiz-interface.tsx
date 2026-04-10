@@ -565,18 +565,6 @@ export default function QuizInterface({
 
   const handleShowImage = useCallback((imageUrl: string | null | undefined) => {
     if (imageUrl) {
-      console.log('🖼️ Opening image:', imageUrl);
-      // Check if image exists
-      fetch(imageUrl, { method: 'HEAD' })
-        .then(res => {
-          if (res.ok) {
-            console.log('✅ Image exists');
-          } else {
-            console.error('❌ Image not found:', res.status);
-          }
-        })
-        .catch(err => console.error('❌ Error checking image:', err));
-      
       setCurrentImage(imageUrl);
       setShowImageDialog(true);
     }
