@@ -105,8 +105,8 @@ export async function getStudentSession(forceRefresh = false): Promise<StudentUs
       .from('chameleons')
       .select('auth_id, username, phone_number, specialization, age, current_level, is_admin, is_banned, created_at, profile_image, email')
       .eq('auth_id', user.id)
-      .single()
-
+      .maybeSingle()
+    
     if (dbError || !userData) {
       console.error('Failed to fetch user data:', dbError)
       clearSessionCache()
