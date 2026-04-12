@@ -2,6 +2,10 @@ import { google } from 'googleapis'
 import { createClient } from '@/lib/supabase/client'
 import { createAdminClient } from '@/lib/supabase/admin'
 
+if (!process.env.NEXT_PUBLIC_APP_URL) {
+  throw new Error('NEXT_PUBLIC_APP_URL environment variable is not set')
+}
+
 // Google OAuth2 configuration
 export const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID!,
