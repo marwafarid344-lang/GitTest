@@ -2,11 +2,15 @@ import { google } from 'googleapis'
 import { createClient } from '@/lib/supabase/client'
 import { createAdminClient } from '@/lib/supabase/admin'
 
+if (!process.env.NEXT_PUBLIC_APP_URL) {
+  throw new Error('NEXT_PUBLIC_APP_URL environment variable is not set')
+}
+
 // Google OAuth2 configuration
 export const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID!,
   process.env.GOOGLE_CLIENT_SECRET!,
-  `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.tech'}/api/google-drive/callback`
+  `${process.env.NEXT_PUBLIC_APP_URL}/api/google-drive/callback`
 )
 
 // Google Drive API scopes
@@ -67,7 +71,7 @@ export async function refreshAccessToken(refreshToken: string) {
     const client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID!,
       process.env.GOOGLE_CLIENT_SECRET!,
-      `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.tech'}/api/google-drive/callback`
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/google-drive/callback`
     )
 
     client.setCredentials({ refresh_token: refreshToken })
@@ -296,7 +300,7 @@ export async function configureOAuthClientForUser(authId: string) {
     const client = new google.auth.OAuth2(
       process.env.GOOGLE_CLIENT_ID!,
       process.env.GOOGLE_CLIENT_SECRET!,
-      `${process.env.NEXT_PUBLIC_APP_URL || 'https://www.chameleon-nu.tech'}/api/google-drive/callback`
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/google-drive/callback`
     )
 
     client.setCredentials({
