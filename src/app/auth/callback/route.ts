@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
         .from("chameleons")
         .select("auth_id")
         .eq("auth_id", session.user.id)
-        .single()
+        .maybeSingle()
 
       console.log('Database query result:', !!existingUser, dbError?.message)
 

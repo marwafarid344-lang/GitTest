@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
       .select('auth_id, google_email')
       .eq('google_id', userInfo.id)
       .neq('auth_id', authId)
-      .single()
+      .maybeSingle()
 
     if (existingAdmin) {
       console.log(`🚨 OAUTH CALLBACK DEBUG - Google account ${userInfo.email} already associated with user ${existingAdmin.auth_id}, but trying to associate with user ${authId}`)

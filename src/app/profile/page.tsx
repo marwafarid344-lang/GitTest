@@ -262,14 +262,14 @@ export default function ProfilePage() {
       const supabase = createBrowserClient()
 
       // Fetch deletion status AND existence check in single query (was previously 2 separate queries)
-      const { data: freshUserData, error: userCheckError } = await supabase
+      const { data: freshUserData } = await supabase
         .from("chameleons")
         .select("auth_id, deletion_scheduled_at")
         .eq("auth_id", session.auth_id)
-        .single()
+        .maybeSingle()
 
       // Check if user account was deleted (not found in database)
-      if (!freshUserData || userCheckError?.code === 'PGRST116') {
+      if (!freshUserData) {
         console.log("🗑️ User account has been deleted, clearing local storage...")
         // Clear all local storage
         localStorage.clear()
@@ -288,12 +288,10 @@ export default function ProfilePage() {
       }
 
       // Update userData with fresh deletion_scheduled_at
-      if (freshUserData) {
-        setUserData((prev: any) => ({
-          ...prev,
-          deletion_scheduled_at: freshUserData.deletion_scheduled_at
-        }))
-      }
+      setUserData((prev: any) => ({
+        ...prev,
+        deletion_scheduled_at: freshUserData.deletion_scheduled_at
+      }))
 
       // Get ALL quiz attempts for stats computation (head count only — no data transfer)
       const { count: totalQuizCount } = await supabase
