@@ -1,5 +1,5 @@
 import { createBrowserClient } from '@/lib/supabase/client'
-
+import { deduplicateQuery } from '@/lib/supabase-cache'
 export interface StudentUser {
   auth_id: string
   username: string
@@ -100,17 +100,24 @@ export async function getStudentSession(forceRefresh = false): Promise<StudentUs
       }
     }
 
-    // Fetch fresh user data from chameleons table — select ONLY needed columns to minimize egress
-    const { data: userData, error: dbError } = await supabase
-      .from('chameleons')
-      .select('auth_id, username, phone_number, specialization, age, current_level, is_admin, is_banned, created_at, profile_image, email')
-      .eq('auth_id', user.id)
-      .maybeSingle()
-    
-    if (dbError || !userData) {
-      console.error('Failed to fetch user data:', dbError)
-      clearSessionCache()
-      return null
+    // Deduplicate the request
+    const fetchFreshUser = async () => {
+      const { data, error } = await supabase
+        .from('chameleons')
+        .select('auth_id, username, phone_number, specialization, age, current_level, is_admin, is_banned, created_at, profile_image, email')
+        .eq('auth_id', user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      return data;
+    };
+
+    const userData = await deduplicateQuery(`user_${user.id}`, fetchFreshUser);
+
+    if (!userData) {
+      console.warn('User not found in chameleons table.');
+      clearSessionCache();
+      return null;
     }
 
     const sessionData: StudentUser = {
