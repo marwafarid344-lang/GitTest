@@ -304,7 +304,7 @@ export default function QuizInterface({
   const [showCalculator, setShowCalculator] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const submissionInProgress = useRef(false);
-  const supabase = createBrowserClient();
+  const supabase = useMemo(() => createBrowserClient(), []);
 
   // Check authentication status
   const [isAuthenticated, setIsAuthenticated] = useState(false);
