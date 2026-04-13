@@ -26,7 +26,7 @@ export async function checkAdminAccess(authId: string): Promise<{
       )
     `)
     .eq('auth_id', authId)
-    .single()
+    .maybeSingle()
   
   if (error || !user) {
     return { hasAccess: false, isAdmin: false, authorized: false }
@@ -50,7 +50,7 @@ export async function getAdminData(authId: string): Promise<AdminData | null> {
     .from('admins')
     .select('auth_id, username, email, is_admin, current_level, specialization, profile_image')
     .eq('auth_id', authId)
-    .single()
+    .maybeSingle()
   
   if (error || !data) {
     return null
@@ -78,7 +78,7 @@ export async function updateAdminTokens(
     .from('chameleons')
     .select('is_admin')
     .eq('auth_id', authId)
-    .single()
+    .maybeSingle()
   
   if (!user?.is_admin) {
     return { success: false, error: 'User is not an admin' }
@@ -160,7 +160,7 @@ export async function authorizeAdmin(
     .from('chameleons')
     .select('is_admin')
     .eq('auth_id', authId)
-    .single()
+    .maybeSingle()
   
   if (!user?.is_admin) {
     return { success: false, error: 'User is not an admin' }
