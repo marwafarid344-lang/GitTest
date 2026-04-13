@@ -380,7 +380,7 @@ export default function AuthPage() {
         .from("chameleons")
         .select("username")
         .eq("username", signupData.username)
-        .single()
+        .maybeSingle()
 
       if (existingUser) {
         setError("Username already exists")

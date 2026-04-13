@@ -644,7 +644,7 @@ export default function DrivePage() {
         .from("chameleons")
         .select("username")
         .eq("email", email)
-        .single()
+        .maybeSingle()
 
       if (error || !userData) {
         console.log(`No user found for email: ${email}`)
