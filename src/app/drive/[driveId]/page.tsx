@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -220,9 +220,7 @@ export default function DriveRootPage() {
     Map<string, Promise<any>>
   >(new Map());
   const [basicLoaded, setBasicLoaded] = useState(false);
-  const [usernameCache, setUsernameCache] = useState<Map<string, string>>(
-    new Map()
-  );
+  const usernameCache = useRef<Map<string, string>>(new Map());
 
   // Hash resolution states
   const [notFound, setNotFound] = useState(false);
@@ -235,10 +233,10 @@ export default function DriveRootPage() {
   // Supabase client and username fetching function
   const supabase = createBrowserClient();
 
-  const getUsername = async (email: string): Promise<string> => {
+  const getUsername = useCallback(async (email: string): Promise<string> => {
     // Check cache first
-    if (usernameCache.has(email)) {
-      return usernameCache.get(email)!;
+    if (usernameCache.current.has(email)) {
+      return usernameCache.current.get(email)!;
     }
 
     try {
@@ -251,23 +249,23 @@ export default function DriveRootPage() {
       if (error || !userData) {
         console.log(`No user found for email: ${email}`);
         const fallback = "Unknown User";
-        setUsernameCache((prev) => new Map(prev).set(email, fallback));
+        usernameCache.current.set(email, fallback);
         return fallback;
       }
 
       const username = userData.username || "Unknown User";
 
       // Cache the result
-      setUsernameCache((prev) => new Map(prev).set(email, username));
+      usernameCache.current.set(email, username);
 
       return username;
     } catch (error) {
       console.error("Error fetching username:", error);
       const fallback = "Unknown User";
-      setUsernameCache((prev) => new Map(prev).set(email, fallback));
+      usernameCache.current.set(email, fallback);
       return fallback;
     }
-  };
+  }, [supabase]);
 
   // Check if current user owns the file
   const isCurrentUserOwner = (file: DriveFile): boolean => {

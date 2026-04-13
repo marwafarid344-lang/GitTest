@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -238,7 +238,7 @@ export default function DrivePage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [userSession, setUserSession] = useState<any>(null)
-  const [usernameCache, setUsernameCache] = useState<Map<string, string>>(new Map())
+  const usernameCache = useRef<Map<string, string>>(new Map())
 
   // Hash resolution states
   const [notFound, setNotFound] = useState(false)
@@ -633,10 +633,10 @@ export default function DrivePage() {
     )
   }
 
-  const getUsername = async (email: string): Promise<string> => {
+  const getUsername = useCallback(async (email: string): Promise<string> => {
     // Check cache first
-    if (usernameCache.has(email)) {
-      return usernameCache.get(email)!
+    if (usernameCache.current.has(email)) {
+      return usernameCache.current.get(email)!
     }
 
     try {
@@ -649,23 +649,23 @@ export default function DrivePage() {
       if (error || !userData) {
         console.log(`No user found for email: ${email}`)
         const fallback = "Unknown User"
-        setUsernameCache(prev => new Map(prev).set(email, fallback))
+        usernameCache.current.set(email, fallback)
         return fallback
       }
 
       const username = userData.username || "Unknown User"
       
       // Cache the result
-      setUsernameCache(prev => new Map(prev).set(email, username))
+      usernameCache.current.set(email, username)
       
       return username
     } catch (error) {
       console.error('Error fetching username:', error)
       const fallback = "Unknown User"
-      setUsernameCache(prev => new Map(prev).set(email, fallback))
+      usernameCache.current.set(email, fallback)
       return fallback
     }
-  }
+  }, [supabase])
   // Load folder contents and info when path changes
   useEffect(() => {
     if (actualDriveId && userSession && !notFound) {
