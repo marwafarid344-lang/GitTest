@@ -128,7 +128,7 @@ export async function POST(request: NextRequest) {
       .from('chameleons')
       .select('auth_id, username, email, role, current_level, specialization, profile_image, is_admin, is_banned, age, created_at, pass')
       .eq('username', studentId)
-      .single()
+      .maybeSingle()
 
     if (userError || !userData) {
       recordFailedAttempt(clientIP)
