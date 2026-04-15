@@ -235,7 +235,7 @@ export async function getLeaderboardData(level: 1 | 2 | 3): Promise<{
         .from("chameleons")
         .select("auth_id, username")
         .eq("email", user.email)
-        .single()
+        .maybeSingle()
 
       if (!profileError && userProfile) {
         currentAuthId = userProfile.auth_id
