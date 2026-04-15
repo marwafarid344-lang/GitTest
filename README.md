@@ -7,9 +7,7 @@
 
 **Chameleon FCDS** is a comprehensive educational platform designed for computer science and data science students at FCDS (Faculty of Computing and Data Sciences). Built with Next.js 14, featuring an interactive quiz system, tournament leaderboards, Google Drive integration, and advanced GSAP animations.
 
-🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.vercel.app)
-
-🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.vercel.app)
+🌐 **Live:** [chameleon-nu.vercel.app](https://chameleon-nu.vercel.app)
 
 ---
 
