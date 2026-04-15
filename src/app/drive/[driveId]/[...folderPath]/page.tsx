@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -49,6 +49,13 @@ import { FileCardSkeleton, StatsCardSkeleton } from "@/components/loading-skelet
 import { UploadProvider } from "@/components/upload-context"
 import { UploadProgressBar } from "@/components/upload-progress-bar"
 import AdBanner from "@/components/AdBanner"
+
+// Module-level caches persist across navigations within the same browser session.
+// resultCache: stores resolved usernames so we never re-fetch the same email.
+// inFlightCache: deduplicates concurrent requests — if 100 components ask for the
+// same email simultaneously, only one DB request is made; all others await it.
+const usernameResultCache = new Map<string, string>()
+const usernameInFlightCache = new Map<string, Promise<string>>()
 
 interface DriveFile {
   id: string
@@ -238,7 +245,6 @@ export default function DrivePage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [userSession, setUserSession] = useState<any>(null)
-  const usernameCache = useRef<Map<string, string>>(new Map())
 
   // Hash resolution states
   const [notFound, setNotFound] = useState(false)
@@ -634,37 +640,43 @@ export default function DrivePage() {
   }
 
   const getUsername = useCallback(async (email: string): Promise<string> => {
-    // Check cache first
-    if (usernameCache.current.has(email)) {
-      return usernameCache.current.get(email)!
+    // 1. Return immediately if result is already cached
+    if (usernameResultCache.has(email)) {
+      return usernameResultCache.get(email)!
     }
 
-    try {
-      const { data: userData, error } = await supabase
-        .from("chameleons")
-        .select("username")
-        .eq("email", email)
-        .single()
-
-      if (error || !userData) {
-        console.log(`No user found for email: ${email}`)
-        const fallback = "Unknown User"
-        usernameCache.current.set(email, fallback)
-        return fallback
-      }
-
-      const username = userData.username || "Unknown User"
-      
-      // Cache the result
-      usernameCache.current.set(email, username)
-      
-      return username
-    } catch (error) {
-      console.error('Error fetching username:', error)
-      const fallback = "Unknown User"
-      usernameCache.current.set(email, fallback)
-      return fallback
+    // 2. If a request for this email is already in flight, reuse it instead of
+    //    firing a duplicate — this prevents N concurrent DB hits for the same email
+    if (usernameInFlightCache.has(email)) {
+      return usernameInFlightCache.get(email)!
     }
+
+    // 3. Fire the DB request and register it in the in-flight map immediately
+    const request = supabase
+      .from("chameleons")
+      .select("username")
+      .eq("email", email)
+      .maybeSingle()
+      .then(({ data: userData, error }) => {
+        usernameInFlightCache.delete(email)
+        if (error || !userData) {
+          console.log(`No user found for email: ${email}`)
+          usernameResultCache.set(email, "Unknown User")
+          return "Unknown User"
+        }
+        const username = userData.username || "Unknown User"
+        usernameResultCache.set(email, username)
+        return username
+      })
+      .catch((error) => {
+        usernameInFlightCache.delete(email)
+        console.error('Error fetching username:', error)
+        usernameResultCache.set(email, "Unknown User")
+        return "Unknown User"
+      })
+
+    usernameInFlightCache.set(email, request)
+    return request
   }, [supabase])
   // Load folder contents and info when path changes
   useEffect(() => {
