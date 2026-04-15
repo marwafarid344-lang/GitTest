@@ -1,15 +1,15 @@
 # 🎓 Chameleon FCDS - Educational Platform
 
-[![Live Site](https://img.shields.io/badge/Live-chameleon--nu.tech-blue)](https://chameleon-nu.tech)
+[![Live Site](https://img.shields.io/badge/Live-chameleon--nu.vercel.app-blue)](https://chameleon-nu.vercel.app)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-green)](https://supabase.com)
 
 **Chameleon FCDS** is a comprehensive educational platform designed for computer science and data science students at FCDS (Faculty of Computing and Data Sciences). Built with Next.js 14, featuring an interactive quiz system, tournament leaderboards, Google Drive integration, and advanced GSAP animations.
 
-🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.tech)
+🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.vercel.app)
 
-🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.tech)
+🌐 **Live:** [chameleon-nu.tech](https://chameleon-nu.vercel.app)
 
 ---
 
@@ -705,7 +705,7 @@ This project is proprietary software. All rights reserved © 2025 Chameleon FCDS
 
 **Created by**: Levi Ackerman  
 **Platform**: Chameleon FCDS Educational Platform  
-**Website**: [chameleon-nu.tech](https://chameleon-nu.tech)
+**Website**: [chameleon-nu.tech](https://chameleon-nu.vercel.app)
 
 ---
 
