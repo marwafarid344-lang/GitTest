@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -54,6 +54,9 @@ import { AdminAuthGuard } from "@/components/AdminAuthGuard";
 import { UploadProvider } from "@/components/upload-context";
 import { UploadProgressBar } from "@/components/upload-progress-bar";
 import AdBanner from "@/components/AdBanner";
+
+// Module-level result cache persists usernames across navigations within the same browser session.
+const usernameResultCache = new Map<string, string>();
 
 interface DriveFile {
   id: string;
@@ -157,40 +160,8 @@ function OwnershipBadge() {
   );
 }
 
-// Component to display owner information with username lookup
-function OwnerDisplay({
-  owner,
-  getUsername,
-}: {
-  owner: { displayName: string; emailAddress: string };
-  getUsername: (email: string) => Promise<string>;
-}) {
-  const [username, setUsername] = useState<string>("Loading...");
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchUsername = async () => {
-      try {
-        const result = await getUsername(owner.emailAddress);
-        if (mounted) {
-          setUsername(result);
-        }
-      } catch (error) {
-        console.error("Error fetching username for owner:", error);
-        if (mounted) {
-          setUsername(owner.displayName || "Unknown User");
-        }
-      }
-    };
-
-    fetchUsername();
-
-    return () => {
-      mounted = false;
-    };
-  }, [owner.emailAddress, getUsername, owner.displayName]);
-
+// Component to display owner information — receives an already-resolved username string
+function OwnerDisplay({ username }: { username: string }) {
   return (
     <div className="flex items-center gap-2">
       <User className="w-3 h-3 flex-shrink-0" />
@@ -220,7 +191,7 @@ export default function DriveRootPage() {
     Map<string, Promise<any>>
   >(new Map());
   const [basicLoaded, setBasicLoaded] = useState(false);
-  const usernameCache = useRef<Map<string, string>>(new Map());
+  const [usernameMap, setUsernameMap] = useState<Map<string, string>>(new Map());
 
   // Hash resolution states
   const [notFound, setNotFound] = useState(false);
@@ -230,41 +201,48 @@ export default function DriveRootPage() {
   // Dynamic metadata
   useDynamicMetadata(dynamicPageMetadata.driveRoot(driveInfo?.name));
 
-  // Supabase client and username fetching function
+  // Supabase client — singleton, never changes
   const supabase = createBrowserClient();
 
-  const getUsername = useCallback(async (email: string): Promise<string> => {
-    // Check cache first
-    if (usernameCache.current.has(email)) {
-      return usernameCache.current.get(email)!;
-    }
+  // Batch-fetch usernames for all unique owner emails in one query.
+  // Uses a module-level result cache to skip emails fetched in earlier navigations.
+  const fetchUsernames = useCallback(async (filesToScan: DriveFile[]) => {
+    const allEmails = [
+      ...new Set(filesToScan.flatMap((f) => f.owners?.map((o) => o.emailAddress) ?? [])),
+    ];
+    if (allEmails.length === 0) return;
 
-    try {
-      const { data: userData, error } = await supabase
-        .from("chameleons")
-        .select("username")
-        .eq("email", email)
-        .maybeSingle();
-
-      if (error || !userData) {
-        console.log(`No user found for email: ${email}`);
-        const fallback = "Unknown User";
-        usernameCache.current.set(email, fallback);
-        return fallback;
+    // Split: already in session cache vs. needs a DB fetch
+    const alreadyCached: Array<[string, string]> = [];
+    const toFetch: string[] = [];
+    for (const email of allEmails) {
+      if (usernameResultCache.has(email)) {
+        alreadyCached.push([email, usernameResultCache.get(email)!]);
+      } else {
+        toFetch.push(email);
       }
-
-      const username = userData.username || "Unknown User";
-
-      // Cache the result
-      usernameCache.current.set(email, username);
-
-      return username;
-    } catch (error) {
-      console.error("Error fetching username:", error);
-      const fallback = "Unknown User";
-      usernameCache.current.set(email, fallback);
-      return fallback;
     }
+
+    let fetched: Array<[string, string]> = [];
+    if (toFetch.length > 0) {
+      const { data } = await supabase
+        .from("chameleons")
+        .select("email, username")
+        .in("email", toFetch);
+
+      const foundEmails = new Set((data ?? []).map((r) => r.email));
+      fetched = [
+        ...(data ?? []).map((r) => [r.email, r.username || "Unknown User"] as [string, string]),
+        ...toFetch.filter((e) => !foundEmails.has(e)).map((e) => [e, "Unknown User"] as [string, string]),
+      ];
+      fetched.forEach(([e, u]) => usernameResultCache.set(e, u));
+    }
+
+    setUsernameMap((prev) => {
+      const next = new Map(prev);
+      [...alreadyCached, ...fetched].forEach(([e, u]) => next.set(e, u));
+      return next;
+    });
   }, [supabase]);
 
   // Check if current user owns the file
@@ -419,6 +397,7 @@ export default function DriveRootPage() {
       if (cached) {
         setFiles(cached);
         setFilteredFiles(cached);
+        fetchUsernames(cached);
         return;
       }
 
@@ -468,6 +447,7 @@ export default function DriveRootPage() {
 
         setFiles(files);
         setFilteredFiles(files);
+        fetchUsernames(files);
 
         // Cache the result
         filesCache.set(cacheKey, files);
@@ -1112,8 +1092,11 @@ export default function DriveRootPage() {
                                 )}
                                 {file.owners?.[0] && (
                                   <OwnerDisplay
-                                    owner={file.owners[0]}
-                                    getUsername={getUsername}
+                                    username={
+                                      usernameMap.get(file.owners[0].emailAddress) ??
+                                      file.owners[0].displayName ??
+                                      "Unknown User"
+                                    }
                                   />
                                 )}
                               </div>
