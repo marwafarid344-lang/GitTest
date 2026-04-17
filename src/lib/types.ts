@@ -10,6 +10,8 @@ export interface User {
   created_at: string
   profile_image?: string
   email?: string
+  coins?: number
+  inventory?: string[]
 }
 
 export interface Quiz {
