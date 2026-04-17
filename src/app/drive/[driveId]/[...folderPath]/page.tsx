@@ -50,6 +50,9 @@ import { UploadProvider } from "@/components/upload-context"
 import { UploadProgressBar } from "@/components/upload-progress-bar"
 import AdBanner from "@/components/AdBanner"
 
+// Module-level result cache persists usernames across navigations within the same browser session.
+const usernameResultCache = new Map<string, string>()
+
 interface DriveFile {
   id: string
   name: string
@@ -135,40 +138,8 @@ function formatDate(dateString: string) {
 
 type SortOption = "name" | "modified" | "size" | "type"
 
-// Component to display owner information with username lookup
-function OwnerDisplay({ 
-  owner, 
-  getUsername 
-}: { 
-  owner: { displayName: string; emailAddress: string }
-  getUsername: (email: string) => Promise<string>
-}) {
-  const [username, setUsername] = useState<string>("Loading...")
-
-  useEffect(() => {
-    let mounted = true
-    
-    const fetchUsername = async () => {
-      try {
-        const result = await getUsername(owner.emailAddress)
-        if (mounted) {
-          setUsername(result)
-        }
-      } catch (error) {
-        console.error('Error fetching username for owner:', error)
-        if (mounted) {
-          setUsername(owner.displayName || "Unknown User")
-        }
-      }
-    }
-
-    fetchUsername()
-
-    return () => {
-      mounted = false
-    }
-  }, [owner.emailAddress, getUsername, owner.displayName])
-
+// Component to display owner information — receives an already-resolved username string
+function OwnerDisplay({ username }: { username: string }) {
   return (
     <div className="flex items-center gap-2">
       <User className="w-3 h-3" />
@@ -238,7 +209,7 @@ export default function DrivePage() {
   const [isAdmin, setIsAdmin] = useState(false)
   const [isAuthorized, setIsAuthorized] = useState(false)
   const [userSession, setUserSession] = useState<any>(null)
-  const [usernameCache, setUsernameCache] = useState<Map<string, string>>(new Map())
+  const [usernameMap, setUsernameMap] = useState<Map<string, string>>(new Map())
 
   // Hash resolution states
   const [notFound, setNotFound] = useState(false)
@@ -368,6 +339,50 @@ export default function DrivePage() {
     }
   }, [userSession, isAdmin]) // Add dependencies for useCallback
 
+  // Supabase client — singleton, never changes
+  const supabase = createBrowserClient()
+
+  // Batch-fetch usernames for all unique owner emails in one query.
+  // Uses a module-level result cache to skip emails fetched in earlier navigations.
+  const fetchUsernames = useCallback(async (filesToScan: DriveFile[]) => {
+    const allEmails = [
+      ...new Set(filesToScan.flatMap((f) => f.owners?.map((o) => o.emailAddress) ?? [])),
+    ]
+    if (allEmails.length === 0) return
+
+    // Split: already in session cache vs. needs a DB fetch
+    const alreadyCached: Array<[string, string]> = []
+    const toFetch: string[] = []
+    for (const email of allEmails) {
+      if (usernameResultCache.has(email)) {
+        alreadyCached.push([email, usernameResultCache.get(email)!])
+      } else {
+        toFetch.push(email)
+      }
+    }
+
+    let fetched: Array<[string, string]> = []
+    if (toFetch.length > 0) {
+      const { data } = await supabase
+        .from("chameleons")
+        .select("email, username")
+        .in("email", toFetch)
+
+      const foundEmails = new Set((data ?? []).map((r) => r.email))
+      fetched = [
+        ...(data ?? []).map((r) => [r.email, r.username || "Unknown User"] as [string, string]),
+        ...toFetch.filter((e) => !foundEmails.has(e)).map((e) => [e, "Unknown User"] as [string, string]),
+      ]
+      fetched.forEach(([e, u]) => usernameResultCache.set(e, u))
+    }
+
+    setUsernameMap((prev) => {
+      const next = new Map(prev)
+      ;[...alreadyCached, ...fetched].forEach(([e, u]) => next.set(e, u))
+      return next
+    })
+  }, [supabase])
+
   const fetchFolderContents = useCallback(async (folderId: string, pageToken?: string) => {
     try {
       if (!userSession) {
@@ -380,6 +395,7 @@ export default function DrivePage() {
       if (cached && Date.now() - cached.timestamp < CACHE_EXPIRATION) {
         setFiles(cached.data)
         setFilteredFiles(cached.data)
+        fetchUsernames(cached.data)
         return
       }
 
@@ -423,22 +439,24 @@ export default function DrivePage() {
 
       const data: DriveResponse = await response.json()
 
+      const newFiles = data.files || []
       if (pageToken) {
-        setFiles((prev) => [...prev, ...(data.files || [])])
-        setFilteredFiles((prev) => [...prev, ...(data.files || [])])
+        setFiles((prev) => [...prev, ...newFiles])
+        setFilteredFiles((prev) => [...prev, ...newFiles])
       } else {
-        setFiles(data.files || [])
-        setFilteredFiles(data.files || [])
+        setFiles(newFiles)
+        setFilteredFiles(newFiles)
       }
+      fetchUsernames(newFiles)
 
       setNextPageToken(data.nextPageToken)
-      driveCache.set(cacheKey, { data: data.files || [], timestamp: Date.now() })
+      driveCache.set(cacheKey, { data: newFiles, timestamp: Date.now() })
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred while loading files")
     } finally {
       pageToken ? setIsFetchingMore(false) : setLoading(false)
     }
-  }, [userSession, isAdmin]) // Add isAdmin as dependency
+  }, [userSession, isAdmin, fetchUsernames]) // Add isAdmin as dependency
 
   const buildBreadcrumbs = async () => {
     try {
@@ -622,50 +640,15 @@ export default function DrivePage() {
     setFilteredFiles(filtered)
   }, [searchQuery, files])
 
-  const supabase = createBrowserClient()
-
   // Check if current user owns the file
   const isCurrentUserOwner = (file: DriveFile): boolean => {
     if (!userSession?.email || !file.owners) return false
-    
-    return file.owners.some(owner => 
+
+    return file.owners.some(owner =>
       owner.emailAddress.toLowerCase() === userSession.email.toLowerCase()
     )
   }
 
-  const getUsername = async (email: string): Promise<string> => {
-    // Check cache first
-    if (usernameCache.has(email)) {
-      return usernameCache.get(email)!
-    }
-
-    try {
-      const { data: userData, error } = await supabase
-        .from("chameleons")
-        .select("username")
-        .eq("email", email)
-        .single()
-
-      if (error || !userData) {
-        console.log(`No user found for email: ${email}`)
-        const fallback = "Unknown User"
-        setUsernameCache(prev => new Map(prev).set(email, fallback))
-        return fallback
-      }
-
-      const username = userData.username || "Unknown User"
-      
-      // Cache the result
-      setUsernameCache(prev => new Map(prev).set(email, username))
-      
-      return username
-    } catch (error) {
-      console.error('Error fetching username:', error)
-      const fallback = "Unknown User"
-      setUsernameCache(prev => new Map(prev).set(email, fallback))
-      return fallback
-    }
-  }
   // Load folder contents and info when path changes
   useEffect(() => {
     if (actualDriveId && userSession && !notFound) {
@@ -1082,8 +1065,11 @@ export default function DrivePage() {
                             )}
                             {file.owners?.[0] && (
                               <OwnerDisplay 
-                                owner={file.owners[0]} 
-                                getUsername={getUsername}
+                                username={
+                                  usernameMap.get(file.owners[0].emailAddress) ??
+                                  file.owners[0].displayName ??
+                                  "Unknown User"
+                                }
                               />
                             )}
                           </div>

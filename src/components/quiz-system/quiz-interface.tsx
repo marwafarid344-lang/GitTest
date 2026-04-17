@@ -41,6 +41,7 @@ import { Dialog as ImageDialog, DialogContent as ImageDialogContent } from "@/co
 import Calculator from "@/components/Calculator";
 import "katex/dist/katex.min.css";
 import { InlineMath } from "react-katex";
+// import { toast } from "sonner";
 
 interface QuizQuestion {
   numb: number;
@@ -304,7 +305,7 @@ export default function QuizInterface({
   const [showCalculator, setShowCalculator] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const submissionInProgress = useRef(false);
-  const supabase = createBrowserClient();
+  const supabase = useMemo(() => createBrowserClient(), []);
 
   // Check authentication status
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -627,6 +628,33 @@ export default function QuizInterface({
         // Update attempts count after successful submission
         setAttemptsToday(prev => prev + 1);
         setMaxAttemptsReached(attemptsToday + 1 >= 10);
+
+        // 🪙 Give coins = finalscore * 1.5
+        const earnedCoins = finalScore * 1.5;
+        if (Math.ceil(earnedCoins) > 0) {
+          const { data: userData } = await supabase
+            .from("chameleons")
+            .select("coins")
+            .eq("auth_id", session.auth_id)
+            .single();
+          
+          if (userData) {
+            await supabase
+              .from("chameleons")
+              .update({ coins: (userData.coins || 0) + Math.ceil(earnedCoins) })
+              .eq("auth_id", session.auth_id);
+            
+            /* 
+            toast.success(`Congratulations! You earned ${earnedCoins} coins!`, {
+              icon: "🪙",
+              duration: 5000,
+            });
+            */
+            
+            // Refresh session to update UI across the app
+            await getStudentSession(true);
+          }
+        }
       }
     } catch (error) {
       console.error("Unexpected error saving quiz data:", error);

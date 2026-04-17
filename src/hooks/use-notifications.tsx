@@ -108,7 +108,7 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
         .from('Notifications')
         .insert([notification])
         .select()
-        .single()
+        .maybeSingle()
 
       if (error) {
         console.error('Error adding notification:', error)

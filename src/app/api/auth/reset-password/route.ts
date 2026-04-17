@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       .from('chameleons')
       .select('user_id, email')
       .eq('email', email)
-      .single()
+      .maybeSingle()
 
     if (fetchError || !existingUser) {
       return NextResponse.json(
